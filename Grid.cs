@@ -16,8 +16,6 @@ internal class Grid
 
     private Tile?[,] _field;
 
-    //private Stack<StateSnapshot> History; should be in other class TODO
-
     public int Score { get; set; }
 
     //Default constructor (empty grid)
@@ -39,6 +37,8 @@ internal class Grid
         this.Score = ss.Score;
         foreach(TileSnapshot ts in ss.TileSnapshots)
         {
+            bool hasMerged = ts.Parents.HasValue;
+
             Tile curr = new Tile
             (
                 ts.Id,
@@ -46,10 +46,15 @@ internal class Grid
                 ts.PosY,
                 ts.PosX,
                 ts.PosY,
-                false,
+                hasMerged,
                 ts.Value
             );
-            this[ts.PosX, ts.PosY] = curr;
+
+            if (hasMerged) curr.SetParents(ts.Parents.Value.Id1, ts.Parents.Value.Id2);
+            else curr.SetParents();
+
+            _field[ts.PosX, ts.PosY] = curr;
+            _tiles.Add(curr);
         }
     }
 
@@ -57,7 +62,7 @@ internal class Grid
     {
         if (tile.PosX != tile.TargetX || tile.PosY != tile.TargetY)
         {
-
+            //TODO
         }
     }
 
@@ -118,7 +123,7 @@ internal class Grid
             Tile? oldTile = _field[x, y];
             Tile? newTile = row[x];
 
-            if (oldTile != null && oldTile != newTile) 
+            if (!row.Contains(oldTile)) 
             {
                 _tiles.Remove(oldTile);
             }
@@ -153,7 +158,7 @@ internal class Grid
             Tile? oldTile = _field[x, y];
             Tile? newTile = column[y];
 
-            if (oldTile != null && oldTile != newTile)
+            if (!column.Contains(oldTile))
             {
                 _tiles.Remove(oldTile);
             }

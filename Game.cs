@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,15 +11,19 @@ namespace Console2048
     {
         public Grid Grid { get; private set; }
         private Stack<StateSnapshot> _history;
+        //Safe system of registry with readonly interface for outter calls (pointer leak issue)
+        private TileRegistry _tileRegistry;
+        public IReadOnlyTileRegistry TileRegistry => _tileRegistry; //getter
         private int _nextTileId;
         private Random _random;
-
         public bool IsGameOver { get; private set; } = false; //default state will be false from the start (no need to initialize)
+
 
         public Game(Grid grid)
         {
             Grid = grid;
             _history = new Stack<StateSnapshot>();
+            _tileRegistry = new TileRegistry();
             _nextTileId = 1;
             _random = new Random();
 
@@ -38,7 +43,9 @@ namespace Console2048
             {
                 (int x, int y) chosen = emptyCells[_random.Next(emptyCells.Count)];
                 int value = _random.Next(10) == 0 ? 4 : 2; //10% that 4 will appear
-                Grid[chosen.x, chosen.y] = new Tile(GetNextTileId(), chosen.x, chosen.y, chosen.x, chosen.y, false, value);
+                Tile newTile = new Tile(GetNextTileId(), chosen.x, chosen.y, chosen.x, chosen.y, false, value);
+                Grid[chosen.x, chosen.y] = newTile;
+                _tileRegistry.Register(newTile);
             }
 
         }
@@ -62,6 +69,14 @@ namespace Console2048
 
                 if (result.WasMoved)
                 {
+                    //registry
+                    _tileRegistry.UnregisterMany(result.MergedTiles);
+                    _tileRegistry.RegisterMany
+                        (
+                            result.NewLine.OfType<Tile>().Where(t => t.IsMerged)
+                        );
+                    //registry
+
                     moved = true;
                     score += result.EarnedScore;
 
@@ -90,15 +105,21 @@ namespace Console2048
                 CheckForGameOver();
             }
         }
-        
+
         public void Undo()
         {
-            if (_history.Count > 0)
+            if (_history.Count == 0) return;
+
+            StateSnapshot stateSnapshot = _history.Pop();
+            Grid.Restore(stateSnapshot);
+
+            _tileRegistry.Clear();
+            for (int i = 0; i < Grid.GetCount(); i++) 
             {
-                StateSnapshot lastState = _history.Pop();
-                this.Grid.Restore(lastState);
-                IsGameOver = false;
-            }
+                _tileRegistry.Register(Grid[i]);
+            } 
+
+            IsGameOver = false;
         }
 
         public void CheckForGameOver()

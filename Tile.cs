@@ -9,6 +9,7 @@ namespace Console2048;
 internal class Tile
 {
     public int Id { get; private set; }
+    public (int Id1, int Id2)? Parents { get; private set; } = null;
     public int PosX {  get; private set; } 
     public int PosY {  get; private set; }
     public int TargetX {  get; private set; }
@@ -51,9 +52,14 @@ internal class Tile
         IsMerged = isMerged;
     }
 
-    public void DefineId(int id)
+    public void SetParents(int? id1 = null, int? id2 = null)
     {
-        if (id == 0) Id = id;
+        //pattern matching
+        Parents = (id1, id2) switch
+        {
+            (int val1, int val2) => new(val1, val2),
+            _ => null
+        };
     }
 
     public override string ToString()

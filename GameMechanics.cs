@@ -12,6 +12,7 @@ internal static class GameMechanics
     public struct ProcessResult
     {
         public Tile?[] NewLine;
+        public Tile[] MergedTiles;
         public int EarnedScore;
         public bool WasMoved;
     }
@@ -23,7 +24,10 @@ internal static class GameMechanics
 
         List<Tile?> existingTiles = line.Where(t => t != null).ToList();
         List<Tile?> resultList = new List<Tile?>();
-        
+
+        List<Tile> mergedTiles = new List<Tile>();
+
+
 
         for (int i = 0; i < existingTiles.Count; i++)
         {
@@ -31,9 +35,14 @@ internal static class GameMechanics
             {
                 Tile curr = existingTiles[i];
                 Tile next = existingTiles[i + 1];
+
+                mergedTiles.Add(curr);
+                mergedTiles.Add(next);
+
                 int newValue = curr.Value * 2;
 
                 Tile merged = new Tile(generateId(), curr.PosX, curr.PosY, curr.PosX, curr.PosY, true, newValue);
+                merged.SetParents(curr.Id, next.Id);
                 totalScore += newValue;
                 resultList.Add(merged);
                 i++;
@@ -41,6 +50,7 @@ internal static class GameMechanics
             else
             {
                 existingTiles[i].SetMerged(false);
+                existingTiles[i].SetParents();
                 resultList.Add(existingTiles[i]);
             }
         }
@@ -51,6 +61,7 @@ internal static class GameMechanics
         return new ProcessResult
         {
             NewLine = finalArray,
+            MergedTiles = mergedTiles.ToArray(),
             EarnedScore = totalScore,
             WasMoved = moved
         };
