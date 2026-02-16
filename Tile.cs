@@ -12,20 +12,20 @@ internal class Tile
     public (int Id1, int Id2)? Parents { get; private set; } = null;
     public int PosX {  get; private set; } 
     public int PosY {  get; private set; }
-    public int TargetX {  get; private set; }
-    public int TargetY {  get; private set; } 
+    public int PreviousX {  get; private set; }
+    public int PreviousY {  get; private set; } 
     public bool IsMerged { get; private set; }
 
     public int Value { get; private set; }
 
 
-    public Tile(int id, int posX, int posY, int targetX, int targetY, bool isMerged, int value)
+    public Tile(int id, int posX, int posY, int previousX, int previousY, bool isMerged, int value)
     {
         Id = id;
         PosX = posX;
         PosY = posY;
-        TargetX = targetX;
-        TargetY = targetY;
+        PreviousX = previousX;
+        PreviousY = previousY;
         IsMerged = isMerged;
         Value = value;
     }
@@ -36,10 +36,10 @@ internal class Tile
         PosY = posY;
     }
 
-    public void SetTarget(int targetX, int targetY)
+    public void SetPrevious(int previousX, int previousY)
     {
-        TargetX = targetX;  
-        TargetY = targetY;
+        PreviousX = previousX;
+        PreviousY = previousY;
     }
 
     public void SetValue(int value)
@@ -60,6 +60,18 @@ internal class Tile
             (int val1, int val2) => new(val1, val2),
             _ => null
         };
+    }
+
+    //Special methods for animation handle
+    public void SyncPrevious()
+    {
+        this.SetPrevious(PosX, PosY);
+    }
+
+    public void UpdatePosition(int newX, int newY)
+    {
+        this.SyncPrevious();
+        this.SetPosition(newX, newY);
     }
 
     public override string ToString()

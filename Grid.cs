@@ -58,12 +58,18 @@ internal class Grid
         }
     }
 
-    public void MoveTileToTarget(Tile tile)
+    public void RestoreWithAnimation(StateSnapshot ss)
     {
-        if (tile.PosX != tile.TargetX || tile.PosY != tile.TargetY)
+        Dictionary<int, Tile> currentTiles = _tiles.ToDictionary(t => t.Id);
+        Dictionary<int, Tile> restoredTiles = new Dictionary<int, Tile>();
+        foreach(TileSnapshot ts in ss.TileSnapshots)
         {
-            //TODO
+            restoredTiles.Add(ts.Id,
+                new Tile(ts.Id, ts.PosX, ts.PosY, ts.PosX, ts.PosY, ts.Parents.HasValue, ts.Value)
+                );
         }
+
+        
     }
 
     //To get to the grid fields easily
@@ -84,7 +90,7 @@ internal class Grid
                 if(value  != null)
                 {
                     value.SetPosition(x, y);
-                    value.SetTarget(x, y);
+                    value.SetPrevious(x, y);
                     if (!_tiles.Contains(value))
                         _tiles.Add(value);
                 }
@@ -132,8 +138,7 @@ internal class Grid
 
             if (newTile != null)
             {
-                newTile.SetPosition(x, y);
-                newTile.SetTarget(x, y);
+                newTile.UpdatePosition(x, y);
 
                 if (!_tiles.Contains(newTile))
                     _tiles.Add(newTile);
@@ -167,8 +172,7 @@ internal class Grid
 
             if (newTile != null)
             {
-                newTile.SetPosition(x, y);
-                newTile.SetTarget(x, y);
+                newTile.UpdatePosition(x, y);
 
                 if (!_tiles.Contains(newTile))
                     _tiles.Add(newTile);
