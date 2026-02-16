@@ -1,23 +1,23 @@
-#### Console 2048 Game – Focus on Logic
+# Console 2048 Game – Focus on Logic
 
-## Implementation of the Classic 2048 Game in C# with an Emphasis on Scalable Architecture, Object Tracking System, and State History (Memento)
+### Implementation of the Classic 2048 Game in C# with an Emphasis on Scalable Architecture, Object Tracking System, and State History (Memento)
 
-### Sections
+## Sections
 
-## 1. Key Features (Architectural Solutions)
+### 1. Key Features (Architectural Solutions)
 
 * **Persistent Tile Identity** – Unique ID system that provides full tile lifecycle tracking from spawn to merge  
 * **Advanced Undo System** – Implementation of the Memento pattern that guarantees stable deep undo with no tile loss  
 * **Ready for Graphics** – `Tile` class already contains properties for future GUI bindings  
 * **Single Responsibility Principle** – Each class has a clearly defined responsibility  
 
-## 2. Technical Stack
+### 2. Technical Stack
 
 * C# / .NET 8  
 * LINQ  
 * Generic Collections  
 
-## 3. Architecture
+### 3. Architecture
 
 * `Tile` – Basic tile object containing data such as `Id`, position, `IsMerged` flag, etc.  
 * `Grid` – Main container for tiles with methods to manipulate its state  
@@ -30,7 +30,7 @@
 * `Program` – Entry point of the application; contains key bindings and game initialization  
 * `MoveDirection` – `enum` representing move directions used in the `Move()` method  
 
-## 4. How to Run
+### 4. How to Run
 
 * Clone the repository and navigate to the folder:
 
@@ -45,13 +45,13 @@ cd Console2048
 
 * Or open the solution in Visual Studio and press `F5`
 
-## Controls
+### Controls
 
 * Use arrow keys for moves (Up, Down, Left, Right)  
 * Press `Z` to undo your move  
 * Press `ESC` to quit the game  
 
-## 5. Future Plans
+### 5. Future Plans
 
 * Full unit test coverage  
 * Refactor logic for future animation integration  
