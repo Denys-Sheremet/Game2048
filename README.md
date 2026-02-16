@@ -1,110 +1,60 @@
-\#### Console 2048 game - focus on logic
+#### Console 2048 Game – Focus on Logic
 
+## Implementation of the Classic 2048 Game in C# with an Emphasis on Scalable Architecture, Object Tracking System, and State History (Memento)
 
+### Sections
 
-\## Implementation of the classic 2048 game on C# with an accent on scalability of architecture, object tracking system and history of states (Memento)
+## 1. Key Features (Architectural Solutions)
 
+* **Persistent Tile Identity** – Unique ID system that provides full tile lifecycle tracking from spawn to merge  
+* **Advanced Undo System** – Implementation of the Memento pattern that guarantees stable deep undo with no tile loss  
+* **Ready for Graphics** – `Tile` class already contains properties for future GUI bindings  
+* **Single Responsibility Principle** – Each class has a clearly defined responsibility  
 
+## 2. Technical Stack
 
-\### Sections
+* C# / .NET 8  
+* LINQ  
+* Generic Collections  
 
+## 3. Architecture
 
+* `Tile` – Basic tile object containing data such as `Id`, position, `IsMerged` flag, etc.  
+* `Grid` – Main container for tiles with methods to manipulate its state  
+* `TileSnapshot` – Snapshot of critical information required to restore a tile from history (Memento)  
+* `StateSnapshot` – Container for `TileSnapshot` objects  
+* `IReadOnlyTileRegistry` – Read-only interface for the `TileRegistry` class to provide safe external access without reference leakage  
+* `TileRegistry` – Registry of tiles stored in a `Dictionary` for instant `O(1)` access by tile ID  
+* `GameMechanics` – A black box containing the core game logic. The `Move()` operation is implemented as pure functions and can be easily unit tested  
+* `Game` – Controller and state keeper; manages registry and grid interactions  
+* `Program` – Entry point of the application; contains key bindings and game initialization  
+* `MoveDirection` – `enum` representing move directions used in the `Move()` method  
 
-\## 1 Key features (architectural solutions)
+## 4. How to Run
 
-
-
-\# Persistent Tile Identity - unique id system provides tile life cycle tracking from spawn to merge
-
-\# Advanced Undo System - implementation of Memento pattern, guarantees stable deep undo with no tiles loss
-
-\# Ready for Graphics - Tile class already contains properties for future GUI binds
-
-\# Single responsibility of each class
-
-
-
-\## 2 Technical Stack
-
-
-
-\# C# / .NET 8
-
-\# LINQ
-
-\# Generic collections
-
-
-
-\## 3 Architecture
-
-
-
-\# `Tile` - basic tile object's data like `id`, position, `isMerged` flag etc.
-
-\# `Grid` - the main container for tiles with methods to manipulate its state
-
-\# `TileSnapshot` - snapshot of critical information to restore tile from history (memento)
-
-\# `StateSnapshot` - container for `TileSnapshot` objects
-
-\# `IReadOnlyTileRegistry - read only interface for `TileRegistry` class for external access without pointer leak
-
-\# `TileRegistry` - register of tiles in a `Dictionary` for instant access to any tile on the grid by its id with `O(1)` complexity
-
-\# `GameMechanics` - a black box for main logic of the game, here the "move" is being processed. It is pure functions that can be easily tested
-
-\# `Game` - is a controller and a keeper, makes all the manipulations with registry and game grid
-
-\# `Program` - the start file, all the key bindings and game initialization are there
-
-\# `MoveDirection` - is an `Enum` for moves to identify them in `Move()` method
-
-
-
-\## 4 How to Run
-
-
-
-\# Clone the repository and navigate to the folder:
+* Clone the repository and navigate to the folder:
 
 ```
-
 git clone Denys-Sheremet/Console2048
-
 cd Console2048
-
 ```
 
-\# Run the project using the .NET CLI:
+* Run the project using the .NET CLI:
 
 `dotnet run`
 
-\# Or simply open the solution in Visual Studio and press `F5`
+* Or open the solution in Visual Studio and press `F5`
 
+## Controls
 
+* Use arrow keys for moves (Up, Down, Left, Right)  
+* Press `Z` to undo your move  
+* Press `ESC` to quit the game  
 
-\# Controls:
+## 5. Future Plans
 
-\# Use arrow keys for moves (Up, Down, Left, Right)
-
-\# Press `Z` to undo your move
-
-\# Press `ESC` to quit the game
-
-
-
-\## 5 Future plans
-
-
-
-\# full unit-tests coverage
-
-\# fix logic for future animation integration
-
-\# animation integration
-
-\# transfer to graphic framework
-
-\# cross platform release (PC, android, IOS)
-
+* Full unit test coverage  
+* Refactor logic for future animation integration  
+* Animation integration  
+* Migration to a graphical framework  
+* Cross-platform release (PC, Android, iOS)
