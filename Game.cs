@@ -111,7 +111,7 @@ namespace Console2048
             if (_history.Count == 0) return;
 
             StateSnapshot stateSnapshot = _history.Pop();
-            Grid.Restore(stateSnapshot);
+            Grid.RestoreWithAnimation(stateSnapshot);
 
             _tileRegistry.Clear();
             for (int i = 0; i < Grid.GetCount(); i++) 

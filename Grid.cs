@@ -62,13 +62,40 @@ internal class Grid
     {
         Dictionary<int, Tile> currentTiles = _tiles.ToDictionary(t => t.Id);
         Dictionary<int, Tile> restoredTiles = new Dictionary<int, Tile>();
-        foreach(TileSnapshot ts in ss.TileSnapshots)
+
+        Array.Clear(_field, 0, _field.Length);
+        _tiles.Clear();
+        this.Score = ss.Score;
+
+        for (int i = 0; i < ss.TileSnapshots.Count; i++)
         {
-            restoredTiles.Add(ts.Id,
-                new Tile(ts.Id, ts.PosX, ts.PosY, ts.PosX, ts.PosY, ts.Parents.HasValue, ts.Value)
-                );
+            TileSnapshot ts = ss.TileSnapshots[i];
+            int id = ts.Id;
+            Tile restored = new Tile(id, ts.PosX, ts.PosY, ts.PosX, ts.PosY, ts.Parents.HasValue, ts.Value);
+            if (ts.Parents.HasValue) 
+            { 
+                restored.SetParents(ts.Parents.Value.Id1, ts.Parents.Value.Id2); 
+            }
+
+            if (currentTiles.ContainsKey(id))
+            {
+                Tile curr = currentTiles[id];
+                restored.SetPrevious(curr.PosX, curr.PosY);
+            }
+            restoredTiles.Add(id, restored);
+
+            this[ts.PosX, ts.PosY] = restored;
         }
 
+        foreach (Tile t in currentTiles.Values.Where(t => t.IsMerged))
+        {
+            if (t.Parents.HasValue)
+            {
+                restoredTiles[t.Parents.Value.Id1].SetPrevious(t.PosX, t.PosY);
+                restoredTiles[t.Parents.Value.Id2].SetPrevious(t.PosX, t.PosY);
+            }
+        }
+        
         
     }
 
@@ -89,8 +116,6 @@ internal class Grid
 
                 if(value  != null)
                 {
-                    value.SetPosition(x, y);
-                    value.SetPrevious(x, y);
                     if (!_tiles.Contains(value))
                         _tiles.Add(value);
                 }
