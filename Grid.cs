@@ -31,35 +31,6 @@ internal class Grid
     //restore from snapshot
     public void Restore(StateSnapshot ss)
     {
-        Array.Clear(_field, 0, _field.Length);
-        _tiles.Clear();
-
-        this.Score = ss.Score;
-        foreach(TileSnapshot ts in ss.TileSnapshots)
-        {
-            bool hasMerged = ts.Parents.HasValue;
-
-            Tile curr = new Tile
-            (
-                ts.Id,
-                ts.PosX,
-                ts.PosY,
-                ts.PosX,
-                ts.PosY,
-                hasMerged,
-                ts.Value
-            );
-
-            if (hasMerged) curr.SetParents(ts.Parents.Value.Id1, ts.Parents.Value.Id2);
-            else curr.SetParents();
-
-            _field[ts.PosX, ts.PosY] = curr;
-            _tiles.Add(curr);
-        }
-    }
-
-    public void RestoreWithAnimation(StateSnapshot ss)
-    {
         Dictionary<int, Tile> currentTiles = _tiles.ToDictionary(t => t.Id);
         Dictionary<int, Tile> restoredTiles = new Dictionary<int, Tile>();
 
@@ -205,8 +176,6 @@ internal class Grid
         }
     }
 
-
-
     //Count of list of tiles (cycles)
     public int GetCount() => _tiles.Count;
 
@@ -224,6 +193,14 @@ internal class Grid
             )
             .Where(cell => _field[cell.x, cell.y] == null)
             .ToList();
+    }
+
+    public void SyncAllPrevious()
+    {
+        foreach (Tile t in _tiles)
+        {
+            t.SyncPrevious();
+        }
     }
 
     public override string ToString()

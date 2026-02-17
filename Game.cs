@@ -52,6 +52,8 @@ namespace Console2048
 
         public void Move(MoveDirection direction)
         {
+            Grid.SyncAllPrevious();
+
             StateSnapshot snapshot = Grid.CreateSnapshot();
             bool moved = false;
             int score = 0;
@@ -111,7 +113,7 @@ namespace Console2048
             if (_history.Count == 0) return;
 
             StateSnapshot stateSnapshot = _history.Pop();
-            Grid.RestoreWithAnimation(stateSnapshot);
+            Grid.Restore(stateSnapshot);
 
             _tileRegistry.Clear();
             for (int i = 0; i < Grid.GetCount(); i++) 
