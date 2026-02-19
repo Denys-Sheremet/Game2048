@@ -15,7 +15,6 @@ internal class Tile
     public int PreviousX {  get; private set; }
     public int PreviousY {  get; private set; } 
     public bool IsMerged { get; private set; }
-
     public int Value { get; private set; }
 
 

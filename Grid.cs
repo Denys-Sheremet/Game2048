@@ -18,7 +18,7 @@ internal class Grid
 
     public int Score { get; set; }
 
-    //Default constructor (empty grid)
+    //Constructor for empty grid
     public Grid(int width, int height)
     {
         Width = width;
@@ -42,16 +42,14 @@ internal class Grid
         {
             TileSnapshot ts = ss.TileSnapshots[i];
             int id = ts.Id;
-            Tile restored = new Tile(id, ts.PosX, ts.PosY, ts.PosX, ts.PosY, ts.Parents.HasValue, ts.Value);
+
+            int startX = currentTiles.ContainsKey(id) ? currentTiles[id].PosX : ts.PosX;
+            int startY = currentTiles.ContainsKey(id) ? currentTiles[id].PosY : ts.PosY;
+            Tile restored = new Tile(id, ts.PosX, ts.PosY, startX, startY, ts.Parents.HasValue, ts.Value);
+
             if (ts.Parents.HasValue) 
             { 
                 restored.SetParents(ts.Parents.Value.Id1, ts.Parents.Value.Id2); 
-            }
-
-            if (currentTiles.ContainsKey(id))
-            {
-                Tile curr = currentTiles[id];
-                restored.SetPrevious(curr.PosX, curr.PosY);
             }
             restoredTiles.Add(id, restored);
 
@@ -203,6 +201,11 @@ internal class Grid
         }
     }
 
+    public bool TryFindTile(int id, out Tile? foundTile)
+    {
+        foundTile = _tiles.FirstOrDefault(t => t.Id == id);
+        return foundTile != null;
+    }
     public override string ToString()
     {
         StringBuilder sb = new StringBuilder();

@@ -6,5 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  <ItemGroup>
+	<InternalsVisibleTo Include="Console2048.Test" />
+  </ItemGroup>
 
 </Project>
