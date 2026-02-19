@@ -21,6 +21,9 @@ internal class Grid
     //Constructor for empty grid
     public Grid(int width, int height)
     {
+        if (width <= 0 || height <= 0)
+            throw new ArgumentException("Grid cannot be 0x0 or with negative size");
+
         Width = width;
         Height = height;
         _field = new Tile?[width, height];
@@ -64,8 +67,6 @@ internal class Grid
                 restoredTiles[t.Parents.Value.Id2].SetPrevious(t.PosX, t.PosY);
             }
         }
-        
-        
     }
 
     //To get to the grid fields easily
@@ -79,16 +80,22 @@ internal class Grid
         }
         set 
         {
-            if (x >= 0 && y >= 0 && x < Width && y < Height)
-            {
-                _field[x, y] = value;
+            if (x < 0 || y < 0 || x >= Width || y >= Height)
+                throw new IndexOutOfRangeException($"coordinates {x} or {y} provided aren't correct");
 
-                if(value  != null)
-                {
-                    if (!_tiles.Contains(value))
-                        _tiles.Add(value);
-                }
-                
+            if (value != null && _tiles.Contains(value))
+                throw new InvalidOperationException("Cannot set object that already exists in grid");
+
+            if (_field[x, y] != null)
+            {
+                _tiles.Remove(_field[x, y]!);
+            }
+
+            _field[x, y] = value;
+
+            if(value != null)
+            {
+                _tiles.Add(value);
             }
         }
     }
@@ -107,6 +114,9 @@ internal class Grid
 
     public Tile?[] GetRow(int y)
     {
+        if (y < 0 || y >= Height)
+            throw new ArgumentOutOfRangeException("y is out of range");
+
         Tile?[] row = new Tile?[Width];
         for (int x = 0; x < Width; x++)
         {
@@ -118,6 +128,11 @@ internal class Grid
     //console version
     public void SetRow(int y, Tile?[] row)
     {
+        if (row.Length != Width) 
+            throw new ArgumentException("Inapropriate array length");
+        if (y < 0 || y >= Height)
+            throw new ArgumentOutOfRangeException("x is out of range");
+
         for (int x = 0; x < Width; x++) 
         {
             Tile? oldTile = _field[x, y];
@@ -125,7 +140,7 @@ internal class Grid
 
             if (!row.Contains(oldTile)) 
             {
-                _tiles.Remove(oldTile);
+                _tiles.Remove(oldTile!);
             }
 
             _field[x, y] = newTile;
@@ -142,6 +157,9 @@ internal class Grid
 
     public Tile?[] GetColumn(int x)
     {
+        if(x < 0 || x >= Width) 
+            throw new ArgumentOutOfRangeException("x is out of range");
+
         Tile?[] column = new Tile?[Height];
         for (int y = 0; y < Height; y++) 
         {
@@ -152,6 +170,11 @@ internal class Grid
 
     public void SetColumn(int x, Tile?[] column)
     {
+        if (column.Length != Height)
+            throw new ArgumentException("Inapropriate array length");
+        if (x < 0 || x >= Width)
+            throw new ArgumentOutOfRangeException("x is out of range");
+
         for (int y = 0; y < Height; y++) 
         {
             Tile? oldTile = _field[x, y];
@@ -159,7 +182,7 @@ internal class Grid
 
             if (!column.Contains(oldTile))
             {
-                _tiles.Remove(oldTile);
+                _tiles.Remove(oldTile!);
             }
 
             _field[x, y] = newTile;
