@@ -3,3 +3,10 @@
 [Oo]bj/
 *.user
 *.suo
+*.userosscache
+*.sln.docstates
+
+TestResults/
+
+.DS_Store
+Thumbs.db
