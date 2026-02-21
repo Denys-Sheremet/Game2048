@@ -34,6 +34,9 @@ internal class Grid
     //restore from snapshot
     public void Restore(StateSnapshot ss)
     {
+        if (ss.Width != Width || ss.Height != Height)
+            throw new ArgumentException($"Size of the snapshot ({ss.Width}x{ss.Height}) does not fit the grid ({Width}x{Height})");
+
         Dictionary<int, Tile> currentTiles = _tiles.ToDictionary(t => t.Id);
         Dictionary<int, Tile> restoredTiles = new Dictionary<int, Tile>();
 
@@ -61,11 +64,10 @@ internal class Grid
 
         foreach (Tile t in currentTiles.Values.Where(t => t.IsMerged))
         {
-            if (t.Parents.HasValue)
-            {
-                restoredTiles[t.Parents.Value.Id1].SetPrevious(t.PosX, t.PosY);
-                restoredTiles[t.Parents.Value.Id2].SetPrevious(t.PosX, t.PosY);
-            }
+            if (!t.Parents.HasValue) throw new ArgumentException("Parents cannot be found in snapshot's merged tiles");
+            if (!restoredTiles.ContainsKey(t.Parents.Value.Id1) || !restoredTiles.ContainsKey(t.Parents.Value.Id2)) throw new InvalidOperationException($"No parents for id:{t.Id} found in current game state");
+            restoredTiles[t.Parents.Value.Id1].SetPrevious(t.PosX, t.PosY);
+            restoredTiles[t.Parents.Value.Id2].SetPrevious(t.PosX, t.PosY);
         }
     }
 
@@ -125,7 +127,6 @@ internal class Grid
         return row;
     }
 
-    //console version
     public void SetRow(int y, Tile?[] row)
     {
         if (row.Length != Width) 

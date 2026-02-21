@@ -24,7 +24,7 @@ public class GridTests
     }
 
     [Fact]
-    public void RestoreMethod_RestoreFull_GridProperly()
+    public void RestoreMethod_RestoresFull_GridProperly()
     {
         Grid grid = new Grid(4, 4);
         grid.Score = 4;
@@ -45,10 +45,62 @@ public class GridTests
 
         Assert.Equal(4, grid.Score);
         Assert.Equal(4, grid.GetCount());
-        Assert.True(grid[3, 3].Parents.HasValue);
-        Assert.Equal((4, 5), (grid[3, 3].Parents.Value.Id1, grid[3, 3].Parents.Value.Id2));
+        Assert.True(grid[3, 3]!.Parents.HasValue);
+        Assert.Equal((4, 5), (grid[3, 3]!.Parents!.Value.Id1, grid[3, 3]!.Parents!.Value.Id2));
         Assert.True(grid.TryFindTile(1, out Tile? foundTile));
         Assert.NotNull(foundTile);
+    }
+
+    [Fact]
+    public void RestoreMethod_RestoresEmpty_GridIf_SnapshotIs_Empty()
+    {
+        Grid grid = new Grid(4, 4);
+        StateSnapshot ss = grid.CreateSnapshot();
+
+        grid[0, 0] = new Tile(1, 0, 0, 0, 0, false, 2);
+        grid.Score = 4;
+        grid.Restore(ss);
+
+        Assert.Equal(0, grid.Score);
+        Assert.Equal(0, grid.GetCount());
+        Assert.Null(grid[0, 0]);
+    }
+
+    [Fact]
+    public void Restore_WithOutOfBounds_Snapshot_ThrowsException()
+    {
+        Grid grid = new Grid(4, 4);
+        Tile badTile = new Tile(1, 5, 5, 0, 0, false, 2);
+        StateSnapshot badSs = new StateSnapshot(4, 4, 0, new List<Tile> { badTile });
+
+        Assert.Throws<IndexOutOfRangeException>(() => grid.Restore(badSs));
+    }
+
+    [Theory]
+    [InlineData(3, 4)]
+    [InlineData(4, 3)]
+    [InlineData(5, 5)]
+    public void Restore_Throws_ArgumentException_OnDimensionMismatch(int ssW, int ssH)
+    {
+        Grid grid = new Grid(4, 4);
+        StateSnapshot ss = new StateSnapshot(ssW, ssH, 0, new List<Tile>());
+
+        var exception = Assert.Throws<ArgumentException>(() => grid.Restore(ss));
+        Assert.Contains("does not fit the grid", exception.Message);
+    }
+
+    [Fact]
+    public void Restore_Throws_InvalidOperationException_WhenMergedParents_AreMissing()
+    {
+        Grid grid = new Grid(4, 4);
+
+        Tile mergedTile = new Tile(1, 0, 0, 0, 0, true, 4);
+        mergedTile.SetParents(99, 100);
+        grid[0, 0] = mergedTile;
+
+        StateSnapshot corruptedSs = new StateSnapshot(4, 4, 0, new List<Tile>());
+
+        Assert.Throws<InvalidOperationException>(() => grid.Restore(corruptedSs));
     }
 
     [Fact]

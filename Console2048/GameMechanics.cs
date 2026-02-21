@@ -19,6 +19,9 @@ internal static class GameMechanics
 
     public static ProcessResult ProcessLine(Tile?[] line, Func<int> generateId)
     {
+        ArgumentNullException.ThrowIfNull(line);
+        ArgumentNullException.ThrowIfNull(generateId);
+
         int length = line.Length;
         int totalScore = 0;
 
@@ -31,10 +34,10 @@ internal static class GameMechanics
 
         for (int i = 0; i < existingTiles.Count; i++)
         {
-            if (i < existingTiles.Count - 1 && existingTiles[i].Value == existingTiles[i + 1].Value)
+            if (i < existingTiles.Count - 1 && existingTiles[i]!.Value == existingTiles[i + 1]!.Value)
             {
-                Tile curr = existingTiles[i];
-                Tile next = existingTiles[i + 1];
+                Tile curr = existingTiles[i]!;
+                Tile next = existingTiles[i + 1]!;
 
                 mergedTiles.Add(curr);
                 mergedTiles.Add(next);
@@ -49,8 +52,8 @@ internal static class GameMechanics
             }
             else
             {
-                existingTiles[i].SetMerged(false);
-                existingTiles[i].SetParents();
+                existingTiles[i]!.SetMerged(false);
+                existingTiles[i]!.SetParents();
                 resultList.Add(existingTiles[i]);
             }
         }

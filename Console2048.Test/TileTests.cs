@@ -19,6 +19,19 @@ public class TileTests
         Assert.Equal(8, tile.Value);
     }
 
+    [Theory]
+    [InlineData(-1)]
+    [InlineData(-55)]
+    public void TileInit_WithNegative_Parameters_Throws_ArgumentException(int x)
+    {
+        Assert.Throws<ArgumentException>(() => new Tile(x, 0, 0, 0, 0, false, 2));
+        Assert.Throws<ArgumentException>(() => new Tile(0, x, 0, 0, 0, false, 2));
+        Assert.Throws<ArgumentException>(() => new Tile(0, 0, x, 0, 0, false, 2));
+        Assert.Throws<ArgumentException>(() => new Tile(0, 0, 0, x, 0, false, 2));
+        Assert.Throws<ArgumentException>(() => new Tile(0, 0, 0, 0, x, false, 2));
+        Assert.Throws<ArgumentException>(() => new Tile(0, 0, 0, 0, 0, false, x));
+    }
+
     [Fact]
     public void PositionCan_BeChanged_Properly()
     {
@@ -48,6 +61,18 @@ public class TileTests
         Assert.Equal(4, tile.Value);
     }
 
+    [Theory]
+    [InlineData (-1, 0)]
+    [InlineData (0, -1)]
+    [InlineData (-1, -2)]
+    [InlineData (-55, -44)]
+    public void NegativePosition_SetThrows_ArgumentException(int x, int y)
+    {
+        Tile tile = new Tile(1, 0, 0, 0, 0, false, 2);
+        Assert.Throws<ArgumentException>(() => tile.SetPosition(x, y));
+        Assert.Throws<ArgumentException>(() => tile.SetPrevious(x, y));
+    }
+
     [Fact]
     public void IsMerged_FlagCan_BeChanged()
     {
@@ -73,7 +98,7 @@ public class TileTests
         Tile tile = new Tile(3, 0, 0, 0, 0, true, 4);
         tile.SetParents(1, 2);
 
-        Assert.Equal((1,2), (tile.Parents.Value.Id1, tile.Parents.Value.Id2));
+        Assert.Equal((1,2), (tile.Parents!.Value.Id1, tile.Parents.Value.Id2));
     }
 
     [Fact]
@@ -105,5 +130,12 @@ public class TileTests
         Assert.Equal(0, tile.PreviousY);
     }
 
-    
+    [Fact]
+    public void ToString_Returns_ValueString()
+    {
+        Tile tile = new Tile(1, 0, 0, 0, 0, false, 2048);
+        Assert.Equal("2048", tile.ToString());
+    }
+
+
 }

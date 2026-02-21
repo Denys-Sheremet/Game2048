@@ -20,6 +20,8 @@ internal class Tile
 
     public Tile(int id, int posX, int posY, int previousX, int previousY, bool isMerged, int value)
     {
+        if(id < 0 || posX < 0 || posY < 0 || previousX < 0 || previousY < 0 || value < 0)
+            throw new ArgumentException("Invalid tile initialization data");
         Id = id;
         PosX = posX;
         PosY = posY;
@@ -31,18 +33,24 @@ internal class Tile
 
     public void SetPosition (int posX, int posY)
     {
+        if (posX < 0 || posY < 0)
+            throw new ArgumentException("Coordinates cannot be negative");
         PosX = posX;
         PosY = posY;
     }
 
     public void SetPrevious(int previousX, int previousY)
     {
+        if (previousX < 0 || previousY < 0)
+            throw new ArgumentException("Coordinates cannot be negative");
         PreviousX = previousX;
         PreviousY = previousY;
     }
 
     public void SetValue(int value)
     {
+        if (value < 0)
+            throw new ArgumentException("Value cannot be negative");
         Value = value;
     }
 
