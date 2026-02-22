@@ -21,14 +21,13 @@ namespace Console2048
 
         public Game(Grid grid)
         {
+            ArgumentNullException.ThrowIfNull(grid);
+
             Grid = grid;
             _history = new Stack<StateSnapshot>();
             _tileRegistry = new TileRegistry();
             _nextTileId = 1;
             _random = new Random();
-
-            SpawnNewTile();
-            SpawnNewTile();
         }
 
         public void SpawnNewTile()
@@ -36,7 +35,7 @@ namespace Console2048
             List<(int, int)> emptyCells = Grid.GetEmptyCells();
             if (emptyCells.Count < 1)
             {
-                CheckForGameOver();//todo
+                CheckForGameOver();
                 return;
             } 
             else
@@ -50,7 +49,15 @@ namespace Console2048
 
         }
 
-        public void Move(MoveDirection direction)
+        public void SpawnMultipleTiles(int count)
+        {
+            for (int i = 0; i < count; i++) 
+            { 
+                SpawnNewTile();
+            }
+        }
+
+        public void Move(MoveDirection direction, bool withSpawn = true)
         {
             Grid.SyncAllPrevious();
 
@@ -97,10 +104,10 @@ namespace Console2048
 
             if(moved)
             {
-                
                 _history.Push(snapshot);
                 Grid.Score += score;
-                SpawnNewTile();
+                if (withSpawn)
+                    SpawnNewTile();
             }
             else
             {

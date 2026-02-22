@@ -17,16 +17,16 @@ public class GameMechanicsTest
     {
         int nextId = 0;
         Tile?[] tilesToProcess = lineToProcess
-            .Select(v => v == 0 
-                ? null 
-                : (Tile?) new Tile(nextId++, 0, 0, 0, 0, false, v))
+            .Select(v => v == 0
+                ? null
+                : (Tile?)new Tile(nextId++, 0, 0, 0, 0, false, v))
             .ToArray();
 
         int newId = 0;
         GameMechanics.ProcessResult result = GameMechanics.ProcessLine(tilesToProcess, () => newId++);
 
-        int[] resultLine = result.NewLine.Select(t => t == null 
-                ? 0 
+        int[] resultLine = result.NewLine.Select(t => t == null
+                ? 0
                 : t.Value)
             .ToArray();
 
@@ -40,7 +40,7 @@ public class GameMechanicsTest
     {
         Tile tile1 = new Tile(1, 0, 0, 0, 0, false, 2);
         Tile tile2 = new Tile(2, 0, 0, 0, 0, false, 2);
-        Tile?[] line = {tile1, tile2};
+        Tile?[] line = { tile1, tile2 };
 
         GameMechanics.ProcessResult result = GameMechanics.ProcessLine(line, () => 999);
         Tile? mergedTile = result.NewLine[0];
@@ -56,7 +56,7 @@ public class GameMechanicsTest
     {
         Tile tile = new Tile(3, 0, 0, 0, 0, true, 4);
         tile.SetParents(1, 2);
-        Tile?[] line = {null, tile};
+        Tile?[] line = { null, tile };
 
         GameMechanics.ProcessResult result = GameMechanics.ProcessLine(line, () => 999);
         Tile? mergedTile = result.NewLine[0];
@@ -66,10 +66,10 @@ public class GameMechanicsTest
     }
 
     [Theory]
-    [InlineData(new[] { 2, 0, 2, 0}, 4)]
-    [InlineData(new[] { 2, 2, 2, 2}, 8)]
-    [InlineData(new[] { 8, 8, 2, 2}, 20)]
-    [InlineData(new[] { 2, 4, 8, 16}, 0)]
+    [InlineData(new[] { 2, 0, 2, 0 }, 4)]
+    [InlineData(new[] { 2, 2, 2, 2 }, 8)]
+    [InlineData(new[] { 8, 8, 2, 2 }, 20)]
+    [InlineData(new[] { 2, 4, 8, 16 }, 0)]
     public void ProcessLine_Method_SetsCorrect_Score(int[] lineToProcess, int expectedScore)
     {
         int nextId = 0;
@@ -91,11 +91,24 @@ public class GameMechanicsTest
         Tile tile1 = new Tile(1, 0, 0, 0, 0, false, 2);
         Tile tile2 = new Tile(2, 0, 0, 0, 0, false, 2);
 
-        Tile?[] line = {tile1, tile2};
+        Tile?[] line = { tile1, tile2 };
 
         GameMechanics.ProcessResult result = GameMechanics.ProcessLine(line, () => 999);
         Tile[] expectedMerged = result.MergedTiles;
 
         Assert.Equal((tile1, tile2), (expectedMerged[0], expectedMerged[1]));
+    }
+
+    [Fact]
+    public void ProcessLine_ThrowsArgumentNullException_WhenLineIsNull()
+    {
+        Assert.Throws<ArgumentNullException>(() => GameMechanics.ProcessLine(null!, () => 1));
+    }
+
+    [Fact]
+    public void ProcessLine_ThrowsArgumentNullException_WhenDelegateIsNull()
+    {
+        Tile?[] line = new Tile?[4];
+        Assert.Throws<ArgumentNullException>(() => GameMechanics.ProcessLine(line, null!));
     }
 }

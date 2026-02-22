@@ -2,6 +2,7 @@
 
 Grid grid = new Grid(4, 4);
 Game game = new Game(grid);
+game.SpawnMultipleTiles(2);
 
 Console.CursorVisible = false;
 

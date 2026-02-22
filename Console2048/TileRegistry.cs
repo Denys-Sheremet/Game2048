@@ -9,7 +9,7 @@ namespace Console2048;
 internal class TileRegistry : IReadOnlyTileRegistry
 {
     private readonly Dictionary<int, Tile> _registry = new();
-
+    public int Count => _registry.Count;
     public Tile? this[int idx] => _registry.GetValueOrDefault(idx);
 
     public void Register(Tile tile)
