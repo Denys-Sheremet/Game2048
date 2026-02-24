@@ -44,7 +44,7 @@ namespace Console2048
             {
                 (int x, int y) chosen = emptyCells[_random.Next(emptyCells.Count)];
                 int value = _random.Next(10) == 0 ? 4 : 2; //10% that 4 will appear
-                Tile newTile = new Tile(GetNextTileId(), chosen.x, chosen.y, chosen.x, chosen.y, false, value);
+                Tile newTile = new Tile(GetNextTileId(), chosen.x, chosen.y, value);
                 Grid[chosen.x, chosen.y] = newTile;
                 _tileRegistry.Register(newTile);
             }
@@ -56,6 +56,36 @@ namespace Console2048
             for (int i = 0; i < count; i++) 
             { 
                 SpawnNewTile();
+            }
+        }
+
+        public bool TrySpawnNewTileAt(int x, int y, int? newValue = null)
+        {
+            if (x < 0 || y < 0 || x >= Grid.Width || y >= Grid.Height)
+                throw new ArgumentException("Invalid coordinates provided to spawn");
+            if (!(Grid[x, y] == null))
+            {
+                return false;
+            }
+            else
+            {
+                Tile newTile;
+                int value;
+                if (newValue == null) 
+                {
+                    value = _random.Next(10) == 0 ? 4 : 2;
+                }
+                else
+                {
+                    if (newValue % 2 != 0 || newValue < 2)
+                        throw new ArgumentException("Invalid value for tile provided");
+                    value = (int)newValue;
+                }
+                newTile = new Tile(GetNextTileId(), x, y, value);
+
+                Grid[x, y] = newTile;
+                _tileRegistry.Register(newTile);
+                return true;
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using Console2048;
+using Newtonsoft.Json.Linq;
 using Xunit;
 
 namespace Console2048.Test;
@@ -87,6 +88,62 @@ public class GameTest
     }
 
     [Fact]
+    public void TrySpawnNewTileAt_Returns_True_IfThe_Cell_WasEmpty_AndSpawned_Successfully()
+    {
+        Grid grid = new Grid(2, 2);
+        Game game = new Game(grid);
+        Assert.True(game.TrySpawnNewTileAt(0, 0, 2));
+    }
+
+    [Fact]
+    public void TrySpawnNewTileAt_Returns_False_IfThe_Cell_WasNotEmpty_AndSpawn_IsNotDone()
+    {
+        Grid grid = new Grid(2, 2);
+        Game game = new Game(grid);
+        game.TrySpawnNewTileAt(0, 0, 2);
+        Assert.False(game.TrySpawnNewTileAt(0, 0, 4));
+    }
+
+    [Fact]
+    public void TrySpawnNewTileAt_UsesProvidedValue_ForNewTile()
+    {
+        int value = 16;
+        Grid grid = new Grid(2, 2);
+        Game game = new Game(grid);
+        game.TrySpawnNewTileAt(0, 0, value);
+
+        Assert.Equal(value, game.Grid[0, 0]!.Value);
+    }
+
+    [Fact]
+    public void TrySpawnNewTileAt_UsesStandard_Random_WhenValueIsNull()
+    {
+        Grid grid = new Grid(2, 2);
+        Game game = new Game(grid);
+        game.TrySpawnNewTileAt(0, 0);
+
+        int value = game.Grid[0, 0]!.Value;
+
+        Assert.True(value == 2 || value == 4);
+    }
+
+    [Theory]
+    [InlineData(-1, 0, 2)]
+    [InlineData(0, -1, 2)]
+    [InlineData(0, 99, 2)]
+    [InlineData(99, 0, 2)]
+    [InlineData(0, 0, 1)]
+    [InlineData(0, 0, -5)]
+    [InlineData(0, 0, int.MaxValue)]
+    public void TrySpawnNewTileAt_Throws_ArgumentException_IfDimentions_AreIncorrect(int x, int y, int value)
+    {
+        Grid grid = new Grid(4, 4);
+        Game game = new Game(grid);
+
+        Assert.Throws<ArgumentException>(() => game.TrySpawnNewTileAt(x, y, value));
+    }
+
+    [Fact]
     public void IdCounter_ReturnsNew_UniqueIds_AndIncrement_WhenSpawn_NewTiles()
     {
         Grid grid = new Grid(4, 4);
@@ -100,6 +157,21 @@ public class GameTest
             game.Grid.TryFindTile(i, out Tile? tile);
             Assert.NotNull(tile);
         }
+    }
+
+    [Fact]
+    public void IdWill_Continue_ToIncrement_EvenAfter_Undo_ForUnique_SpawnedTiles()
+    {
+        Grid grid = new Grid(4, 4);
+        Game game = new Game(grid);
+        game.TrySpawnNewTileAt(0, 0, 2);
+        game.TrySpawnNewTileAt(1, 0, 2);
+
+        game.Move(MoveDirection.Right, false); //tiles merged and id 3 appeared
+        game.Undo();
+        game.TrySpawnNewTileAt(3, 3, 2); //must spawn a tile with next id - 4
+
+        Assert.Equal(4, game.Grid[3, 3]!.Id);
     }
 
     [Fact]
@@ -259,7 +331,7 @@ public class GameTest
     }
     
     [Fact]
-    public void Every_Move_HistoryCount_Increases_ByOne()
+    public void Every_Move_WithMovement_HistoryCount_Increases_ByOne()
     {
         Grid grid = new Grid(4, 4);
         grid[0, 0] = new Tile(1, 0, 0, 2);
@@ -446,5 +518,56 @@ public class GameTest
         game.CheckForGameOver();
 
         Assert.False(game.IsGameOver);
+    }
+
+    [Fact]
+    public void IsGameOver_IsFalse_IfGridIs_Full_But_ThereAre_Possible_Horisontal_Moves()
+    {
+        Grid grid = new Grid(2, 1);
+        Game game = new Game(grid);
+        game.TrySpawnNewTileAt(0, 0, 2);
+        game.TrySpawnNewTileAt(1, 0, 2);
+
+        game.CheckForGameOver();
+
+        Assert.False(game.IsGameOver);
+    }
+
+    [Fact]
+    public void IsGameOver_IsFalse_IfGridIs_Full_But_ThereAre_Possible_Vertical_Moves()
+    {
+        Grid grid = new Grid(1, 2);
+        Game game = new Game(grid);
+        game.TrySpawnNewTileAt(0, 0, 2);
+        game.TrySpawnNewTileAt(0, 1, 2);
+
+        game.CheckForGameOver();
+
+        Assert.False(game.IsGameOver);
+    }
+
+
+    [Fact]
+    public void OnGameOver_Method_Sets_IsGameOver_ToTrue()
+    {
+        Grid grid = new Grid(1, 1);
+        Game game = new Game(grid);
+
+        game.OnGameOver();
+
+        Assert.True(game.IsGameOver);
+    }
+
+    [Fact]
+    public void CheckForGameOver_WillNot_Crash_TheProgram_OnSingleDimention_Grid()
+    {
+        Grid grid = new Grid(1, 1);
+        grid[0, 0] = new Tile(1, 0, 0, 2);
+
+        Game game = new Game(grid);
+
+        game.CheckForGameOver();
+
+        Assert.True(game.IsGameOver);
     }
 }

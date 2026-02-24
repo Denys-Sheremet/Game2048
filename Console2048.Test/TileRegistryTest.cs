@@ -78,7 +78,7 @@ public class TileRegistryTest
     }
 
     [Fact]
-    public void Registry_WillNotCrush_IfUnregister_IdIt_DoesNotContain()
+    public void Registry_WillNotCrash_IfYou_TryTo_Unregister_Id_It_DoesNotContain()
     {
         TileRegistry registry = new TileRegistry();
 
