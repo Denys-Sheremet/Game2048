@@ -138,6 +138,56 @@ public class GameTest
         Assert.Equal(tile, game.Grid[0, 0]);
     }
 
+    [Fact]
+    public void NewTile_WillNot_Spawn_If_WithAnimation_Flag_IsFalse()
+    {
+        Grid grid = new Grid(4, 4);
+        grid[0, 0] = new Tile(1, 0, 0, 2);
+        Game game = new Game(grid);
+
+        game.Move(MoveDirection.Right, withSpawn: false);
+        game.Move(MoveDirection.Down, withSpawn: false);
+        game.Move(MoveDirection.Left, withSpawn: false);
+        game.Move(MoveDirection.Up, withSpawn: false);
+
+        Assert.Equal(1, game.Grid.Count);
+    }
+
+    [Fact]
+    public void MoveWith_NoActual_Movement_WillNot_ChangeThe_Grid()
+    {
+        Grid grid = new Grid(4, 4);
+        Tile tile = new Tile(1, 0, 0, 2);
+        grid[0, 0] = tile;
+        Game game = new Game(grid);
+
+        game.Move(MoveDirection.Left, false);
+
+        Assert.Equal(tile, game.Grid[0, 0]);
+        Assert.Equal(1, game.Grid.Count);
+    }
+
+    [Fact]
+    public void OneTile_CanBe_MergedOnce_PerMove()
+    {
+        Grid grid = new Grid(4, 4);
+        grid[0, 0] = new Tile(1, 0, 0, 2);
+        grid[1, 0] = new Tile(2, 1, 0, 2);
+        grid[2, 0] = new Tile(3, 2, 0, 2);
+        grid[3, 0] = new Tile(4, 3, 0, 2);
+
+        Game game = new Game(grid);
+
+        //should be 0044 not 0008 in one move
+        game.Move(MoveDirection.Right, false);
+
+        Assert.Equal(2, game.Grid.Count);
+        Assert.Equal(4, game.Grid[0].Value);
+        Assert.True(game.Grid[0].IsMerged);
+        Assert.Equal(4, game.Grid[1].Value);
+        Assert.True(game.Grid[1].IsMerged);
+    }
+
     [Theory]
     [InlineData(MoveDirection.Left, new[] { 0, 0 }, new[] { 1, 0 }, new[] { 0, 0 })]
     [InlineData(MoveDirection.Right, new[] { 0, 0 }, new[] { 1, 0 }, new[] { 3, 0 })]
@@ -209,7 +259,7 @@ public class GameTest
     }
     
     [Fact]
-    public void Every_Move_HistoryIncreases_ByOne_State()
+    public void Every_Move_HistoryCount_Increases_ByOne()
     {
         Grid grid = new Grid(4, 4);
         grid[0, 0] = new Tile(1, 0, 0, 2);
@@ -219,5 +269,182 @@ public class GameTest
         game.Move(MoveDirection.Right, false);
 
         Assert.Equal(1, game.HistoryCount);
+    }
+
+    [Fact]
+    public void IfTiles_DidNot_MoveAfter_MoveMethod_HistoryCount_Will_NotIncrease()
+    {
+        Grid grid = new Grid(4, 4);
+        grid[0, 0] = new Tile(1, 0, 0, 2);
+
+        Game game = new Game(grid);
+
+        game.Move(MoveDirection.Left, false);
+
+        Assert.Equal(0, game.HistoryCount);
+    }
+
+    [Fact]
+    public void Undo_Will_RestoreThe_GridFrom_ThePrevious_State_AndDecrease_HistoryCount()
+    {
+        Grid grid = new Grid(4, 4);
+        Tile tile = new Tile(1, 0, 0, 2);
+        grid[0, 0] = tile;
+
+        Game game = new Game(grid);
+
+        game.Move(MoveDirection.Right, false);
+        game.Undo();
+
+        Assert.Equal(0, game.HistoryCount);
+        Assert.Equal(0, game.Grid[0, 0]!.PosX);
+        Assert.Equal(0, game.Grid[0, 0]!.PosY);
+        Assert.Equal(1, game.Grid.Count);
+    }
+
+    [Fact]
+    public void Undo_WillNot_ChangeThe_Grid_IfHistory_IsEmpty()
+    {
+        Grid grid = new Grid(4, 4);
+        Tile tile = new Tile(1, 0, 0, 2);
+        grid[0, 0] = tile;
+
+        Game game = new Game(grid);
+
+        game.Undo();
+
+        Assert.Equal(0, game.HistoryCount);
+        Assert.Equal(tile, game.Grid[0, 0]);
+        Assert.Equal(1, game.Grid.Count);
+    }
+
+    [Fact]
+    public void History_WillNot_ChangeIts_States_InMultiple_Moves()
+    {
+        Grid grid = new Grid(4, 4);
+        Tile tile = new Tile(1, 0, 0, 2);
+        grid[0, 0] = tile;
+
+        Game game = new Game(grid);
+
+        game.Move(MoveDirection.Right, false);
+        game.Move(MoveDirection.Down, false);
+        game.Move(MoveDirection.Left, false);
+
+        game.Undo();
+        game.Undo();
+        game.Undo();
+
+        Assert.Equal(0, game.HistoryCount);
+        Assert.Equal(0, game.Grid[0, 0]!.PosX);
+        Assert.Equal(0, game.Grid[0, 0]!.PosY);
+        Assert.Equal(1, game.Grid.Count);
+    }
+
+    [Fact]
+    public void Undo_Will_Restore_Previous_Score()
+    {
+        Grid grid = new Grid(4, 4);
+        Tile tile1 = new Tile(1, 0, 0, 8);
+        Tile tile2 = new Tile(2, 1, 0, 8);
+        Tile tile3 = new Tile(3, 1, 0, 8);
+        Tile tile4 = new Tile(4, 1, 0, 8);
+        grid[0, 0] = tile1;
+        grid[1, 0] = tile2;
+        grid[2, 0] = tile3;
+        grid[3, 0] = tile4;
+
+        Game game = new Game(grid);
+        game.Move(MoveDirection.Right, false);
+
+        int rememberedScore = game.Grid.Score;
+
+        game.Move(MoveDirection.Right, false);
+        game.Undo();
+
+        Assert.Equal(rememberedScore, game.Grid.Score);
+    }
+
+    [Fact]
+    public void Undo_Will_RegisterAll_RestoredTiles_ToRegistry()
+    {
+        Grid grid = new Grid(4, 4);
+        Tile tile1 = new Tile(1, 0, 0, 8);
+        Tile tile2 = new Tile(2, 1, 0, 8);
+        Tile tile3 = new Tile(3, 1, 0, 8);
+        Tile tile4 = new Tile(4, 1, 0, 8);
+        grid[0, 0] = tile1;
+        grid[1, 0] = tile2;
+        grid[2, 0] = tile3;
+        grid[3, 0] = tile4;
+
+        Game game = new Game(grid);
+
+        game.Move(MoveDirection.Right, false);
+        game.Move(MoveDirection.Right, false);
+        game.Move(MoveDirection.Down, false);
+        game.Move(MoveDirection.Left, false);
+
+        while (game.HistoryCount > 0)
+        {
+            game.Undo();
+
+            for (int i = 0; i < game.Grid.Count; i++)
+            {
+                Assert.NotNull
+                    (
+                        game.TileRegistry[game.Grid[i].Id]
+                    );
+                Assert.Equal(game.Grid.Count, game.TileRegistry.Count);
+            }
+        }
+    }
+
+    [Fact]
+    public void Undo_SetsPrevious_Coordinates_OfParents_AsPosition_OfMerged_Tile()
+    {
+        Grid grid = new Grid(4, 4);
+        grid[0, 0] = new Tile(1, 0, 0, 2);
+        grid[1, 0] = new Tile(2, 1, 0, 2);
+
+        Game game = new Game(grid);
+
+        game.Move(MoveDirection.Right, false);
+        game.Undo();
+
+        Assert.Equal((3, 0), (game.Grid[0, 0]!.PreviousX, game.Grid[0, 0]!.PreviousY));
+        Assert.Equal((3, 0), (game.Grid[1, 0]!.PreviousX, game.Grid[1, 0]!.PreviousY));
+    }
+
+    [Fact]
+    public void IsGameOver_IsTrueIf_GridIsFull_AndNoPossible_Moves()
+    {
+        Grid grid = new Grid(2, 2);
+        grid[0, 0] = new Tile(1, 0, 0, 2);
+        grid[1, 0] = new Tile(2, 0, 0, 4);
+        grid[0, 1] = new Tile(3, 0, 0, 8);
+        grid[1, 1] = new Tile(4, 0, 0, 16);
+
+        Game game = new Game(grid);
+
+        game.CheckForGameOver();
+
+        Assert.True(game.IsGameOver);
+    }
+
+    [Fact]
+    public void IsGameOver_IsFalse_IfGridIs_Full_But_ThereAre_PossibleMoves()
+    {
+        Grid grid = new Grid(2, 2);
+        grid[0, 0] = new Tile(1, 0, 0, 2);
+        grid[1, 0] = new Tile(2, 0, 0, 2);
+        grid[0, 1] = new Tile(3, 0, 0, 2);
+        grid[1, 1] = new Tile(4, 0, 0, 2);
+
+        Game game = new Game(grid);
+
+        game.CheckForGameOver();
+
+        Assert.False(game.IsGameOver);
     }
 }

@@ -8,5 +8,6 @@ namespace Console2048;
 
 internal interface IReadOnlyTileRegistry
 {
+    int Count {  get; }
     Tile? this[int idx] { get; }
 }
