@@ -19,6 +19,24 @@ public class TileTests
         Assert.Equal(8, tile.Value);
     }
 
+    [Fact]
+    public void SimplifiedConstructor_SetsPrevious_Coordinates_EqualTo_Position_AndIsMerged_IsFalse()
+    {
+        Tile tile = new Tile(id: 1, posX: 0, posY:0, value: 2);
+        Assert.Equal((0, 0),(tile.PosX, tile.PosY));
+        Assert.Equal((0, 0), (tile.PreviousX, tile.PreviousY));
+        Assert.False(tile.IsMerged);
+    }
+
+    [Fact]
+    public void SimplifiedConstructor_With_IsMerged_SetsData_Correctly()
+    {
+        Tile tile = new Tile(id: 1, posX: 0, posY: 0, isMerged: true, value: 4);
+        Assert.Equal((0, 0), (tile.PosX, tile.PosY));
+        Assert.Equal((0, 0), (tile.PreviousX, tile.PreviousY));
+        Assert.True(tile.IsMerged);
+    }
+
     [Theory]
     [InlineData(-1)]
     [InlineData(-55)]
@@ -30,6 +48,14 @@ public class TileTests
         Assert.Throws<ArgumentException>(() => new Tile(0, 0, 0, x, 0, false, 2));
         Assert.Throws<ArgumentException>(() => new Tile(0, 0, 0, 0, x, false, 2));
         Assert.Throws<ArgumentException>(() => new Tile(0, 0, 0, 0, 0, false, x));
+        Assert.Throws<ArgumentException>(() => new Tile(x, 0, 0, false, 2));
+        Assert.Throws<ArgumentException>(() => new Tile(0, x, 0, false, 2));
+        Assert.Throws<ArgumentException>(() => new Tile(0, 0, x, false, 2));
+        Assert.Throws<ArgumentException>(() => new Tile(0, 0, 0, false, x));
+        Assert.Throws<ArgumentException>(() => new Tile(x, 0, 0, 2));
+        Assert.Throws<ArgumentException>(() => new Tile(0, x, 0, 2));
+        Assert.Throws<ArgumentException>(() => new Tile(0, 0, x, 2));
+        Assert.Throws<ArgumentException>(() => new Tile(0, 0, 0, x));
     }
 
     [Fact]

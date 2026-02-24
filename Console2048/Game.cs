@@ -11,6 +11,8 @@ namespace Console2048
     {
         public Grid Grid { get; private set; }
         private Stack<StateSnapshot> _history;
+
+        public int HistoryCount => _history.Count;
         //Safe system of registry with readonly interface for outter calls (pointer leak issue)
         private TileRegistry _tileRegistry;
         public IReadOnlyTileRegistry TileRegistry => _tileRegistry; //getter
@@ -117,13 +119,13 @@ namespace Console2048
 
         public void Undo()
         {
-            if (_history.Count == 0) return;
+            if (HistoryIsEmpty()) return;
 
             StateSnapshot stateSnapshot = _history.Pop();
             Grid.Restore(stateSnapshot);
 
             _tileRegistry.Clear();
-            for (int i = 0; i < Grid.GetCount(); i++) 
+            for (int i = 0; i < Grid.Count; i++) 
             {
                 _tileRegistry.Register(Grid[i]);
             } 
@@ -160,6 +162,8 @@ namespace Console2048
         { 
             IsGameOver = true;
         }
+
+        public bool HistoryIsEmpty() => _history.Count == 0;
 
         public int GetNextTileId() => _nextTileId++;
 

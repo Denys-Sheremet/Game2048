@@ -44,7 +44,7 @@ internal static class GameMechanics
 
                 int newValue = curr.Value * 2;
 
-                Tile merged = new Tile(generateId(), curr.PosX, curr.PosY, curr.PosX, curr.PosY, true, newValue);
+                Tile merged = new Tile(generateId(), curr.PosX, curr.PosY, true, newValue);
                 merged.SetParents(curr.Id, next.Id);
                 totalScore += newValue;
                 resultList.Add(merged);

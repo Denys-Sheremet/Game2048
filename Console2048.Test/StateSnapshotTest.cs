@@ -19,7 +19,7 @@ public class StateSnapshotTest
 
         Assert.Equal((grid.Width, grid.Height), (snapshot.Width, snapshot.Height));
         Assert.Equal(grid.Score, snapshot.Score);
-        Assert.Equal(grid.GetCount(), snapshot.TileSnapshots.Count);
+        Assert.Equal(grid.Count, snapshot.TileSnapshots.Count);
 
 
         for (int i = 0; i < snapshot.TileSnapshots.Count; i++)

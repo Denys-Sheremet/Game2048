@@ -18,6 +18,9 @@ internal class Grid
 
     public int Score { get; set; }
 
+    //Count of list of tiles (for cycles)
+    public int Count => _tiles.Count;
+
     //Constructor for empty grid
     public Grid(int width, int height)
     {
@@ -198,8 +201,7 @@ internal class Grid
         }
     }
 
-    //Count of list of tiles (cycles)
-    public int GetCount() => _tiles.Count;
+   
 
     public StateSnapshot CreateSnapshot() 
     {

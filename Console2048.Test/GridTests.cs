@@ -44,7 +44,7 @@ public class GridTests
         grid.Restore(ss);
 
         Assert.Equal(4, grid.Score);
-        Assert.Equal(4, grid.GetCount());
+        Assert.Equal(4, grid.Count);
         Assert.True(grid[3, 3]!.Parents.HasValue);
         Assert.Equal((4, 5), (grid[3, 3]!.Parents!.Value.Id1, grid[3, 3]!.Parents!.Value.Id2));
         Assert.True(grid.TryFindTile(1, out Tile? foundTile));
@@ -62,7 +62,7 @@ public class GridTests
         grid.Restore(ss);
 
         Assert.Equal(0, grid.Score);
-        Assert.Equal(0, grid.GetCount());
+        Assert.Equal(0, grid.Count);
         Assert.Null(grid[0, 0]);
     }
 
@@ -170,7 +170,7 @@ public class GridTests
 
         Assert.Equal(grid[3, 0], newRow[3]);
         Assert.Null(grid[0, 0]);
-        Assert.Equal(1, grid.GetCount());
+        Assert.Equal(1, grid.Count);
     }
 
     [Fact]
@@ -207,7 +207,7 @@ public class GridTests
 
         Assert.Equal(grid[0, 3], newColumn[3]);
         Assert.Null(grid[0, 0]);
-        Assert.Equal(1, grid.GetCount());
+        Assert.Equal(1, grid.Count);
     }
 
     [Fact]
@@ -251,7 +251,7 @@ public class GridTests
         grid[2, 2] = new Tile(1, 0, 0, 0, 0, false, 2);
         grid[1, 1] = new Tile(2, 1, 1, 0, 0, false, 2);
 
-        int countOfTiles = grid.GetCount();
+        int countOfTiles = grid.Count;
 
         Assert.Equal(2, countOfTiles);
     }
@@ -264,7 +264,7 @@ public class GridTests
         grid[0, 0] = tile;
 
         Assert.NotNull(grid[0, 0]);
-        Assert.Equal(1, grid.GetCount());
+        Assert.Equal(1, grid.Count);
         Assert.Equal(tile, grid[0]);
     }
 
@@ -289,7 +289,7 @@ public class GridTests
         grid[0, 0] = new Tile(1, 0, 0, 0, 0, false, 2);
         grid[0, 0] = new Tile(2, 0, 0, 0, 0, false, 4);
 
-        Assert.Equal(1, grid.GetCount());
+        Assert.Equal(1, grid.Count);
     }
 
     [Fact]
@@ -299,7 +299,7 @@ public class GridTests
         grid[0, 0] = new Tile(1, 0, 0, 0, 0, false, 2);
         grid[0, 0] = null;
 
-        Assert.Equal(0, grid.GetCount());
+        Assert.Equal(0, grid.Count);
     }
 
     [Fact]

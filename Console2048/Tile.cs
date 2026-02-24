@@ -31,6 +31,35 @@ internal class Tile
         Value = value;
     }
 
+    public Tile(int id, int posX, int posY, bool isMerged, int value)
+    {
+        if (id < 0 || posX < 0 || posY < 0 || value < 0)
+            throw new ArgumentException("Invalid tile initialization data");
+        Id = id;
+        PosX = posX;
+        PosY = posY;
+        PreviousX = posX;
+        PreviousY = posY;
+        IsMerged = isMerged;
+        Value = value;
+    }
+
+    //Simplified constructor to double the Previous parameters like Position
+    //Usually when spawn a tile its Previous coordinates are equal to Position coordinates
+    //IsMerged is false by default
+    public Tile(int id, int posX, int posY, int value)
+    {
+        if (id < 0 || posX < 0 || posY < 0 || value < 0)
+            throw new ArgumentException("Invalid tile initialization data");
+        Id = id;
+        PosX = posX;
+        PosY = posY;
+        PreviousX = posX;
+        PreviousY = posY;
+        IsMerged = false;
+        Value = value;
+    }
+
     public void SetPosition (int posX, int posY)
     {
         if (posX < 0 || posY < 0)
