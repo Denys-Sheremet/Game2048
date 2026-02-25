@@ -1,7 +1,7 @@
 ﻿using Console2048;
 
 Grid grid = new Grid(4, 4);
-Game game = new Game(grid);
+Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
 game.SpawnMultipleTiles(2);
 
 Console.CursorVisible = false;

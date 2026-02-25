@@ -10,45 +10,40 @@ namespace Console2048
     internal class Game
     {
         public Grid Grid { get; private set; }
-        private Stack<StateSnapshot> _history;
-
+        public bool IsGameOver { get; private set; } = false;
         public int HistoryCount => _history.Count;
-        //Safe system of registry with readonly interface for outter calls (pointer leak issue)
-        private TileRegistry _tileRegistry;
-        public IReadOnlyTileRegistry TileRegistry => _tileRegistry; //getter
-        private int _nextTileId;
-        private Random _random;
-        public bool IsGameOver { get; private set; } = false; //default state will be false from the start (no need to initialize)
+
+        private readonly ITileSpawner _spawner;
+        private readonly IHistoryManager _history;
+        private readonly ITileRegistry _tileRegistry;
+        private readonly IRandomProvider _random;
+        public IReadOnlyTileRegistry TileRegistry => _tileRegistry;
+
+        private int _nextTileId = 1;
 
 
-        public Game(Grid grid)
+        public Game(Grid grid, ITileSpawner spawner, IHistoryManager history, ITileRegistry tileRegistry, IRandomProvider random)
         {
             ArgumentNullException.ThrowIfNull(grid);
+            ArgumentNullException.ThrowIfNull(history);
+            ArgumentNullException.ThrowIfNull(tileRegistry);
+            ArgumentNullException.ThrowIfNull(random);
+            ArgumentNullException.ThrowIfNull(spawner);
 
             Grid = grid;
-            _history = new Stack<StateSnapshot>();
-            _tileRegistry = new TileRegistry();
-            _nextTileId = 1;
-            _random = new Random();
+            _history = history;
+            _tileRegistry = tileRegistry;
+            _random = random;
+            _spawner = spawner;
         }
 
         public void SpawnNewTile()
         {
-            List<(int, int)> emptyCells = Grid.GetEmptyCells();
-            if (emptyCells.Count < 1)
+            bool isSpawned = _spawner.Spawn(Grid, _tileRegistry, GetNextTileId(), _random);
+            if (!isSpawned) 
             {
                 CheckForGameOver();
-                return;
-            } 
-            else
-            {
-                (int x, int y) chosen = emptyCells[_random.Next(emptyCells.Count)];
-                int value = _random.Next(10) == 0 ? 4 : 2; //10% that 4 will appear
-                Tile newTile = new Tile(GetNextTileId(), chosen.x, chosen.y, value);
-                Grid[chosen.x, chosen.y] = newTile;
-                _tileRegistry.Register(newTile);
             }
-
         }
 
         public void SpawnMultipleTiles(int count)
@@ -61,32 +56,31 @@ namespace Console2048
 
         public bool TrySpawnNewTileAt(int x, int y, int? newValue = null)
         {
-            if (x < 0 || y < 0 || x >= Grid.Width || y >= Grid.Height)
-                throw new ArgumentException("Invalid coordinates provided to spawn");
-            if (!(Grid[x, y] == null))
+            if (newValue is null)
             {
-                return false;
+                return _spawner
+                    .TrySpawnAt
+                    (
+                        grid: Grid, 
+                        registry: _tileRegistry, 
+                        nextId: GetNextTileId(), 
+                        x: x, 
+                        y: y, 
+                        value: null, 
+                        random: _random
+                    );
             }
-            else
-            {
-                Tile newTile;
-                int value;
-                if (newValue == null) 
-                {
-                    value = _random.Next(10) == 0 ? 4 : 2;
-                }
-                else
-                {
-                    if (newValue % 2 != 0 || newValue < 2)
-                        throw new ArgumentException("Invalid value for tile provided");
-                    value = (int)newValue;
-                }
-                newTile = new Tile(GetNextTileId(), x, y, value);
-
-                Grid[x, y] = newTile;
-                _tileRegistry.Register(newTile);
-                return true;
-            }
+            return _spawner
+                .TrySpawnAt
+                (
+                    grid: Grid,
+                    registry: _tileRegistry,
+                    nextId: GetNextTileId(),
+                    x: x,
+                    y: y,
+                    value: newValue,
+                    random: null
+                );
         }
 
         public void Move(MoveDirection direction, bool withSpawn = true)
@@ -151,7 +145,7 @@ namespace Console2048
         {
             if (HistoryIsEmpty()) return;
 
-            StateSnapshot stateSnapshot = _history.Pop();
+            StateSnapshot stateSnapshot = _history.Pop()!;
             Grid.Restore(stateSnapshot);
 
             _tileRegistry.Clear();
@@ -188,12 +182,12 @@ namespace Console2048
             OnGameOver();
         }
 
-        public void OnGameOver() 
+        private void OnGameOver() 
         { 
             IsGameOver = true;
         }
 
-        public bool HistoryIsEmpty() => _history.Count == 0;
+        public bool HistoryIsEmpty() => _history.IsEmpty;
 
         public int GetNextTileId() => _nextTileId++;
 
