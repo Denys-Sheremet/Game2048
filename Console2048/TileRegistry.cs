@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Console2048;
 
-internal class TileRegistry : IReadOnlyTileRegistry
+internal class TileRegistry : ITileRegistry
 {
     private readonly Dictionary<int, Tile> _registry = new();
     public int Count => _registry.Count;
     public Tile? this[int idx] => _registry.GetValueOrDefault(idx);
-
+    
     public void Register(Tile tile)
     {
         _registry[tile.Id] = tile;
