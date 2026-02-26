@@ -10,7 +10,7 @@ public class GameTest
     public void ConstructorInitialize_Correct_Data()
     {
         Grid grid = new Grid(4, 4);
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
 
         Assert.Equal(game.Grid, grid);
         Assert.True(game.HistoryIsEmpty());
@@ -22,14 +22,14 @@ public class GameTest
     [Fact]
     public void ConstructorThrows_ArgumentNullException_IfGrid_IsNull()
     {
-        Assert.Throws<ArgumentNullException>(() => new Game(null!));
+        Assert.Throws<ArgumentNullException>(() => new Game(null!, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider()));
     }
 
     [Fact]
     public void SpawnNewTile_SpawnsOne_TilePer_Call()
     {
         Grid grid = new Grid(4, 4);
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
 
         game.SpawnNewTile();
 
@@ -40,7 +40,7 @@ public class GameTest
     public void SpawnNewTile_Creates_NewTile_OnRandom_Position()
     {
         Grid grid = new Grid(4, 4);
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
         game.SpawnNewTile();
         game.SpawnNewTile();
 
@@ -54,7 +54,7 @@ public class GameTest
     public void SpawnMultipleTiles_MethodCan_SpawnMany_NewTiles_ByCount_Provided()
     {
         Grid grid = new Grid(4, 4);
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
 
         game.SpawnMultipleTiles(3);
 
@@ -67,7 +67,7 @@ public class GameTest
     public void WhenSpawn_NewTiles_ThereAre_NoCollisions_ByPosition()
     {
         Grid grid = new Grid(2, 2);
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
 
         game.SpawnMultipleTiles(2);
         game.Grid.TryFindTile(1, out Tile? tile1);
@@ -80,7 +80,7 @@ public class GameTest
     public void SpawnNewTile_WhenGridIsFull_TriggersGameOverState()
     {
         Grid grid = new Grid(1, 1);
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
         game.SpawnNewTile(); //now grid is full
 
         game.SpawnNewTile();
@@ -91,7 +91,7 @@ public class GameTest
     public void TrySpawnNewTileAt_Returns_True_IfThe_Cell_WasEmpty_AndSpawned_Successfully()
     {
         Grid grid = new Grid(2, 2);
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
         Assert.True(game.TrySpawnNewTileAt(0, 0, 2));
     }
 
@@ -99,7 +99,7 @@ public class GameTest
     public void TrySpawnNewTileAt_Returns_False_IfThe_Cell_WasNotEmpty_AndSpawn_IsNotDone()
     {
         Grid grid = new Grid(2, 2);
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
         game.TrySpawnNewTileAt(0, 0, 2);
         Assert.False(game.TrySpawnNewTileAt(0, 0, 4));
     }
@@ -109,7 +109,7 @@ public class GameTest
     {
         int value = 16;
         Grid grid = new Grid(2, 2);
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
         game.TrySpawnNewTileAt(0, 0, value);
 
         Assert.Equal(value, game.Grid[0, 0]!.Value);
@@ -119,7 +119,7 @@ public class GameTest
     public void TrySpawnNewTileAt_UsesStandard_Random_WhenValueIsNull()
     {
         Grid grid = new Grid(2, 2);
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
         game.TrySpawnNewTileAt(0, 0);
 
         int value = game.Grid[0, 0]!.Value;
@@ -138,7 +138,7 @@ public class GameTest
     public void TrySpawnNewTileAt_Throws_ArgumentException_IfDimentions_AreIncorrect(int x, int y, int value)
     {
         Grid grid = new Grid(4, 4);
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
 
         Assert.Throws<ArgumentException>(() => game.TrySpawnNewTileAt(x, y, value));
     }
@@ -147,7 +147,7 @@ public class GameTest
     public void IdCounter_ReturnsNew_UniqueIds_AndIncrement_WhenSpawn_NewTiles()
     {
         Grid grid = new Grid(4, 4);
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
 
         int count = 5;
         game.SpawnMultipleTiles(count);
@@ -163,7 +163,7 @@ public class GameTest
     public void IdWill_Continue_ToIncrement_EvenAfter_Undo_ForUnique_SpawnedTiles()
     {
         Grid grid = new Grid(4, 4);
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
         game.TrySpawnNewTileAt(0, 0, 2);
         game.TrySpawnNewTileAt(1, 0, 2);
 
@@ -178,7 +178,7 @@ public class GameTest
     public void IfThereIs_NoEmpty_Cell_SpawnNewTile_Will_Not_Crash_TheProgram()
     {
         Grid grid = new Grid(1, 1);
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
 
         Exception exception = Record.Exception(() => game.SpawnMultipleTiles(5));
 
@@ -191,7 +191,7 @@ public class GameTest
         Grid grid = new Grid(4, 4);
         Tile tile = new Tile(1, 0, 0, 0, 0, false, 2);
         grid[0, 0] = tile;
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
 
         game.Move(MoveDirection.Right, false);
         Assert.Null(game.Grid[0, 0]);
@@ -215,7 +215,7 @@ public class GameTest
     {
         Grid grid = new Grid(4, 4);
         grid[0, 0] = new Tile(1, 0, 0, 2);
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
 
         game.Move(MoveDirection.Right, withSpawn: false);
         game.Move(MoveDirection.Down, withSpawn: false);
@@ -231,7 +231,7 @@ public class GameTest
         Grid grid = new Grid(4, 4);
         Tile tile = new Tile(1, 0, 0, 2);
         grid[0, 0] = tile;
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
 
         game.Move(MoveDirection.Left, false);
 
@@ -248,7 +248,7 @@ public class GameTest
         grid[2, 0] = new Tile(3, 2, 0, 2);
         grid[3, 0] = new Tile(4, 3, 0, 2);
 
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
 
         //should be 0044 not 0008 in one move
         game.Move(MoveDirection.Right, false);
@@ -278,7 +278,7 @@ public class GameTest
         grid[parent1Pos[0], parent1Pos[1]] = tile1;
         grid[parent2Pos[0], parent2Pos[1]] = tile2;
 
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
 
         game.Move(direction, false);
 
@@ -316,7 +316,7 @@ public class GameTest
         grid[0, 0] = tile1;
         grid[3, 3] = tile2;
 
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
 
         game.Move(MoveDirection.Right, false);
 
@@ -336,7 +336,7 @@ public class GameTest
         Grid grid = new Grid(4, 4);
         grid[0, 0] = new Tile(1, 0, 0, 2);
 
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
 
         game.Move(MoveDirection.Right, false);
 
@@ -349,7 +349,7 @@ public class GameTest
         Grid grid = new Grid(4, 4);
         grid[0, 0] = new Tile(1, 0, 0, 2);
 
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
 
         game.Move(MoveDirection.Left, false);
 
@@ -363,7 +363,7 @@ public class GameTest
         Tile tile = new Tile(1, 0, 0, 2);
         grid[0, 0] = tile;
 
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
 
         game.Move(MoveDirection.Right, false);
         game.Undo();
@@ -381,7 +381,7 @@ public class GameTest
         Tile tile = new Tile(1, 0, 0, 2);
         grid[0, 0] = tile;
 
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
 
         game.Undo();
 
@@ -397,7 +397,7 @@ public class GameTest
         Tile tile = new Tile(1, 0, 0, 2);
         grid[0, 0] = tile;
 
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
 
         game.Move(MoveDirection.Right, false);
         game.Move(MoveDirection.Down, false);
@@ -426,7 +426,7 @@ public class GameTest
         grid[2, 0] = tile3;
         grid[3, 0] = tile4;
 
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
         game.Move(MoveDirection.Right, false);
 
         int rememberedScore = game.Grid.Score;
@@ -450,7 +450,7 @@ public class GameTest
         grid[2, 0] = tile3;
         grid[3, 0] = tile4;
 
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
 
         game.Move(MoveDirection.Right, false);
         game.Move(MoveDirection.Right, false);
@@ -479,7 +479,7 @@ public class GameTest
         grid[0, 0] = new Tile(1, 0, 0, 2);
         grid[1, 0] = new Tile(2, 1, 0, 2);
 
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
 
         game.Move(MoveDirection.Right, false);
         game.Undo();
@@ -497,7 +497,7 @@ public class GameTest
         grid[0, 1] = new Tile(3, 0, 0, 8);
         grid[1, 1] = new Tile(4, 0, 0, 16);
 
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
 
         game.CheckForGameOver();
 
@@ -513,7 +513,7 @@ public class GameTest
         grid[0, 1] = new Tile(3, 0, 0, 2);
         grid[1, 1] = new Tile(4, 0, 0, 2);
 
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
 
         game.CheckForGameOver();
 
@@ -524,7 +524,7 @@ public class GameTest
     public void IsGameOver_IsFalse_IfGridIs_Full_But_ThereAre_Possible_Horisontal_Moves()
     {
         Grid grid = new Grid(2, 1);
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
         game.TrySpawnNewTileAt(0, 0, 2);
         game.TrySpawnNewTileAt(1, 0, 2);
 
@@ -537,7 +537,7 @@ public class GameTest
     public void IsGameOver_IsFalse_IfGridIs_Full_But_ThereAre_Possible_Vertical_Moves()
     {
         Grid grid = new Grid(1, 2);
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
         game.TrySpawnNewTileAt(0, 0, 2);
         game.TrySpawnNewTileAt(0, 1, 2);
 
@@ -551,9 +551,10 @@ public class GameTest
     public void OnGameOver_Method_Sets_IsGameOver_ToTrue()
     {
         Grid grid = new Grid(1, 1);
-        Game game = new Game(grid);
+        grid[0, 0] = new Tile(1, 0, 0, 2);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
 
-        game.OnGameOver();
+        game.CheckForGameOver(); //private OnGameOver() is being called
 
         Assert.True(game.IsGameOver);
     }
@@ -564,7 +565,7 @@ public class GameTest
         Grid grid = new Grid(1, 1);
         grid[0, 0] = new Tile(1, 0, 0, 2);
 
-        Game game = new Game(grid);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
 
         game.CheckForGameOver();
 
