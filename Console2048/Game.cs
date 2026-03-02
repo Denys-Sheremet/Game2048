@@ -18,8 +18,12 @@ namespace Console2048
         private readonly ITileRegistry _tileRegistry;
         private readonly IRandomProvider _random;
         public IReadOnlyTileRegistry TileRegistry => _tileRegistry;
-
         private int _nextTileId = 1;
+
+        //Events to invoke changes for GUI in future updates
+        //As we have one sender Action class is perfect instead of EventHandler
+        public event Action? OnStateChanged; 
+        public event Action<int>? OnScoreGained;
 
 
         public Game(Grid grid, ITileSpawner spawner, IHistoryManager history, ITileRegistry tileRegistry, IRandomProvider random)
@@ -134,6 +138,13 @@ namespace Console2048
                 Grid.Score += score;
                 if (withSpawn)
                     SpawnNewTile();
+
+                if (score > 0)
+                {
+                    OnScoreGained?.Invoke(score);
+                }
+
+                OnStateChanged?.Invoke();
             }
             else
             {
