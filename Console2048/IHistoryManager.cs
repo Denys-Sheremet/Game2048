@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Console2048;
 
-internal interface IHistoryManager
+public interface IHistoryManager
 {
     int Count { get; }
     bool IsEmpty => Count == 0;

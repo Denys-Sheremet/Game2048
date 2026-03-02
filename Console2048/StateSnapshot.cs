@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Console2048;
 
-internal class StateSnapshot
+public class StateSnapshot
 {
     public int Width { get; }
     public int Height { get; }

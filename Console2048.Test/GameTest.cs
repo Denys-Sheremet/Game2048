@@ -1,6 +1,7 @@
 ﻿using Console2048;
-using Newtonsoft.Json.Linq;
+using System.Linq;
 using Xunit;
+using NSubstitute;
 
 namespace Console2048.Test;
 
@@ -34,6 +35,41 @@ public class GameTest
         game.SpawnNewTile();
 
         Assert.Equal(1, game.Grid.Count);
+    }
+
+    [Fact]
+    public void SpawnNewTile_GetsCoordinates_FromRandomProvider()
+    {
+        var mockRandomProvider = Substitute.For<IRandomProvider>();
+        mockRandomProvider.Next(16).Returns(0);
+        mockRandomProvider.Next(10).Returns(1);
+
+        Grid grid = new Grid(4, 4);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), mockRandomProvider);
+
+        game.SpawnNewTile();
+
+        Tile? tile = game.Grid[0, 0];
+
+        Assert.NotNull(tile);
+        Assert.Equal(2, tile!.Value);
+    }
+
+    [Fact]
+    public void SpawnNewTile_Spawns_TileWith_Value_4_In_10_Percents_Chance()
+    {
+        var mockRandomProvider = Substitute.For<IRandomProvider>();
+
+        mockRandomProvider.Next(10).Returns(0, 1);
+
+        Grid grid = new Grid(4, 4);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), mockRandomProvider);
+
+        game.SpawnNewTile();
+        Assert.Equal(4, game.Grid[0].Value);
+
+        game.SpawnNewTile();
+        Assert.Equal(2, game.Grid[1].Value);
     }
 
     [Fact]

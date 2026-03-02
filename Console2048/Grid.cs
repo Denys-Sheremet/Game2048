@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Console2048;
 
-internal class Grid
+public class Grid
 {
     public int Width { get; private set; }
     public int Height { get; private set; }

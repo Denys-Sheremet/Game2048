@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Console2048;
 
-internal class Tile
+public class Tile
 {
     public int Id { get; private set; }
     public (int Id1, int Id2)? Parents { get; private set; } = null;

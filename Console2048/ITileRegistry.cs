@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Console2048;
 
-internal interface ITileRegistry : IReadOnlyTileRegistry
+public interface ITileRegistry : IReadOnlyTileRegistry
 {
     void Register(Tile tile);
     void RegisterMany(IEnumerable<Tile> tiles);

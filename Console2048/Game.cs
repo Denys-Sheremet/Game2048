@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Console2048
 {
-    internal class Game
+    public class Game
     {
         public Grid Grid { get; private set; }
         public bool IsGameOver { get; private set; } = false;
@@ -20,7 +20,7 @@ namespace Console2048
         public IReadOnlyTileRegistry TileRegistry => _tileRegistry;
         private int _nextTileId = 1;
 
-        //Events to invoke changes for GUI in future updates
+        //Events to invoke changes for UI in future updates
         //As we have one sender Action class is perfect instead of EventHandler
         public event Action? OnStateChanged; 
         public event Action<int>? OnScoreGained;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Console2048;
 
-internal interface IReadOnlyTileRegistry
+public interface IReadOnlyTileRegistry
 {
     int Count {  get; }
     Tile? this[int idx] { get; }

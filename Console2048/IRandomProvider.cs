@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Console2048;
 
-internal interface IRandomProvider
+public interface IRandomProvider
 {
     int Next(int maxValue);
     int Next(int minValue, int maxValue);

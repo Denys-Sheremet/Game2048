@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Console2048;
 
-internal class TileSnapshot
+public class TileSnapshot
 {
     public int Id { get;}
     public (int Id1, int Id2)? Parents { get; }
