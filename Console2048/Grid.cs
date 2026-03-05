@@ -132,6 +132,7 @@ public class Grid
 
     public void SetRow(int y, Tile?[] row)
     {
+        ArgumentNullException.ThrowIfNull(row);
         if (row.Length != Width) 
             throw new ArgumentException("Inapropriate array length");
         if (y < 0 || y >= Height)
@@ -174,6 +175,7 @@ public class Grid
 
     public void SetColumn(int x, Tile?[] column)
     {
+        ArgumentNullException.ThrowIfNull(column);
         if (column.Length != Height)
             throw new ArgumentException("Inapropriate array length");
         if (x < 0 || x >= Width)
@@ -200,8 +202,6 @@ public class Grid
             }
         }
     }
-
-   
 
     public StateSnapshot CreateSnapshot() 
     {

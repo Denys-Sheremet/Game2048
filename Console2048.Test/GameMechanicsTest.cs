@@ -13,6 +13,10 @@ public class GameMechanicsTest
     [InlineData(new[] { 2, 2, 2, 2 }, new[] { 4, 4, 0, 0 }, true)]
     [InlineData(new[] { 2, 2, 4, 4 }, new[] { 4, 8, 0, 0 }, true)]
     [InlineData(new[] { 2, 4, 2, 4 }, new[] { 2, 4, 2, 4 }, false)]
+    [InlineData(new[] { 0, 0, 0, 0 }, new[] { 0, 0, 0, 0 }, false)]
+    [InlineData(new[] { 2, 0, 0, 0 }, new[] { 2, 0, 0, 0 }, false)]
+    [InlineData(new[] { 0, 0, 0, 2 }, new[] { 2, 0, 0, 0 }, true)]
+    [InlineData(new[] { 2, 2, 4, 0}, new[] { 4, 4, 0, 0 }, true)]
     public void Basic_LogicOf_ProcessLine_Method_Works_AsExpected(int[] lineToProcess, int[] expectedLine, bool expectedWasMoved)
     {
         int nextId = 0;
@@ -49,6 +53,47 @@ public class GameMechanicsTest
         Assert.Equal(1, mergedTile.Parents.Value.Id1);
         Assert.Equal(2, mergedTile.Parents.Value.Id2);
         Assert.True(mergedTile.IsMerged);
+    }
+
+    [Fact]
+    public void IfThe_Line_IsEmpty_ThereWasNo_Move_WasMoved_IsFalse()
+    {
+        Tile?[] line = {null, null, null, null};
+        GameMechanics.ProcessResult result = GameMechanics.ProcessLine(line, () => 999);
+        bool moved = result.WasMoved;
+        
+        Assert.False(moved);
+    }
+
+    [Fact]
+    public void IfNo_PossibleMoves_IsMoved_IsFalse()
+    {
+        Tile tile1 = new Tile(1, 0, 0, 2);
+        Tile tile2 = new Tile(2, 1, 0, 4);
+        Tile tile3 = new Tile(3, 2, 0, 8);
+        Tile tile4 = new Tile(4, 3, 0, 16);
+        Tile?[] line = { tile1, tile2, tile3, tile4 };
+
+        GameMechanics.ProcessResult result = GameMechanics.ProcessLine(line, () => 999);
+        bool moved = result.WasMoved;
+
+        Assert.False(moved);
+    }
+
+    [Fact]
+    public void ProcessLine_CreatesUnique_Tiles_WhileMerging_AndNot_ChangingOld()
+    {
+        Tile tile1 = new Tile(1, 0, 0, 2);
+        Tile tile2 = new Tile(2, 1, 0, 2);
+        Tile?[] line = { tile1, tile2};
+
+        GameMechanics.ProcessResult result = GameMechanics.ProcessLine(line, () => 3);
+
+        Assert.DoesNotContain(tile1, result.NewLine);
+        Assert.DoesNotContain(tile2, result.NewLine);
+        Assert.True(result.NewLine.Length == 1);
+        Assert.True(result.NewLine.Where(t => t!.Id == 3).Any());
+        Assert.NotEqual(tile1, result.NewLine[0]);
     }
 
     [Fact]

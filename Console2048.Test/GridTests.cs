@@ -195,6 +195,34 @@ public class GridTests
     }
 
     [Fact]
+    public void SetRow_Throws_ArgumentNullException_When_RowIsNull()
+    {
+        Grid grid = new Grid(4, 4);
+
+        Assert.Throws<ArgumentNullException>(() => grid.SetRow(0, null!));
+    }
+
+    [Fact]
+    public void SetRow_Automatically_SetsCoordinates_ForNew_TilesIf_TheyAre_NotCorrect()
+    {
+        Grid grid = new Grid(4, 4);
+        Tile?[] row =
+        {
+            new Tile(1, 1, 1, 2),
+            new Tile(2, 1, 1, 2),
+            new Tile(3, 1, 1, 2),
+            new Tile(4, 1, 1, 2)
+        }; //incorrect coordinates for all the tiles
+
+        grid.SetRow(0, row);
+
+        for (int x =  0; x < 4; x++) 
+        {
+            Assert.Equal((x, 0), (grid[x, 0]!.PosX, grid[x, 0]!.PosY));
+        }
+    }
+
+    [Fact]
     public void SetColumn_SetsColumn_InGrid_Properly()
     {
         Grid grid = new Grid(4, 4);
@@ -211,6 +239,14 @@ public class GridTests
     }
 
     [Fact]
+    public void SetColumn_Throws_ArgumentNullException_When_ColumnIsNull()
+    {
+        Grid grid = new Grid(4, 4);
+
+        Assert.Throws<ArgumentNullException>(() => grid.SetColumn(0, null!));
+    }
+
+    [Fact]
     public void SetColumn_Throws_ArgumentException_WhenArrayLength_IsIncorrect()
     {
         Grid grid = new Grid(4, 4);
@@ -219,6 +255,26 @@ public class GridTests
 
         Assert.Throws<ArgumentException>(() => grid.SetColumn(0, smallColumn));
         Assert.Throws<ArgumentException>(() => grid.SetColumn(0, bigColumn));
+    }
+
+    [Fact]
+    public void SetColumn_Automatically_SetsCoordinates_ForNew_TilesIf_TheyAre_NotCorrect()
+    {
+        Grid grid = new Grid(4, 4);
+        Tile?[] column =
+        {
+            new Tile(1, 1, 1, 2),
+            new Tile(2, 1, 1, 2),
+            new Tile(3, 1, 1, 2),
+            new Tile(4, 1, 1, 2)
+        }; //incorrect coordinates for all the tiles
+
+        grid.SetColumn(0, column);
+
+        for (int y = 0; y < 4; y++)
+        {
+            Assert.Equal((0, y), (grid[0, y]!.PosX, grid[0, y]!.PosY));
+        }
     }
 
     [Fact]
@@ -342,6 +398,41 @@ public class GridTests
     }
 
     [Fact]
+    public void GetEmptyCells_Returns_CorrectAmount_OfEmpty_Cells_In_Small_Grid()
+    {
+        Grid grid = new Grid(1, 1);
+        List<(int x, int y)> emptyCells = grid.GetEmptyCells();
+
+        Assert.Single(emptyCells);
+        Assert.Equal((0, 0), emptyCells[0]);
+    }
+
+    [Fact]
+    public void GetEmptyCells_Returns_Empty_ListIf_GridIsFull()
+    {
+        Grid grid = new Grid(1, 1);
+        grid[0, 0] = new Tile(1, 0, 0, 2);
+        List<(int x, int y)> emptyCells = grid.GetEmptyCells();
+
+        Assert.Empty(emptyCells);
+    }
+
+    [Fact]
+    public void GetEmptyCells_Returns_Correct_Coordinates()
+    {
+        Grid grid = new Grid(4, 4);
+        List<(int x, int y)> emptyCells = grid.GetEmptyCells();
+
+        for (int x = 0; x < 4; x++) 
+        {
+            for (int y = 0; y < 4; y++) 
+            {
+                Assert.Contains((x, y), emptyCells);
+            }        
+        }
+    }
+
+    [Fact]
     public void TryFindTile_ReturnsTrue_IfTile_IsPresent_InGrid()
     {
         Grid grid = new Grid(4, 4);
@@ -365,5 +456,32 @@ public class GridTests
 
         Assert.False(isFound);
         Assert.Null(result);
+    }
+
+    [Fact]
+    public void StateSnapshot_IsImmutable_AndRestores_GridCorrectly()
+    {
+        Grid grid = new Grid(2, 2);
+        grid[0, 0] = new Tile(1, 0, 0, 0, 0, false, 2);
+        grid[1, 1] = new Tile(2, 1, 1, 1, 1, false, 4);
+
+        StateSnapshot ss = grid.CreateSnapshot();
+
+        grid[0, 0] = null;
+        grid[1, 0] = new Tile(3, 1, 0, 0, 0, false, 8);
+        grid[0, 1] = new Tile(4, 0, 1, 0, 0, false, 2);
+
+        grid.Restore(ss);
+
+        Assert.NotNull(grid[0, 0]);
+        Assert.NotNull(grid[1, 1]);
+        Assert.True(grid[0, 0]!.Id == 1);
+        Assert.True(grid[1, 1]!.Id == 2);
+
+        grid.TryFindTile(3, out Tile? tile3);
+        grid.TryFindTile(3, out Tile? tile4);
+
+        Assert.Null(tile3);
+        Assert.Null(tile4);
     }
 }
