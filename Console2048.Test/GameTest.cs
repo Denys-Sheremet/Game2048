@@ -44,8 +44,7 @@ public class GameTest
         mockRandomProvider.Next(16).Returns(0);
         mockRandomProvider.Next(10).Returns(1);
 
-        Grid grid = new Grid(4, 4);
-        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), mockRandomProvider);
+        Game game = GameFactory.CreateStandardGame(4, 4, mockRandomProvider);
 
         game.SpawnNewTile();
 
@@ -76,8 +75,7 @@ public class GameTest
 
         mockRandomProvider.Next(10).Returns(0, 1);
 
-        Grid grid = new Grid(4, 4);
-        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), mockRandomProvider);
+        Game game = GameFactory.CreateStandardGame(4, 4, mockRandomProvider);
 
         game.SpawnNewTile();
         Assert.Equal(4, game.Grid[0].Value);
@@ -103,8 +101,7 @@ public class GameTest
     [Fact]
     public void SpawnMultipleTiles_MethodCan_SpawnMany_NewTiles_ByCount_Provided()
     {
-        Grid grid = new Grid(4, 4);
-        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
+        Game game = GameFactory.CreateStandardGame();
 
         game.SpawnMultipleTiles(3);
 
@@ -620,5 +617,112 @@ public class GameTest
         game.CheckForGameOver();
 
         Assert.True(game.IsGameOver);
+    }
+
+    [Fact]
+    public void Move_ShouldTrigger_OnStateChanged_WhenMovementOccurs()
+    {
+        Game game = GameFactory.CreateStandardGame();
+        game.TrySpawnNewTileAt(0, 0);
+
+        bool stateChanged = false;
+
+        game.OnStateChanged += () => stateChanged = true;
+
+        game.Move(MoveDirection.Right);
+
+        Assert.True(stateChanged);
+    }
+
+    [Fact]
+    public void Move_ShouldNot_Trigger_OnStateChanged_WhenNoMovementOccurs()
+    {
+        Game game = GameFactory.CreateStandardGame();
+        game.TrySpawnNewTileAt(0, 0);
+
+        bool stateChanged = false;
+        game.OnStateChanged += () => stateChanged = true;
+
+        game.Move(MoveDirection.Left);
+
+        Assert.False(stateChanged);
+    }
+
+    [Fact]
+    public void Move_ShouldNot_Trigger_OnScoreGained_IfNoScore_Gained()
+    {
+        Game game = GameFactory.CreateStandardGame();
+        game.TrySpawnNewTileAt(0, 0);
+
+        bool stateChanged = false;
+        bool scoreGained = false;
+        game.OnStateChanged += () => stateChanged = true;
+        game.OnScoreGained += (points) => scoreGained = true;
+
+        game.Move(MoveDirection.Right);
+
+        Assert.True(stateChanged);
+        Assert.False(scoreGained);
+    }
+
+    [Fact]
+    public void Move_ShouldTrigger_OnScoreGained_WhenTilesMerge()
+    {
+        Game game = GameFactory.CreateStandardGame();
+        game.TrySpawnNewTileAt(0, 0, newValue: 2);
+        game.TrySpawnNewTileAt(1, 0, newValue: 2);
+
+        bool scoreGained = false;
+        int score = 0;
+
+        game.OnScoreGained += (points) =>
+        {
+            scoreGained = true;
+            score += points;
+        };
+
+        game.Move(MoveDirection.Right);
+
+        Assert.True(scoreGained);
+        Assert.Equal(4, score);
+    }
+
+    [Fact]
+    public void Undo_ShouldRemove_SpawnedTile_FromRegistry()
+    {
+        Game game = GameFactory.CreateStandardGame();
+        game.TrySpawnNewTileAt(0, 0, newValue: 2);
+        game.TrySpawnNewTileAt(1, 0, newValue: 2);
+
+        game.Move(MoveDirection.Right, false);
+
+        Assert.NotNull(game.TileRegistry[3]);
+
+        game.Undo();
+
+        Assert.Null(game.TileRegistry[3]);
+        Assert.NotNull(game.TileRegistry[1]);
+        Assert.NotNull(game.TileRegistry[2]);
+    }
+
+    [Fact]
+    public void Id_Should_ContinueTo_Increment_EvenAfter_Undo()
+    {
+        Game game = GameFactory.CreateStandardGame();
+        game.TrySpawnNewTileAt(0, 0, newValue: 2);
+        game.TrySpawnNewTileAt(1, 0, newValue: 2);
+
+        game.Move(MoveDirection.Right, false);
+
+        Assert.True(game.Grid.TryFindTile(3, out Tile? tile3));
+        Assert.Equal(3, tile3!.Id);
+
+        game.Undo();
+
+        game.TrySpawnNewTileAt(1, 1, newValue: 2);
+        Assert.True(game.Grid.TryFindTile(4, out Tile? tile4));
+        Assert.Equal(4, tile4!.Id);
+
+        Assert.False(game.Grid.TryFindTile(3, out Tile? noTile));
     }
 }

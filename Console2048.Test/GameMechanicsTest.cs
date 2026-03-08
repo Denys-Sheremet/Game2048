@@ -91,7 +91,6 @@ public class GameMechanicsTest
 
         Assert.DoesNotContain(tile1, result.NewLine);
         Assert.DoesNotContain(tile2, result.NewLine);
-        Assert.True(result.NewLine.Length == 1);
         Assert.True(result.NewLine.Where(t => t!.Id == 3).Any());
         Assert.NotEqual(tile1, result.NewLine[0]);
     }

@@ -2,7 +2,7 @@
 using Console2048.ConsoleUI;
 using Spectre.Console;
 
-Console2048.Grid grid = new Console2048.Grid(4, 4);
+Console2048.Grid grid = new Console2048.Grid(5, 5);
 Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
 game.SpawnMultipleTiles(2);
 
