@@ -56,6 +56,20 @@ public class GameTest
     }
 
     [Fact]
+    public void GetNextTileId_Increments_Sequentially()
+    {
+        Game game = GameFactory.CreateStandardGame();
+
+        int firstId = game.GetNextTileId();
+        int secondId = game.GetNextTileId();
+        int thirdId = game.GetNextTileId();
+
+        Assert.Equal(1, firstId);
+        Assert.Equal(2, secondId);
+        Assert.Equal(3, thirdId);
+    }
+
+    [Fact]
     public void SpawnNewTile_Spawns_TileWith_Value_4_In_10_Percents_Chance()
     {
         var mockRandomProvider = Substitute.For<IRandomProvider>();
