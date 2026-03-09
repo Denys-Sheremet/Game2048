@@ -12,7 +12,11 @@ internal class HistoryManager : IHistoryManager
 
     public int Count => _stack.Count;
     public bool IsEmpty => _stack.Count == 0;
-    public void Push(StateSnapshot state) => _stack.Push(state);
+    public void Push(StateSnapshot state) 
+    {
+        ArgumentNullException.ThrowIfNull(state);
+        _stack.Push(state);
+    } 
     public StateSnapshot? Pop() => _stack.Count > 0 ? _stack.Pop() : null;
     public void Clear() => _stack.Clear();
 }

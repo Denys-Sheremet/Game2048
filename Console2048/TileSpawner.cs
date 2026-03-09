@@ -10,6 +10,11 @@ internal class TileSpawner : ITileSpawner
 {
     public bool Spawn(Grid grid, ITileRegistry registry, int nextId, IRandomProvider random)
     {
+        ArgumentNullException.ThrowIfNull(grid);
+        ArgumentNullException.ThrowIfNull(registry);
+        ArgumentNullException.ThrowIfNull(random);
+        if (nextId < 0) throw new ArgumentException($"Invalid id provided: {nextId}");
+
         List<(int, int)> emptyCells = grid.GetEmptyCells();
         if (emptyCells.Count < 1)
         {
@@ -28,6 +33,11 @@ internal class TileSpawner : ITileSpawner
     public bool TrySpawnAt
         (Grid grid, ITileRegistry registry, int nextId, int x, int y, int? value = null, IRandomProvider? random = null)
     {
+        ArgumentNullException.ThrowIfNull(grid);
+        ArgumentNullException.ThrowIfNull(registry);
+        if (nextId < 0) 
+            throw new ArgumentException($"Invalid id provided: {nextId}");
+
         if (x < 0 || y < 0 || x >= grid.Width || y >= grid.Height)
             throw new ArgumentException("Invalid coordinates provided to spawn");
         if (grid[x, y] is not null)
