@@ -14,11 +14,13 @@ internal class TileRegistry : ITileRegistry
     
     public void Register(Tile tile)
     {
+        ArgumentNullException.ThrowIfNull(tile);
         _registry[tile.Id] = tile;
     }
 
     public void RegisterMany(IEnumerable<Tile> tiles)
     {
+        ArgumentNullException.ThrowIfNull(tiles);
         foreach (Tile tile in tiles) 
         {
             this.Register(tile);
@@ -27,14 +29,20 @@ internal class TileRegistry : ITileRegistry
 
     public void Unregister(int id) 
     {
+        if (id < 0)
+            throw new ArgumentException("negative id provided");
         _registry.Remove(id); //Remove() will check existence of element no need for if
     }
 
     public void UnregisterMany(IEnumerable<Tile> tiles)
     {
+        ArgumentNullException.ThrowIfNull(tiles);
         foreach (Tile tile in tiles) 
         {
-            this.Unregister(tile.Id);
+            if(tile is not null)
+            {
+                this.Unregister(tile.Id);
+            }
         }
     }
 

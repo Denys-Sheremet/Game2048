@@ -88,6 +88,58 @@ public class TileRegistryTest
     }
 
     [Fact]
+    public void Register_Throws_ArgumentNullException_IfTile_IsNull()
+    {
+        TileRegistry registry = new TileRegistry();
+        Assert.Throws<ArgumentNullException>(() => registry.Register(null!));
+    }
+
+    [Fact]
+    public void RegisterMany_Throws_ArgumentNullException_If_ParameterIs_Null()
+    {
+        TileRegistry registry = new TileRegistry();
+        Assert.Throws<ArgumentNullException>(() => registry.RegisterMany(null!));
+    }
+
+    [Fact]
+    public void UnregisterMany_Throws_ArgumentNullException_If_ParameterIs_Null()
+    {
+        TileRegistry registry = new TileRegistry();
+        Assert.Throws<ArgumentNullException>(() => registry.UnregisterMany(null!));
+    }
+
+    [Fact]
+    public void RegisterMany_WithEmpty_Array_WillNot_Crash()
+    {
+        TileRegistry registry = new TileRegistry();
+        Exception exception = Record.Exception
+            (
+                () => registry.RegisterMany(new Tile[] { })
+            );
+        Assert.Null(exception);
+    }
+
+    [Fact]
+    public void UnregisterMany_WithEmpty_Array_WillNot_Crash()
+    {
+        TileRegistry registry = new TileRegistry();
+        Exception exception = Record.Exception
+            (
+                () => registry.UnregisterMany(new Tile[] { })
+            );
+        Assert.Null(exception);
+    }
+
+    [Fact]
+    public void Unregister_Throws_ArgumentException_If_Id_IsNegative()
+    {
+        TileRegistry registry = new TileRegistry();
+        Assert.Throws<ArgumentException>(() => registry.Unregister(-1));
+        Assert.Throws<ArgumentException>(() => registry.Unregister(-999));
+        Assert.Throws<ArgumentException>(() => registry.Unregister(-55));
+    }
+
+    [Fact]
     public void Registry_CanClear_AllTilesCorrectly()
     {
         TileRegistry registry = new TileRegistry();
