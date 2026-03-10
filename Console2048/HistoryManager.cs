@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Console2048;
 
-internal class HistoryManager : IHistoryManager
+public class HistoryManager : IHistoryManager
 {
     private readonly Stack<StateSnapshot> _stack = new();
 
