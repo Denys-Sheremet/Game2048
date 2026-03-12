@@ -207,18 +207,22 @@ public class GameTest
     }
 
     [Fact]
-    public void IdWill_Continue_ToIncrement_EvenAfter_Undo_ForUnique_SpawnedTiles()
+    public void NextId_Counter_Will_Be_Restored_FromSnapshot_WhenUndo_IsDone()
     {
         Grid grid = new Grid(4, 4);
-        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
+        Game game = GameFactory.CreateStandardGame();
         game.TrySpawnNewTileAt(0, 0, 2);
         game.TrySpawnNewTileAt(1, 0, 2);
 
-        game.Move(MoveDirection.Right, false); //tiles merged and id 3 appeared
-        game.Undo();
-        game.TrySpawnNewTileAt(3, 3, 2); //must spawn a tile with next id - 4
+        Assert.Equal(3, game.GetNextTileId(false));
 
-        Assert.Equal(4, game.Grid[3, 3]!.Id);
+        game.Move(MoveDirection.Right, false); //tiles merged and id 3 appeared next is 4
+
+        Assert.Equal(4, game.GetNextTileId(false));
+
+        game.Undo();
+
+        Assert.Equal(3, game.GetNextTileId(false));
     }
 
     [Fact]
@@ -703,26 +707,5 @@ public class GameTest
         Assert.Null(game.TileRegistry[3]);
         Assert.NotNull(game.TileRegistry[1]);
         Assert.NotNull(game.TileRegistry[2]);
-    }
-
-    [Fact]
-    public void Id_Should_ContinueTo_Increment_EvenAfter_Undo()
-    {
-        Game game = GameFactory.CreateStandardGame();
-        game.TrySpawnNewTileAt(0, 0, newValue: 2);
-        game.TrySpawnNewTileAt(1, 0, newValue: 2);
-
-        game.Move(MoveDirection.Right, false);
-
-        Assert.True(game.Grid.TryFindTile(3, out Tile? tile3));
-        Assert.Equal(3, tile3!.Id);
-
-        game.Undo();
-
-        game.TrySpawnNewTileAt(1, 1, newValue: 2);
-        Assert.True(game.Grid.TryFindTile(4, out Tile? tile4));
-        Assert.Equal(4, tile4!.Id);
-
-        Assert.False(game.Grid.TryFindTile(3, out Tile? noTile));
     }
 }

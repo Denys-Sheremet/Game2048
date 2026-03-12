@@ -2,9 +2,8 @@
 using Console2048.ConsoleUI;
 using Spectre.Console;
 
-Console2048.Grid grid = new Console2048.Grid(5, 5);
+Console2048.Grid grid = new Console2048.Grid(2, 2);
 Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
-game.SpawnMultipleTiles(2);
 
 Console.CursorVisible = false;
 
@@ -20,7 +19,7 @@ game.SpawnMultipleTiles(2);
 
 ConsoleUIRenderer.Render(game);
 
-while (!game.IsGameOver)
+while (!game.IsGameOver && !game.IsVictory)
 {
     var key = Console.ReadKey(true).Key;
 
@@ -34,5 +33,13 @@ while (!game.IsGameOver)
         case ConsoleKey.Escape: return;
     }
 }
-ConsoleUIRenderer.DrawGameOver(game);
+
+if (game.IsVictory)
+{
+    ConsoleUIRenderer.DrawVictory(game);
+}
+else if (game.IsGameOver)
+{
+    ConsoleUIRenderer.DrawGameOver(game);
+}
 Console.ReadLine();

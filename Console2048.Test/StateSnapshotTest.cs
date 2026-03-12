@@ -15,11 +15,14 @@ public class StateSnapshotTest
         tile.SetParents(55, 66);
         grid[1, 2] = tile;
 
-        StateSnapshot snapshot = grid.CreateSnapshot();
+        int expectedNextId = 100;
+
+        StateSnapshot snapshot = grid.CreateSnapshot(expectedNextId);
 
         Assert.Equal((grid.Width, grid.Height), (snapshot.Width, snapshot.Height));
         Assert.Equal(grid.Score, snapshot.Score);
         Assert.Equal(grid.Count, snapshot.TileSnapshots.Count);
+        Assert.Equal(expectedNextId, snapshot.NextId);
 
 
         for (int i = 0; i < snapshot.TileSnapshots.Count; i++)
@@ -39,7 +42,9 @@ public class StateSnapshotTest
         grid[0, 0] = new Tile(1, 0, 0, 0, 0, false, 2);
         grid[1, 1] = new Tile(2, 1, 1, 1, 1, false, 4);
 
-        StateSnapshot ss = grid.CreateSnapshot();
+        int expectedNextId = 100;
+
+        StateSnapshot ss = grid.CreateSnapshot(expectedNextId);
 
         grid[0, 0] = null;
         grid[1, 0] = new Tile(3, 1, 0, 0, 0, false, 8);
@@ -48,5 +53,6 @@ public class StateSnapshotTest
         Assert.True(ss.TileSnapshots.Where(s => s.Id == 1).Any());
         Assert.False(ss.TileSnapshots.Where(s => s.Id == 3).Any());
         Assert.Equal(2, ss.TileSnapshots.Count);
+        Assert.Equal(expectedNextId, ss.NextId);
     }
 }

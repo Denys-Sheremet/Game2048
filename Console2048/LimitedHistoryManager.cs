@@ -21,12 +21,24 @@ public class LimitedHistoryManager : IHistoryManager
 
     public void Push(StateSnapshot state)
     {
+        ArgumentNullException.ThrowIfNull(state);
 
+        _list.AddLast(state);
+        if (Count > _limit)
+        {
+            _list.RemoveFirst();
+        } 
     }
 
-    public void Pop()
+    public StateSnapshot? Pop()
     {
-
+        if(Count > 0)
+        {
+            StateSnapshot ss = _list.Last!.Value;
+            _list.RemoveLast();
+            return ss;
+        }
+        return null;
     }
 
     public void Clear() => _list.Clear();

@@ -203,9 +203,11 @@ public class Grid
         }
     }
 
-    public StateSnapshot CreateSnapshot() 
+    public StateSnapshot CreateSnapshot(int nextId) 
     {
-        return new StateSnapshot(this.Width, this.Height, this.Score, this._tiles);
+        if (nextId < 1)
+            throw new ArgumentException("Invalid id counter provided");
+        return new StateSnapshot(this.Width, this.Height, this.Score, this._tiles, nextId);
     }
 
     public List<(int x, int y)> GetEmptyCells()
@@ -232,6 +234,25 @@ public class Grid
         foundTile = _tiles.FirstOrDefault(t => t.Id == id);
         return foundTile != null;
     }
+
+    public bool CheckForValue(int valueToCheck)
+    {
+        if (
+            !(
+                valueToCheck > 0 
+                && 
+                (valueToCheck & (valueToCheck - 1)) == 0 //check if value is a power of 2
+            )
+           )
+            throw new ArgumentException("The value is invalid or not a power of 2");
+
+        foreach (Tile t in this._tiles)
+        {
+            if (t.Value == valueToCheck) return true;
+        }
+        return false;
+    }
+
     public override string ToString()
     {
         StringBuilder sb = new StringBuilder();

@@ -97,7 +97,57 @@ internal static class ConsoleUIRenderer
 
     public static void DrawGameOver(Game game)
     {
-        AnsiConsole.MarkupLine("\n[bold red]!!! GAME OVER !!![/]");
-        AnsiConsole.MarkupLine($"[yellow]Final Score: {game.Grid.Score}[/]");
+        AnsiConsole.Clear();
+
+        var gameOverRule = new Rule("[bold red]GAME OVER[/]")
+            .RuleStyle("red")
+            .Centered();
+
+        AnsiConsole.Write(gameOverRule);
+
+        AnsiConsole.Write(
+            new FigletText("DEFEAT")
+                .Centered()
+                .Color(Color.Red));
+
+        var stats = new Panel(Align.Center(
+            new Markup($"[bold white]FINAL SCORE:[/] [yellow]{game.Grid.Score}[/]\n" +
+                       $"[bold white]TOTAL MOVES:[/] [blue]{game.HistoryCount}[/]")))
+            .Header("[bold red] Defeat Summary [/]")
+            .BorderColor(Color.Red)
+            .Padding(2, 1, 2, 1);
+
+        AnsiConsole.Write(new Padder(stats).Padding(0, 1, 0, 1));
+
+        AnsiConsole.Write(new Markup("[bold white]No more possible moves left![/]").Centered());
+        AnsiConsole.WriteLine();
+    }
+
+    public static void DrawVictory(Game game)
+    {
+        AnsiConsole.Clear();
+
+        var victoryRule = new Rule("[bold yellow]CONGRATULATIONS[/]")
+            .RuleStyle("gold1")
+            .Centered();
+
+        AnsiConsole.Write(victoryRule);
+
+        AnsiConsole.Write(
+            new FigletText("YOU WIN!")
+                .Centered()
+                .Color(Color.Cyan1));
+
+        var stats = new Panel(Align.Center(
+            new Markup($"[bold white]FINAL SCORE:[/] [yellow]{game.Grid.Score}[/]\n" +
+                       $"[bold white]TOTAL MOVES:[/] [blue]{game.HistoryCount}[/]")))
+            .Header("[bold green] Victory Summary [/]")
+            .BorderColor(Color.Gold1)
+            .Padding(2, 1, 2, 1);
+
+        AnsiConsole.Write(new Padder(stats).Padding(0, 1, 0, 1));
+
+        AnsiConsole.Write(new Markup("[bold white]You have reached the [cyan]2048[/] tile![/]").Centered());
+        AnsiConsole.WriteLine();
     }
 }

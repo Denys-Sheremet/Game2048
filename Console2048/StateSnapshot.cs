@@ -12,19 +12,20 @@ public class StateSnapshot
     public int Height { get; }
     public IReadOnlyList<TileSnapshot> TileSnapshots {  get; } //do readonly to prevent pointer leak
     public int Score { get; }
+    public int NextId { get; }
 
-    //should be getting raw information instead of straight Grid class object to avoid coupling issue
-    public StateSnapshot(int width, int height, int score, IEnumerable<Tile> tiles)
+    public StateSnapshot(int width, int height, int score, IEnumerable<Tile> tiles, int nextId)
     {
-        Width = width; 
+        Width = width;
         Height = height;
         Score = score;
+        NextId = nextId;
 
         TileSnapshots = tiles
             .Select(t => new TileSnapshot(t))
             .ToList()
             .AsReadOnly();
-    }
+     }
 
     //Debug
     public override string ToString()

@@ -36,7 +36,7 @@ public class GridTests
         tile.SetParents(4, 5);
         grid[3, 3] = tile;
 
-        StateSnapshot ss = grid.CreateSnapshot();
+        StateSnapshot ss = grid.CreateSnapshot(100);
 
         //add extra tile to make difference between old grid and new one
         grid[0, 1] = new Tile(7, 0, 1, 0, 0, false, 2);
@@ -55,7 +55,7 @@ public class GridTests
     public void RestoreMethod_RestoresEmpty_GridIf_SnapshotIs_Empty()
     {
         Grid grid = new Grid(4, 4);
-        StateSnapshot ss = grid.CreateSnapshot();
+        StateSnapshot ss = grid.CreateSnapshot(100);
 
         grid[0, 0] = new Tile(1, 0, 0, 0, 0, false, 2);
         grid.Score = 4;
@@ -71,7 +71,7 @@ public class GridTests
     {
         Grid grid = new Grid(4, 4);
         Tile badTile = new Tile(1, 5, 5, 0, 0, false, 2);
-        StateSnapshot badSs = new StateSnapshot(4, 4, 0, new List<Tile> { badTile });
+        StateSnapshot badSs = new StateSnapshot(4, 4, 0, new List<Tile> { badTile }, 100);
 
         Assert.Throws<IndexOutOfRangeException>(() => grid.Restore(badSs));
     }
@@ -83,7 +83,7 @@ public class GridTests
     public void Restore_Throws_ArgumentException_OnDimensionMismatch(int ssW, int ssH)
     {
         Grid grid = new Grid(4, 4);
-        StateSnapshot ss = new StateSnapshot(ssW, ssH, 0, new List<Tile>());
+        StateSnapshot ss = new StateSnapshot(ssW, ssH, 0, new List<Tile>(), 100);
 
         var exception = Assert.Throws<ArgumentException>(() => grid.Restore(ss));
         Assert.Contains("does not fit the grid", exception.Message);
@@ -98,7 +98,7 @@ public class GridTests
         mergedTile.SetParents(99, 100);
         grid[0, 0] = mergedTile;
 
-        StateSnapshot corruptedSs = new StateSnapshot(4, 4, 0, new List<Tile>());
+        StateSnapshot corruptedSs = new StateSnapshot(4, 4, 0, new List<Tile>(), 100);
 
         Assert.Throws<InvalidOperationException>(() => grid.Restore(corruptedSs));
     }
@@ -376,7 +376,7 @@ public class GridTests
         grid[2, 2] = tile1;
         grid[1, 1] = tile2;
 
-        StateSnapshot ss = grid.CreateSnapshot();
+        StateSnapshot ss = grid.CreateSnapshot(100);
 
         Assert.NotNull(ss);
         Assert.Equal((4, 4, 0), (ss.Width, ss.Height, ss.Score));
@@ -465,7 +465,7 @@ public class GridTests
         grid[0, 0] = new Tile(1, 0, 0, 0, 0, false, 2);
         grid[1, 1] = new Tile(2, 1, 1, 1, 1, false, 4);
 
-        StateSnapshot ss = grid.CreateSnapshot();
+        StateSnapshot ss = grid.CreateSnapshot(100);
 
         grid[0, 0] = null;
         grid[1, 0] = new Tile(3, 1, 0, 0, 0, false, 8);

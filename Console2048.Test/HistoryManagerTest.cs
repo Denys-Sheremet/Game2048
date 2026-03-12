@@ -26,9 +26,9 @@ public class HistoryManagerTest
     public void HistoryManager_PushAndPop_Snapshots_In_LIFO_Order()
     {
         HistoryManager manager = new HistoryManager();
-        StateSnapshot s1 = new StateSnapshot(1, 1, 0, new[]{new Tile(1, 0, 0, 2)});
-        StateSnapshot s2 = new StateSnapshot(2, 2, 0, new[]{new Tile(2, 1, 1, 2)});
-        StateSnapshot s3 = new StateSnapshot(3, 3, 0, new[]{new Tile(3, 2, 2, 2)});
+        StateSnapshot s1 = new StateSnapshot(1, 1, 0, new[]{new Tile(1, 0, 0, 2)}, 100);
+        StateSnapshot s2 = new StateSnapshot(2, 2, 0, new[]{new Tile(2, 1, 1, 2)}, 101);
+        StateSnapshot s3 = new StateSnapshot(3, 3, 0, new[]{new Tile(3, 2, 2, 2)}, 102);
 
         manager.Push(s1);
         manager.Push(s2);
@@ -52,9 +52,9 @@ public class HistoryManagerTest
     public void Clear_Method_SetsManagers_Properties_ToDefault()
     {
         HistoryManager manager = new HistoryManager();
-        StateSnapshot s1 = new StateSnapshot(1, 1, 0, new[] { new Tile(1, 0, 0, 2) });
-        StateSnapshot s2 = new StateSnapshot(2, 2, 0, new[] { new Tile(2, 1, 1, 2) });
-        StateSnapshot s3 = new StateSnapshot(3, 3, 0, new[] { new Tile(3, 2, 2, 2) });
+        StateSnapshot s1 = new StateSnapshot(1, 1, 0, new[] { new Tile(1, 0, 0, 2) }, 100);
+        StateSnapshot s2 = new StateSnapshot(2, 2, 0, new[] { new Tile(2, 1, 1, 2) }, 101);
+        StateSnapshot s3 = new StateSnapshot(3, 3, 0, new[] { new Tile(3, 2, 2, 2) }, 102);
 
         manager.Push(s1);
         manager.Push(s2);

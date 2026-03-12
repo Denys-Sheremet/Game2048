@@ -10,6 +10,7 @@ namespace Console2048
     {
         public Grid Grid { get; private set; }
         public bool IsGameOver { get; private set; } = false;
+        public bool IsVictory { get; private set; } = false;
         public int HistoryCount => _history.Count;
 
         private readonly ITileSpawner _spawner;
@@ -18,11 +19,14 @@ namespace Console2048
         private readonly IRandomProvider _random;
         public IReadOnlyTileRegistry TileRegistry => _tileRegistry;
         private int _nextTileId = 1;
+        private int _maxTileValue = 2048;
 
-        //Events to invoke changes for UI in future updates
+        //Events to invoke changes for UI
         //As we have one sender Action class is perfect instead of EventHandler
         public event Action? OnStateChanged; 
         public event Action<int>? OnScoreGained;
+        public event Action? OnVictory;
+        public event Action? OnGameOver;
 
 
         public Game(Grid grid, ITileSpawner spawner, IHistoryManager history, ITileRegistry tileRegistry, IRandomProvider random)
@@ -90,7 +94,7 @@ namespace Console2048
         {
             Grid.SyncAllPrevious();
 
-            StateSnapshot snapshot = Grid.CreateSnapshot();
+            StateSnapshot snapshot = Grid.CreateSnapshot(_nextTileId);
             bool moved = false;
             int score = 0;
 
@@ -103,7 +107,7 @@ namespace Console2048
                 Tile?[] line = isHorisontal ? Grid.GetRow(i) : Grid.GetColumn(i);
                 if (isReversed) Array.Reverse(line); //in-place
 
-                GameMechanics.ProcessResult result = GameMechanics.ProcessLine(line, GetNextTileId);
+                GameMechanics.ProcessResult result = GameMechanics.ProcessLine(line, () => GetNextTileId());
 
                 if (result.WasMoved)
                 {
@@ -143,6 +147,7 @@ namespace Console2048
                     OnScoreGained?.Invoke(score);
                 }
 
+                CheckForVictory();
                 OnStateChanged?.Invoke();
             }
             else
@@ -157,6 +162,7 @@ namespace Console2048
 
             StateSnapshot stateSnapshot = _history.Pop()!;
             Grid.Restore(stateSnapshot);
+            _nextTileId = stateSnapshot.NextId;
 
             _tileRegistry.Clear();
             for (int i = 0; i < Grid.Count; i++) 
@@ -189,17 +195,51 @@ namespace Console2048
 
             if (canMergeHorizontal || canMergeVertical) return;
 
-            OnGameOver();
+            Over();
         }
 
-        private void OnGameOver() 
-        { 
+        public void CheckForVictory()
+        {
+            if (!IsVictory && this.Grid.CheckForValue(_maxTileValue))
+            {
+                Victory();
+            }
+        }
+        private void Over()
+        {
             IsGameOver = true;
+            OnGameOver?.Invoke();
+        }
+
+        private void Victory() 
+        {
+            IsVictory = true;
+            OnVictory?.Invoke();
+        } 
+
+        public void SetMaxValue(int maxTileValue)
+        {
+            if (
+                !(
+                    maxTileValue > 0
+                    &&
+                    (maxTileValue & (maxTileValue - 1)) == 0 //check if value is a power of 2
+                )
+            ) throw new ArgumentException("The value is invalid or not a power of 2");
+
+            _maxTileValue = maxTileValue;
         }
 
         public bool HistoryIsEmpty() => _history.IsEmpty;
 
-        public int GetNextTileId() => _nextTileId++;
+        public int GetNextTileId(bool withIncrement = true) 
+        {
+            if (withIncrement)
+            {
+                return _nextTileId++;
+            }
+            return _nextTileId;
+        }
 
     }
 }
