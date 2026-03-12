@@ -29,7 +29,7 @@ internal static class ConsoleUIRenderer
                 .Color(Color.Orange3));
 
         Panel infoPanel = new Panel(Align.Center(
-            new Markup($"[bold white]MOVES:[/] [blue]{game.HistoryCount}[/]   |   [bold white]SCORE:[/] [yellow]{game.Grid.Score}[/]{bonusText}")))
+            new Markup($"[bold white]HISTORY:[/] [blue]{game.HistoryCount}[/]   |   [bold white]SCORE:[/] [yellow]{game.Grid.Score}[/]{bonusText}")))
             .BorderColor(Color.Grey15);
 
         AnsiConsole.Write(infoPanel);
