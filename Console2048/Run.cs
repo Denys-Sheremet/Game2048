@@ -1,8 +1,7 @@
-﻿using Console2048;
-using Console2048.ConsoleUI;
-using Spectre.Console;
+﻿using Game2048.Core;
+using Game2048.Core.ConsoleUI;
 
-Console2048.Grid grid = new Console2048.Grid(4, 4);
+Grid grid = new Grid(4, 4);
 Game game = new Game(grid, new TileSpawner(), new LimitedHistoryManager(10), new TileRegistry(), new DefaultRandomProvider());
 
 Console.CursorVisible = false;

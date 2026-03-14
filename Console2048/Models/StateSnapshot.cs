@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Console2048;
+﻿namespace Game2048.Core.Models;
 
 public class StateSnapshot
 {
@@ -26,15 +20,4 @@ public class StateSnapshot
             .ToList()
             .AsReadOnly();
      }
-
-    //Debug
-    public override string ToString()
-    {
-        StringBuilder sb = new StringBuilder();
-        foreach (var t in TileSnapshots)
-        {
-            sb.AppendLine(t.ToString());
-        }
-        return sb.ToString();
-    }
 }

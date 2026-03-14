@@ -1,4 +1,4 @@
-﻿namespace Console2048;
+﻿namespace Game2048.Core.Mechanics;
 
 public enum MoveDirection
 {

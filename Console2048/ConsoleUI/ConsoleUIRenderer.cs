@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Game2048.Core.Models;
 using Spectre.Console;
 
-namespace Console2048.ConsoleUI;
+namespace Game2048.Core.ConsoleUI;
 
-internal static class ConsoleUIRenderer
+public static class ConsoleUIRenderer
 {
     private static int _lastBonus = 0;
 

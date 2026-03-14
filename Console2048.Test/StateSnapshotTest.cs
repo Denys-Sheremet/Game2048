@@ -1,7 +1,10 @@
-﻿using Console2048;
+﻿using Game2048.Core.Mechanics;
+using Game2048.Core.Models;
+using Game2048.Core.Services;
+using Game2048.Core.Interfaces;
 using Xunit;
 
-namespace Console2048.Test;
+namespace Game2048.Core.Test;
 
 public class StateSnapshotTest
 {

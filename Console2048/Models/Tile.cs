@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Console2048;
+﻿namespace Game2048.Core.Models;
 
 public class Tile
 {
@@ -101,17 +95,12 @@ public class Tile
     //Special methods for animation handle
     public void SyncPrevious()
     {
-        this.SetPrevious(PosX, PosY);
+        SetPrevious(PosX, PosY);
     }
 
     public void UpdatePosition(int newX, int newY)
     {
-        this.SyncPrevious();
-        this.SetPosition(newX, newY);
-    }
-
-    public override string ToString()
-    {
-        return $"{Value}";
+        SyncPrevious();
+        SetPosition(newX, newY);
     }
 }

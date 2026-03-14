@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Console2048;
+﻿namespace Game2048.Core.Models;
 
 public class Grid
 {
@@ -45,7 +38,7 @@ public class Grid
 
         Array.Clear(_field, 0, _field.Length);
         _tiles.Clear();
-        this.Score = ss.Score;
+        Score = ss.Score;
 
         for (int i = 0; i < ss.TileSnapshots.Count; i++)
         {
@@ -207,7 +200,7 @@ public class Grid
     {
         if (nextId < 1)
             throw new ArgumentException("Invalid id counter provided");
-        return new StateSnapshot(this.Width, this.Height, this.Score, this._tiles, nextId);
+        return new StateSnapshot(Width, Height, Score, _tiles, nextId);
     }
 
     public List<(int x, int y)> GetEmptyCells()
@@ -241,34 +234,15 @@ public class Grid
             !(
                 valueToCheck > 0 
                 && 
-                (valueToCheck & (valueToCheck - 1)) == 0 //check if value is a power of 2
+                (valueToCheck & valueToCheck - 1) == 0 //check if value is a power of 2
             )
            )
             throw new ArgumentException("The value is invalid or not a power of 2");
 
-        foreach (Tile t in this._tiles)
+        foreach (Tile t in _tiles)
         {
             if (t.Value == valueToCheck) return true;
         }
         return false;
-    }
-
-    public override string ToString()
-    {
-        StringBuilder sb = new StringBuilder();
-        for (int y = 0; y < Height; y++)
-        {
-            for (int x = 0; x < Width; x++)
-            {
-                Tile? temp = _field[x, y];
-                if (temp != null)
-                {
-                    sb.Append($"|{temp.ToString(),4}"); // syntax $"{value, num}" provides a format of string to keep grid straight
-                }
-                else sb.Append($"|{'.', 4}");
-            }
-            sb.Append("|\n");
-        }
-        return sb.ToString();
     }
 }

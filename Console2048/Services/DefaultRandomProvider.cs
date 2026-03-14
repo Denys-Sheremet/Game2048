@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Game2048.Core.Services;
 
-namespace Console2048;
-
-internal class DefaultRandomProvider : IRandomProvider
+public class DefaultRandomProvider : IRandomProvider
 {
     private readonly Random _random = new();
     

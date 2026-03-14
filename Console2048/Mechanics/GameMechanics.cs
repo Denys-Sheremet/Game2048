@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Game2048.Core.Mechanics;
 
-namespace Console2048;
-
-internal static class GameMechanics
+public static class GameMechanics
 {
     //creating a struct to pass all info needed in Game.cs
     public struct ProcessResult

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Game2048.Core.Services;
 
-namespace Console2048;
-
-internal class TileRegistry : ITileRegistry
+public class TileRegistry : ITileRegistry
 {
     private readonly Dictionary<int, Tile> _registry = new();
     public int Count => _registry.Count;
@@ -23,7 +17,7 @@ internal class TileRegistry : ITileRegistry
         ArgumentNullException.ThrowIfNull(tiles);
         foreach (Tile tile in tiles) 
         {
-            this.Register(tile);
+            Register(tile);
         }
     }
 
@@ -41,7 +35,7 @@ internal class TileRegistry : ITileRegistry
         {
             if(tile is not null)
             {
-                this.Unregister(tile.Id);
+                Unregister(tile.Id);
             }
         }
     }
