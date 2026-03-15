@@ -9,7 +9,7 @@ namespace Game2048.Core.Test;
 public class TileSnapshotTest
 {
     [Fact]
-    public void TileSnapshot_Constructor_SavesAll_Important_Data()
+    public void TileSnapshot_Constructor_SavesAll_Important_Data_FromTile()
     {
         Tile tile = new Tile(3, 2, 3, 2, 3, true, 4);
         tile.SetParents(1, 2);
@@ -21,6 +21,18 @@ public class TileSnapshotTest
         Assert.NotNull(snapshot.Parents);
         Assert.Equal((1, 2), (snapshot.Parents.Value.Id1, snapshot.Parents.Value.Id2));
         Assert.Equal(4, snapshot.Value);
+    }
+
+    [Fact]
+    public void TileSnapshot_ManualConstructor_ShouldMapCorrectly()
+    {
+        TileSnapshot snapshot = new TileSnapshot(id: 1, posX: 2, posY: 3, value: 4, parents: (5, 6));
+
+        Assert.Equal(1, snapshot.Id);
+        Assert.Equal(2, snapshot.PosX);
+        Assert.Equal(3, snapshot.PosY);
+        Assert.Equal(4, snapshot.Value);
+        Assert.Equal((5, 6), snapshot.Parents!.Value);
     }
 
     [Fact]

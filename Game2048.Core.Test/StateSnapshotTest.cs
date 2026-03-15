@@ -58,4 +58,16 @@ public class StateSnapshotTest
         Assert.Equal(2, ss.TileSnapshots.Count);
         Assert.Equal(expectedNextId, ss.NextId);
     }
+
+    [Fact]
+    public void StateSnapshot_ManualConstructor_ShouldMapCorrectly()
+    {
+        List<TileSnapshot> tiles = new List<TileSnapshot> { new TileSnapshot(1, 2, 3, 4) };
+        StateSnapshot state = new StateSnapshot(4, 4, 100, tiles, 15);
+
+        Assert.Equal(4, state.Width);
+        Assert.Equal(100, state.Score);
+        Assert.Equal(15, state.NextId);
+        Assert.Single(state.TileSnapshots);
+    }
 }

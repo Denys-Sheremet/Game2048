@@ -5,6 +5,7 @@ using Game2048.Core.Mechanics;
 using Game2048.Core.Models;
 using Game2048.Core.Services;
 using Game2048.Core.Interfaces;
+using Game2048.Core.DTOs;
 
 namespace Game2048.Core.Test;
 
@@ -709,6 +710,179 @@ public class GameTest
 
         Assert.Null(game.TileRegistry[3]);
         Assert.NotNull(game.TileRegistry[1]);
+        Assert.NotNull(game.TileRegistry[2]);
+    }
+
+    [Fact]
+    public void Move_Returns_EmptyList_If_WasNo_Move()
+    {
+        Game game = GameFactory.CreateStandardGame();
+        game.TrySpawnNewTileAt(0, 0);
+
+        List<TileTransition> result = game.Move(MoveDirection.Left, false);
+
+        Assert.Empty(result);
+    }
+
+    [Fact]
+    public void Move_ReturnsNon_EmptyList_IfThere_Was_Movement()
+    {
+        Game game = GameFactory.CreateStandardGame();
+        game.TrySpawnNewTileAt(3, 0);
+
+        List<TileTransition> result = game.Move(MoveDirection.Left, false);
+
+        Assert.NotEmpty(result);
+    }
+
+    [Fact]
+    public void If_Move_Contained_Merge_TheMethod_Returns_List_That_Contains_Merge_And_Result_Types()
+    {
+        Game game = GameFactory.CreateStandardGame();
+        game.TrySpawnNewTileAt(3, 0, 2);
+        game.TrySpawnNewTileAt(2, 0, 2);
+
+        List<TileTransition> result = game.Move(MoveDirection.Left, false);
+
+        Assert.Contains(result, x => x.Type == TileTransitionType.Merge);
+        Assert.Contains(result, x => x.Type == TileTransitionType.Result);
+    }
+
+    [Fact]
+    public void If_Undo_TheMerge_Method_Returns_List_ThatContains_Split_And_Spawn_Types()
+    {
+        Game game = GameFactory.CreateStandardGame();
+        game.TrySpawnNewTileAt(3, 0, 2);
+        game.TrySpawnNewTileAt(2, 0, 2);
+
+        game.Move(MoveDirection.Left, false);
+
+        List<TileTransition> result = game.Undo();
+
+        Assert.Contains(result, x => x.Type == TileTransitionType.Split);
+        Assert.Contains(result, x => x.Type == TileTransitionType.Spawn);
+    }
+
+    [Fact]
+    public void Move_ShouldTrigger_OnVictory_OnlyOnce()
+    {
+        Grid grid = new Grid(4, 4);
+        grid[0, 0] = new Tile(1, 0, 0, 1024);
+        grid[1, 0] = new Tile(2, 1, 0, 1024);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
+        game.SetMaxValue(2048);
+
+        int victoryCount = 0;
+        game.OnVictory += () => victoryCount++;
+
+        game.Move(MoveDirection.Left, false);
+        game.Move(MoveDirection.Right, false);
+
+        Assert.True(game.IsVictory);
+        Assert.Equal(1, victoryCount);
+    }
+
+    [Fact]
+    public void Move_ShouldTrigger_OnGameOver_OnlyOnce()
+    {
+        Grid grid = new Grid(1, 1);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
+        game.SpawnNewTile();
+
+        int gameOverCount = 0;
+        game.OnGameOver += () => gameOverCount++;
+
+        game.Move(MoveDirection.Left, false);
+
+        Assert.True(game.IsGameOver);
+        Assert.Equal(1, gameOverCount);
+    }
+
+    [Fact]
+    public void Move_ShouldTrigger_OnStateChanged_And_OnScoreGained_OnlyOnce()
+    {
+        Grid grid = new Grid(4, 4);
+        grid[0, 0] = new Tile(1, 0, 0, 2);
+        grid[1, 0] = new Tile(2, 1, 0, 2);
+        Game game = new Game(grid, new TileSpawner(), new HistoryManager(), new TileRegistry(), new DefaultRandomProvider());
+        game.SetMaxValue(2048);
+
+        int stateChangesCount = 0;
+        int scoreGainedCount = 0;
+        game.OnStateChanged += () => stateChangesCount++;
+        game.OnScoreGained += (points) => scoreGainedCount++;
+
+        game.Move(MoveDirection.Left, false);
+
+        Assert.Equal(1, stateChangesCount);
+        Assert.Equal(1, scoreGainedCount);
+    }
+
+    [Theory]
+    [InlineData(8)]
+    [InlineData(1024)]
+    [InlineData(2048)]
+    public void SetMaxValue_Accepts_PowerOfTwo(int value)
+    {
+        Game game = GameFactory.CreateStandardGame();
+        Exception exception = Record.Exception(() => game.SetMaxValue(value));
+        Assert.Null(exception);
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(7)]
+    [InlineData(1000)]
+    [InlineData(-2)]
+    public void SetMaxValue_Throws_OnInvalidValue(int value)
+    {
+        Game game = GameFactory.CreateStandardGame();
+        Assert.Throws<ArgumentException>(() => game.SetMaxValue(value));
+    }
+
+    [Fact]
+    public void Undo_Of_Spawn_ShouldReturn_Disappear_Transition()
+    {
+        Game game = GameFactory.CreateStandardGame();
+        game.TrySpawnNewTileAt(0, 0, 2);
+
+        game.Move(MoveDirection.Right, withSpawn: true);
+
+        List<TileTransition> undoTransitions = game.Undo();
+
+        Assert.Contains(undoTransitions, t => t.Type == TileTransitionType.Disappear);
+    }
+
+    [Fact]
+    public void Move_WithMerge_ShouldUpdateRegistry_Correctly()
+    {
+        Game game = GameFactory.CreateStandardGame();
+        game.TrySpawnNewTileAt(0, 0, 2);
+        game.TrySpawnNewTileAt(1, 0, 2);
+
+        game.Move(MoveDirection.Left, false);
+
+        Assert.Null(game.TileRegistry[1]);
+        Assert.Null(game.TileRegistry[2]);
+        Assert.NotNull(game.TileRegistry[3]);
+        Assert.Equal(1, game.TileRegistry.Count);
+    }
+
+    [Fact]
+    public void NextId_Cycle_IsConsistent_After_Multiple_Undo()
+    {
+        Game game = GameFactory.CreateStandardGame();
+
+        game.SpawnNewTile();
+        game.Move(MoveDirection.Right);
+        game.Move(MoveDirection.Down);
+
+        game.Undo();
+        game.Undo();
+
+        Assert.Equal(2, game.GetNextTileId(false));
+
+        game.SpawnNewTile();
         Assert.NotNull(game.TileRegistry[2]);
     }
 }
