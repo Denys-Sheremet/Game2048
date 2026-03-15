@@ -1,4 +1,7 @@
 ﻿using Game2048.Core;
+using Game2048.Core.Services;
+using Game2048.Core.Models;
+using Game2048.Core.Mechanics;
 using Game2048.Core.ConsoleUI;
 
 Grid grid = new Grid(4, 4);

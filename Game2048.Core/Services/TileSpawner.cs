@@ -1,6 +1,6 @@
 ﻿namespace Game2048.Core.Services;
 
-internal class TileSpawner : ITileSpawner
+public class TileSpawner : ITileSpawner
 {
     public bool Spawn(Grid grid, ITileRegistry registry, int nextId, IRandomProvider random)
     {
