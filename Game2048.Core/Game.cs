@@ -1,4 +1,5 @@
 ﻿using Game2048.Core.DTOs;
+using System.Collections.Generic;
 
 namespace Game2048.Core;
 
@@ -86,21 +87,23 @@ public class Game
             );
     }
 
-    public void Move(MoveDirection direction, bool withSpawn = true)
+    public List<TileTransition> Move(MoveDirection direction, bool withSpawn = true)
     {
+        StateSnapshot before = this.Grid.CreateSnapshot(GetNextTileId(false));
+
         Grid.SyncAllPrevious();
 
-        StateSnapshot snapshot = Grid.CreateSnapshot(_nextTileId);
+        StateSnapshot snapshot = before;
         bool moved = false;
         int score = 0;
 
-        bool isHorisontal = (direction == MoveDirection.Left || direction == MoveDirection.Right);
+        bool isHorizontal = (direction == MoveDirection.Left || direction == MoveDirection.Right);
         bool isReversed = (direction == MoveDirection.Right || direction == MoveDirection.Down);
-        int length = isHorisontal ? Grid.Height : Grid.Width;
+        int length = isHorizontal ? Grid.Height : Grid.Width;
 
         for (int i = 0; i < length; i++)
         {
-            Tile?[] line = isHorisontal ? Grid.GetRow(i) : Grid.GetColumn(i);
+            Tile?[] line = isHorizontal ? Grid.GetRow(i) : Grid.GetColumn(i);
             if (isReversed) Array.Reverse(line); //in-place
 
             GameMechanics.ProcessResult result = GameMechanics.ProcessLine(line, () => GetNextTileId());
@@ -120,7 +123,7 @@ public class Game
 
                 if (isReversed) Array.Reverse(result.NewLine); //in-place
 
-                if (isHorisontal)
+                if (isHorizontal)
                 {
                     Grid.SetRow(i, result.NewLine);
                 }
@@ -149,12 +152,19 @@ public class Game
         else
         {
             CheckForGameOver();
+            return new List<TileTransition>();
         }
+
+        StateSnapshot after = this.Grid.CreateSnapshot(GetNextTileId(false));
+
+        return TransitionAnalyzer.Analyze(before, after);
     }
 
-    public void Undo()
+    public List<TileTransition> Undo()
     {
-        if (HistoryIsEmpty()) return;
+        StateSnapshot before = this.Grid.CreateSnapshot(GetNextTileId(false));
+
+        if (HistoryIsEmpty()) return new List<TileTransition>();
 
         StateSnapshot stateSnapshot = _history.Pop()!;
         Grid.Restore(stateSnapshot);
@@ -167,6 +177,10 @@ public class Game
         } 
 
         IsGameOver = false;
+
+        StateSnapshot after = this.Grid.CreateSnapshot(GetNextTileId(false));
+
+        return TransitionAnalyzer.Analyze(before, after);
     }
 
     public void CheckForGameOver()
