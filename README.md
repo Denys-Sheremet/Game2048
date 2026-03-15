@@ -1,61 +1,16 @@
-# Console 2048 Game - Focus on Logic & Architecture
+# Game 2048 Engine & Application :iphone:
+![C#](https://img.shields.io/badge/Language-C%23-darkblue)
+![.NET 8.0](https://img.shields.io/badge/.NET-8.0-purple?logo=dotnet&logoColor=purple)
+![MAUI](https://img.shields.io/badge/Platform-MAUI-lightblue?logo=dotnet&logoColor=purple)
+
+
+## This is an implementation of classic 2048 game using C#, .NET and MAUI, built with scalable architecture and modern tools provided by the platform.
+
+### **The repository contains several projects that have their own purposes:**
+#### *:rocket:Game2048.Core - engine of the game, project for main game logic*
+#### *:bar_chart:Game2048.Core.Test - tests coverage of game logic and mechanics*
+#### *:computer:Game.2048.ConsoleApp - executable application based on Core with console interface to run the whole game quickly on PC*
+#### *:iphone:Game2048.MAUI (in progress... 🗒️) - application built with .NET MAUI and based on Core to run the game on different devices*
 ---
-### This is an implementation of classic 2048 game using C# and .NET, built with scalable architecture for future updates. The code in repository is being prepared to form a class library - game core, so that it will be used in GUI applications for PC, Android or IOS. However, game logic can be easily tested by running the game in console and running tests in relatable project.
-
----
-## **Sections**
-
-### 1. Key Features (Architectural Solutions)
-
-* **Persistent Tile Identity** � Unique ID system that provides full tile lifecycle tracking from spawn to merge  
-* **Advanced Undo System** � Implementation of the Memento pattern that guarantees stable deep undo with no tile loss  
-* **Ready for Graphics** � `Tile` class already contains properties for future GUI bindings  
-* **Single Responsibility Principle** � Each class has a clearly defined responsibility  
-
-### 2. Technical Stack
-
-* C# / .NET 8  
-* LINQ  
-* Generic Collections  
-
-### 3. Architecture
-
-* `Tile` � Basic tile object containing data such as `Id`, position, `IsMerged` flag, etc.  
-* `Grid` � Main container for tiles with methods to manipulate its state  
-* `TileSnapshot` � Snapshot of critical information required to restore a tile from history (Memento)  
-* `StateSnapshot` � Container for `TileSnapshot` objects  
-* `IReadOnlyTileRegistry` � Read-only interface for the `TileRegistry` class to provide safe external access without reference leakage  
-* `TileRegistry` � Registry of tiles stored in a `Dictionary` for instant `O(1)` access by tile ID  
-* `GameMechanics` � A black box containing the core game logic. The `Move()` operation is implemented as pure functions and can be easily unit tested  
-* `Game` � Controller and state keeper; manages registry and grid interactions  
-* `Program` � Entry point of the application; contains key bindings and game initialization  
-* `MoveDirection` � `enum` representing move directions used in the `Move()` method  
-
-### 4. How to Run
-
-* Clone the repository and navigate to the folder:
-
-```
-git clone Denys-Sheremet/Console2048
-cd Console2048
-```
-
-* Run the project using the .NET CLI:
-
-`dotnet run`
-
-* Or open the solution in Visual Studio and press `F5`
-
-### Controls
-
-* Use arrow keys for moves (Up, Down, Left, Right)  
-* Press `Z` to undo your move  
-* Press `ESC` to quit the game  
-
-### 5. Future Plans
-
-* Full unit test coverage  
-* Refactor logic for future animation integration  
-* Animation integration  
-* Migration to a graphical framework  
-* Cross-platform release (PC, Android, iOS)
+### **Sections**
+### *To be continued...*
