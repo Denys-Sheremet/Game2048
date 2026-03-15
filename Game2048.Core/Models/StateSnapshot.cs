@@ -10,6 +10,7 @@ public class StateSnapshot
 
     public StateSnapshot(int width, int height, int score, IEnumerable<Tile> tiles, int nextId)
     {
+        ArgumentNullException.ThrowIfNull(tiles);
         Width = width;
         Height = height;
         Score = score;
@@ -19,5 +20,15 @@ public class StateSnapshot
             .Select(t => new TileSnapshot(t))
             .ToList()
             .AsReadOnly();
-     }
+    }
+
+    public StateSnapshot(int width, int height, int score, IEnumerable<TileSnapshot> snapshots, int nextId)
+    {
+        ArgumentNullException.ThrowIfNull(snapshots);
+        Width = width;
+        Height = height;
+        Score = score;
+        NextId = nextId;
+        TileSnapshots = snapshots.ToList().AsReadOnly();
+    }
 }

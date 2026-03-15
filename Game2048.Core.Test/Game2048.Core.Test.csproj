@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Console2048\Game2048.Core.csproj" />
+    <ProjectReference Include="..\Game2048.Core\Game2048.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

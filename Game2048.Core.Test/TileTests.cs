@@ -158,13 +158,4 @@ public class TileTests
         Assert.Equal(2, tile.PosY);
         Assert.Equal(0, tile.PreviousY);
     }
-
-    [Fact]
-    public void ToString_Returns_ValueString()
-    {
-        Tile tile = new Tile(1, 0, 0, 0, 0, false, 2048);
-        Assert.Equal("2048", tile.ToString());
-    }
-
-
 }

@@ -18,4 +18,13 @@ public class TileSnapshot
         PosY = t.PosY;
         Value = t.Value;
     }
+
+    public TileSnapshot(int id, int posX, int posY, int value, (int, int)? parents = null)
+    {
+        Id = id;
+        Parents = parents;
+        PosX = posX;
+        PosY = posY;
+        Value = value;
+    }
 }

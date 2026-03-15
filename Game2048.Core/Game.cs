@@ -1,4 +1,6 @@
-﻿namespace Game2048.Core;
+﻿using Game2048.Core.DTOs;
+
+namespace Game2048.Core;
 
 public class Game
 {
