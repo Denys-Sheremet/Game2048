@@ -11,12 +11,14 @@
     <Grid x:Name="PageGrid" 
           RowDefinitions="Auto, *, Auto">
 
+        <!-- Info block with score -->
         <Grid x:Name="InfoBlockWrapper" 
               Grid.Row="0" 
               ColumnDefinitions="*, *, *, *" 
-              RowDefinitions="*, *" 
+              RowDefinitions="Auto, Auto" 
               ColumnSpacing="20" 
-              Padding="15">
+              Padding="15"
+              HorizontalOptions="Fill" >
             
             <Button x:Name="BackBtn" 
                     Grid.Column="0" 
@@ -86,6 +88,7 @@
             </Grid>
         </Grid>
 
+        <!-- Game field block with acual gameplay -->
         <ContentView x:Name="FieldBlockWrapper" 
                      Grid.Row="1" 
                      HorizontalOptions="Fill" 
@@ -101,10 +104,7 @@
                 <Grid>
 
                     <Grid.GestureRecognizers>
-                        <SwipeGestureRecognizer Direction="Left" Command="{Binding MoveCommand}" CommandParameter="Left" />
-                        <SwipeGestureRecognizer Direction="Right" Command="{Binding MoveCommand}" CommandParameter="Right" />
-                        <SwipeGestureRecognizer Direction="Up" Command="{Binding MoveCommand}" CommandParameter="Up" />
-                        <SwipeGestureRecognizer Direction="Down" Command="{Binding MoveCommand}" CommandParameter="Down" />
+                        <PanGestureRecognizer PanUpdated="OnPanUpdated" />
                     </Grid.GestureRecognizers>
 
                     <AbsoluteLayout x:Name="BackgroundGridLayout"/>
@@ -130,11 +130,12 @@
             
         </ContentView>
 
+        <!-- Control buttons blok (Undo, settings) -->
         <Grid x:Name="ButtonsBlockWrapper" 
               Grid.Row="2" 
               ColumnDefinitions="*, *" 
               ColumnSpacing="20" 
-              Padding="20, 0, 20, 10" 
+              Padding="20" 
               VerticalOptions="End">
             
             <Button Grid.Column="0" 

@@ -60,6 +60,58 @@ public partial class GameView : ContentPage
         GameFrame.Scale = finalScale;
     }
 
+    private bool _isGestureHandled;
+    private double _gestureStartX;
+    private double _gestureStartY;
+
+    private void OnPanUpdated(object sender, PanUpdatedEventArgs e)
+    {
+        var viewModel = _viewModel;
+
+        switch (e.StatusType)
+        {
+            case GestureStatus.Started:
+                _isGestureHandled = false;
+                _gestureStartX = e.TotalX;
+                _gestureStartY = e.TotalY;
+                break;
+
+            case GestureStatus.Running:
+                if (_isGestureHandled) return;
+
+                double dx = e.TotalX - _gestureStartX;
+                double dy = e.TotalY - _gestureStartY;
+
+                const double threshold = 10;
+
+                if (Math.Abs(dx) > threshold || Math.Abs(dy) > threshold)
+                {
+                    _isGestureHandled = true;
+
+                    string direction = "";
+                    if (Math.Abs(dx) > Math.Abs(dy))
+                    {
+                        direction = (dx > 0) ? "Right" : "Left";
+                    }
+                    else
+                    {
+                        direction = (dy > 0) ? "Down" : "Up";
+                    }
+
+                    if (!string.IsNullOrEmpty(direction))
+                    {
+                        viewModel.MoveCommand.Execute(direction);
+                    }
+                }
+                break;
+
+            case GestureStatus.Completed:
+            case GestureStatus.Canceled:
+                _isGestureHandled = false;
+                break;
+        }
+    }
+
     protected override void OnAppearing()
     {
         base.OnAppearing();
