@@ -5,8 +5,26 @@
 *.suo
 *.userosscache
 *.sln.docstates
-
 TestResults/
+
+**/[Bb]in/
+**/[Oo]bj/
+
+/publish/
+*.apk
+*.aab
+*.ipa
+*.pkg
+
+.hotreload/
+.utp/
+.localhistory/
 
 .DS_Store
 Thumbs.db
+
+*.keystore
+*.jks
+*.p12
+*.pfx
+devsettings.json
