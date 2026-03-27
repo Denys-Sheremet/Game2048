@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:Game2048.Maui.Views"
+             xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
+             x:Class="Game2048.Maui.Views.GameView"
+             x:DataType="vm:GameViewModel"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{DynamicResource GameBackgroundColor}">
+
+    <Grid x:Name="PageGrid" 
+          RowDefinitions="Auto, *, Auto">
+
+        <Grid x:Name="InfoBlockWrapper" 
+              Grid.Row="0" 
+              ColumnDefinitions="*, *, *, *" 
+              RowDefinitions="*, *" 
+              ColumnSpacing="20" 
+              Padding="15">
+            
+            <Button x:Name="BackBtn" 
+                    Grid.Column="0" 
+                    Text="Back" 
+                    BackgroundColor="{DynamicResource ButtonBGColor}" 
+                    TextColor="{DynamicResource ButtonTextColor}" 
+                    HorizontalOptions="Start"/>
+
+            <Label Grid.Column="1" 
+                   Grid.ColumnSpan="2" 
+                   Text="2048" 
+                   FontSize="48" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" 
+                   TextColor="{DynamicResource Tile2048TextColor}" />
+
+            <Grid Grid.Column="0" 
+                  Grid.ColumnSpan="4" 
+                  Grid.Row="1" 
+                  ColumnDefinitions="*, *" 
+                  Margin="0, 15, 0, 0" 
+                  ColumnSpacing="20">
+                
+                <Frame BackgroundColor="{DynamicResource GameFieldBackgroundColor}" 
+                       Grid.Column="0" 
+                       Padding="15,5" 
+                       HasShadow="False">
+                    
+                    <VerticalStackLayout HorizontalOptions="Center">
+                        
+                        <Label Text="SCORE" 
+                               FontSize="16" 
+                               FontAttributes="Bold" 
+                               HorizontalOptions="Center" 
+                               TextColor="White"/>
+                        
+                        <Label Text="{Binding Score}" 
+                               FontSize="20" 
+                               FontAttributes="Bold" 
+                               HorizontalOptions="Center" 
+                               TextColor="White"/>
+                        
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame BackgroundColor="{DynamicResource GameFieldBackgroundColor}" 
+                       Grid.Column="1" 
+                       Padding="15,5" 
+                       HasShadow="False">
+                    
+                    <VerticalStackLayout HorizontalOptions="Center">
+                        
+                        <Label Text="Best" 
+                               FontSize="16" 
+                               FontAttributes="Bold" 
+                               HorizontalOptions="Center" 
+                               TextColor="White"/>
+                        
+                        <Label Text="0" 
+                               FontSize="20" 
+                               FontAttributes="Bold" 
+                               HorizontalOptions="Center" 
+                               TextColor="White"/>
+                        
+                    </VerticalStackLayout>
+                </Frame>
+            </Grid>
+        </Grid>
+
+        <ContentView x:Name="FieldBlockWrapper" 
+                     Grid.Row="1" 
+                     HorizontalOptions="Fill" 
+                     VerticalOptions="Fill"
+                     SizeChanged="OnFieldWrapperSizeChanged">
+            
+            <Frame x:Name="GameFrame" 
+                   Padding="0" 
+                   CornerRadius="10" 
+                   HasShadow="True" 
+                   BackgroundColor="{DynamicResource GameFieldBackgroundColor}">
+                
+                <Grid>
+
+                    <Grid.GestureRecognizers>
+                        <SwipeGestureRecognizer Direction="Left" Command="{Binding MoveCommand}" CommandParameter="Left" />
+                        <SwipeGestureRecognizer Direction="Right" Command="{Binding MoveCommand}" CommandParameter="Right" />
+                        <SwipeGestureRecognizer Direction="Up" Command="{Binding MoveCommand}" CommandParameter="Up" />
+                        <SwipeGestureRecognizer Direction="Down" Command="{Binding MoveCommand}" CommandParameter="Down" />
+                    </Grid.GestureRecognizers>
+
+                    <AbsoluteLayout x:Name="BackgroundGridLayout"/>
+
+                    <AbsoluteLayout x:Name="GameGridLayout" 
+                                    BindableLayout.ItemsSource="{Binding Tiles}">
+                        
+                        <BindableLayout.ItemTemplate>
+                            
+                            <DataTemplate x:DataType="vm:TileViewModel">
+                                
+                                <views:TileView />
+                                
+                            </DataTemplate>
+                            
+                        </BindableLayout.ItemTemplate>
+                        
+                    </AbsoluteLayout>
+                    
+                </Grid>
+                
+            </Frame>
+            
+        </ContentView>
+
+        <Grid x:Name="ButtonsBlockWrapper" 
+              Grid.Row="2" 
+              ColumnDefinitions="*, *" 
+              ColumnSpacing="20" 
+              Padding="20, 0, 20, 10" 
+              VerticalOptions="End">
+            
+            <Button Grid.Column="0" 
+                    Text="Undo" 
+                    FontSize="24" 
+                    BackgroundColor="{DynamicResource ButtonBGColor}" 
+                    TextColor="{DynamicResource ButtonTextColor}" 
+                    FontAttributes="Bold"/>
+            
+            <Button Grid.Column="1" 
+                    Text="Settings" 
+                    FontSize="24" 
+                    BackgroundColor="{DynamicResource ButtonBGColor}" 
+                    TextColor="{DynamicResource ButtonTextColor}" 
+                    FontAttributes="Bold"/>
+            
+        </Grid>
+        
+    </Grid>
+    
+</ContentPage>

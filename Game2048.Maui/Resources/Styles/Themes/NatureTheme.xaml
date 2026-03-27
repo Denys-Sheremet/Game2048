@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Game2048.Maui.Resources.Styles.Themes.NatureTheme">
+
+    <Color x:Key="GameBackgroundColor">#0B1A1A</Color>
+    <Color x:Key="GameFieldBackgroundColor">#1A3D3D</Color>
+    <Color x:Key="EmptyCellColor">#264D4D</Color>
+    <Color x:Key="TileBorderColor">#1A3D3D</Color>
+
+    <Color x:Key="Tile2BGColor">#A3E4D7</Color>
+    <Color x:Key="Tile2TextColor">#0B2E2E</Color>
+
+    <Color x:Key="Tile4BGColor">#48C9B0</Color>
+    <Color x:Key="Tile4TextColor">#0B2E2E</Color>
+
+    <Color x:Key="Tile8BGColor">#1ABC9C</Color>
+    <Color x:Key="Tile8TextColor">#FFFFFF</Color>
+
+    <Color x:Key="Tile16BGColor">#2ECC71</Color>
+    <Color x:Key="Tile16TextColor">#FFFFFF</Color>
+
+    <Color x:Key="Tile32BGColor">#27AE60</Color>
+    <Color x:Key="Tile32TextColor">#FFFFFF</Color>
+
+    <Color x:Key="Tile64BGColor">#F1C40F</Color>
+    <Color x:Key="Tile64TextColor">#4A3C00</Color>
+
+    <Color x:Key="Tile128BGColor">#F39C12</Color>
+    <Color x:Key="Tile128TextColor">#FFFFFF</Color>
+
+    <Color x:Key="Tile256BGColor">#E67E22</Color>
+    <Color x:Key="Tile256TextColor">#FFFFFF</Color>
+
+    <Color x:Key="Tile512BGColor">#E74C3C</Color>
+    <Color x:Key="Tile512TextColor">#FFFFFF</Color>
+
+    <Color x:Key="Tile1024BGColor">#9B59B6</Color>
+    <Color x:Key="Tile1024TextColor">#FFFFFF</Color>
+
+    <Color x:Key="Tile2048BGColor">#34495E</Color>
+    <Color x:Key="Tile2048TextColor">#FFFFFF</Color>
+
+    <Color x:Key="TileExtraBGColor">#E67E22</Color>
+    <Color x:Key="TileExtraTextColor">#FFFFFF</Color>
+
+</ResourceDictionary>

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game2048.Core.Test", "Game2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game2048.Core", "Game2048.Core\Game2048.Core.csproj", "{D7A0B69E-B3BE-4658-B8B5-744B18D48053}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game2048.Maui", "Game2048.Maui\Game2048.Maui.csproj", "{DF2874F2-8A9E-44C8-B10A-111B787313FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,11 @@ Global
 		{D7A0B69E-B3BE-4658-B8B5-744B18D48053}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7A0B69E-B3BE-4658-B8B5-744B18D48053}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7A0B69E-B3BE-4658-B8B5-744B18D48053}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF2874F2-8A9E-44C8-B10A-111B787313FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF2874F2-8A9E-44C8-B10A-111B787313FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF2874F2-8A9E-44C8-B10A-111B787313FC}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DF2874F2-8A9E-44C8-B10A-111B787313FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF2874F2-8A9E-44C8-B10A-111B787313FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

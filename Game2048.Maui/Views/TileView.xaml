@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Border xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
+        x:Class="Game2048.Maui.Views.TileView"
+        x:DataType="vm:TileViewModel"
+        
+        StrokeShape="RoundRectangle 8"
+        StrokeThickness="0"
+        AbsoluteLayout.LayoutBounds="{Binding Bounds}">
+
+    <Border.Style>
+        <Style TargetType="Border">
+            <Setter Property="BackgroundColor" Value="{DynamicResource TileExtraBGColor}" />
+
+            <Style.Triggers>
+                <DataTrigger TargetType="Border" Binding="{Binding Value}" Value="2">
+                    <Setter Property="BackgroundColor" Value="{DynamicResource Tile2BGColor}" />
+                </DataTrigger>
+                <DataTrigger TargetType="Border" Binding="{Binding Value}" Value="4">
+                    <Setter Property="BackgroundColor" Value="{DynamicResource Tile4BGColor}" />
+                </DataTrigger>
+                <DataTrigger TargetType="Border" Binding="{Binding Value}" Value="8">
+                    <Setter Property="BackgroundColor" Value="{DynamicResource Tile8BGColor}" />
+                </DataTrigger>
+                <DataTrigger TargetType="Border" Binding="{Binding Value}" Value="16">
+                    <Setter Property="BackgroundColor" Value="{DynamicResource Tile16BGColor}" />
+                </DataTrigger>
+                <DataTrigger TargetType="Border" Binding="{Binding Value}" Value="32">
+                    <Setter Property="BackgroundColor" Value="{DynamicResource Tile32BGColor}" />
+                </DataTrigger>
+                <DataTrigger TargetType="Border" Binding="{Binding Value}" Value="64">
+                    <Setter Property="BackgroundColor" Value="{DynamicResource Tile64BGColor}" />
+                </DataTrigger>
+                <DataTrigger TargetType="Border" Binding="{Binding Value}" Value="128">
+                    <Setter Property="BackgroundColor" Value="{DynamicResource Tile128BGColor}" />
+                </DataTrigger>
+                <DataTrigger TargetType="Border" Binding="{Binding Value}" Value="256">
+                    <Setter Property="BackgroundColor" Value="{DynamicResource Tile256BGColor}" />
+                </DataTrigger>
+                <DataTrigger TargetType="Border" Binding="{Binding Value}" Value="512">
+                    <Setter Property="BackgroundColor" Value="{DynamicResource Tile512BGColor}" />
+                </DataTrigger>
+                <DataTrigger TargetType="Border" Binding="{Binding Value}" Value="1024">
+                    <Setter Property="BackgroundColor" Value="{DynamicResource Tile1024BGColor}" />
+                </DataTrigger>
+                <DataTrigger TargetType="Border" Binding="{Binding Value}" Value="2048">
+                    <Setter Property="BackgroundColor" Value="{DynamicResource Tile2048BGColor}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Border.Style>
+
+    <Label Text="{Binding Value}"
+           TextColor="{DynamicResource Tile2TextColor}" 
+           FontSize="32"
+           FontAttributes="Bold"
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
+</Border>
