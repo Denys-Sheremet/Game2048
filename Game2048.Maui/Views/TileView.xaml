@@ -6,8 +6,7 @@
         x:DataType="vm:TileViewModel"
         
         StrokeShape="RoundRectangle 8"
-        StrokeThickness="0"
-        AbsoluteLayout.LayoutBounds="{Binding Bounds}">
+        StrokeThickness="0">
 
     <Border.Style>
         <Style TargetType="Border">

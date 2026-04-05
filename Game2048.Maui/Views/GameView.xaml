@@ -98,7 +98,7 @@
             <Frame x:Name="GameFrame" 
                    Padding="0" 
                    CornerRadius="10" 
-                   HasShadow="True" 
+                   HasShadow="False" 
                    BackgroundColor="{DynamicResource GameFieldBackgroundColor}">
                 
                 <Grid>
@@ -109,21 +109,8 @@
 
                     <AbsoluteLayout x:Name="BackgroundGridLayout"/>
 
-                    <AbsoluteLayout x:Name="GameGridLayout" 
-                                    BindableLayout.ItemsSource="{Binding Tiles}">
-                        
-                        <BindableLayout.ItemTemplate>
-                            
-                            <DataTemplate x:DataType="vm:TileViewModel">
-                                
-                                <views:TileView />
-                                
-                            </DataTemplate>
-                            
-                        </BindableLayout.ItemTemplate>
-                        
-                    </AbsoluteLayout>
-                    
+                    <AbsoluteLayout x:Name="GameGridLayout" />
+
                 </Grid>
                 
             </Frame>
