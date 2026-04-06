@@ -80,11 +80,13 @@ public class GameViewModel : BindableObject
         }
     });
 
-    public TileViewModel? GetTileViewModelAt(int row, int col)
+    public TileViewModel? GetTileViewModelAt(int x, int y)
     {
-        var tile = _gameCore.Grid[col, row];
+        //take into account that access to Grid is possible using x, y as parameters
+        //where x is obviously width (column) and y - height (rows)
+        var tile = _gameCore.Grid[x, y];
         if (tile == null) return null;
 
-        return new TileViewModel(tile, row, col);
+        return new TileViewModel(tile, y, x);
     }
 }

@@ -83,7 +83,7 @@ public partial class GameView : ContentPage
         foreach (var tr in trList.Where(x => x.Type == TileTransitionType.Result ||
                                              x.Type == TileTransitionType.Spawn))
         {
-            var newVM = _viewModel.GetTileViewModelAt(tr.ToY, tr.ToX);
+            var newVM = _viewModel.GetTileViewModelAt(tr.ToX, tr.ToY);
 
             if (newVM is not null)
             {
@@ -102,6 +102,8 @@ public partial class GameView : ContentPage
 
                 if (tr.Type == TileTransitionType.Result) _ = tileView.PopAsync();
                 else _ = tileView.AppearAsync();
+
+                
             }
         }
     }

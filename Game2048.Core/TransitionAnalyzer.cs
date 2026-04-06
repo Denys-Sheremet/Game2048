@@ -85,7 +85,13 @@ public static class TransitionAnalyzer
             (int x, int y) to = from;
             (int? id1, int? id2) parents = (null, null);
 
-            if (ts.Parents is not null)
+            if(parentToChild.TryGetValue(id, out TileSnapshot? child))
+            {
+                type = TileTransitionType.Merge;
+                to.x = child.PosX;
+                to.y = child.PosY;
+            }
+            else if (ts.Parents is not null)
             {
                 type = TileTransitionType.Split;
                 parents.id1 = ts.Parents.Value.Id1;
@@ -93,18 +99,7 @@ public static class TransitionAnalyzer
             }
             else
             {
-                parentToChild.TryGetValue(id, out TileSnapshot? child);
-
-                if (child is not null)
-                {
-                    type = TileTransitionType.Merge;
-                    to.x = child.PosX;
-                    to.y = child.PosY;
-                }
-                else
-                {
-                    type = TileTransitionType.Disappear;
-                }
+                type = TileTransitionType.Disappear;
             }
 
             transitions.Add(new TileTransition
