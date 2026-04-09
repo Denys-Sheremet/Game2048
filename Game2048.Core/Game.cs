@@ -250,4 +250,9 @@ public class Game
         }
         return _nextTileId;
     }
+
+    public StateSnapshot GetCurrentGridState()
+    {
+        return this.Grid.CreateSnapshot(_nextTileId);
+    }
 }

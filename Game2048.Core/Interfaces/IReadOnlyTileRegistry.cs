@@ -3,5 +3,5 @@
 public interface IReadOnlyTileRegistry
 {
     int Count {  get; }
-    Tile? this[int idx] { get; }
+    Tile? this[int id] { get; }
 }

@@ -1,6 +1,7 @@
 ﻿using Game2048.Core;
 using Game2048.Core.DTOs;
 using Game2048.Core.Mechanics;
+using CommunityToolkit.Mvvm.Input;
 using Game2048.Core.Models;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,13 @@ public class GameViewModel : BindableObject
 {
     private readonly Game _gameCore;
     public ObservableCollection<TileViewModel> Tiles { get; } = new();
-    public Func<IEnumerable<TileTransition>, Task>? RequestAnimation;
+
+    public event Func<IEnumerable<TileTransition>, Task>? TilesMoved;
+    public event Func<IEnumerable<TileTransition>, Task>? TilesRemoved;
+    public event Func<IEnumerable<TileTransition>, Task>? TilesCreated;
+
+    public IAsyncRelayCommand MoveCommand { get; private set; }
+
     private bool _isAnimating;
 
     private int _score;
@@ -32,6 +39,7 @@ public class GameViewModel : BindableObject
     public GameViewModel(int rows, int cols)
     {
         _gameCore = GameFactory.CreateStandardGame(cols, rows);
+        MoveCommand = new AsyncRelayCommand<string>(ExecuteMoveAsync);
     }
 
     public void StartNewGame()
@@ -41,52 +49,74 @@ public class GameViewModel : BindableObject
         Score = _gameCore.Grid.Score;
     }
 
-    public void SyncTiles()
+    private async Task ExecuteMoveAsync(string? directionStr)
     {
-        Tiles.Clear();
+        if (_isAnimating || directionStr is null) return;
+        if (!Enum.TryParse<MoveDirection>(directionStr, out MoveDirection dir)) return;
 
-        for(int i = 0; i < _gameCore.Grid.Count; i++)
+        var transitions = _gameCore.Move(dir);
+        SyncTiles();
+
+        _isAnimating = true;
+
+        try
         {
-            var tile = _gameCore.Grid[i];
-            Tiles.Add(new TileViewModel(tile, tile.PosY, tile.PosX));
+            await InvokeTransition(TilesMoved, transitions.Where(x => x.Type == TileTransitionType.Move ||
+                                                                      x.Type == TileTransitionType.Merge));
+
+            await InvokeTransition(TilesRemoved, transitions.Where(x => x.Type == TileTransitionType.Disappear ||
+                                                                        x.Type == TileTransitionType.Merge || 
+                                                                        x.Type == TileTransitionType.Split));
+
+            await InvokeTransition(TilesCreated, transitions.Where(x => x.Type == TileTransitionType.Spawn ||
+                                                                        x.Type == TileTransitionType.Result ||
+                                                                        x.Type == TileTransitionType.Respawn));
+            Score = _gameCore.Grid.Score;
+        }
+        finally
+        {
+            _isAnimating = false;
         }
     }
 
-    public ICommand MoveCommand => new Command<string>(async directionStr =>
+    public void SyncTiles()
     {
-        if (_isAnimating) return;
+        //deletion of absent tiles
+        var stateSnapshot = _gameCore.GetCurrentGridState();
+        var activeIds = stateSnapshot.TileSnapshots.Select(s => s.Id).ToHashSet();
 
-        var dir = Enum.Parse<MoveDirection>(directionStr);
-        var transitions = _gameCore.Move(dir);
-
-        if (transitions.Any())
+        var toRemove = Tiles.Where(t => !activeIds.Contains(t.Id)).ToList();
+        foreach (var vm in toRemove)
         {
-            _isAnimating = true;
-
-            try
-            {
-                if(RequestAnimation is not null)
-                {
-                    await RequestAnimation.Invoke(transitions);
-                }
-                
-                Score = _gameCore.Grid.Score;
-            }
-            finally
-            {
-                _isAnimating = false;
-            }
-            
+            Tiles.Remove(vm);
         }
-    });
 
-    public TileViewModel? GetTileViewModelAt(int x, int y)
+        //creation or update of present tiles
+        foreach (var ss in stateSnapshot.TileSnapshots)
+        {
+            var existing = Tiles.FirstOrDefault(t => t.Id == ss.Id);
+
+            if (existing is null)
+            {
+                    Tiles.Add(new TileViewModel(_gameCore.TileRegistry[ss.Id]!, ss.PosY, ss.PosX));
+            }
+            else
+            {
+                existing.SyncData();
+            }
+        }
+    }
+
+    
+
+    private async Task InvokeTransition(Func<IEnumerable<TileTransition>, Task>? phaseEvent,IEnumerable<TileTransition> transitions)
     {
-        //take into account that access to Grid is possible using x, y as parameters
-        //where x is obviously width (column) and y - height (rows)
-        var tile = _gameCore.Grid[x, y];
-        if (tile == null) return null;
+        if (phaseEvent is null || !transitions.Any()) return;
 
-        return new TileViewModel(tile, y, x);
+        var tasks = phaseEvent.GetInvocationList()
+                              .Cast<Func<IEnumerable<TileTransition>, Task>>()
+                              .Select(func => func(transitions));
+
+        await Task.WhenAll(tasks);
     }
 }

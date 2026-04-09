@@ -22,90 +22,106 @@ public partial class GameView : ContentPage
         _viewModel = new GameViewModel(4, 4);
         BindingContext = _viewModel;
 
-        _viewModel.RequestAnimation = async (transitions) =>
+        _viewModel.TilesMoved += async (transitions) =>
         {
             await ApplyMoveTransitionsAsync(transitions);
+        };
+
+        _viewModel.TilesRemoved += async (transitions) =>
+        {
+            await ApplyRemoveTransitionsAsync(transitions);
+        };
+
+        _viewModel.TilesCreated += async (transitions) =>
+        {
+            await ApplyCreateTransitionsAsync(transitions);
         };
     }
 
     private async Task ApplyMoveTransitionsAsync(IEnumerable<TileTransition> transitions)
     {
         var trList = transitions.ToList();
-
-        //#1 move phase
         var moveTasks = new List<Task>();
-
-        foreach (var tr in trList.Where(x => x.Type == TileTransitionType.Move ||
-                                             x.Type == TileTransitionType.Merge))
+        foreach (var mt in trList)
         {
-            var view = FindTileView(tr.TileId);
+            var view = FindTileView(mt.TileId);
             if (view != null)
             {
-                double tx = (tr.ToX * tileSize) + ((tr.ToX + 1) * gapSize);
-                double ty = (tr.ToY * tileSize) + ((tr.ToY + 1) * gapSize);
+                double tx = (mt.ToX * tileSize) + ((mt.ToX + 1) * gapSize);
+                double ty = (mt.ToY * tileSize) + ((mt.ToY + 1) * gapSize);
 
                 moveTasks.Add(view.MoveToAsync(tx, ty));
             }
         }
         await Task.WhenAll(moveTasks);
+    }
 
-        //#2 disappear phase
-        //disappear UI
-        var disappearTasks = new List<Task>();
-
-        var idsToRemove = trList.Where(t => t.Type == TileTransitionType.Merge ||
-                                            t.Type == TileTransitionType.Disappear)
-                                .Select(t => t.TileId).ToList();
-
-        foreach (var id in idsToRemove) 
+    private async Task ApplyRemoveTransitionsAsync(IEnumerable<TileTransition> transitions)
+    {
+        var trList = transitions.ToList();
+        var removeTasks = new List<Task>();
+        var idsToRemove = new List<int>();
+        foreach (var rt in trList)
         {
-            var view = FindTileView(id);
-            if (view is not null) disappearTasks.Add(view.DisappearAsync(80));
-        }
-        await Task.WhenAll(disappearTasks);
-
-        //disappear App
-        foreach (var id in idsToRemove)
-        {
-            var vm = _viewModel.Tiles.FirstOrDefault(t => t.Id == id);
-            if (vm is not null) _viewModel.Tiles.Remove(vm);
-
-            var view = FindTileView(id);
+            var view = FindTileView(rt.TileId);
             if (view is not null)
             {
-                GameGridLayout.Children.Remove(view);
-                _tileViews.Remove(id);
+                idsToRemove.Add(rt.TileId);
+                removeTasks.Add(view.DisappearAsync(80));
             }
         }
+        await Task.WhenAll(removeTasks);
 
-
-        //#3 appear phase
-        foreach (var tr in trList.Where(x => x.Type == TileTransitionType.Result ||
-                                             x.Type == TileTransitionType.Spawn))
+        foreach (var id in idsToRemove)
         {
-            var newVM = _viewModel.GetTileViewModelAt(tr.ToX, tr.ToY);
+            GameGridLayout.Children.Remove(FindTileView(id));
+            _tileViews.Remove(id);
+        }
+    }
+
+    private async Task ApplyCreateTransitionsAsync(IEnumerable<TileTransition> transitions)
+    {
+        var trList = transitions.ToList();
+        var createTasks = new List<Task>();
+        foreach (var ct in trList)
+        {
+            var newVM = _viewModel.Tiles.FirstOrDefault(t => t.Id == ct.TileId);
 
             if (newVM is not null)
             {
-                _viewModel.Tiles.Add(newVM);
-
-                var tileView = new TileView {BindingContext = newVM};
-
+                var tileView = new TileView { BindingContext = newVM };
                 _tileViews[newVM.Id] = tileView;
 
-                double tx = (tr.ToX * tileSize) + ((tr.ToX + 1) * gapSize);
-                double ty = (tr.ToY * tileSize) + ((tr.ToY + 1) * gapSize);
+                double tx = (ct.ToX * tileSize) + ((ct.ToX + 1) * gapSize);
+                double ty = (ct.ToY * tileSize) + ((ct.ToY + 1) * gapSize);
 
-                AbsoluteLayout.SetLayoutBounds(tileView, new Rect(tx, ty, tileSize, tileSize));
+                if (ct.Type == TileTransitionType.Respawn)
+                {
+                    double fx = (ct.FromX * tileSize) + ((ct.FromX + 1) * gapSize);
+                    double fy = (ct.FromY * tileSize) + ((ct.FromY + 1) * gapSize);
 
-                GameGridLayout.Children.Add(tileView);
+                    AbsoluteLayout.SetLayoutBounds(tileView, new Rect(fx, fy, tileSize, tileSize));
+                    GameGridLayout.Children.Add(tileView);
 
-                if (tr.Type == TileTransitionType.Result) _ = tileView.PopAsync();
-                else _ = tileView.AppearAsync();
+                    createTasks.Add(tileView.MoveToAsync(tx, ty));
+                }
+                else
+                {
+                    AbsoluteLayout.SetLayoutBounds(tileView, new Rect(tx, ty, tileSize, tileSize));
+                    GameGridLayout.Children.Add(tileView);
 
-                
+                    if (ct.Type == TileTransitionType.Result)
+                    {
+                        createTasks.Add(tileView.PopAsync());
+                    }
+                    else
+                    {
+                        createTasks.Add(tileView.AppearAsync());
+                    }
+                }
             }
         }
+        await Task.WhenAll(createTasks);
     }
 
     private TileView? FindTileView(int id)

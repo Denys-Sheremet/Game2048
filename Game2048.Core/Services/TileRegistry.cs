@@ -4,7 +4,7 @@ public class TileRegistry : ITileRegistry
 {
     private readonly Dictionary<int, Tile> _registry = new();
     public int Count => _registry.Count;
-    public Tile? this[int idx] => _registry.GetValueOrDefault(idx);
+    public Tile? this[int id] => _registry.GetValueOrDefault(id);
     
     public void Register(Tile tile)
     {

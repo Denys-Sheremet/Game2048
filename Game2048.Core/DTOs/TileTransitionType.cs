@@ -12,6 +12,8 @@ public enum TileTransitionType
     Result,
     /// <summary>One tile splitting into two (Undo of merge)</summary>
     Split,
+    /// <summary>Tile to be restored after undo of Merge</summary>
+    Respawn,
     /// <summary>Tile disappearing (Undo of spawn)</summary>
     Disappear,
     /// <summary>Tile stayed in place</summary>

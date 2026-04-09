@@ -15,6 +15,16 @@ public static class TransitionAnalyzer
         Dictionary<int, TileSnapshot> afterDict = after.TileSnapshots.ToDictionary(ts => ts.Id);
 
         Dictionary<int, TileSnapshot> parentToChild = new();
+        Dictionary<int, TileSnapshot> childToParent = new();
+
+        foreach (var ts in beforeDict.Values)
+        {
+            if (ts.Parents is not null)
+            {
+                childToParent[ts.Parents.Value.Id1] = ts;
+                childToParent[ts.Parents.Value.Id2] = ts;
+            }
+        }
 
         List<TileTransition> transitions = new List<TileTransition>();
 
@@ -50,7 +60,16 @@ public static class TransitionAnalyzer
             {
                 if (ts.Parents is null)
                 {
-                    type = TileTransitionType.Spawn;
+                    if(childToParent.TryGetValue(id, out var splitParent))
+                    {
+                        type = TileTransitionType.Respawn;
+                        from.x = splitParent.PosX; 
+                        from.y = splitParent.PosY;
+                    }
+                    else
+                    {
+                        type = TileTransitionType.Spawn;
+                    }
                 }
                 else
                 {

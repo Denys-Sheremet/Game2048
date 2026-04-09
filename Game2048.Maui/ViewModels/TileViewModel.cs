@@ -24,4 +24,10 @@ public class TileViewModel : BindableObject
         Row = row;
         Column = col;
     }
+
+    public void SyncData()
+    {
+        Row = _model.PosY; 
+        Column = _model.PosX;
+    }
 }
