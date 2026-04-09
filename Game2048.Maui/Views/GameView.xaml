@@ -127,6 +127,7 @@
             
             <Button Grid.Column="0" 
                     Text="Undo" 
+                    Command="{Binding UndoCommand}"
                     FontSize="24" 
                     BackgroundColor="{DynamicResource ButtonBGColor}" 
                     TextColor="{DynamicResource ButtonTextColor}" 

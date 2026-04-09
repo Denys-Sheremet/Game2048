@@ -58,18 +58,15 @@ public static class TransitionAnalyzer
             }
             else
             {
-                if (ts.Parents is null)
+                if (childToParent.TryGetValue(id, out var splitParent))
                 {
-                    if(childToParent.TryGetValue(id, out var splitParent))
-                    {
                         type = TileTransitionType.Respawn;
-                        from.x = splitParent.PosX; 
+                        from.x = splitParent.PosX;
                         from.y = splitParent.PosY;
-                    }
-                    else
-                    {
-                        type = TileTransitionType.Spawn;
-                    }
+                }
+                else if (ts.Parents is null)
+                {
+                    type = TileTransitionType.Spawn;
                 }
                 else
                 {

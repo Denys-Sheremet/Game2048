@@ -1,6 +1,7 @@
 using Game2048.Core.DTOs;
 using Game2048.Maui.ViewModels;
 using Microsoft.Maui.Controls.Shapes;
+using System.Diagnostics;
 
 namespace Game2048.Maui.Views;
 

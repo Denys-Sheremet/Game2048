@@ -23,6 +23,7 @@ public class GameViewModel : BindableObject
     public event Func<IEnumerable<TileTransition>, Task>? TilesCreated;
 
     public IAsyncRelayCommand MoveCommand { get; private set; }
+    public IAsyncRelayCommand UndoCommand { get; private set; }
 
     private bool _isAnimating;
 
@@ -40,6 +41,7 @@ public class GameViewModel : BindableObject
     {
         _gameCore = GameFactory.CreateStandardGame(cols, rows);
         MoveCommand = new AsyncRelayCommand<string>(ExecuteMoveAsync);
+        UndoCommand = new AsyncRelayCommand(ExecuteUndoAsync);
     }
 
     public void StartNewGame()
@@ -71,6 +73,43 @@ public class GameViewModel : BindableObject
             await InvokeTransition(TilesCreated, transitions.Where(x => x.Type == TileTransitionType.Spawn ||
                                                                         x.Type == TileTransitionType.Result ||
                                                                         x.Type == TileTransitionType.Respawn));
+            Score = _gameCore.Grid.Score;
+        }
+        finally
+        {
+            _isAnimating = false;
+        }
+    }
+
+    private async Task ExecuteUndoAsync()
+    {
+        if (_isAnimating) return;
+
+        var transitions = _gameCore.Undo();
+
+        // --- ДЕБАГ АНАЛИЗАТОРА ---
+        System.Diagnostics.Debug.WriteLine("=== UNDO ANALYSIS START ===");
+        foreach (var tr in transitions)
+        {
+            System.Diagnostics.Debug.WriteLine(
+                $"ID: {tr.TileId} | Type: {tr.Type} | " +
+                $"From: ({tr.FromX}, {tr.FromY}) -> To: ({tr.ToX}, {tr.ToY})");
+        }
+        System.Diagnostics.Debug.WriteLine("=== UNDO ANALYSIS END ===");
+
+        if (!transitions.Any()) return;
+
+        SyncTiles();
+
+        _isAnimating = true;
+
+        try
+        {
+            await InvokeTransition(TilesMoved, transitions.Where(x => x.Type == TileTransitionType.Move));
+            await InvokeTransition(TilesRemoved, transitions.Where(x => x.Type == TileTransitionType.Disappear || 
+                                                                        x.Type == TileTransitionType.Split));
+            await InvokeTransition(TilesCreated, transitions.Where(x => x.Type == TileTransitionType.Respawn));
+
             Score = _gameCore.Grid.Score;
         }
         finally
