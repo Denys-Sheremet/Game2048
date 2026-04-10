@@ -23,7 +23,7 @@
 ### **The repository's structure :open_file_folder:**
 - **[:rocket:Game2048.Core](./Game2048.Core)** *- engine of the game, project for main game logic*
 - **[:bar_chart:Game2048.Core.Test](./Game2048.Core.Test)** *- tests coverage of game logic and mechanics*
-- **[:computer:Game2048.ConsoleApp](./Game2048.ConsoleApp)** *- executable application based on Core with console interface to run the game quickly on PC*
+- **[:computer:Game2048.ConsoleApp](./Game2048.ConsoleApp)** *- executable application with console interface to run the game quickly on PC*
 - **[:iphone:Game2048.MAUI](./Game2048.MAUI)** *- application built with .NET MAUI and based on Core to run the game on different devices*
 ---
 ### **Getting started :wrench:**
