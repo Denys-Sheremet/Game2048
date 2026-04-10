@@ -27,4 +27,4 @@
 - **[:iphone:Game2048.MAUI](./Game2048.MAUI)** *- application built with .NET MAUI and based on Core to run the game on different devices*
 ---
 ### **Getting started :wrench:**
-**to be written instructions to run**
+**to be written instructions to run...**
