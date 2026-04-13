@@ -2,7 +2,20 @@
 
 public static class GameFactory
 {
-    public static Game CreateStandardGame(int width = 4, int height = 4, IRandomProvider? random = null)
+    public static Game CreateClassicGame(int width = 4, int height = 4, IRandomProvider? random = null)
+    {
+        Grid grid = new Grid(width, height);
+        return new Game
+            (
+                grid,
+                new TileSpawner(),
+                new LimitedHistoryManager(10),
+                new TileRegistry(),
+                random ?? new DefaultRandomProvider()
+            );
+    }
+
+    public static Game CreateClassicUnlimitedHistoryGame(int width = 4, int height = 4, IRandomProvider? random = null)
     {
         Grid grid = new Grid(width, height);
         return new Game

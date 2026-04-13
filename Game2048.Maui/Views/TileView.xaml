@@ -8,6 +8,13 @@
         StrokeShape="RoundRectangle 8"
         StrokeThickness="0">
 
+    <Label x:Name="ValueLabel"
+       Text="{Binding Value}" 
+       FontSize="32"
+       FontAttributes="Bold"
+       HorizontalOptions="Center"
+       VerticalOptions="Center" />
+
     <Border.Style>
         <Style TargetType="Border">
             <Setter Property="BackgroundColor" Value="{DynamicResource TileExtraBGColor}" />
@@ -15,45 +22,49 @@
             <Style.Triggers>
                 <DataTrigger TargetType="Border" Binding="{Binding Value}" Value="2">
                     <Setter Property="BackgroundColor" Value="{DynamicResource Tile2BGColor}" />
+                    <Setter TargetName="ValueLabel" Property="Label.TextColor" Value="{DynamicResource Tile2TextColor}"/>
                 </DataTrigger>
                 <DataTrigger TargetType="Border" Binding="{Binding Value}" Value="4">
                     <Setter Property="BackgroundColor" Value="{DynamicResource Tile4BGColor}" />
+                    <Setter TargetName="ValueLabel" Property="Label.TextColor" Value="{DynamicResource Tile4TextColor}"/>
                 </DataTrigger>
                 <DataTrigger TargetType="Border" Binding="{Binding Value}" Value="8">
                     <Setter Property="BackgroundColor" Value="{DynamicResource Tile8BGColor}" />
+                    <Setter TargetName="ValueLabel" Property="Label.TextColor" Value="{DynamicResource Tile8TextColor}"/>
                 </DataTrigger>
                 <DataTrigger TargetType="Border" Binding="{Binding Value}" Value="16">
                     <Setter Property="BackgroundColor" Value="{DynamicResource Tile16BGColor}" />
+                    <Setter TargetName="ValueLabel" Property="Label.TextColor" Value="{DynamicResource Tile16TextColor}"/>
                 </DataTrigger>
                 <DataTrigger TargetType="Border" Binding="{Binding Value}" Value="32">
                     <Setter Property="BackgroundColor" Value="{DynamicResource Tile32BGColor}" />
+                    <Setter TargetName="ValueLabel" Property="Label.TextColor" Value="{DynamicResource Tile32TextColor}"/>
                 </DataTrigger>
                 <DataTrigger TargetType="Border" Binding="{Binding Value}" Value="64">
                     <Setter Property="BackgroundColor" Value="{DynamicResource Tile64BGColor}" />
+                    <Setter TargetName="ValueLabel" Property="Label.TextColor" Value="{DynamicResource Tile64TextColor}"/>
                 </DataTrigger>
                 <DataTrigger TargetType="Border" Binding="{Binding Value}" Value="128">
                     <Setter Property="BackgroundColor" Value="{DynamicResource Tile128BGColor}" />
+                    <Setter TargetName="ValueLabel" Property="Label.TextColor" Value="{DynamicResource Tile128TextColor}"/>
                 </DataTrigger>
                 <DataTrigger TargetType="Border" Binding="{Binding Value}" Value="256">
                     <Setter Property="BackgroundColor" Value="{DynamicResource Tile256BGColor}" />
+                    <Setter TargetName="ValueLabel" Property="Label.TextColor" Value="{DynamicResource Tile256TextColor}"/>
                 </DataTrigger>
                 <DataTrigger TargetType="Border" Binding="{Binding Value}" Value="512">
                     <Setter Property="BackgroundColor" Value="{DynamicResource Tile512BGColor}" />
+                    <Setter TargetName="ValueLabel" Property="Label.TextColor" Value="{DynamicResource Tile512TextColor}"/>
                 </DataTrigger>
                 <DataTrigger TargetType="Border" Binding="{Binding Value}" Value="1024">
                     <Setter Property="BackgroundColor" Value="{DynamicResource Tile1024BGColor}" />
+                    <Setter TargetName="ValueLabel" Property="Label.TextColor" Value="{DynamicResource Tile1024TextColor}"/>
                 </DataTrigger>
                 <DataTrigger TargetType="Border" Binding="{Binding Value}" Value="2048">
                     <Setter Property="BackgroundColor" Value="{DynamicResource Tile2048BGColor}" />
+                    <Setter TargetName="ValueLabel" Property="Label.TextColor" Value="{DynamicResource Tile2048TextColor}"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
     </Border.Style>
-
-    <Label Text="{Binding Value}"
-           TextColor="{DynamicResource Tile2TextColor}" 
-           FontSize="32"
-           FontAttributes="Bold"
-           HorizontalOptions="Center"
-           VerticalOptions="Center" />
 </Border>

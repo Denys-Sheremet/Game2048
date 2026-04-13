@@ -39,7 +39,7 @@ public class GameViewModel : BindableObject
 
     public GameViewModel(int rows, int cols)
     {
-        _gameCore = GameFactory.CreateStandardGame(cols, rows);
+        _gameCore = GameFactory.CreateClassicGame(cols, rows);
         MoveCommand = new AsyncRelayCommand<string>(ExecuteMoveAsync);
         UndoCommand = new AsyncRelayCommand(ExecuteUndoAsync);
     }
