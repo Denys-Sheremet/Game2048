@@ -38,7 +38,7 @@ public partial class TileView : Border
         await this.ScaleTo(1.0, duration / 2, Easing.CubicOut);
     }
 
-    public async Task DisappearAsync(uint duration = 100)
+    public async Task DisappearAsync(uint duration = 80)
     {
         await Task.WhenAll(
             this.ScaleTo(0.0, duration, Easing.CubicIn),

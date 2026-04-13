@@ -59,7 +59,26 @@ public partial class GameView : ContentPage
 
     private async Task ApplyRemoveTransitionsAsync(IEnumerable<TileTransition> transitions)
     {
-        var trList = transitions.ToList();
+        var viewsToRemove = transitions
+            .Select(rt => new {Id = rt.TileId, View = FindTileView(rt.TileId)})
+            .Where(x => x.View != null)
+            .ToList();
+
+        var removeTasks = viewsToRemove.Select(x => x.View!.DisappearAsync());
+
+        await Task.WhenAll(removeTasks);
+
+        foreach (var item in viewsToRemove)
+        {
+            GameGridLayout.Children.Remove(item.View);
+
+            if (_tileViews.TryGetValue(item.Id, out var currentView) && currentView == item.View)
+            {
+                _tileViews.Remove(item.Id);
+            }
+        }
+
+        /*var trList = transitions.ToList();
         var removeTasks = new List<Task>();
         var idsToRemove = new List<int>();
         foreach (var rt in trList)
@@ -77,7 +96,7 @@ public partial class GameView : ContentPage
         {
             GameGridLayout.Children.Remove(FindTileView(id));
             _tileViews.Remove(id);
-        }
+        }*/
     }
 
     private async Task ApplyCreateTransitionsAsync(IEnumerable<TileTransition> transitions)
@@ -104,7 +123,7 @@ public partial class GameView : ContentPage
                     AbsoluteLayout.SetLayoutBounds(tileView, new Rect(fx, fy, tileSize, tileSize));
                     GameGridLayout.Children.Add(tileView);
 
-                    createTasks.Add(tileView.MoveToAsync(tx, ty));
+                    createTasks.Add(tileView.MoveToAsync(tx, ty, 120));
                 }
                 else
                 {

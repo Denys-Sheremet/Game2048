@@ -87,16 +87,6 @@ public class GameViewModel : BindableObject
 
         var transitions = _gameCore.Undo();
 
-        // --- ДЕБАГ АНАЛИЗАТОРА ---
-        System.Diagnostics.Debug.WriteLine("=== UNDO ANALYSIS START ===");
-        foreach (var tr in transitions)
-        {
-            System.Diagnostics.Debug.WriteLine(
-                $"ID: {tr.TileId} | Type: {tr.Type} | " +
-                $"From: ({tr.FromX}, {tr.FromY}) -> To: ({tr.ToX}, {tr.ToY})");
-        }
-        System.Diagnostics.Debug.WriteLine("=== UNDO ANALYSIS END ===");
-
         if (!transitions.Any()) return;
 
         SyncTiles();
