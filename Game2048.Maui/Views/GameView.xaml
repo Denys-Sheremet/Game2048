@@ -41,12 +41,13 @@
                   ColumnDefinitions="*, *" 
                   Margin="0, 15, 0, 0" 
                   ColumnSpacing="20">
-                
-                <Frame BackgroundColor="{DynamicResource GameFieldBackgroundColor}" 
-                       Grid.Column="0" 
-                       Padding="15,5" 
-                       HasShadow="False">
-                    
+
+                <Border BackgroundColor="{DynamicResource GameFieldBackgroundColor}" 
+                        Grid.Column="0" 
+                        Padding="15,5"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 8">
+
                     <VerticalStackLayout HorizontalOptions="Center">
                         
                         <Label Text="SCORE" 
@@ -62,12 +63,13 @@
                                TextColor="White"/>
                         
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
 
-                <Frame BackgroundColor="{DynamicResource GameFieldBackgroundColor}" 
-                       Grid.Column="1" 
-                       Padding="15,5" 
-                       HasShadow="False">
+                <Border BackgroundColor="{DynamicResource GameFieldBackgroundColor}" 
+                        Grid.Column="1" 
+                        Padding="15,5"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 8">
                     
                     <VerticalStackLayout HorizontalOptions="Center">
                         
@@ -84,7 +86,7 @@
                                TextColor="White"/>
                         
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
             </Grid>
         </Grid>
 
@@ -94,13 +96,13 @@
                      HorizontalOptions="Fill" 
                      VerticalOptions="Fill"
                      SizeChanged="OnFieldWrapperSizeChanged">
-            
-            <Frame x:Name="GameFrame" 
-                   Padding="0" 
-                   CornerRadius="10" 
-                   HasShadow="False" 
-                   BackgroundColor="{DynamicResource GameFieldBackgroundColor}">
-                
+
+            <Border x:Name="GameFrame" 
+                    Padding="0" 
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 10" 
+                    BackgroundColor="{DynamicResource GameFieldBackgroundColor}">
+
                 <Grid>
 
                     <Grid.GestureRecognizers>
@@ -113,7 +115,7 @@
 
                 </Grid>
                 
-            </Frame>
+            </Border>
             
         </ContentView>
 

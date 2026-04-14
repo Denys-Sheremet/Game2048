@@ -123,7 +123,7 @@ public partial class GameView : ContentPage
                     AbsoluteLayout.SetLayoutBounds(tileView, new Rect(fx, fy, tileSize, tileSize));
                     GameGridLayout.Children.Add(tileView);
 
-                    createTasks.Add(tileView.MoveToAsync(tx, ty, 120));
+                    createTasks.Add(tileView.RespawnToAsync(tx, ty, 150));
                 }
                 else
                 {

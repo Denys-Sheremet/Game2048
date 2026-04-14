@@ -18,6 +18,7 @@
     <Border.Style>
         <Style TargetType="Border">
             <Setter Property="BackgroundColor" Value="{DynamicResource TileExtraBGColor}" />
+            <Setter TargetName="ValueLabel" Property="Label.TextColor" Value="{DynamicResource TileExtraTextColor}"/>
 
             <Style.Triggers>
                 <DataTrigger TargetType="Border" Binding="{Binding Value}" Value="2">
@@ -59,10 +60,12 @@
                 <DataTrigger TargetType="Border" Binding="{Binding Value}" Value="1024">
                     <Setter Property="BackgroundColor" Value="{DynamicResource Tile1024BGColor}" />
                     <Setter TargetName="ValueLabel" Property="Label.TextColor" Value="{DynamicResource Tile1024TextColor}"/>
+                    <Setter TargetName="ValueLabel" Property="Label.FontSize" Value="28"/>
                 </DataTrigger>
                 <DataTrigger TargetType="Border" Binding="{Binding Value}" Value="2048">
                     <Setter Property="BackgroundColor" Value="{DynamicResource Tile2048BGColor}" />
                     <Setter TargetName="ValueLabel" Property="Label.TextColor" Value="{DynamicResource Tile2048TextColor}"/>
+                    <Setter TargetName="ValueLabel" Property="Label.FontSize" Value="28"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>

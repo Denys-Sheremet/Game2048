@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Game2048.Maui.Services;
 
 namespace Game2048.Maui.ViewModels;
 
@@ -22,10 +23,9 @@ public class GameViewModel : BindableObject
     public event Func<IEnumerable<TileTransition>, Task>? TilesRemoved;
     public event Func<IEnumerable<TileTransition>, Task>? TilesCreated;
 
+    private ActionInputQueue _actionQueue;
     public IAsyncRelayCommand MoveCommand { get; private set; }
     public IAsyncRelayCommand UndoCommand { get; private set; }
-
-    private bool _isAnimating;
 
     private int _score;
     public int Score
@@ -40,8 +40,9 @@ public class GameViewModel : BindableObject
     public GameViewModel(int rows, int cols)
     {
         _gameCore = GameFactory.CreateClassicGame(cols, rows);
-        MoveCommand = new AsyncRelayCommand<string>(ExecuteMoveAsync);
-        UndoCommand = new AsyncRelayCommand(ExecuteUndoAsync);
+        _actionQueue = new ActionInputQueue();
+        MoveCommand = new AsyncRelayCommand<string>(OnMoveRequested);
+        UndoCommand = new AsyncRelayCommand(OnUndoRequested);
     }
 
     public void StartNewGame()
@@ -51,61 +52,55 @@ public class GameViewModel : BindableObject
         Score = _gameCore.Grid.Score;
     }
 
-    private async Task ExecuteMoveAsync(string? directionStr)
+    private async Task OnMoveRequested(string? directionStr)
     {
-        if (_isAnimating || directionStr is null) return;
-        if (!Enum.TryParse<MoveDirection>(directionStr, out MoveDirection dir)) return;
+        if (directionStr is null) return;
+        if (!Enum.TryParse<MoveDirection>(directionStr, out MoveDirection direction)) return;
 
-        var transitions = _gameCore.Move(dir);
+        _actionQueue.Enqueue(() => ExecuteMoveAsync(direction));
+
+        await Task.CompletedTask;
+    }
+
+    private async Task ExecuteMoveAsync(MoveDirection direction)
+    {
+        var transitions = _gameCore.Move(direction);
         SyncTiles();
 
-        _isAnimating = true;
+        await InvokeTransition(TilesMoved, transitions.Where(x => x.Type == TileTransitionType.Move ||
+                                                                    x.Type == TileTransitionType.Merge));
 
-        try
-        {
-            await InvokeTransition(TilesMoved, transitions.Where(x => x.Type == TileTransitionType.Move ||
-                                                                      x.Type == TileTransitionType.Merge));
+        await InvokeTransition(TilesRemoved, transitions.Where(x => x.Type == TileTransitionType.Disappear ||
+                                                                    x.Type == TileTransitionType.Merge || 
+                                                                    x.Type == TileTransitionType.Split));
 
-            await InvokeTransition(TilesRemoved, transitions.Where(x => x.Type == TileTransitionType.Disappear ||
-                                                                        x.Type == TileTransitionType.Merge || 
-                                                                        x.Type == TileTransitionType.Split));
+        await InvokeTransition(TilesCreated, transitions.Where(x => x.Type == TileTransitionType.Spawn ||
+                                                                    x.Type == TileTransitionType.Result ||
+                                                                    x.Type == TileTransitionType.Respawn));
+        Score = _gameCore.Grid.Score;
+    }
 
-            await InvokeTransition(TilesCreated, transitions.Where(x => x.Type == TileTransitionType.Spawn ||
-                                                                        x.Type == TileTransitionType.Result ||
-                                                                        x.Type == TileTransitionType.Respawn));
-            Score = _gameCore.Grid.Score;
-        }
-        finally
-        {
-            _isAnimating = false;
-        }
+    private async Task OnUndoRequested()
+    {
+        _actionQueue.Enqueue(() => ExecuteUndoAsync());
+        await Task.CompletedTask;
     }
 
     private async Task ExecuteUndoAsync()
     {
-        if (_isAnimating) return;
-
         var transitions = _gameCore.Undo();
 
         if (!transitions.Any()) return;
 
         SyncTiles();
 
-        _isAnimating = true;
+        await InvokeTransition(TilesMoved, transitions.Where(x => x.Type == TileTransitionType.Move));
 
-        try
-        {
-            await InvokeTransition(TilesMoved, transitions.Where(x => x.Type == TileTransitionType.Move));
-            await InvokeTransition(TilesRemoved, transitions.Where(x => x.Type == TileTransitionType.Disappear || 
-                                                                        x.Type == TileTransitionType.Split));
-            await InvokeTransition(TilesCreated, transitions.Where(x => x.Type == TileTransitionType.Respawn));
+        await InvokeTransition(TilesRemoved, transitions.Where(x => x.Type == TileTransitionType.Disappear || 
+                                                                    x.Type == TileTransitionType.Split));
+        await InvokeTransition(TilesCreated, transitions.Where(x => x.Type == TileTransitionType.Respawn));
 
-            Score = _gameCore.Grid.Score;
-        }
-        finally
-        {
-            _isAnimating = false;
-        }
+        Score = _gameCore.Grid.Score;
     }
 
     public void SyncTiles()
