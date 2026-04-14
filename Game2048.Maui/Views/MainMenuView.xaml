@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Game2048.Maui.Views.MainMenuView"
+             xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
+             x:DataType="vm:MainMenuViewModel"
+             Shell.NavBarIsVisible="False">
+    
+    <VerticalStackLayout VerticalOptions="Center" Spacing="30" Padding="30">
+
+        <Border BackgroundColor="#edc22e"
+                StrokeThickness="0"
+                HeightRequest="150"
+                WidthRequest="150"
+                HorizontalOptions="Center">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="15"/>
+            </Border.StrokeShape>
+
+            <Label Text="2048"
+                   TextColor="White"
+                   FontFamily="RubikBold"
+                   FontSize="48"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+        </Border>
+
+        <Label Text="Join the numbers and get to the 2048 tile!"
+               TextColor="#776e65"
+               FontFamily="RubikRegular"
+               FontSize="18"
+               HorizontalTextAlignment="Center" />
+
+        <VerticalStackLayout Spacing="15">
+            <Button Text="START GAME"
+                    Command="{Binding StartGameCommand}"
+                    BackgroundColor="#8f7a66"
+                    TextColor="White"
+                    FontFamily="RubikBold"
+                    HeightRequest="60"
+                    CornerRadius="10" />
+
+            <Button Text="SETTINGS"
+                    BackgroundColor="#bbada0"
+                    TextColor="White"
+                    FontFamily="RubikBold"
+                    HeightRequest="60"
+                    CornerRadius="10" />
+        </VerticalStackLayout>
+
+    </VerticalStackLayout>
+</ContentPage>

@@ -26,6 +26,7 @@ public class GameViewModel : BindableObject
     private ActionInputQueue _actionQueue;
     public IAsyncRelayCommand MoveCommand { get; private set; }
     public IAsyncRelayCommand UndoCommand { get; private set; }
+    public IAsyncRelayCommand BackToMenuCommand { get; private set; }
 
     private int _score;
     public int Score
@@ -50,6 +51,7 @@ public class GameViewModel : BindableObject
         _actionQueue = new ActionInputQueue();
         MoveCommand = new AsyncRelayCommand<string>(OnMoveRequested);
         UndoCommand = new AsyncRelayCommand(OnUndoRequested);
+        BackToMenuCommand = new AsyncRelayCommand(OnGoToMenu);
     }
 
     public void StartNewGame()
@@ -155,5 +157,10 @@ public class GameViewModel : BindableObject
                               .Select(func => func(transitions));
 
         await Task.WhenAll(tasks);
+    }
+
+    private async Task OnGoToMenu()
+    {
+        await Shell.Current.GoToAsync("///MainMenuPage");
     }
 }

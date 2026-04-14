@@ -22,7 +22,9 @@
             
             <Button x:Name="BackBtn" 
                     Grid.Column="0" 
-                    Text="Back" 
+                    Text="Menu" 
+                    FontFamily="MontBold" 
+                    Command="{Binding BackToMenuCommand}"
                     BackgroundColor="{DynamicResource ButtonBGColor}" 
                     TextColor="{DynamicResource ButtonTextColor}" 
                     HorizontalOptions="Start"/>
@@ -30,8 +32,8 @@
             <Label Grid.Column="1" 
                    Grid.ColumnSpan="2" 
                    Text="2048" 
-                   FontSize="48" 
-                   FontAttributes="Bold" 
+                   FontSize="52" 
+                   FontFamily="RubikBold" 
                    HorizontalOptions="Center" 
                    TextColor="{DynamicResource Tile2048TextColor}" />
 
@@ -50,15 +52,15 @@
 
                     <VerticalStackLayout HorizontalOptions="Center">
 
-                        <Label Text="SCORE" 
-                               FontSize="16" 
-                               FontAttributes="Bold" 
+                        <Label Text="Score" 
+                               FontSize="24" 
+                               FontFamily="MontBold"  
                                HorizontalOptions="Center" 
                                TextColor="White"/>
 
                         <Label Text="{Binding Score}" 
-                               FontSize="20" 
-                               FontAttributes="Bold" 
+                               FontSize="24" 
+                               FontFamily="RubikBold"  
                                HorizontalOptions="Center" 
                                TextColor="White"/>
 
@@ -74,14 +76,14 @@
                     <VerticalStackLayout HorizontalOptions="Center">
 
                         <Label Text="History" 
-                               FontSize="16" 
-                               FontAttributes="Bold" 
+                               FontSize="24" 
+                               FontFamily="MontBold" 
                                HorizontalOptions="Center" 
                                TextColor="White"/>          
 
                         <Label Text="{Binding HistoryCount}" 
-                               FontSize="20" 
-                               FontAttributes="Bold" 
+                               FontSize="24" 
+                               FontFamily="RubikBold"  
                                HorizontalOptions="Center" 
                                TextColor="White"/>
 
@@ -124,7 +126,7 @@
               Grid.Row="2" 
               ColumnDefinitions="*, *" 
               ColumnSpacing="20" 
-              Padding="20" 
+              Padding="15, 40" 
               VerticalOptions="End">
             
             <Button Grid.Column="0" 
@@ -133,14 +135,14 @@
                     FontSize="24" 
                     BackgroundColor="{DynamicResource ButtonBGColor}" 
                     TextColor="{DynamicResource ButtonTextColor}" 
-                    FontAttributes="Bold"/>
+                    FontFamily="MontBold"/>
             
             <Button Grid.Column="1" 
                     Text="Settings" 
                     FontSize="24" 
                     BackgroundColor="{DynamicResource ButtonBGColor}" 
                     TextColor="{DynamicResource ButtonTextColor}" 
-                    FontAttributes="Bold"/>
+                    FontFamily="MontBold"/>
             
         </Grid>
         

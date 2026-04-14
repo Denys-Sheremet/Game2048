@@ -12,7 +12,7 @@ public partial class GameView : ContentPage
     private const double tileSize = 100;
     private const double gapSize = 10;
 
-    private GameViewModel _viewModel;
+    private readonly GameViewModel _viewModel;
 
     private readonly Dictionary<int, TileView> _tileViews = new();
 

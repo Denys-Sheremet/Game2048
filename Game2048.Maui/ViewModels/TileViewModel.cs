@@ -17,6 +17,14 @@ public class TileViewModel : BindableObject
     public int Value => _model.Value;
     public int Id => _model.Id;
 
+    public int FontSize => Value switch
+    {
+        < 100 => 48,
+        < 1000 => 40,
+        < 10000 => 36,
+        _ => 32
+    };
+
 
     public TileViewModel(Tile model, int row, int col)
     {
