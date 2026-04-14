@@ -49,19 +49,19 @@
                         StrokeShape="RoundRectangle 8">
 
                     <VerticalStackLayout HorizontalOptions="Center">
-                        
+
                         <Label Text="SCORE" 
                                FontSize="16" 
                                FontAttributes="Bold" 
                                HorizontalOptions="Center" 
                                TextColor="White"/>
-                        
+
                         <Label Text="{Binding Score}" 
                                FontSize="20" 
                                FontAttributes="Bold" 
                                HorizontalOptions="Center" 
                                TextColor="White"/>
-                        
+
                     </VerticalStackLayout>
                 </Border>
 
@@ -70,21 +70,21 @@
                         Padding="15,5"
                         StrokeThickness="0"
                         StrokeShape="RoundRectangle 8">
-                    
+
                     <VerticalStackLayout HorizontalOptions="Center">
-                        
-                        <Label Text="Best" 
+
+                        <Label Text="History" 
                                FontSize="16" 
                                FontAttributes="Bold" 
                                HorizontalOptions="Center" 
-                               TextColor="White"/>
-                        
-                        <Label Text="0" 
+                               TextColor="White"/>          
+
+                        <Label Text="{Binding HistoryCount}" 
                                FontSize="20" 
                                FontAttributes="Bold" 
                                HorizontalOptions="Center" 
                                TextColor="White"/>
-                        
+
                     </VerticalStackLayout>
                 </Border>
             </Grid>

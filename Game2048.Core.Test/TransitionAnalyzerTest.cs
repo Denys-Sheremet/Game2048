@@ -40,8 +40,8 @@ public class TransitionAnalyzerTest
         List<TileTransition> result = TransitionAnalyzer.Analyze(before, after);
 
         Assert.Contains(result, t => t.TileId == 3 && t.Type == TileTransitionType.Split);
-        Assert.Contains(result, t => t.TileId == 1 && t.Type == TileTransitionType.Spawn);
-        Assert.Contains(result, t => t.TileId == 2 && t.Type == TileTransitionType.Spawn);
+        Assert.Contains(result, t => t.TileId == 1 && t.Type == TileTransitionType.Respawn);
+        Assert.Contains(result, t => t.TileId == 2 && t.Type == TileTransitionType.Respawn);
     }
 
     [Fact]

@@ -34,6 +34,13 @@ public class GameViewModel : BindableObject
         set { _score = value; OnPropertyChanged(); }
     }
 
+    private int _historyCount;
+    public int HistoryCount
+    {
+        get => _historyCount;
+        set { _historyCount = value; OnPropertyChanged(); } 
+    }
+
     public int Rows => _gameCore.Grid.Height;
     public int Columns => _gameCore.Grid.Width;
 
@@ -49,6 +56,7 @@ public class GameViewModel : BindableObject
     {
         _gameCore.SpawnMultipleTiles(2);
         SyncTiles();
+        HistoryCount = _gameCore.HistoryCount;
         Score = _gameCore.Grid.Score;
     }
 
@@ -65,7 +73,10 @@ public class GameViewModel : BindableObject
     private async Task ExecuteMoveAsync(MoveDirection direction)
     {
         var transitions = _gameCore.Move(direction);
+
         SyncTiles();
+
+        HistoryCount = _gameCore.HistoryCount;
 
         await InvokeTransition(TilesMoved, transitions.Where(x => x.Type == TileTransitionType.Move ||
                                                                     x.Type == TileTransitionType.Merge));
@@ -93,6 +104,8 @@ public class GameViewModel : BindableObject
         if (!transitions.Any()) return;
 
         SyncTiles();
+
+        HistoryCount = _gameCore.HistoryCount;
 
         await InvokeTransition(TilesMoved, transitions.Where(x => x.Type == TileTransitionType.Move));
 

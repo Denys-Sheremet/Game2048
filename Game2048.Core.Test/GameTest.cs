@@ -48,7 +48,7 @@ public class GameTest
         mockRandomProvider.Next(16).Returns(0);
         mockRandomProvider.Next(10).Returns(1);
 
-        Game game = GameFactory.CreateStandardGame(4, 4, mockRandomProvider);
+        Game game = GameFactory.CreateClassicUnlimitedHistoryGame(4, 4, mockRandomProvider);
 
         game.SpawnNewTile();
 
@@ -61,7 +61,7 @@ public class GameTest
     [Fact]
     public void GetNextTileId_Increments_Sequentially()
     {
-        Game game = GameFactory.CreateStandardGame();
+        Game game = GameFactory.CreateClassicUnlimitedHistoryGame();
 
         int firstId = game.GetNextTileId();
         int secondId = game.GetNextTileId();
@@ -79,7 +79,7 @@ public class GameTest
 
         mockRandomProvider.Next(10).Returns(0, 1);
 
-        Game game = GameFactory.CreateStandardGame(4, 4, mockRandomProvider);
+        Game game = GameFactory.CreateClassicUnlimitedHistoryGame(4, 4, mockRandomProvider);
 
         game.SpawnNewTile();
         Assert.Equal(4, game.Grid[0].Value);
@@ -105,7 +105,7 @@ public class GameTest
     [Fact]
     public void SpawnMultipleTiles_MethodCan_SpawnMany_NewTiles_ByCount_Provided()
     {
-        Game game = GameFactory.CreateStandardGame();
+        Game game = GameFactory.CreateClassicUnlimitedHistoryGame();
 
         game.SpawnMultipleTiles(3);
 
@@ -214,7 +214,7 @@ public class GameTest
     public void NextId_Counter_Will_Be_Restored_FromSnapshot_WhenUndo_IsDone()
     {
         Grid grid = new Grid(4, 4);
-        Game game = GameFactory.CreateStandardGame();
+        Game game = GameFactory.CreateClassicUnlimitedHistoryGame();
         game.TrySpawnNewTileAt(0, 0, 2);
         game.TrySpawnNewTileAt(1, 0, 2);
 
@@ -630,7 +630,7 @@ public class GameTest
     [Fact]
     public void Move_ShouldTrigger_OnStateChanged_WhenMovementOccurs()
     {
-        Game game = GameFactory.CreateStandardGame();
+        Game game = GameFactory.CreateClassicUnlimitedHistoryGame();
         game.TrySpawnNewTileAt(0, 0);
 
         bool stateChanged = false;
@@ -645,7 +645,7 @@ public class GameTest
     [Fact]
     public void Move_ShouldNot_Trigger_OnStateChanged_WhenNoMovementOccurs()
     {
-        Game game = GameFactory.CreateStandardGame();
+        Game game = GameFactory.CreateClassicUnlimitedHistoryGame();
         game.TrySpawnNewTileAt(0, 0);
 
         bool stateChanged = false;
@@ -659,7 +659,7 @@ public class GameTest
     [Fact]
     public void Move_ShouldNot_Trigger_OnScoreGained_IfNoScore_Gained()
     {
-        Game game = GameFactory.CreateStandardGame();
+        Game game = GameFactory.CreateClassicUnlimitedHistoryGame();
         game.TrySpawnNewTileAt(0, 0);
 
         bool stateChanged = false;
@@ -676,7 +676,7 @@ public class GameTest
     [Fact]
     public void Move_ShouldTrigger_OnScoreGained_WhenTilesMerge()
     {
-        Game game = GameFactory.CreateStandardGame();
+        Game game = GameFactory.CreateClassicUnlimitedHistoryGame();
         game.TrySpawnNewTileAt(0, 0, newValue: 2);
         game.TrySpawnNewTileAt(1, 0, newValue: 2);
 
@@ -698,7 +698,7 @@ public class GameTest
     [Fact]
     public void Undo_ShouldRemove_SpawnedTile_FromRegistry()
     {
-        Game game = GameFactory.CreateStandardGame();
+        Game game = GameFactory.CreateClassicUnlimitedHistoryGame();
         game.TrySpawnNewTileAt(0, 0, newValue: 2);
         game.TrySpawnNewTileAt(1, 0, newValue: 2);
 
@@ -716,7 +716,7 @@ public class GameTest
     [Fact]
     public void Move_Returns_EmptyList_If_WasNo_Move()
     {
-        Game game = GameFactory.CreateStandardGame();
+        Game game = GameFactory.CreateClassicUnlimitedHistoryGame();
         game.TrySpawnNewTileAt(0, 0);
 
         List<TileTransition> result = game.Move(MoveDirection.Left, false);
@@ -727,7 +727,7 @@ public class GameTest
     [Fact]
     public void Move_ReturnsNon_EmptyList_IfThere_Was_Movement()
     {
-        Game game = GameFactory.CreateStandardGame();
+        Game game = GameFactory.CreateClassicUnlimitedHistoryGame();
         game.TrySpawnNewTileAt(3, 0);
 
         List<TileTransition> result = game.Move(MoveDirection.Left, false);
@@ -738,7 +738,7 @@ public class GameTest
     [Fact]
     public void If_Move_Contained_Merge_TheMethod_Returns_List_That_Contains_Merge_And_Result_Types()
     {
-        Game game = GameFactory.CreateStandardGame();
+        Game game = GameFactory.CreateClassicUnlimitedHistoryGame();
         game.TrySpawnNewTileAt(3, 0, 2);
         game.TrySpawnNewTileAt(2, 0, 2);
 
@@ -749,9 +749,9 @@ public class GameTest
     }
 
     [Fact]
-    public void If_Undo_TheMerge_Method_Returns_List_ThatContains_Split_And_Spawn_Types()
+    public void If_Undo_TheMerge_Method_Returns_List_ThatContains_Split_And_Respawn_Types()
     {
-        Game game = GameFactory.CreateStandardGame();
+        Game game = GameFactory.CreateClassicUnlimitedHistoryGame();
         game.TrySpawnNewTileAt(3, 0, 2);
         game.TrySpawnNewTileAt(2, 0, 2);
 
@@ -760,7 +760,7 @@ public class GameTest
         List<TileTransition> result = game.Undo();
 
         Assert.Contains(result, x => x.Type == TileTransitionType.Split);
-        Assert.Contains(result, x => x.Type == TileTransitionType.Spawn);
+        Assert.Contains(result, x => x.Type == TileTransitionType.Respawn);
     }
 
     [Fact]
@@ -824,7 +824,7 @@ public class GameTest
     [InlineData(2048)]
     public void SetMaxValue_Accepts_PowerOfTwo(int value)
     {
-        Game game = GameFactory.CreateStandardGame();
+        Game game = GameFactory.CreateClassicUnlimitedHistoryGame();
         Exception exception = Record.Exception(() => game.SetMaxValue(value));
         Assert.Null(exception);
     }
@@ -836,14 +836,14 @@ public class GameTest
     [InlineData(-2)]
     public void SetMaxValue_Throws_OnInvalidValue(int value)
     {
-        Game game = GameFactory.CreateStandardGame();
+        Game game = GameFactory.CreateClassicUnlimitedHistoryGame();
         Assert.Throws<ArgumentException>(() => game.SetMaxValue(value));
     }
 
     [Fact]
     public void Undo_Of_Spawn_ShouldReturn_Disappear_Transition()
     {
-        Game game = GameFactory.CreateStandardGame();
+        Game game = GameFactory.CreateClassicUnlimitedHistoryGame();
         game.TrySpawnNewTileAt(0, 0, 2);
 
         game.Move(MoveDirection.Right, withSpawn: true);
@@ -856,7 +856,7 @@ public class GameTest
     [Fact]
     public void Move_WithMerge_ShouldUpdateRegistry_Correctly()
     {
-        Game game = GameFactory.CreateStandardGame();
+        Game game = GameFactory.CreateClassicUnlimitedHistoryGame();
         game.TrySpawnNewTileAt(0, 0, 2);
         game.TrySpawnNewTileAt(1, 0, 2);
 
@@ -871,7 +871,7 @@ public class GameTest
     [Fact]
     public void NextId_Cycle_IsConsistent_After_Multiple_Undo()
     {
-        Game game = GameFactory.CreateStandardGame();
+        Game game = GameFactory.CreateClassicUnlimitedHistoryGame();
 
         game.SpawnNewTile();
         game.Move(MoveDirection.Right);
