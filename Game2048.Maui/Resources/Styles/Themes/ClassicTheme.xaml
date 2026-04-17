@@ -45,5 +45,18 @@
     <Color x:Key="TileExtraBGColor">#EDD22F</Color>
     <Color x:Key="TileExtraTextColor">#FFFFFF</Color>
 
+    <Color x:Key="MainButtonBGColor">#1E434C</Color>
+    <Color x:Key="MainButtonTextColor">#DADADA</Color>
+
+    <Color x:Key="ScoreBoardBGColor">#CDBEA7</Color>
+    <Color x:Key="ScoreBoardTextColor">#3E555C</Color>
+    <Color x:Key="ScoreBoardNumColor">#323030</Color>
+
+    <Color x:Key="LogoNumColor">#323030</Color>
+    
+    
+    
+    
+
 
 </ResourceDictionary>

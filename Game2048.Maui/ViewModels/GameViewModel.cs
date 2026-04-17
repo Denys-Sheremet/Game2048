@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Game2048.Maui.Services;
+using Android.Telephony;
 
 namespace Game2048.Maui.ViewModels;
 
@@ -34,6 +35,32 @@ public class GameViewModel : BindableObject
         get => _score;
         set { _score = value; OnPropertyChanged(); }
     }
+
+    //TODO
+    private int _bestScore;
+    public int BestScore
+    {
+        get => _bestScore;
+        set { _bestScore = value; OnPropertyChanged(); }
+    }
+
+    public void LoadBestScore()
+    {
+        BestScore = Preferences.Default.Get("best_score", 0);
+    }
+
+    private void UpdateScores()
+    {
+        Score = _gameCore.Grid.Score;
+
+        if (Score > BestScore)
+        {
+            BestScore = Score;
+            Preferences.Default.Set("best_score", BestScore);
+        }
+    }
+
+    //TODO
 
     private int _historyCount;
     public int HistoryCount
@@ -60,6 +87,7 @@ public class GameViewModel : BindableObject
         SyncTiles();
         HistoryCount = _gameCore.HistoryCount;
         Score = _gameCore.Grid.Score;
+        LoadBestScore();
     }
 
     private async Task OnMoveRequested(string? directionStr)
@@ -90,7 +118,7 @@ public class GameViewModel : BindableObject
         await InvokeTransition(TilesCreated, transitions.Where(x => x.Type == TileTransitionType.Spawn ||
                                                                     x.Type == TileTransitionType.Result ||
                                                                     x.Type == TileTransitionType.Respawn));
-        Score = _gameCore.Grid.Score;
+        UpdateScores();
     }
 
     private async Task OnUndoRequested()
@@ -115,7 +143,7 @@ public class GameViewModel : BindableObject
                                                                     x.Type == TileTransitionType.Split));
         await InvokeTransition(TilesCreated, transitions.Where(x => x.Type == TileTransitionType.Respawn));
 
-        Score = _gameCore.Grid.Score;
+        UpdateScores();
     }
 
     public void SyncTiles()

@@ -18,16 +18,17 @@
               RowDefinitions="Auto, Auto" 
               ColumnSpacing="20" 
               Padding="15"
-              HorizontalOptions="Fill" >
+              HorizontalOptions="Fill">
             
             <Button x:Name="BackBtn" 
                     Grid.Column="0" 
-                    Text="Menu" 
+                    Text="&#x276e;" 
                     FontFamily="MontBold" 
                     Command="{Binding BackToMenuCommand}"
-                    BackgroundColor="{DynamicResource ButtonBGColor}" 
-                    TextColor="{DynamicResource ButtonTextColor}" 
-                    HorizontalOptions="Start"/>
+                    BackgroundColor="{DynamicResource MainButtonBGColor}" 
+                    TextColor="{DynamicResource MainButtonTextColor}" 
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"/>
 
             <Label Grid.Column="1" 
                    Grid.ColumnSpan="2" 
@@ -35,60 +36,16 @@
                    FontSize="52" 
                    FontFamily="RubikBold" 
                    HorizontalOptions="Center" 
-                   TextColor="{DynamicResource Tile2048TextColor}" />
+                   TextColor="{DynamicResource LogoNumColor}" />
 
             <Grid Grid.Column="0" 
                   Grid.ColumnSpan="4" 
                   Grid.Row="1" 
-                  ColumnDefinitions="*, *" 
+                  ColumnDefinitions="*" 
                   Margin="0, 15, 0, 0" 
                   ColumnSpacing="20">
 
-                <Border BackgroundColor="{DynamicResource GameFieldBackgroundColor}" 
-                        Grid.Column="0" 
-                        Padding="15,5"
-                        StrokeThickness="0"
-                        StrokeShape="RoundRectangle 8">
-
-                    <VerticalStackLayout HorizontalOptions="Center">
-
-                        <Label Text="Score" 
-                               FontSize="24" 
-                               FontFamily="MontBold"  
-                               HorizontalOptions="Center" 
-                               TextColor="White"/>
-
-                        <Label Text="{Binding Score}" 
-                               FontSize="24" 
-                               FontFamily="RubikBold"  
-                               HorizontalOptions="Center" 
-                               TextColor="White"/>
-
-                    </VerticalStackLayout>
-                </Border>
-
-                <Border BackgroundColor="{DynamicResource GameFieldBackgroundColor}" 
-                        Grid.Column="1" 
-                        Padding="15,5"
-                        StrokeThickness="0"
-                        StrokeShape="RoundRectangle 8">
-
-                    <VerticalStackLayout HorizontalOptions="Center">
-
-                        <Label Text="History" 
-                               FontSize="24" 
-                               FontFamily="MontBold" 
-                               HorizontalOptions="Center" 
-                               TextColor="White"/>          
-
-                        <Label Text="{Binding HistoryCount}" 
-                               FontSize="24" 
-                               FontFamily="RubikBold"  
-                               HorizontalOptions="Center" 
-                               TextColor="White"/>
-
-                    </VerticalStackLayout>
-                </Border>
+                <views:ScoreBoardView Grid.Column="0" VerticalOptions="Center"/>
             </Grid>
         </Grid>
 
@@ -133,15 +90,15 @@
                     Text="Undo" 
                     Command="{Binding UndoCommand}"
                     FontSize="24" 
-                    BackgroundColor="{DynamicResource ButtonBGColor}" 
-                    TextColor="{DynamicResource ButtonTextColor}" 
+                    BackgroundColor="{DynamicResource MainButtonBGColor}" 
+                    TextColor="{DynamicResource MainButtonTextColor}" 
                     FontFamily="MontBold"/>
             
             <Button Grid.Column="1" 
                     Text="Settings" 
                     FontSize="24" 
-                    BackgroundColor="{DynamicResource ButtonBGColor}" 
-                    TextColor="{DynamicResource ButtonTextColor}" 
+                    BackgroundColor="{DynamicResource MainButtonBGColor}" 
+                    TextColor="{DynamicResource MainButtonTextColor}" 
                     FontFamily="MontBold"/>
             
         </Grid>
