@@ -11,7 +11,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Game2048.Maui.Services;
-using Android.Telephony;
 
 namespace Game2048.Maui.ViewModels;
 

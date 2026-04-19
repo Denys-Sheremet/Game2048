@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Game2048.Maui.Views.IntroPage"
+             Title="IntroPage"
+             x:Name="ContentPage"
+             Shell.NavBarIsVisible="False">
+    <Grid ColumnDefinitions="*" RowDefinitions="*" BackgroundColor="Black">
+        <Image Source="rbsoft_logo.png"
+               x:Name="IntroLogoImage"
+               Aspect="AspectFit"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"/>
+    </Grid>
+</ContentPage>

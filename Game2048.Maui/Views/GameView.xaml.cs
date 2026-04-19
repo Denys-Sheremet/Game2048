@@ -2,6 +2,7 @@ using Game2048.Core.DTOs;
 using Game2048.Maui.ViewModels;
 using Microsoft.Maui.Controls.Shapes;
 using System.Diagnostics;
+using Game2048.Maui.Services;
 
 namespace Game2048.Maui.Views;
 
@@ -9,8 +10,6 @@ public partial class GameView : ContentPage
 {
     private double _targetWidth;
     private double _targetHeight;
-    private const double tileSize = 100;
-    private const double gapSize = 10;
 
     private readonly GameViewModel _viewModel;
 
@@ -48,8 +47,8 @@ public partial class GameView : ContentPage
             var view = FindTileView(mt.TileId);
             if (view != null)
             {
-                double tx = (mt.ToX * tileSize) + ((mt.ToX + 1) * gapSize);
-                double ty = (mt.ToY * tileSize) + ((mt.ToY + 1) * gapSize);
+                double tx = LayoutConstants.GetCoordinate(mt.ToX);
+                double ty = LayoutConstants.GetCoordinate(mt.ToY);
 
                 moveTasks.Add(view.MoveToAsync(tx, ty));
             }
@@ -77,26 +76,6 @@ public partial class GameView : ContentPage
                 _tileViews.Remove(item.Id);
             }
         }
-
-        /*var trList = transitions.ToList();
-        var removeTasks = new List<Task>();
-        var idsToRemove = new List<int>();
-        foreach (var rt in trList)
-        {
-            var view = FindTileView(rt.TileId);
-            if (view is not null)
-            {
-                idsToRemove.Add(rt.TileId);
-                removeTasks.Add(view.DisappearAsync(80));
-            }
-        }
-        await Task.WhenAll(removeTasks);
-
-        foreach (var id in idsToRemove)
-        {
-            GameGridLayout.Children.Remove(FindTileView(id));
-            _tileViews.Remove(id);
-        }*/
     }
 
     private async Task ApplyCreateTransitionsAsync(IEnumerable<TileTransition> transitions)
@@ -112,22 +91,23 @@ public partial class GameView : ContentPage
                 var tileView = new TileView { BindingContext = newVM };
                 _tileViews[newVM.Id] = tileView;
 
-                double tx = (ct.ToX * tileSize) + ((ct.ToX + 1) * gapSize);
-                double ty = (ct.ToY * tileSize) + ((ct.ToY + 1) * gapSize);
+                double tx = LayoutConstants.GetCoordinate(ct.ToX);
+                double ty = LayoutConstants.GetCoordinate(ct.ToY);
+                double size = LayoutConstants.TileSize;
 
                 if (ct.Type == TileTransitionType.Respawn)
                 {
-                    double fx = (ct.FromX * tileSize) + ((ct.FromX + 1) * gapSize);
-                    double fy = (ct.FromY * tileSize) + ((ct.FromY + 1) * gapSize);
+                    double fx = LayoutConstants.GetCoordinate(ct.FromX);
+                    double fy = LayoutConstants.GetCoordinate(ct.FromY);
 
-                    AbsoluteLayout.SetLayoutBounds(tileView, new Rect(fx, fy, tileSize, tileSize));
+                    AbsoluteLayout.SetLayoutBounds(tileView, new Rect(fx, fy, size, size));
                     GameGridLayout.Children.Add(tileView);
 
                     createTasks.Add(tileView.RespawnToAsync(tx, ty, 150));
                 }
                 else
                 {
-                    AbsoluteLayout.SetLayoutBounds(tileView, new Rect(tx, ty, tileSize, tileSize));
+                    AbsoluteLayout.SetLayoutBounds(tileView, new Rect(tx, ty, size, size));
                     GameGridLayout.Children.Add(tileView);
 
                     if (ct.Type == TileTransitionType.Result)
@@ -151,14 +131,16 @@ public partial class GameView : ContentPage
 
     private void BuildTheBoard(int rows, int cols)
     {
-        _targetWidth = (cols * tileSize) + ((cols + 1) * gapSize);
-        _targetHeight = (rows * tileSize) + ((rows + 1) * gapSize);
+        _targetWidth = LayoutConstants.GetBoardSize(cols);
+        _targetHeight = LayoutConstants.GetBoardSize(rows);
 
         GameFrame.WidthRequest = _targetWidth;
         GameFrame.HeightRequest = _targetHeight;
 
         BackgroundGridLayout.Children.Clear();
         var emptyColor = (Application.Current?.Resources["EmptyCellColor"] as Color) ?? Colors.Gray;
+
+        double size = LayoutConstants.TileSize;
 
         for (int r = 0; r < rows; r++)
         {
@@ -168,12 +150,12 @@ public partial class GameView : ContentPage
                 {
                     BackgroundColor = emptyColor,
                     StrokeShape = new RoundRectangle { CornerRadius = 8 },
-                    WidthRequest = tileSize,
-                    HeightRequest = tileSize
+                    WidthRequest = size,
+                    HeightRequest = size
                 };
-                double x = (c * tileSize) + ((c + 1) * gapSize);
-                double y = (r * tileSize) + ((r + 1) * gapSize);
-                AbsoluteLayout.SetLayoutBounds(cell, new Rect(x, y, tileSize, tileSize));
+                double x = LayoutConstants.GetCoordinate(c);
+                double y = LayoutConstants.GetCoordinate(r);
+                AbsoluteLayout.SetLayoutBounds(cell, new Rect(x, y, size, size));
                 BackgroundGridLayout.Children.Add(cell);
             }
         }
@@ -181,10 +163,12 @@ public partial class GameView : ContentPage
 
     private void OnFieldWrapperSizeChanged(object sender, EventArgs e)
     {
-        if (_targetWidth <= 0 || _targetHeight <= 0) return;
-        double finalScale = Math.Min((FieldBlockWrapper.Width - 40) / _targetWidth,
-                                     (FieldBlockWrapper.Height - 40) / _targetHeight);
-        GameFrame.Scale = finalScale;
+        GameFrame.Scale = LayoutConstants.CalculateScale(
+            FieldBlockWrapper.Width, 
+            FieldBlockWrapper.Height, 
+            _targetWidth, 
+            _targetHeight
+        );
     }
 
     private bool _isGestureHandled;
@@ -244,15 +228,17 @@ public partial class GameView : ContentPage
         GameGridLayout.Children.Clear();
         _tileViews.Clear();
 
+        double size = LayoutConstants.TileSize;
+
         foreach (var tileVM in _viewModel.Tiles) 
         {
             var tileView = new TileView { BindingContext = tileVM };
             _tileViews[tileVM.Id] = tileView;
 
-            double x = (tileVM.Column * tileSize) + ((tileVM.Column + 1) * gapSize);
-            double y = (tileVM.Row * tileSize) + ((tileVM.Row + 1) * gapSize);
+            double x = LayoutConstants.GetCoordinate(tileVM.Column);
+            double y = LayoutConstants.GetCoordinate(tileVM.Row);
 
-            AbsoluteLayout.SetLayoutBounds(tileView, new Rect(x, y, tileSize, tileSize));
+            AbsoluteLayout.SetLayoutBounds(tileView, new Rect(x, y, size, size));
             GameGridLayout.Children.Add(tileView);
         }
     }

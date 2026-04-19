@@ -2,7 +2,7 @@
 
 public class TileSpawner : ITileSpawner
 {
-    public bool Spawn(Grid grid, ITileRegistry registry, int nextId, IRandomProvider random)
+    public virtual bool Spawn(Grid grid, ITileRegistry registry, int nextId, IRandomProvider random)
     {
         ArgumentNullException.ThrowIfNull(grid);
         ArgumentNullException.ThrowIfNull(registry);

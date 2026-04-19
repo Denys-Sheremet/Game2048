@@ -6,7 +6,8 @@
     xmlns:views="clr-namespace:Game2048.Maui.Views"
     Shell.FlyoutBehavior="Disabled"
     Title="2048">
-
+    
+    <ShellContent ContentTemplate="{DataTemplate views:IntroPage}" Route="IntroPage"/>
     <ShellContent ContentTemplate="{DataTemplate views:MainMenuView}" Route="MainMenuPage"/>
     <ShellContent ContentTemplate="{DataTemplate views:GameView}" Route="ClassicGamePage"/>
 
