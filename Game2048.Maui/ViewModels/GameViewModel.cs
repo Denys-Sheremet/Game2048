@@ -73,7 +73,7 @@ public class GameViewModel : BindableObject
 
     public GameViewModel(int rows, int cols)
     {
-        _gameCore = GameFactory.CreateClassicGame(cols, rows);
+        _gameCore = GameFactory.CreateClassicDelayedSpawnGame(cols, rows);
         _actionQueue = new ActionInputQueue();
         MoveCommand = new AsyncRelayCommand<string>(OnMoveRequested);
         UndoCommand = new AsyncRelayCommand(OnUndoRequested);

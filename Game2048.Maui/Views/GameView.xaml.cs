@@ -19,7 +19,7 @@ public partial class GameView : ContentPage
     {
         InitializeComponent();
 
-        _viewModel = new GameViewModel(4, 4);
+        _viewModel = new GameViewModel(3, 3);
         BindingContext = _viewModel;
 
         _viewModel.TilesMoved += async (transitions) =>

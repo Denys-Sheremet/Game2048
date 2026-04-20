@@ -9,7 +9,7 @@ public static class GameFactory
             (
                 grid,
                 new TileSpawner(),
-                new LimitedHistoryManager(10),
+                new LimitedHistoryManager(5),
                 new TileRegistry(),
                 random ?? new DefaultRandomProvider()
             );
@@ -23,6 +23,19 @@ public static class GameFactory
                 grid,
                 new TileSpawner(),
                 new HistoryManager(),
+                new TileRegistry(),
+                random ?? new DefaultRandomProvider()
+            );
+    }
+
+    public static Game CreateClassicDelayedSpawnGame(int width = 3, int height = 3, int interval = 2, IRandomProvider? random = null, int initialSpawns = 2)
+    {
+        Grid grid = new Grid(width, height);
+        return new Game
+            (
+                grid,
+                new DelayedTileSpawner(interval, initialSpawns),
+                new LimitedHistoryManager(5),
                 new TileRegistry(),
                 random ?? new DefaultRandomProvider()
             );
