@@ -1,8 +1,8 @@
 using Game2048.Core.DTOs;
 using Game2048.Maui.ViewModels;
 using Microsoft.Maui.Controls.Shapes;
-using System.Diagnostics;
 using Game2048.Maui.Services;
+using Game2048.Core.Enums;
 
 namespace Game2048.Maui.Views;
 
@@ -19,7 +19,7 @@ public partial class GameView : ContentPage
     {
         InitializeComponent();
 
-        _viewModel = new GameViewModel(3, 3);
+        _viewModel = new GameViewModel(3, 3, GameModeType.Compact);
         BindingContext = _viewModel;
 
         _viewModel.TilesMoved += async (transitions) =>

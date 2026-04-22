@@ -1,4 +1,6 @@
 ﻿using Game2048.Core.DTOs;
+using Game2048.Core.Enums;
+using Game2048.Core.Logic;
 using Game2048.Core.Models;
 using Xunit;
 

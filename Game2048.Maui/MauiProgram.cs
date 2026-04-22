@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Game2048.Maui.ViewModels;
+using Microsoft.Extensions.Logging;
 
 namespace Game2048.Maui
 {

@@ -1,16 +1,10 @@
 ﻿using Game2048.Core;
 using Game2048.Core.DTOs;
-using Game2048.Core.Mechanics;
 using CommunityToolkit.Mvvm.Input;
-using Game2048.Core.Models;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using Game2048.Maui.Services;
+using Game2048.Core.Factories;
+using Game2048.Core.Enums;
 
 namespace Game2048.Maui.ViewModels;
 
@@ -71,9 +65,9 @@ public class GameViewModel : BindableObject
     public int Rows => _gameCore.Grid.Height;
     public int Columns => _gameCore.Grid.Width;
 
-    public GameViewModel(int rows, int cols)
+    public GameViewModel(int rows, int cols, GameModeType gameMode)
     {
-        _gameCore = GameFactory.CreateClassicDelayedSpawnGame(cols, rows);
+        _gameCore = GameFactory.CreateGame(cols, rows, gameMode);
         _actionQueue = new ActionInputQueue();
         MoveCommand = new AsyncRelayCommand<string>(OnMoveRequested);
         UndoCommand = new AsyncRelayCommand(OnUndoRequested);

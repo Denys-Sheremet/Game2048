@@ -8,6 +8,7 @@ public class StateSnapshot
     public int Score { get; }
     public int NextId { get; }
 
+
     public StateSnapshot(int width, int height, int score, IEnumerable<Tile> tiles, int nextId)
     {
         ArgumentNullException.ThrowIfNull(tiles);

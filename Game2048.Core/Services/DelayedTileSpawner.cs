@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Game2048.Core.Services;
+﻿namespace Game2048.Core.Services;
 
 public class DelayedTileSpawner : TileSpawner, ITileSpawner
 {
     private readonly int _interval;
     private int _initialSpawnsLeft;
     public int MovesLeft { get; private set; }
+
+
     public DelayedTileSpawner(int interval, int initialSpawnsLeft = 2)
     {
         if (interval <= 0) throw new ArgumentException("Interval cannot be negative or 0");
@@ -19,11 +15,11 @@ public class DelayedTileSpawner : TileSpawner, ITileSpawner
         _initialSpawnsLeft = initialSpawnsLeft;
     }
 
-    public override bool Spawn(Grid grid, ITileRegistry registry, int nextId, IRandomProvider random)
+    public override bool Spawn(Grid grid, ITileRegistry registry, ref int nextId, IRandomProvider random)
     {
         if (_initialSpawnsLeft > 0)
         {
-            bool spawned = base.Spawn(grid, registry, nextId, random);
+            bool spawned = base.Spawn(grid, registry, ref nextId, random);
             if (spawned)
             {
                 _initialSpawnsLeft--;
@@ -35,7 +31,7 @@ public class DelayedTileSpawner : TileSpawner, ITileSpawner
 
         if (MovesLeft > 0) return false;
 
-        bool success = base.Spawn(grid, registry, nextId, random);
+        bool success = base.Spawn(grid, registry, ref nextId, random);
 
         if (success) 
         {

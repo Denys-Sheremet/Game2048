@@ -1,8 +1,8 @@
 ﻿using Game2048.Core;
 using Game2048.Core.Services;
 using Game2048.Core.Models;
-using Game2048.Core.Mechanics;
 using Game2048.Core.ConsoleUI;
+using Game2048.Core.Enums;
 
 Grid grid = new Grid(4, 4);
 Game game = new Game(grid, new TileSpawner(), new LimitedHistoryManager(10), new TileRegistry(), new DefaultRandomProvider());

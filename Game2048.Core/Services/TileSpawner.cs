@@ -2,7 +2,7 @@
 
 public class TileSpawner : ITileSpawner
 {
-    public virtual bool Spawn(Grid grid, ITileRegistry registry, int nextId, IRandomProvider random)
+    public virtual bool Spawn(Grid grid, ITileRegistry registry, ref int nextId, IRandomProvider random)
     {
         ArgumentNullException.ThrowIfNull(grid);
         ArgumentNullException.ThrowIfNull(registry);
@@ -24,6 +24,13 @@ public class TileSpawner : ITileSpawner
 
         return true;
     }
+
+    public bool Spawn(Grid grid, ITileRegistry registry, int nextId, IRandomProvider random)
+    {
+        int localNextId = nextId;
+        return Spawn(grid, registry, ref localNextId, random);
+    }
+
     public bool TrySpawnAt
         (Grid grid, ITileRegistry registry, int nextId, int x, int y, int? value = null, IRandomProvider? random = null)
     {

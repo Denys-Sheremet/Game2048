@@ -1,7 +1,4 @@
-﻿using Game2048.Core.DTOs;
-using System.Collections.Generic;
-
-namespace Game2048.Core;
+﻿namespace Game2048.Core;
 
 public class Game
 {
@@ -43,7 +40,9 @@ public class Game
 
     public void SpawnNewTile()
     {
-        bool isSpawned = _spawner.Spawn(Grid, _tileRegistry, GetNextTileId(), _random);
+        bool isSpawned = _spawner.Spawn(Grid, _tileRegistry, ref _nextTileId, _random);
+        _nextTileId++;
+
         if (!isSpawned) 
         {
             CheckForGameOver();

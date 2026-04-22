@@ -1,11 +1,4 @@
-﻿using Game2048.Core.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Game2048.Core;
+﻿namespace Game2048.Core.Logic;
 
 public static class TransitionAnalyzer
 {

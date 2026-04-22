@@ -1,4 +1,4 @@
-﻿namespace Game2048.Core.Mechanics;
+﻿namespace Game2048.Core.Enums;
 
 public enum MoveDirection
 {
