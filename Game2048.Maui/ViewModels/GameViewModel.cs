@@ -5,10 +5,11 @@ using System.Collections.ObjectModel;
 using Game2048.Maui.Services;
 using Game2048.Core.Factories;
 using Game2048.Core.Enums;
+using Game2048.Core.Models;
 
 namespace Game2048.Maui.ViewModels;
 
-public class GameViewModel : BindableObject
+public partial class GameViewModel : BindableObject
 {
     private readonly Game _gameCore;
     public ObservableCollection<TileViewModel> Tiles { get; } = new();
@@ -62,16 +63,32 @@ public class GameViewModel : BindableObject
         set { _historyCount = value; OnPropertyChanged(); } 
     }
 
+    private bool _isUndoEnabled;
+
+    public bool IsUndoEnabled
+    {
+        get => _isUndoEnabled;
+        set { _isUndoEnabled = value; OnPropertyChanged(); }
+    }
+
     public int Rows => _gameCore.Grid.Height;
     public int Columns => _gameCore.Grid.Width;
 
-    public GameViewModel(int rows, int cols, GameModeType gameMode)
+    public GameViewModel(GameConfig config)
     {
-        _gameCore = GameFactory.CreateGame(cols, rows, gameMode);
+        _gameCore = GameFactory.CreateGame(config);
         _actionQueue = new ActionInputQueue();
         MoveCommand = new AsyncRelayCommand<string>(OnMoveRequested);
         UndoCommand = new AsyncRelayCommand(OnUndoRequested);
         BackToMenuCommand = new AsyncRelayCommand(OnGoToMenu);
+        if (config.GameMode == GameModeType.Classic)
+        {
+            _isUndoEnabled = false;
+        }
+        else 
+        { 
+            _isUndoEnabled = true; 
+        }
     }
 
     public void StartNewGame()

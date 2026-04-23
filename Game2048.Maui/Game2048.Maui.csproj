@@ -75,6 +75,9 @@
 	  <Compile Update="Resources\Styles\Themes\ClassicTheme.xaml.cs">
 	    <DependentUpon>ClassicTheme.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\GameModesView.xaml.cs">
+	    <DependentUpon>GameModesView.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\GameView.xaml.cs">
 	    <DependentUpon>GameView.xaml</DependentUpon>
 	  </Compile>
@@ -93,7 +96,16 @@
 	  <MauiXaml Update="Resources\Styles\Themes\NatureTheme.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\AchievementsView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\GameModesView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\GameView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\HowToView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\IntroPage.xaml">
@@ -103,6 +115,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ScoreBoardView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\SettingsView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\TileView.xaml">

@@ -15,11 +15,11 @@ public partial class GameView : ContentPage
 
     private readonly Dictionary<int, TileView> _tileViews = new();
 
-    public GameView()
+    public GameView(GameViewModel viewModel)
     {
         InitializeComponent();
 
-        _viewModel = new GameViewModel(3, 3, GameModeType.Compact);
+        _viewModel = viewModel;
         BindingContext = _viewModel;
 
         _viewModel.TilesMoved += async (transitions) =>
@@ -250,5 +250,13 @@ public partial class GameView : ContentPage
         BuildTheBoard(_viewModel.Rows, _viewModel.Columns);
         _viewModel.StartNewGame();
         FullRedraw();
+    }
+
+    private async void OnButtonClicked(object sender, EventArgs e)
+    {
+        var button = (View)sender;
+
+        await button.ScaleTo(0.85, 50, Easing.CubicIn);
+        await button.ScaleTo(1, 100, Easing.SpringOut);
     }
 }

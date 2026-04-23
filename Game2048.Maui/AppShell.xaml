@@ -9,6 +9,10 @@
     
     <ShellContent ContentTemplate="{DataTemplate views:IntroPage}" Route="IntroPage"/>
     <ShellContent ContentTemplate="{DataTemplate views:MainMenuView}" Route="MainMenuPage"/>
-    <ShellContent ContentTemplate="{DataTemplate views:GameView}" Route="ClassicGamePage"/>
+    <ShellContent ContentTemplate="{DataTemplate views:GameView}" Route="GamePage"/>
+    <ShellContent ContentTemplate="{DataTemplate views:AchievementsView}" Route="AchievementsPage"/>
+    <ShellContent ContentTemplate="{DataTemplate views:GameModesView}" Route="GameModesPage"/>
+    <ShellContent ContentTemplate="{DataTemplate views:HowToView}" Route="HowToPage"/>
+    <ShellContent ContentTemplate="{DataTemplate views:SettingsView}" Route="SettingsPage"/>
 
 </Shell>

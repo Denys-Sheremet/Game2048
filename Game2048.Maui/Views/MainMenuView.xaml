@@ -6,47 +6,125 @@
              x:DataType="vm:MainMenuViewModel"
              Shell.NavBarIsVisible="False">
     
-    <VerticalStackLayout VerticalOptions="Center" Spacing="30" Padding="30">
+    <Grid RowDefinitions="Auto, *, Auto" Padding="30" HorizontalOptions="Center" VerticalOptions="Fill" BackgroundColor="{DynamicResource GameBackgroundColor}">
 
-        <Border BackgroundColor="#edc22e"
-                StrokeThickness="0"
-                HeightRequest="150"
-                WidthRequest="150"
-                HorizontalOptions="Center">
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="15"/>
-            </Border.StrokeShape>
+        <Image Grid.Row="0"
+               Source="game2048_logo.png"
+               x:Name="GameLogoImage"
+               HeightRequest="120"
+               Margin="0, 0, 0, 20"
+               Aspect="AspectFit"
+               HorizontalOptions="Center"
+               VerticalOptions="Start"/>
 
-            <Label Text="2048"
-                   TextColor="White"
-                   FontFamily="RubikBold"
-                   FontSize="48"
+        <Grid Grid.Row="1"
+              ColumnDefinitions="*, *"
+              RowDefinitions="Auto, Auto, Auto, Auto"
+              RowSpacing="15"
+              ColumnSpacing="15" 
+              VerticalOptions="Center">
+
+            <Button x:Name="FastGameBtn"
+                    Clicked="OnButtonClicked"
+                    Command="{Binding StartClassicGameCommand}"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="&#xf04b;"
+                    FontFamily="FontAwesome"
+                    FontSize="80"
+                    CornerRadius="15"
+                    HorizontalOptions="Fill"
+                    HeightRequest="170"
+                    TextColor="{DynamicResource Tile2TextColor}"
+                    BackgroundColor="{DynamicResource Tile16BGColor}">
+                    
+            </Button>
+
+            <Button x:Name="AchievementsBtn"
+                    Clicked="OnButtonClicked"
+                    Command="{Binding GoToAchievementsCommand}"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Text="&#xf091;"
+                    FontFamily="FontAwesome"
+                    FontSize="80"
+                    CornerRadius="15"
+                    HorizontalOptions="Fill"
+                    HeightRequest="170"
+                    TextColor="{DynamicResource Tile2048BGColor}"
+                    BackgroundColor="{DynamicResource Tile4TextColor}">
+
+            </Button>
+
+            <Button x:Name="GameModesBtn"
+                    Clicked="OnButtonClicked"
+                    Command="{Binding GoToGameModesCommand}"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    HeightRequest="60"
+                    FontFamily="FontAwesome"
+                    FontSize="22"
+                    Padding="20, 0"
+                    Text="&#xf527; GAME MODES"
+                    CornerRadius="15"
+                    BackgroundColor="{DynamicResource MainButtonBGColor}"
+                    TextColor="{DynamicResource MainButtonTextColor}">
+
+            </Button>
+
+            <Button x:Name="SettingsBtn"
+                    Clicked="OnButtonClicked"
+                    Command="{Binding GoToSettingsCommand}"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    HeightRequest="60"
+                    FontFamily="FontAwesome"
+                    FontSize="22"
+                    Padding="20, 0"
+                    Text="&#xf1de; SETTINGS"
+                    CornerRadius="15"
+                    BackgroundColor="{DynamicResource MainButtonBGColor}"
+                    TextColor="{DynamicResource MainButtonTextColor}">
+
+            </Button>
+
+            <Button x:Name="HowToPlayBtn"
+                    Clicked="OnButtonClicked"
+                    Command="{Binding GoToHowToCommand}"
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    HeightRequest="60"
+                    FontFamily="FontAwesome"
+                    FontSize="22"
+                    Padding="20, 0"
+                    Text="&#xf059; HOW TO"
+                    CornerRadius="15"
+                    BackgroundColor="{DynamicResource MainButtonBGColor}"
+                    TextColor="{DynamicResource MainButtonTextColor}">
+
+            </Button>
+
+        </Grid>
+
+        <VerticalStackLayout Grid.Row="2"
+                             VerticalOptions="End"
+                             Spacing="5"
+                             Margin="0, 20, 0, 0">
+            <Image HorizontalOptions="Center"
+                   Aspect="AspectFit"
+                   Source="rbsoft_logo.png"
+                   HeightRequest="60"/>
+
+            <Label Text="Ver. 1.0"
+                   FontFamily="MontSemi"
+                   FontSize="14"
                    HorizontalOptions="Center"
-                   VerticalOptions="Center" />
-        </Border>
-
-        <Label Text="Join the numbers and get to the 2048 tile!"
-               TextColor="#776e65"
-               FontFamily="RubikRegular"
-               FontSize="18"
-               HorizontalTextAlignment="Center" />
-
-        <VerticalStackLayout Spacing="15">
-            <Button Text="START GAME"
-                    Command="{Binding StartGameCommand}"
-                    BackgroundColor="#8f7a66"
-                    TextColor="White"
-                    FontFamily="RubikBold"
-                    HeightRequest="60"
-                    CornerRadius="10" />
-
-            <Button Text="SETTINGS"
-                    BackgroundColor="#bbada0"
-                    TextColor="White"
-                    FontFamily="RubikBold"
-                    HeightRequest="60"
-                    CornerRadius="10" />
+                   Opacity="0.6"/> 
         </VerticalStackLayout>
+        
 
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>

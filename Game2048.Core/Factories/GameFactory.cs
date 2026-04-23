@@ -2,14 +2,14 @@
 
 public static class GameFactory
 {
-    public static Game CreateGame(int width, int height, GameModeType gameMode) => gameMode switch
+    public static Game CreateGame(GameConfig config) => config.GameMode switch
     {
-        GameModeType.Classic        => CreateClassicGame(width, height),
-        GameModeType.ClassicPlus    => CreateClassicPlusGame(width, height),
-        GameModeType.Compact        => CreateCompactGame(width, height),
-        GameModeType.Extended       => CreateExtendedGame(width, height),
-        GameModeType.ChillZone      => CreateChillZoneGame(width, height),
-        _                           => CreateClassicGame()
+        GameModeType.Classic        => CreateClassicGame(config.Cols, config.Rows),
+        GameModeType.ClassicPlus    => CreateClassicPlusGame(config.Cols, config.Rows),
+        GameModeType.Compact        => CreateCompactGame(config.Cols, config.Rows),
+        GameModeType.Extended       => CreateExtendedGame(config.Cols, config.Rows),
+        GameModeType.ChillZone      => CreateChillZoneGame(config.Cols, config.Rows),
+        _                           => throw new ArgumentException("No corresponding game mode implemented yet")
     };
 
     public static Game CreateClassicGame(int width = 4, int height = 4, IRandomProvider? random = null)

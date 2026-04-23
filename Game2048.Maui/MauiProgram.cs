@@ -1,4 +1,6 @@
-﻿using Game2048.Maui.ViewModels;
+﻿using Game2048.Core.Models;
+using Game2048.Maui.ViewModels;
+using Game2048.Maui.Views;
 using Microsoft.Extensions.Logging;
 
 namespace Game2048.Maui
@@ -20,7 +22,15 @@ namespace Game2048.Maui
                     fonts.AddFont("rubik_bold.ttf", "RubikBold");
                     fonts.AddFont("rubik_medium.ttf", "RubikMedium");
                     fonts.AddFont("rubik_regular.ttf", "RubikRegular");
+                    fonts.AddFont("fontawesome_solid.otf", "FontAwesome");
                 });
+
+            builder.Services.AddSingleton<GameConfig>();
+
+            builder.Services.AddTransient<GameView>();
+            builder.Services.AddTransient<GameViewModel>();
+            builder.Services.AddTransient<MainMenuViewModel>();
+            builder.Services.AddTransient<MainMenuView>();
 
 #if DEBUG
     		builder.Logging.AddDebug();
