@@ -53,6 +53,8 @@
     <Color x:Key="ScoreBoardNumColor">#323030</Color>
 
     <Color x:Key="LogoNumColor">#323030</Color>
+
+    <Color x:Key="MainTextColor">#776E65</Color>
     
     
     

@@ -6,7 +6,10 @@
              x:DataType="vm:MainMenuViewModel"
              Shell.NavBarIsVisible="False">
     
-    <Grid RowDefinitions="Auto, *, Auto" Padding="30" HorizontalOptions="Center" VerticalOptions="Fill" BackgroundColor="{DynamicResource GameBackgroundColor}">
+    <Grid RowDefinitions="Auto, *, Auto" 
+          Padding="30" 
+          HorizontalOptions="Center" VerticalOptions="Fill" 
+          BackgroundColor="{DynamicResource GameBackgroundColor}">
 
         <Image Grid.Row="0"
                Source="game2048_logo.png"
