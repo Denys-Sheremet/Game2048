@@ -250,13 +250,28 @@ public partial class GameView : ContentPage
         BuildTheBoard(_viewModel.Rows, _viewModel.Columns);
         _viewModel.StartNewGame();
         FullRedraw();
+
+        Dispatcher.Dispatch(async () => 
+        {
+            GamePageContainer.TranslationX = Width;
+            GamePageContainer.Opacity = 0;
+
+            await Task.WhenAll(
+                GamePageContainer.TranslateTo(0, 0, 300, Easing.CubicOut),
+                GamePageContainer.FadeTo(1, 300, Easing.CubicOut)
+            );
+        });
     }
 
-    private async void OnButtonClicked(object sender, EventArgs e)
+    private async void OnGoToMenu(object sender, EventArgs e)
     {
-        var button = (View)sender;
+        await Task.WhenAll(
+            GamePageContainer.TranslateTo(Width, 0, 250, Easing.CubicIn),
+            GamePageContainer.FadeTo(0, 250, Easing.Linear)
+        );
 
-        await button.ScaleTo(0.85, 50, Easing.CubicIn);
-        await button.ScaleTo(1, 100, Easing.SpringOut);
+        await Task.WhenAll(
+            Shell.Current.GoToAsync("///MainMenuPage", false)
+        );
     }
 }

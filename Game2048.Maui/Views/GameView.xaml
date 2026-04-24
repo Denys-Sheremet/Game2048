@@ -8,119 +8,119 @@
              Shell.NavBarIsVisible="False"
              BackgroundColor="{DynamicResource GameBackgroundColor}">
 
-    <Grid x:Name="PageGrid" 
-          RowDefinitions="Auto, *, Auto">
-
-        <!-- Info block with score -->
-        <Grid x:Name="InfoBlockWrapper" 
-              Grid.Row="0" 
-              ColumnDefinitions="*, *, *, *" 
-              RowDefinitions="Auto, Auto" 
-              ColumnSpacing="20" 
-              Padding="15"
-              HorizontalOptions="Fill">
-
-            <Button x:Name="BackBtn" 
-                    Clicked="OnButtonClicked"
-                    Grid.Column="0" 
-                    WidthRequest="55"
-                    HeightRequest="55"
-                    FontFamily="FontAwesome"
-                    Text="&#xf30a;"
-                    FontSize="20"
-                    TextColor="{DynamicResource MainButtonTextColor}"     
-                    Command="{Binding BackToMenuCommand}"
-                    BackgroundColor="{DynamicResource MainButtonBGColor}"  
-                    HorizontalOptions="Start"
-                    VerticalOptions="Center"/>
-
-            <Label Grid.Column="1" 
-                   Grid.ColumnSpan="2" 
-                   Text="2048" 
-                   FontSize="55" 
-                   FontFamily="RubikBold" 
-                   HorizontalOptions="Center" 
-                   TextColor="{DynamicResource LogoNumColor}" />
-
-            <Grid Grid.Column="0" 
-                  Grid.ColumnSpan="4" 
-                  Grid.Row="1" 
-                  ColumnDefinitions="*" 
-                  Margin="0, 15, 0, 0" 
-                  ColumnSpacing="20">
-
-                <views:ScoreBoardView Grid.Column="0" VerticalOptions="Center"/>
-            </Grid>
-        </Grid>
-
-        <!-- Game field block with acual gameplay -->
-        <ContentView x:Name="FieldBlockWrapper" 
-                     Grid.Row="1" 
-                     HorizontalOptions="Fill" 
-                     VerticalOptions="Fill"
-                     SizeChanged="OnFieldWrapperSizeChanged">
-
-            <Border x:Name="GameFrame" 
-                    Padding="0" 
-                    StrokeThickness="0"
-                    StrokeShape="RoundRectangle 10" 
-                    BackgroundColor="{DynamicResource GameFieldBackgroundColor}">
-
-                <Grid>
-
-                    <Grid.GestureRecognizers>
-                        <PanGestureRecognizer PanUpdated="OnPanUpdated" />
-                    </Grid.GestureRecognizers>
-
-                    <AbsoluteLayout x:Name="BackgroundGridLayout"/>
-
-                    <AbsoluteLayout x:Name="GameGridLayout" />
-
-                </Grid>
-                
-            </Border>
-            
-        </ContentView>
-
-        <!-- Control buttons blok (Undo, settings) -->
-        <Grid x:Name="ButtonsBlockWrapper" 
-              Grid.Row="2" 
-              ColumnDefinitions="*, *" 
-              ColumnSpacing="20" 
-              Padding="15, 40" 
-              VerticalOptions="End">
-            
-            <Button Grid.Column="0" 
-                    Text="Undo" 
-                    Clicked="OnButtonClicked"
-                    Command="{Binding UndoCommand}"
-                    IsVisible="{Binding IsUndoEnabled}"
-                    FontSize="24" 
-                    BackgroundColor="{DynamicResource MainButtonBGColor}" 
-                    TextColor="{DynamicResource MainButtonTextColor}" 
-                    FontFamily="MontBold"/>
-
-            <Button Grid.Column="1" 
-                    Text="Settings" 
-                    Clicked="OnButtonClicked"
-                    FontSize="24" 
-                    BackgroundColor="{DynamicResource MainButtonBGColor}" 
-                    TextColor="{DynamicResource MainButtonTextColor}" 
-                    FontFamily="MontBold">
-                <Button.Triggers>
-                    <DataTrigger TargetType="Button"
-                                 Binding="{Binding IsUndoEnabled}"
-                                 Value="False">
-                        <Setter Property="Grid.Column" Value="0"></Setter>
-                        <Setter Property="Grid.ColumnSpan" Value="2"></Setter>
-                    </DataTrigger>
-                </Button.Triggers>
-                
-                
-            </Button>
-
-        </Grid>
+    <Grid x:Name="GamePageContainer"
+          BackgroundColor="{DynamicResource GameBackgroundColor}"
+          VerticalOptions="Fill"
+          HorizontalOptions="Fill">
         
-    </Grid>
     
+        <Grid x:Name="PageGrid" 
+              RowDefinitions="Auto, *, Auto">
+
+            <!-- Info block with score -->
+            <Grid x:Name="InfoBlockWrapper" 
+                  Grid.Row="0" 
+                  ColumnDefinitions="*, *, *, *" 
+                  RowDefinitions="Auto, Auto" 
+                  ColumnSpacing="20" 
+                  Padding="15"
+                  HorizontalOptions="Fill">
+
+                <Button x:Name="BackBtn" 
+                        Grid.Column="0" 
+                        WidthRequest="55"
+                        HeightRequest="55"
+                        FontFamily="FontAwesome"
+                        Text="&#xf30a;"
+                        FontSize="20"    
+                        Clicked="OnGoToMenu" 
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Style="{StaticResource MainBtnStyle}"/>
+
+                <Label Grid.Column="1" 
+                       Grid.ColumnSpan="2" 
+                       Text="2048" 
+                       FontSize="55" 
+                       FontFamily="RubikBold" 
+                       HorizontalOptions="Center" 
+                       TextColor="{DynamicResource LogoNumColor}" />
+
+                <Grid Grid.Column="0" 
+                      Grid.ColumnSpan="4" 
+                      Grid.Row="1" 
+                      ColumnDefinitions="*" 
+                      Margin="0, 15, 0, 0" 
+                      ColumnSpacing="20">
+
+                    <views:ScoreBoardView Grid.Column="0" VerticalOptions="Center"/>
+                </Grid>
+            </Grid>
+
+            <!-- Game field block with acual gameplay -->
+            <ContentView x:Name="FieldBlockWrapper" 
+                         Grid.Row="1" 
+                         HorizontalOptions="Fill" 
+                         VerticalOptions="Fill"
+                         SizeChanged="OnFieldWrapperSizeChanged">
+
+                <Border x:Name="GameFrame" 
+                        Padding="0" 
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 10" 
+                        BackgroundColor="{DynamicResource GameFieldBackgroundColor}">
+
+                    <Grid>
+
+                        <Grid.GestureRecognizers>
+                            <PanGestureRecognizer PanUpdated="OnPanUpdated" />
+                        </Grid.GestureRecognizers>
+
+                        <AbsoluteLayout x:Name="BackgroundGridLayout"/>
+
+                        <AbsoluteLayout x:Name="GameGridLayout" />
+
+                    </Grid>
+                
+                </Border>
+            
+            </ContentView>
+
+            <!-- Control buttons blok (Undo, settings) -->
+            <Grid x:Name="ButtonsBlockWrapper" 
+                  Grid.Row="2" 
+                  ColumnDefinitions="*, *" 
+                  ColumnSpacing="20" 
+                  Padding="15, 40" 
+                  VerticalOptions="End">
+            
+                <Button Grid.Column="0" 
+                        Text="Undo" 
+                        Command="{Binding UndoCommand}"
+                        IsVisible="{Binding IsUndoEnabled}"
+                        FontSize="24" 
+                        Style="{StaticResource MainBtnStyle}"
+                        FontFamily="MontBold"/>
+
+                <Button Grid.Column="1" 
+                        Text="Settings" 
+                        FontSize="24" 
+                        Style="{StaticResource MainBtnStyle}" 
+                        FontFamily="MontBold">
+                    <Button.Triggers>
+                        <DataTrigger TargetType="Button"
+                                     Binding="{Binding IsUndoEnabled}"
+                                     Value="False">
+                            <Setter Property="Grid.Column" Value="0"></Setter>
+                            <Setter Property="Grid.ColumnSpan" Value="2"></Setter>
+                        </DataTrigger>
+                    </Button.Triggers>
+                
+                
+                </Button>
+
+            </Grid>
+        
+        </Grid>
+    </Grid>
 </ContentPage>

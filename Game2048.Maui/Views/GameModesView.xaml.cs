@@ -12,11 +12,4 @@ public partial class GameModesView : ContentPage
 		InitializeComponent();
 	}
 
-    private async void OnButtonClicked(object sender, EventArgs e)
-    {
-        var button = (View)sender;
-
-        await button.ScaleTo(0.85, 50, Easing.CubicIn);
-        await button.ScaleTo(1, 100, Easing.SpringOut);
-    }
 }

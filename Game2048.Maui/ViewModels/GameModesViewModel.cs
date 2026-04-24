@@ -18,6 +18,7 @@ public partial class GameModesViewModel : BindableObject
 
     private async Task OnGoToMenu()
     {
+        await Task.Delay(500);
         await Shell.Current.GoToAsync("///MainMenuPage");
     }
 }

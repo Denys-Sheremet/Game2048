@@ -15,7 +15,6 @@
 
         <Button Grid.Row="0"
                 Grid.Column="0"
-                Clicked="OnButtonClicked"
                 WidthRequest="55"
                 HeightRequest="55"
                 FontFamily="FontAwesome"

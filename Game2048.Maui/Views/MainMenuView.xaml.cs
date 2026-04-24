@@ -11,11 +11,32 @@ public partial class MainMenuView : ContentPage
         _mainMenuViewModel = viewModel;
 		BindingContext = _mainMenuViewModel;
     }
-    private async void OnButtonClicked(object sender, EventArgs e)
-    {
-        var button = (View)sender;
 
-        await button.ScaleTo(0.85, 50, Easing.CubicIn);
-        await button.ScaleTo(1, 100, Easing.SpringOut);
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        Dispatcher.Dispatch(async () =>
+        {
+            MenuPageContainer.TranslationX = -Width;
+            MenuPageContainer.Opacity = 0;
+
+            await Task.WhenAll(
+                MenuPageContainer.TranslateTo(0, 0, 300, Easing.CubicOut),
+                MenuPageContainer.FadeTo(1, 300, Easing.CubicOut)
+            );
+        });
+    }
+
+	private async void OnStartClassicGame(object sender, EventArgs e)
+	{
+        await Task.WhenAll(
+            MenuPageContainer.TranslateTo(-Width, 0, 250, Easing.CubicIn),
+            MenuPageContainer.FadeTo(0, 250, Easing.Linear)
+        );
+
+        await Task.WhenAll(
+            Shell.Current.GoToAsync("///GamePage", false)
+        ); 
     }
 }
