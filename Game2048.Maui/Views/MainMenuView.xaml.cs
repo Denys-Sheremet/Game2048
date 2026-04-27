@@ -22,7 +22,7 @@ public partial class MainMenuView : ContentPage
             MenuPageContainer.Opacity = 0;
 
             await Task.WhenAll(
-                MenuPageContainer.TranslateTo(0, 0, 300, Easing.CubicOut),
+                MenuPageContainer.TranslateTo(0, 0, 300, Easing.SpringOut),
                 MenuPageContainer.FadeTo(1, 300, Easing.CubicOut)
             );
         });

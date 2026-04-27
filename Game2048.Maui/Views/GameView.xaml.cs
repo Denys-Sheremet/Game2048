@@ -257,7 +257,7 @@ public partial class GameView : ContentPage
             GamePageContainer.Opacity = 0;
 
             await Task.WhenAll(
-                GamePageContainer.TranslateTo(0, 0, 300, Easing.CubicOut),
+                GamePageContainer.TranslateTo(0, 0, 300, Easing.SpringOut),
                 GamePageContainer.FadeTo(1, 300, Easing.CubicOut)
             );
         });

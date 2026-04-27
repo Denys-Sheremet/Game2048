@@ -6,48 +6,50 @@
              x:DataType="vm:GameModesViewModel"
              Shell.NavBarIsVisible="False">
 
-    <Grid RowDefinitions="Auto, *"
-          ColumnDefinitions="Auto, *, *, *"
-          RowSpacing="10"
-          HorizontalOptions="Fill"
+    <Grid x:Name="GameModesPageContainer"
+          BackgroundColor="{DynamicResource GameBackgroundColor}"
           VerticalOptions="Fill"
-          BackgroundColor="{DynamicResource GameBackgroundColor}">
+          HorizontalOptions="Fill">
 
-        <Button Grid.Row="0"
-                Grid.Column="0"
-                WidthRequest="55"
-                HeightRequest="55"
-                FontFamily="FontAwesome"
-                Text="&#xf30a;"
-                FontSize="20"
-                TextColor="{DynamicResource MainButtonTextColor}"     
-                Command="{Binding BackToMenuCommand}"
-                BackgroundColor="{DynamicResource MainButtonBGColor}"
-                HorizontalOptions="Start"
-                VerticalOptions="Center">
+        <Grid RowDefinitions="Auto, *"
+              ColumnDefinitions="*, Auto, *"
+              RowSpacing="10"
+              Padding="10"
+              HorizontalOptions="Fill"
+              VerticalOptions="Fill"
+              BackgroundColor="{DynamicResource GameBackgroundColor}">
+
+            <Button Grid.Row="0"
+                    Grid.Column="0"
+                    WidthRequest="55"
+                    HeightRequest="55"
+                    FontFamily="FontAwesome"
+                    Text="&#xf30a;"
+                    FontSize="20"
+                    TextColor="{DynamicResource MainButtonTextColor}"     
+                    Command="{Binding BackToMenuCommand}"
+                    BackgroundColor="{DynamicResource MainButtonBGColor}"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center">
             
-        </Button>
+            </Button>
         
-        <Label Text="Game Modes"
-               Grid.Row="0"
-               Grid.Column="1"
-               Grid.ColumnSpan="2"
-               FontFamily="MontBold"
-               FontSize="60"
-               TextColor="{DynamicResource MainTextColor}">
+            <Label Text="Game Modes"
+                   Grid.Row="0"
+                   Grid.Column="1"
+                   HorizontalOptions="Center"
+                   FontFamily="MontBold"
+                   FontSize="35"
+                   TextColor="{DynamicResource MainTextColor}">
             
-        </Label>
+            </Label>
 
-        <Grid Grid.Row="1"
-              Grid.Column="0"
-              Grid.ColumnSpan="4"
-              RowDefinitions="Auto, Auto, Auto, Auto, Auto"
-              ColumnDefinitions="*, Auto"
-              RowSpacing="15"
-              HorizontalOptions="Center">
-            
+            <CarouselView Grid.Row="1"
+                          Grid.Column="0"
+                          >
+                
+            </CarouselView>
+        
         </Grid>
-        
     </Grid>
-    
 </ContentPage>
