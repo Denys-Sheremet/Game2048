@@ -6,11 +6,17 @@ public record GameConfig
     public int Cols { get; set; } = 4;
     public GameModeType GameMode { get; set; } = GameModeType.Classic;
 
-    public void SetConfig(int rows, int cols, GameModeType gameMode)
-    {
-        if (rows <= 0 || cols <= 0) throw new ArgumentException("Rows and Cols should be > 0");
-        Rows = rows;
-        Cols = cols;
+    public void SetConfig(GameModeType gameMode)
+    { 
         GameMode = gameMode;
+        switch (gameMode)
+        {
+            case GameModeType.Classic: Rows = 4; Cols = 4; break;
+            case GameModeType.ClassicPlus: Rows = 4; Cols = 4; break;
+            case GameModeType.Compact: Rows = 3; Cols = 3; break;
+            case GameModeType.Extended: Rows = 5; Cols = 5; break;
+            case GameModeType.ChillZone: Rows = 5; Cols = 5; break;
+            default : throw new ArgumentException("GameModeType provided was not implemented yet");
+        }
     }
 }

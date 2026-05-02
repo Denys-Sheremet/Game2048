@@ -41,7 +41,7 @@ public static class GameFactory
     public static Game CreateCompactGame(int width = 3, int height = 3, int interval = 2, IRandomProvider? random = null, int initialSpawns = 2)
     {
         Grid grid = new Grid(width, height);
-        return new Game
+        Game game = new Game
             (
                 grid,
                 new DelayedTileSpawner(interval, initialSpawns),
@@ -49,12 +49,14 @@ public static class GameFactory
                 new TileRegistry(),
                 random ?? new DefaultRandomProvider()
             );
+        game.SetMaxValue(1024);
+        return game;
     }
 
     public static Game CreateExtendedGame(int width = 5, int height = 5, IRandomProvider? random = null)
     {
         Grid grid = new Grid(width, height);
-        return new Game
+        Game game = new Game
             (
                 grid,
                 new MultipleTileSpawner(2),
@@ -62,12 +64,14 @@ public static class GameFactory
                 new TileRegistry(),
                 random ?? new DefaultRandomProvider()
             );
+        game.SetMaxValue(4096);
+        return game;
     }
 
     public static Game CreateChillZoneGame(int width = 5, int height = 5, IRandomProvider? random = null)
     {
         Grid grid = new Grid(width, height);
-        return new Game
+        Game game = new Game
             (
                 grid,
                 new MultipleTileSpawner(2),
@@ -75,5 +79,7 @@ public static class GameFactory
                 new TileRegistry(),
                 random ?? new DefaultRandomProvider()
             );
+        game.SetMaxValue(4096);
+        return game;
     }
 }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:Game2048.Maui.Views"
+             xmlns:models="clr-namespace:Game2048.Maui.Models"
+             x:Class="Game2048.Maui.Views.GameModeCardView"
+             x:DataType="models:GameMode">
+
+    <Border x:Name="CardContainer"
+            StrokeShape="RoundRectangle 32"
+            StrokeThickness="0"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            BackgroundColor="{Binding CardColor}"
+            Margin="10,20"
+            HeightRequest="500"
+            WidthRequest="300">
+
+        <Border.GestureRecognizers>
+            <TapGestureRecognizer 
+                    Command="{Binding Command, Source={RelativeSource AncestorType={x:Type views:GameModeCardView}}, x:DataType={x:Type views:GameModeCardView}}"
+                    CommandParameter="{Binding CommandParameter, Source={RelativeSource AncestorType={x:Type views:GameModeCardView}}, x:DataType={x:Type views:GameModeCardView}}" />
+        </Border.GestureRecognizers>
+
+        <VerticalStackLayout Spacing="0" VerticalOptions="Fill">
+            <Grid HeightRequest="250"
+                  WidthRequest="250"
+                  Margin="0,25,0,0">
+                
+                <Grid.Clip>
+                    <RoundRectangleGeometry CornerRadius="5" Rect="0,0,250,250"/>
+                </Grid.Clip>
+
+                <Image Source="{Binding GifSource}"
+                       IsAnimationPlaying="{Binding IsActive}"
+                       Aspect="AspectFill">
+                </Image>
+            </Grid>
+
+            <VerticalStackLayout Padding="20" Spacing="5" HorizontalOptions="Center">
+                <Label Text="{Binding GridSize}" 
+                       FontSize="56" 
+                       FontAttributes="Bold" 
+                       TextColor="White"
+                       FontFamily="RubikSemi"
+                       HorizontalOptions="Center"/>
+
+                <Label Text="{Binding Title}" 
+                       FontSize="26" 
+                       TextColor="White" 
+                       FontFamily="RubikSemi"
+                       Opacity="0.8"
+                       HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </Border>
+
+</ContentView>

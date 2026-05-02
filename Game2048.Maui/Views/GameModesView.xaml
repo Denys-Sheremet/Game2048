@@ -2,51 +2,64 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
+             xmlns:views="clr-namespace:Game2048.Maui.Views"
+             xmlns:models="clr-namespace:Game2048.Maui.Models"
              x:Class="Game2048.Maui.Views.GameModesView"
              x:DataType="vm:GameModesViewModel"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{DynamicResource GameBackgroundColor}">
 
     <Grid x:Name="GameModesPageContainer"
           BackgroundColor="{DynamicResource GameBackgroundColor}"
           VerticalOptions="Fill"
           HorizontalOptions="Fill">
 
-        <Grid RowDefinitions="Auto, *"
-              ColumnDefinitions="*, Auto, *"
+        <Grid RowDefinitions="Auto, Auto, *"
+              ColumnDefinitions="*"
               RowSpacing="10"
-              Padding="10"
+              Padding="0, 25, 0, 10"
               HorizontalOptions="Fill"
-              VerticalOptions="Fill"
-              BackgroundColor="{DynamicResource GameBackgroundColor}">
+              VerticalOptions="Fill">
 
-            <Button Grid.Row="0"
+            <Button x:Name="BackToMenuBtn"
+                    Grid.Row="0"
                     Grid.Column="0"
+                    Margin="15, 0, 0, 0"
                     WidthRequest="55"
                     HeightRequest="55"
                     FontFamily="FontAwesome"
                     Text="&#xf30a;"
-                    FontSize="20"
-                    TextColor="{DynamicResource MainButtonTextColor}"     
-                    Command="{Binding BackToMenuCommand}"
-                    BackgroundColor="{DynamicResource MainButtonBGColor}"
+                    FontSize="20"    
+                    Clicked="OnBackToMenu" 
                     HorizontalOptions="Start"
-                    VerticalOptions="Center">
+                    VerticalOptions="Center"
+                    Style="{StaticResource MainBtnStyle}">
             
             </Button>
         
-            <Label Text="Game Modes"
-                   Grid.Row="0"
-                   Grid.Column="1"
+            <Label Text="MODE SELECTION"
+                   Grid.Row="1"
+                   Grid.Column="0"
                    HorizontalOptions="Center"
-                   FontFamily="MontBold"
-                   FontSize="35"
+                   VerticalOptions="End"
+                   FontFamily="RubikSemi"
+                   FontSize="40"
                    TextColor="{DynamicResource MainTextColor}">
             
             </Label>
 
-            <CarouselView Grid.Row="1"
+            <CarouselView Grid.Row="2"
                           Grid.Column="0"
-                          >
+                          ItemsSource="{Binding Modes}"
+                          CurrentItem="{Binding SelectedMode}"
+                          PeekAreaInsets="40">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate x:DataType="models:GameMode">
+                        <views:GameModeCardView
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:GameModesViewModel}}, Path=StartGameCommand, x:DataType={x:Type vm:GameModesViewModel}}"
+                            CommandParameter="{Binding ModeType}"/>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
                 
             </CarouselView>
         

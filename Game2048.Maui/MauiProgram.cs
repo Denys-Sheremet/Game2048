@@ -1,4 +1,6 @@
 ﻿using Game2048.Core.Models;
+using Game2048.Maui.Interfaces;
+using Game2048.Maui.Services;
 using Game2048.Maui.ViewModels;
 using Game2048.Maui.Views;
 using Microsoft.Extensions.Logging;
@@ -20,12 +22,13 @@ namespace Game2048.Maui
                     fonts.AddFont("montserrat_semibold.ttf", "MontSemi");
                     fonts.AddFont("montserrat_regular.ttf", "MontReg");
                     fonts.AddFont("rubik_bold.ttf", "RubikBold");
-                    fonts.AddFont("rubik_medium.ttf", "RubikMedium");
+                    fonts.AddFont("rubik_semibold.ttf", "RubikSemi");
                     fonts.AddFont("rubik_regular.ttf", "RubikRegular");
                     fonts.AddFont("fontawesome_solid.otf", "FontAwesome");
                 });
 
             builder.Services.AddSingleton<GameConfig>();
+            builder.Services.AddSingleton<IGameModeService, GameModeService>();
 
             builder.Services.AddTransient<GameView>();
             builder.Services.AddTransient<GameViewModel>();

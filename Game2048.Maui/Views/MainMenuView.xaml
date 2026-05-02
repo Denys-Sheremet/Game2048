@@ -50,7 +50,7 @@
                 </Button>
 
                 <Button x:Name="AchievementsBtn"
-                        Command="{Binding GoToAchievementsCommand}"
+                        Clicked="OnGoToAchievements"
                         Grid.Row="0"
                         Grid.Column="1"
                         Text="&#xf091;"
@@ -66,7 +66,7 @@
                 </Button>
 
                 <Button x:Name="GameModesBtn"
-                        Command="{Binding GoToGameModesCommand}"
+                        Clicked="OnGoToGameModes"
                         Grid.Row="1"
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
@@ -83,7 +83,7 @@
                 </Button>
 
                 <Button x:Name="SettingsBtn"
-                        Command="{Binding GoToSettingsCommand}"
+                        Clicked="OnGoToSettings"
                         Grid.Row="2"
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
@@ -100,7 +100,7 @@
                 </Button>
 
                 <Button x:Name="HowToPlayBtn"
-                        Command="{Binding GoToHowToCommand}"
+                        Clicked="OnGoToHowTo"
                         Grid.Row="3"
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
