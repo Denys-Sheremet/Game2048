@@ -13,4 +13,14 @@ public class HistoryManager : IHistoryManager
     } 
     public StateSnapshot? Pop() => _stack.Count > 0 ? _stack.Pop() : null;
     public void Clear() => _stack.Clear();
+
+    public void RemoveMultiple(int count)
+    {
+        int actualPopCount = Math.Min(count, _stack.Count);
+
+        for (int i = 0; i < actualPopCount; i++)
+        {
+            _stack.Pop();
+        }
+    }
 }

@@ -7,4 +7,5 @@ public interface IHistoryManager
     void Push(StateSnapshot state);
     StateSnapshot? Pop();
     void Clear();
+    void RemoveMultiple(int count);
 }

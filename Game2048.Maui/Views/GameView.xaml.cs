@@ -15,6 +15,17 @@ public partial class GameView : ContentPage
 
     private readonly Dictionary<int, TileView> _tileViews = new();
 
+    private bool _isEndGame = false;
+    public bool IsEndGame
+    {
+        get => _isEndGame;
+        set 
+        {
+            _isEndGame = value;
+            OnPropertyChanged();
+        }
+    }
+
     public GameView(GameViewModel viewModel)
     {
         InitializeComponent();
@@ -36,6 +47,10 @@ public partial class GameView : ContentPage
         {
             await ApplyCreateTransitionsAsync(transitions);
         };
+
+        _viewModel.OnVictory += HandleOnVictory;
+        _viewModel.OnGameOver += HandleOnGameOver;
+        _viewModel.OnRestart += HandleRestart;
     }
 
     private async Task ApplyMoveTransitionsAsync(IEnumerable<TileTransition> transitions)
@@ -273,5 +288,29 @@ public partial class GameView : ContentPage
         await Task.WhenAll(
             Shell.Current.GoToAsync("///MainMenuPage", false)
         );
+    }
+
+    private async void HandleOnVictory()
+    {
+        IsEndGame = true;
+    }
+
+    private async void HandleOnGameOver()
+    {
+        IsEndGame = true;
+
+        GameOverOverlay.Scale = 0.0;
+        GameOverOverlay.IsVisible = true;
+
+        await Task.WhenAll
+            (
+                GameOverOverlay.ScaleTo(1.1, 250, Easing.CubicIn),
+                GameOverOverlay.ScaleTo(1.0, 100, Easing.CubicOut)
+            );
+    }
+
+    private async void HandleRestart()
+    {
+
     }
 }

@@ -6,6 +6,7 @@ using Game2048.Maui.Services;
 using Game2048.Core.Factories;
 using Game2048.Core.Enums;
 using Game2048.Core.Models;
+using System.Runtime.CompilerServices;
 
 namespace Game2048.Maui.ViewModels;
 
@@ -21,7 +22,23 @@ public partial class GameViewModel : BindableObject
     private ActionInputQueue _actionQueue;
     public IAsyncRelayCommand MoveCommand { get; private set; }
     public IAsyncRelayCommand UndoCommand { get; private set; }
-    public IAsyncRelayCommand BackToMenuCommand { get; private set; }
+    public IAsyncRelayCommand RestartCommand { get; private set; }
+    public IAsyncRelayCommand UndoLastAndContinue { get; private set; }
+
+    public event Action? OnVictory;
+    public event Action? OnGameOver;
+    public event Action? OnRestart;
+
+    private bool _isEndGame = false;
+    public bool IsEndGame
+    {
+        get => _isEndGame;
+        set
+        {
+            _isEndGame = value;
+            OnPropertyChanged();
+        }
+    }
 
     private int _score;
     public int Score
@@ -80,7 +97,8 @@ public partial class GameViewModel : BindableObject
         _actionQueue = new ActionInputQueue();
         MoveCommand = new AsyncRelayCommand<string>(OnMoveRequested);
         UndoCommand = new AsyncRelayCommand(OnUndoRequested);
-        BackToMenuCommand = new AsyncRelayCommand(OnGoToMenu);
+        RestartCommand = new AsyncRelayCommand(OnRestartRequested);
+        UndoLastAndContinue = new AsyncRelayCommand(OnUndoAndContinueRequested);
         if (config.GameMode == GameModeType.Classic)
         {
             _isUndoEnabled = false;
@@ -89,10 +107,14 @@ public partial class GameViewModel : BindableObject
         { 
             _isUndoEnabled = true; 
         }
+
+        _gameCore.OnVictory += HandleOnVictory;
+        _gameCore.OnGameOver += HandleOnGameOver;
     }
 
     public void StartNewGame()
     {
+        _gameCore.Clear();
         _gameCore.SpawnMultipleTiles(2);
         SyncTiles();
         HistoryCount = _gameCore.HistoryCount;
@@ -137,9 +159,19 @@ public partial class GameViewModel : BindableObject
         await Task.CompletedTask;
     }
 
-    private async Task ExecuteUndoAsync()
+    private async Task ExecuteUndoAsync(List<TileTransition>? givenTransitions = null)
     {
-        var transitions = _gameCore.Undo();
+        List<TileTransition> transitions;
+
+        if (givenTransitions is null)
+        {
+            transitions = _gameCore.Undo();
+        } 
+        else
+        {
+            transitions = givenTransitions;
+        }
+
 
         if (!transitions.Any()) return;
 
@@ -184,7 +216,37 @@ public partial class GameViewModel : BindableObject
         }
     }
 
-    
+    private void HandleOnVictory()
+    {
+        IsEndGame = true;
+        OnVictory?.Invoke();
+    }
+
+    private void HandleOnGameOver()
+    {
+        IsEndGame = true;
+        OnGameOver?.Invoke();
+    }
+
+    private async Task OnRestartRequested()
+    {
+        _actionQueue.Enqueue(() =>
+        {
+            StartNewGame();
+            OnRestart?.Invoke();
+            IsEndGame = false;
+            return Task.CompletedTask;
+        });
+        await Task.CompletedTask;
+    }
+    private async Task OnUndoAndContinueRequested()
+    {
+        var transitions = _gameCore.UndoMultiple(5);
+        await ExecuteUndoAsync(transitions);
+        OnRestart?.Invoke();
+        IsEndGame = false;
+    }
+
 
     private async Task InvokeTransition(Func<IEnumerable<TileTransition>, Task>? phaseEvent,IEnumerable<TileTransition> transitions)
     {
@@ -195,10 +257,5 @@ public partial class GameViewModel : BindableObject
                               .Select(func => func(transitions));
 
         await Task.WhenAll(tasks);
-    }
-
-    private async Task OnGoToMenu()
-    {
-        await Shell.Current.GoToAsync("///MainMenuPage");
     }
 }

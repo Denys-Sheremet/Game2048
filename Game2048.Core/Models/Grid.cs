@@ -245,4 +245,17 @@ public class Grid
         }
         return false;
     }
+
+    public void Clear()
+    {
+        _tiles.Clear();
+        for (int i = 0; i < Width; i++)
+        {
+            for (int j = 0; j < Height; j++)
+            {
+                _field[i, j] = null;
+            }
+        }
+        Score = 0;
+    }
 }

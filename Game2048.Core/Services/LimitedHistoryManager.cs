@@ -36,4 +36,14 @@ public class LimitedHistoryManager : IHistoryManager
     }
 
     public void Clear() => _list.Clear();
+
+    public void RemoveMultiple(int count)
+    {
+        int actualPopCount = Math.Min(count, _list.Count);
+
+        for (int i = 0; i < actualPopCount; i++)
+        {
+            _list.RemoveLast();
+        }
+    }
 }

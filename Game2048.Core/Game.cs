@@ -216,6 +216,7 @@ public class Game
     }
     private void Over()
     {
+        if (IsGameOver) return;
         IsGameOver = true;
         OnGameOver?.Invoke();
     }
@@ -253,5 +254,29 @@ public class Game
     public StateSnapshot GetCurrentGridState()
     {
         return this.Grid.CreateSnapshot(_nextTileId);
+    }
+
+    public void Clear()
+    {
+        Grid.Clear();
+        _tileRegistry.Clear();
+        _history.Clear();
+        _nextTileId = 1;
+        IsGameOver = false;
+        IsVictory = false;
+    }
+
+    public List<TileTransition> UndoMultiple(int count)
+    {
+        if (count < 1) return new();
+
+        IsGameOver = false;
+
+        if (count > 1)
+        {
+            _history.RemoveMultiple(count - 1);
+        }
+
+        return Undo();
     }
 }

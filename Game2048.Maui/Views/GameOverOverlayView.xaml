@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
+             x:DataType="vm:GameViewModel"
+             x:Class="Game2048.Maui.Views.GameOverOverlayView"
+             x:Name="GameOverOverlay">
+    
+    <Border VerticalOptions="Center"
+        HorizontalOptions="Center"
+        StrokeShape="RoundRectangle 20"
+        Padding="30"
+        BackgroundColor="{DynamicResource GameFieldBackgroundColor}"
+        WidthRequest="300"
+        Shadow="{StaticResource CommonShadow}">
+
+        <VerticalStackLayout Spacing="15"
+                             HorizontalOptions="Center">
+            <Label Text="GAME OVER"
+                   FontFamily="RubikBold"
+                   FontSize="30"
+                   TextColor="{DynamicResource ScoreBoardTextColor}"
+                   HorizontalOptions="Center"
+                   Margin="0, 0, 0, 10">
+                
+            </Label>
+            <Button x:Name="RestartBtn"
+                    Style="{StaticResource MainBtnStyle}"
+                    Text="Try again"
+                    FontFamily="MontBold"
+                    FontSize="20"
+                    Command="{Binding RestartCommand}">
+                
+            </Button>
+
+            <Button x:Name="GoToMenuBtn"
+                    Style="{StaticResource MainBtnStyle}"
+                    Text="Menu"
+                    FontFamily="MontBold"
+                    FontSize="20">
+
+            </Button>
+
+            <Button x:Name="UndoLastBtn"
+                    IsVisible="{Binding IsUndoEnabled}"
+                    Style="{StaticResource MainBtnStyle}"
+                    Text="Undo 5 moves"
+                    FontFamily="MontBold"
+                    FontSize="20"
+                    Command="{Binding UndoLastAndContinue}">
+
+            </Button>
+
+
+
+        </VerticalStackLayout>
+
+
+    </Border>
+</ContentView>

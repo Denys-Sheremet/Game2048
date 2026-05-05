@@ -122,5 +122,20 @@
             </Grid>
         
         </Grid>
+
+        <Grid x:Name="EndOfGameOverlay"
+              IsVisible="{Binding IsEndGame}"
+              BackgroundColor="#00000000"
+              InputTransparent="False"
+              CascadeInputTransparent="False"
+              ZIndex="10"
+              HorizontalOptions="Fill"
+              VerticalOptions="Fill">
+
+            <views:GameOverOverlayView x:Name="GameOverOverlay"
+                                       IsVisible="False"/>
+            
+        </Grid>
+        
     </Grid>
 </ContentPage>
