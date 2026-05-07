@@ -15,7 +15,8 @@
         
     
         <Grid x:Name="PageGrid" 
-              RowDefinitions="Auto, *, Auto">
+              RowDefinitions="Auto, *, Auto"
+              IsEnabled="{Binding IsActiveGame}">
 
             <!-- Info block with score -->
             <Grid x:Name="InfoBlockWrapper" 
@@ -125,15 +126,14 @@
 
         <Grid x:Name="EndOfGameOverlay"
               IsVisible="{Binding IsEndGame}"
-              BackgroundColor="#00000000"
+              BackgroundColor="#80000000"
               InputTransparent="False"
               CascadeInputTransparent="False"
               ZIndex="10"
               HorizontalOptions="Fill"
               VerticalOptions="Fill">
 
-            <views:GameOverOverlayView x:Name="GameOverOverlay"
-                                       IsVisible="False"/>
+            <views:GameOverOverlayView x:Name="GameOverOverlay"/>
             
         </Grid>
         

@@ -29,6 +29,17 @@ public partial class GameViewModel : BindableObject
     public event Action? OnGameOver;
     public event Action? OnRestart;
 
+    private bool _isActiveGame = true;
+    public bool IsActiveGame
+    {
+        get => _isActiveGame;
+        set
+        {
+            _isActiveGame = value;
+            OnPropertyChanged();
+        }
+    }
+
     private bool _isEndGame = false;
     public bool IsEndGame
     {
@@ -115,6 +126,7 @@ public partial class GameViewModel : BindableObject
     public void StartNewGame()
     {
         _gameCore.Clear();
+        Tiles.Clear();
         _gameCore.SpawnMultipleTiles(2);
         SyncTiles();
         HistoryCount = _gameCore.HistoryCount;
@@ -219,24 +231,30 @@ public partial class GameViewModel : BindableObject
     private void HandleOnVictory()
     {
         IsEndGame = true;
+        IsActiveGame = false;
         OnVictory?.Invoke();
     }
 
     private void HandleOnGameOver()
     {
         IsEndGame = true;
+        IsActiveGame = false;
         OnGameOver?.Invoke();
     }
 
     private async Task OnRestartRequested()
     {
+        _actionQueue.Clear();
+
         _actionQueue.Enqueue(() =>
         {
             StartNewGame();
             OnRestart?.Invoke();
             IsEndGame = false;
+            IsActiveGame = true;
             return Task.CompletedTask;
         });
+        
         await Task.CompletedTask;
     }
     private async Task OnUndoAndContinueRequested()
@@ -245,6 +263,7 @@ public partial class GameViewModel : BindableObject
         await ExecuteUndoAsync(transitions);
         OnRestart?.Invoke();
         IsEndGame = false;
+        IsActiveGame = true;
     }
 
 

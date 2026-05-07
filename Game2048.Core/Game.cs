@@ -259,6 +259,7 @@ public class Game
     public void Clear()
     {
         Grid.Clear();
+        _spawner.Reset();
         _tileRegistry.Clear();
         _history.Clear();
         _nextTileId = 1;

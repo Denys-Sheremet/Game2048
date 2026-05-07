@@ -67,4 +67,6 @@ public class TileSpawner : ITileSpawner
         return true;
     }
 
+    public void Reset(int resettedInitialSpawns = 2) { return; }
+
 }

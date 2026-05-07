@@ -37,4 +37,9 @@ public class ActionInputQueue
             _semaphore.Release();
         }
     }
+
+    public void Clear()
+    {
+        _queue.Clear();
+    }
 }

@@ -15,17 +15,6 @@ public partial class GameView : ContentPage
 
     private readonly Dictionary<int, TileView> _tileViews = new();
 
-    private bool _isEndGame = false;
-    public bool IsEndGame
-    {
-        get => _isEndGame;
-        set 
-        {
-            _isEndGame = value;
-            OnPropertyChanged();
-        }
-    }
-
     public GameView(GameViewModel viewModel)
     {
         InitializeComponent();
@@ -292,12 +281,11 @@ public partial class GameView : ContentPage
 
     private async void HandleOnVictory()
     {
-        IsEndGame = true;
+
     }
 
     private async void HandleOnGameOver()
     {
-        IsEndGame = true;
 
         GameOverOverlay.Scale = 0.0;
         GameOverOverlay.IsVisible = true;
@@ -309,8 +297,8 @@ public partial class GameView : ContentPage
             );
     }
 
-    private async void HandleRestart()
+    private void HandleRestart()
     {
-
+        FullRedraw();
     }
 }

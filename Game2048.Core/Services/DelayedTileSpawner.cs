@@ -44,7 +44,7 @@ public class DelayedTileSpawner : TileSpawner, ITileSpawner
         return success;
     }
 
-    public void Reset(int resettedInitialSpawns = 2)
+    public new void Reset(int resettedInitialSpawns = 2)
     {
         MovesLeft = _interval;
         _initialSpawnsLeft = resettedInitialSpawns;
