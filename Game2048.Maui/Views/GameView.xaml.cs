@@ -297,8 +297,17 @@ public partial class GameView : ContentPage
             );
     }
 
-    private void HandleRestart()
+    private async void HandleRestart()
     {
+
+        await Task.WhenAll(
+            GameGridLayout.FadeTo(0.0, 150)
+        );
+
         FullRedraw();
+
+        await Task.WhenAll(
+            GameGridLayout.FadeTo(1.0, 150)
+        );
     }
 }

@@ -67,6 +67,28 @@ public class Grid
         }
     }
 
+    public void ColdRestore(StateSnapshot ss)
+    {
+        if (ss.Width != Width || ss.Height != Height)
+            throw new ArgumentException($"Size of the snapshot ({ss.Width}x{ss.Height}) does not fit the grid ({Width}x{Height})");
+
+        Array.Clear(_field, 0, _field.Length);
+        _tiles.Clear();
+        Score = ss.Score;
+
+        for (int i = 0; i < ss.TileSnapshots.Count; i++) 
+        {
+            TileSnapshot ts = ss.TileSnapshots[i];
+            Tile restored = new Tile(ts.Id, ts.PosX, ts.PosY, ts.PosX, ts.PosY, ts.Parents.HasValue, ts.Value);
+            if (ts.Parents.HasValue)
+            {
+                restored.SetParents(ts.Parents.Value.Id1, ts.Parents.Value.Id2);
+            }
+
+            this[ts.PosX, ts.PosY] = restored;
+        }
+    }
+
     //To get to the grid fields easily
     public Tile? this[int x, int y]
     {

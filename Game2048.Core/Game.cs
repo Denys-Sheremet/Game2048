@@ -163,7 +163,7 @@ public class Game
     {
         StateSnapshot before = this.Grid.CreateSnapshot(GetNextTileId(false));
 
-        if (HistoryIsEmpty()) return new List<TileTransition>();
+        if (HistoryIsEmpty()) return new();
 
         StateSnapshot stateSnapshot = _history.Pop()!;
         Grid.Restore(stateSnapshot);
@@ -267,17 +267,27 @@ public class Game
         IsVictory = false;
     }
 
-    public List<TileTransition> UndoMultiple(int count)
+    public void UndoMultiple(int count)
     {
-        if (count < 1) return new();
+        if (count < 2) throw new ArgumentException($"Cannot undo multiple with provided count: {count}, to undo use Undo method");
 
-        IsGameOver = false;
+        int actualCount = Math.Min(count, HistoryCount);
 
-        if (count > 1)
+        if (actualCount < 1) return;
+
+        _history.RemoveMultiple(actualCount - 1);
+
+        StateSnapshot ss = _history.Pop()!;
+        Grid.ColdRestore(ss);
+
+        _tileRegistry.Clear();
+        for (int i = 0; i < Grid.Count; i++)
         {
-            _history.RemoveMultiple(count - 1);
+            _tileRegistry.Register(Grid[i]);
         }
 
-        return Undo();
+        _nextTileId = ss.NextId;
+
+        IsGameOver = false;
     }
 }

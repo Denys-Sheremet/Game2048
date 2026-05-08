@@ -23,7 +23,7 @@ public partial class GameViewModel : BindableObject
     public IAsyncRelayCommand MoveCommand { get; private set; }
     public IAsyncRelayCommand UndoCommand { get; private set; }
     public IAsyncRelayCommand RestartCommand { get; private set; }
-    public IAsyncRelayCommand UndoLastAndContinue { get; private set; }
+    public IRelayCommand UndoLastAndContinue { get; private set; }
 
     public event Action? OnVictory;
     public event Action? OnGameOver;
@@ -109,7 +109,7 @@ public partial class GameViewModel : BindableObject
         MoveCommand = new AsyncRelayCommand<string>(OnMoveRequested);
         UndoCommand = new AsyncRelayCommand(OnUndoRequested);
         RestartCommand = new AsyncRelayCommand(OnRestartRequested);
-        UndoLastAndContinue = new AsyncRelayCommand(OnUndoAndContinueRequested);
+        UndoLastAndContinue = new RelayCommand(OnUndoAndContinueRequested);
         if (config.GameMode == GameModeType.Classic)
         {
             _isUndoEnabled = false;
@@ -257,13 +257,24 @@ public partial class GameViewModel : BindableObject
         
         await Task.CompletedTask;
     }
-    private async Task OnUndoAndContinueRequested()
+    private void OnUndoAndContinueRequested()
     {
-        var transitions = _gameCore.UndoMultiple(5);
-        await ExecuteUndoAsync(transitions);
-        OnRestart?.Invoke();
-        IsEndGame = false;
-        IsActiveGame = true;
+        _actionQueue.Clear();
+        _actionQueue.Enqueue(async () =>
+        {
+            await Task.Run(() => { _gameCore.UndoMultiple(5); });
+
+            Score = _gameCore.Grid.Score;
+            HistoryCount = _gameCore.HistoryCount;
+
+            Tiles.Clear();
+            SyncTiles();
+
+            OnRestart?.Invoke();
+
+            IsEndGame = false;
+            IsActiveGame = true;
+        });
     }
 
 
