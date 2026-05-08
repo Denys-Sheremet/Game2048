@@ -15,8 +15,7 @@
         
     
         <Grid x:Name="PageGrid" 
-              RowDefinitions="Auto, *, Auto"
-              IsEnabled="{Binding IsActiveGame}">
+              RowDefinitions="Auto, *, Auto">
 
             <!-- Info block with score -->
             <Grid x:Name="InfoBlockWrapper" 
@@ -25,7 +24,8 @@
                   RowDefinitions="Auto, Auto" 
                   ColumnSpacing="20" 
                   Padding="15"
-                  HorizontalOptions="Fill">
+                  HorizontalOptions="Fill"
+                  IsEnabled="{Binding IsActiveGame}">
 
                 <Button x:Name="BackBtn" 
                         Grid.Column="0" 
@@ -93,7 +93,8 @@
                   ColumnDefinitions="*, *" 
                   ColumnSpacing="20" 
                   Padding="15, 40" 
-                  VerticalOptions="End">
+                  VerticalOptions="End"
+                  IsEnabled="{Binding IsActiveGame}">
             
                 <Button Grid.Column="0" 
                         Text="Undo" 
@@ -132,6 +133,12 @@
               ZIndex="10"
               HorizontalOptions="Fill"
               VerticalOptions="Fill">
+
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer />
+                <PanGestureRecognizer />
+                <SwipeGestureRecognizer Direction="Up,Down,Left,Right" />
+            </Grid.GestureRecognizers>
 
             <views:GameOverOverlayView x:Name="GameOverOverlay"/>
             
