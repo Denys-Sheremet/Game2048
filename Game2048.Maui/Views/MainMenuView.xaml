@@ -18,7 +18,7 @@
               HorizontalOptions="Center" VerticalOptions="Fill" >
 
             <Image Grid.Row="0"
-                   Source="game2048_logo.svg"
+                   Source="game2048_logo"
                    x:Name="GameLogoImage"
                    HeightRequest="120"
                    Margin="0, 40, 0, 10"
