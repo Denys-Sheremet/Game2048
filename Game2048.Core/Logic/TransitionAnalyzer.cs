@@ -2,27 +2,23 @@
 
 public static class TransitionAnalyzer
 {
-    public static List<TileTransition> Analyze(StateSnapshot before, StateSnapshot after)
+    public static List<TileTransition> Analyze(StateSnapshot before, StateSnapshot after, bool isUndo = false)
     {
+        if (isUndo)
+        {
+            List<TileTransition> invertedTransitions = Analyze(after, before, isUndo: false);
+            return InvertTransitions(invertedTransitions);
+        }
+
         Dictionary<int, TileSnapshot> beforeDict = before.TileSnapshots.ToDictionary(ts => ts.Id);
         Dictionary<int, TileSnapshot> afterDict = after.TileSnapshots.ToDictionary(ts => ts.Id);
 
         Dictionary<int, TileSnapshot> parentToChild = new();
-        Dictionary<int, TileSnapshot> childToParent = new();
 
-        foreach (var ts in beforeDict.Values)
-        {
-            if (ts.Parents is not null)
-            {
-                childToParent[ts.Parents.Value.Id1] = ts;
-                childToParent[ts.Parents.Value.Id2] = ts;
-            }
-        }
+        List<TileTransition> transitions = new();
 
-        List<TileTransition> transitions = new List<TileTransition>();
-
-        //first cycle for Move, Stay, Spawn, Result identification
-        foreach (TileSnapshot ts in afterDict.Values) 
+        //for identifying Stay, Move, Spawn and Result
+        foreach (TileSnapshot ts in afterDict.Values)
         {
             int id = ts.Id;
             TileTransitionType type;
@@ -30,15 +26,9 @@ public static class TransitionAnalyzer
             (int x, int y) to = from;
             (int? id1, int? id2) parents = (null, null);
 
-            beforeDict.TryGetValue(id, out TileSnapshot? beforeTile);
-
-            if (beforeTile is not null)
+            if (beforeDict.TryGetValue(id, out TileSnapshot? beforeTile))
             {
-                if (
-                    beforeTile.PosX == ts.PosX
-                    &&
-                    beforeTile.PosY == ts.PosY
-                   )
+                if (beforeTile.PosX == ts.PosX && beforeTile.PosY == ts.PosY)
                 {
                     type = TileTransitionType.Stay;
                 }
@@ -51,13 +41,7 @@ public static class TransitionAnalyzer
             }
             else
             {
-                if (childToParent.TryGetValue(id, out var splitParent))
-                {
-                        type = TileTransitionType.Respawn;
-                        from.x = splitParent.PosX;
-                        from.y = splitParent.PosY;
-                }
-                else if (ts.Parents is null)
+                if (ts.Parents is null)
                 {
                     type = TileTransitionType.Spawn;
                 }
@@ -70,60 +54,71 @@ public static class TransitionAnalyzer
                     parentToChild[ts.Parents.Value.Id2] = ts;
                 }
             }
+
             transitions.Add(new TileTransition
                 (
-                    id,
-                    type,
-                    from.x,
-                    from.y,
-                    to.x,
-                    to.y,
-                    parents.id1,
+                    id, 
+                    type, 
+                    from.x, 
+                    from.y, 
+                    to.x, 
+                    to.y, 
+                    parents.id1, 
                     parents.id2
                 ));
         }
 
-        //second cycle for Merge, Split, Disappear identification
-        foreach (TileSnapshot ts in beforeDict.Values) 
+        //for identifying Merge
+        foreach (TileSnapshot ts in beforeDict.Values)
         {
             if (afterDict.ContainsKey(ts.Id)) continue;
 
-            int id = ts.Id;
-            TileTransitionType type;
-            (int x, int y) from = (ts.PosX, ts.PosY);
-            (int x, int y) to = from;
-            (int? id1, int? id2) parents = (null, null);
-
-            if(parentToChild.TryGetValue(id, out TileSnapshot? child))
+            if (parentToChild.TryGetValue(ts.Id, out TileSnapshot? child))
             {
-                type = TileTransitionType.Merge;
-                to.x = child.PosX;
-                to.y = child.PosY;
-            }
-            else if (ts.Parents is not null)
-            {
-                type = TileTransitionType.Split;
-                parents.id1 = ts.Parents.Value.Id1;
-                parents.id2 = ts.Parents.Value.Id2;
-            }
-            else
-            {
-                type = TileTransitionType.Disappear;
-            }
-
-            transitions.Add(new TileTransition
+                transitions.Add(new TileTransition
                 (
-                    id,
+                    ts.Id,
+                    TileTransitionType.Merge,
+                    ts.PosX,
+                    ts.PosY,
+                    child.PosX,
+                    child.PosY,
+                    null,
+                    null
+                ));
+            }
+        }
+        return transitions;
+    }
+
+    private static List<TileTransition> InvertTransitions(List<TileTransition> transitions)
+    {
+        List<TileTransition> inverted = new(transitions.Count);
+        for (int i = 0; i < transitions.Count; i++)
+        {
+            TileTransition transition = transitions[i];
+            TileTransitionType type = transition.Type switch
+            {
+                TileTransitionType.Spawn => TileTransitionType.Disappear,
+                TileTransitionType.Result => TileTransitionType.Split,
+                TileTransitionType.Merge => TileTransitionType.Respawn,
+                TileTransitionType.Move => TileTransitionType.Move,
+                TileTransitionType.Stay => TileTransitionType.Stay,
+                _ => default
+            };
+
+            inverted.Add(new TileTransition
+                (
+                    transition.TileId,
                     type,
-                    from.x,
-                    from.y,
-                    to.x,
-                    to.y,
-                    parents.id1,
-                    parents.id2
+                    transition.ToX,
+                    transition.ToY,
+                    transition.FromX,
+                    transition.FromY,
+                    transition.ParentId1,
+                    transition.ParentId2
                 ));
         }
-
-        return transitions;
+        return inverted;
     }
 }

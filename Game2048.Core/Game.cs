@@ -179,32 +179,46 @@ public class Game
 
         StateSnapshot after = this.Grid.CreateSnapshot(GetNextTileId(false));
 
-        return TransitionAnalyzer.Analyze(before, after);
+        return TransitionAnalyzer.Analyze(before, after, isUndo : true);
     }
 
     public void CheckForGameOver()
     {
-        if (Grid.GetEmptyCells().Any()) return;
+        if (Grid.GetEmptyCells().Count > 0) return;
 
-        bool canMergeHorizontal = Enumerable.Range(0, Grid.Width - 1)
-            .SelectMany
-            (
-                x => Enumerable.Range(0, Grid.Height)
-                .Select(y => new {curr = Grid[x, y], next = Grid[x + 1, y] })
-            )
-            .Any(pair => pair.curr?.Value == pair.next?.Value);
-
-        bool canMergeVertical = Enumerable.Range(0, Grid.Width)
-            .SelectMany
-            (
-                x => Enumerable.Range(0, Grid.Height - 1)
-                .Select(y => new { curr = Grid[x, y], next = Grid[x, y + 1] })
-            )
-            .Any(pair => pair.curr?.Value == pair.next?.Value);
-
-        if (canMergeHorizontal || canMergeVertical) return;
+        if (CanMergeHorizontal() || CanMergeVertical()) return;
 
         Over();
+    }
+
+    private bool CanMergeHorizontal()
+    {
+        for (int x = 0; x < Grid.Width - 1; x++)
+        {
+            for(int y = 0; y < Grid.Height; y++)
+            {
+                if (Grid[x, y]!.Value == Grid[x + 1, y]!.Value)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private bool CanMergeVertical()
+    {
+        for (int x = 0; x < Grid.Width; x++)
+        {
+            for (int y = 0; y < Grid.Height - 1; y++)
+            {
+                if (Grid[x, y]!.Value == Grid[x, y + 1]!.Value)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public void CheckForVictory()

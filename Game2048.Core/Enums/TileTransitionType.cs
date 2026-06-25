@@ -10,7 +10,7 @@ public enum TileTransitionType
     Merge,
     /// <summary>New tile appearing as a result of merge</summary>
     Result,
-    /// <summary>One tile splitting into two (Undo of merge)</summary>
+    /// <summary>One tile splitting into two (Undo of Result)</summary>
     Split,
     /// <summary>Tile to be restored after undo of Merge</summary>
     Respawn,

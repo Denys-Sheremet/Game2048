@@ -227,13 +227,15 @@ public class Grid
 
     public List<(int x, int y)> GetEmptyCells()
     {
-        return Enumerable.Range(0, Width)
-            .SelectMany
-            (
-                x => Enumerable.Range(0, Height).Select(y => (x, y))
-            )
-            .Where(cell => _field[cell.x, cell.y] == null)
-            .ToList();
+        List<(int, int)> positions = new(Width * Height); //pre allocated size to optimize resizing
+        for (int x = 0; x < Width; x++)
+        {
+            for(int y = 0; y < Height; y++)
+            {
+                if(_field[x, y] is null) positions.Add((x, y));
+            }
+        }
+        return positions;
     }
 
     public void SyncAllPrevious()
@@ -246,8 +248,16 @@ public class Grid
 
     public bool TryFindTile(int id, out Tile? foundTile)
     {
-        foundTile = _tiles.FirstOrDefault(t => t.Id == id);
-        return foundTile != null;
+        for(int i = 0; i < _tiles.Count; i++)
+        {
+            if (_tiles[i].Id == id)
+            {
+                foundTile = _tiles[i];
+                return true;
+            }
+        }
+        foundTile = null;
+        return false;
     }
 
     public bool CheckForValue(int valueToCheck)

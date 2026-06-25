@@ -39,7 +39,7 @@ public class TransitionAnalyzerTest
         TileSnapshot tile2 = new TileSnapshot(2, 0, 1, 2, null);
         StateSnapshot after = new StateSnapshot(4, 4, 0, new List<TileSnapshot> { tile1, tile2 }, 3);
 
-        List<TileTransition> result = TransitionAnalyzer.Analyze(before, after);
+        List<TileTransition> result = TransitionAnalyzer.Analyze(before, after, isUndo: true);
 
         Assert.Contains(result, t => t.TileId == 3 && t.Type == TileTransitionType.Split);
         Assert.Contains(result, t => t.TileId == 1 && t.Type == TileTransitionType.Respawn);
@@ -71,7 +71,7 @@ public class TransitionAnalyzerTest
 
         StateSnapshot after = new StateSnapshot(4, 4, 0, new List<TileSnapshot>(), 2);
 
-        List<TileTransition> result = TransitionAnalyzer.Analyze(before, after);
+        List<TileTransition> result = TransitionAnalyzer.Analyze(before, after, isUndo : true);
 
         Assert.Single(result);
         Assert.Contains(result, t => t.TileId == 1 && t.Type == TileTransitionType.Disappear);

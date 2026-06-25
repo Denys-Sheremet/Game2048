@@ -215,7 +215,7 @@ public class GameTest
     public void NextId_Counter_Will_Be_Restored_FromSnapshot_WhenUndo_IsDone()
     {
         Grid grid = new Grid(4, 4);
-        Game game = GameFactory.CreateClassicGame();
+        Game game = GameFactory.CreateClassicPlusGame();
         game.TrySpawnNewTileAt(0, 0, 2);
         game.TrySpawnNewTileAt(1, 0, 2);
 
@@ -699,7 +699,7 @@ public class GameTest
     [Fact]
     public void Undo_ShouldRemove_SpawnedTile_FromRegistry()
     {
-        Game game = GameFactory.CreateClassicGame();
+        Game game = GameFactory.CreateClassicPlusGame();
         game.TrySpawnNewTileAt(0, 0, newValue: 2);
         game.TrySpawnNewTileAt(1, 0, newValue: 2);
 
@@ -752,7 +752,7 @@ public class GameTest
     [Fact]
     public void If_Undo_TheMerge_Method_Returns_List_ThatContains_Split_And_Respawn_Types()
     {
-        Game game = GameFactory.CreateClassicGame();
+        Game game = GameFactory.CreateClassicPlusGame();
         game.TrySpawnNewTileAt(3, 0, 2);
         game.TrySpawnNewTileAt(2, 0, 2);
 
@@ -844,7 +844,7 @@ public class GameTest
     [Fact]
     public void Undo_Of_Spawn_ShouldReturn_Disappear_Transition()
     {
-        Game game = GameFactory.CreateClassicGame();
+        Game game = GameFactory.CreateClassicPlusGame();
         game.TrySpawnNewTileAt(0, 0, 2);
 
         game.Move(MoveDirection.Right, withSpawn: true);
@@ -872,7 +872,7 @@ public class GameTest
     [Fact]
     public void NextId_Cycle_IsConsistent_After_Multiple_Undo()
     {
-        Game game = GameFactory.CreateClassicGame();
+        Game game = GameFactory.CreateClassicPlusGame();
 
         game.SpawnNewTile();
         game.Move(MoveDirection.Right);
