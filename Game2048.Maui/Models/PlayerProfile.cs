@@ -1,12 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Game2048.Core.Enums;
+using Game2048.Maui.Enums;
+using Game2048.Maui.Models;
 
-namespace Game2048.Maui.Models
+namespace Game2048.Core.Models;
+
+public class PlayerProfile
 {
-    internal class PlayerProfile
+    public string Name { get; set; }
+    public int Coins { get; set; }
+    public List<GameTheme> UnlockedThemes { get; set; }
+    public Dictionary<GameModeType, int> BestScores { get; set; }
+    public Dictionary<GameModeType, GameSessionSave> Saves { get; set; }
+
+    public PlayerProfile()
     {
+        Name = "Player";
+        Coins = 0;
+        UnlockedThemes = new List<GameTheme> { GameTheme.ClassicTheme };
+        BestScores = new Dictionary<GameModeType, int>();
+        Saves = new Dictionary<GameModeType, GameSessionSave>();
     }
 }

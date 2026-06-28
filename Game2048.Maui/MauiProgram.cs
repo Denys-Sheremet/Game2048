@@ -30,6 +30,9 @@ namespace Game2048.Maui
             builder.Services.AddSingleton<GameConfig>();
             builder.Services.AddSingleton<IGameModeService, GameModeService>();
 
+            builder.Services.AddSingleton<ISaveService, SaveService>();
+            builder.Services.AddSingleton<IProfileManager, ProfileManager>();
+
             builder.Services.AddTransient<GameView>();
             builder.Services.AddTransient<GameViewModel>();
             builder.Services.AddTransient<MainMenuViewModel>();

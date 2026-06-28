@@ -1,4 +1,6 @@
-﻿namespace Game2048.Core.Models;
+﻿using System.Text.Json.Serialization;
+
+namespace Game2048.Core.Models;
 
 public class StateSnapshot
 {
@@ -23,13 +25,14 @@ public class StateSnapshot
             .AsReadOnly();
     }
 
-    public StateSnapshot(int width, int height, int score, IEnumerable<TileSnapshot> snapshots, int nextId)
+    [JsonConstructor]
+    public StateSnapshot(int width, int height, int score, IEnumerable<TileSnapshot> tileSnapshots, int nextId)
     {
-        ArgumentNullException.ThrowIfNull(snapshots);
+        ArgumentNullException.ThrowIfNull(tileSnapshots);
         Width = width;
         Height = height;
         Score = score;
         NextId = nextId;
-        TileSnapshots = snapshots.ToList().AsReadOnly();
+        TileSnapshots = tileSnapshots.ToList().AsReadOnly();
     }
 }
