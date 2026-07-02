@@ -19,13 +19,16 @@ namespace Game2048.Maui
             return new Window(new AppShell());
         }
 
-        protected override async void OnSleep()
+        protected override void OnSleep()
         {
             var profileToSave = _profileManager.CurrentProfile;
 
-            if (profileToSave != null)
+            if (profileToSave is not null)
             {
-                await _saveService.SaveProfileAsync(profileToSave);
+                Task.Run(async () =>
+                {
+                    await _saveService.SaveProfileAsync(profileToSave);
+                });
             }
         }
     }

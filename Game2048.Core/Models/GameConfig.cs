@@ -19,4 +19,6 @@ public record GameConfig
             default : throw new ArgumentException("GameModeType provided was not implemented yet");
         }
     }
+
+    public GameConfig GetConfig() => this;
 }

@@ -23,4 +23,6 @@ public class HistoryManager : IHistoryManager
             _stack.Pop();
         }
     }
+
+    public IReadOnlyList<StateSnapshot>? ToList() => _stack.ToList();
 }

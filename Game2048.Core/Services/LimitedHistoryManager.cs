@@ -46,4 +46,6 @@ public class LimitedHistoryManager : IHistoryManager
             _list.RemoveLast();
         }
     }
+
+    public IReadOnlyList<StateSnapshot>? ToList() => _list.ToList();
 }

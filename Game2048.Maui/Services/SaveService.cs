@@ -1,13 +1,10 @@
-﻿using Game2048.Core.Models;
+﻿using Game2048.Core.Enums;
+using Game2048.Core.Models;
 using Game2048.Maui.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
+using Game2048.Maui.Models;
 using System.Text.Json;
+using System.Diagnostics;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace Game2048.Maui.Services;
 
@@ -15,30 +12,53 @@ public class SaveService : ISaveService
 {
     private readonly string _savePath;
     private readonly JsonSerializerOptions _jsonOptions;
+    private readonly IProfileManager _profileManager;
 
-    public SaveService()
+    public SaveService(IProfileManager profileManager)
     {
         _savePath = Path.Combine(FileSystem.AppDataDirectory, "player_profile.json");
+
         _jsonOptions = new JsonSerializerOptions
         {
             WriteIndented = true,
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            Converters = {new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)}
+            Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
         };
+        _profileManager = profileManager;
     }
 
     public async Task SaveProfileAsync(PlayerProfile profile)
     {
+        string tempPath = _savePath + ".tmp";
+
         try
         {
             string jsonString = JsonSerializer.Serialize(profile, _jsonOptions);
-            await File.WriteAllTextAsync(_savePath, jsonString);
+
+            await File.WriteAllTextAsync(tempPath, jsonString);
+
+            File.Move(tempPath, _savePath, overwrite: true);
         }
         catch (Exception ex)
         {
-            //log
-            Debug.WriteLine(ex);
-            //need to delete
+            #if DEBUG
+            Debug.WriteLine($"Error while saving profile: {ex.Message}");
+            #else
+            #endif
+        }
+        finally
+        {
+            if (File.Exists(tempPath))
+            {
+                try
+                {
+                    File.Delete(tempPath);
+                }
+                catch (Exception cleanupEx)
+                {
+                    Debug.WriteLine($"Error while deleting temporary file: {cleanupEx.Message}");
+                }
+            }
         }
     }
 
@@ -56,10 +76,51 @@ public class SaveService : ISaveService
         }
         catch (Exception ex)
         {
-            //log
-            Debug.WriteLine(ex);
-            //need to delete
+            #if DEBUG
+            Debug.WriteLine($"Error while loading profile: {ex.Message}");
+            #endif
+
+            if (File.Exists(_savePath))
+            {
+                try { File.Delete(_savePath); } catch {}
+            }
             return null;
         }
+    }
+
+    public void SaveCurrentGame(GameModeType gameMode, StateSnapshot currentState, IReadOnlyList<StateSnapshot>? history)
+    {
+        if (_profileManager.CurrentProfile is null) throw new InvalidOperationException("No current profile found");
+        _profileManager.CurrentProfile.Saves[gameMode] = new GameSessionSave
+        {
+            LastState = currentState,
+            History = history
+        };
+    }
+
+    public GameSessionSave? LoadCurrentGame(GameModeType gameMode)
+    {
+        if (_profileManager.CurrentProfile is null) throw new InvalidOperationException("No current profile found");
+        if (_profileManager.CurrentProfile.Saves.TryGetValue(gameMode, out GameSessionSave? save))
+        {
+            return save;
+        }
+        return null;
+    }
+
+    public void SaveBestScore(GameModeType gameMode, int bestScore)
+    {
+        if (_profileManager.CurrentProfile is null) throw new InvalidOperationException("No current profile found");
+        _profileManager.CurrentProfile.BestScores[gameMode] = bestScore;
+    }
+
+    public int GetBestScore(GameModeType gameMode)
+    {
+        if (_profileManager.CurrentProfile is null) throw new InvalidOperationException("No current profile found");
+        if (_profileManager.CurrentProfile.BestScores.TryGetValue(gameMode, out int bestScore))
+        {
+            return bestScore;
+        }
+        return 0;
     }
 }

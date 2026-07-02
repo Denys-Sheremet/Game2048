@@ -9,4 +9,5 @@ public class DisabledHistoryManager : IHistoryManager
     public void Clear() { return; }
 
     public void RemoveMultiple(int count) { return; }
+    public IReadOnlyList<StateSnapshot>? ToList() => null;
 }

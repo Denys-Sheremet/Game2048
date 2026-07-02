@@ -1,4 +1,6 @@
-﻿namespace Game2048.Core;
+﻿using System.Runtime.Intrinsics.Arm;
+
+namespace Game2048.Core;
 
 public class Game
 {
@@ -280,6 +282,18 @@ public class Game
         IsGameOver = false;
         IsVictory = false;
     }
+
+    public void HistoryColdRestore(IReadOnlyList<StateSnapshot>? restored)
+    {
+        if (restored is null) return;
+        _history.Clear();
+        for (int i = 0; i < restored.Count; i++)
+        {
+            _history.Push(restored[i]);
+        }
+    }
+
+    public IReadOnlyList<StateSnapshot>? GetHistoryState() => _history.ToList(); 
 
     public void UndoMultiple(int count)
     {

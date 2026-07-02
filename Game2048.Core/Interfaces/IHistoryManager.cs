@@ -8,4 +8,5 @@ public interface IHistoryManager
     StateSnapshot? Pop();
     void Clear();
     void RemoveMultiple(int count);
+    IReadOnlyList<StateSnapshot>? ToList();
 }

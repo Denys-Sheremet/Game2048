@@ -10,4 +10,5 @@ namespace Game2048.Maui.Interfaces;
 public interface IProfileManager
 {
     PlayerProfile? CurrentProfile { get; set; }
+    void NewProfile();
 }

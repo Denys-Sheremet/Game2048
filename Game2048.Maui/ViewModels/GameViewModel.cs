@@ -1,11 +1,14 @@
-﻿using Game2048.Core;
+﻿using CommunityToolkit.Mvvm.Input;
+using Game2048.Core;
 using Game2048.Core.DTOs;
-using CommunityToolkit.Mvvm.Input;
-using System.Collections.ObjectModel;
-using Game2048.Maui.Services;
-using Game2048.Core.Factories;
 using Game2048.Core.Enums;
+using Game2048.Core.Factories;
+using Game2048.Core.Interfaces;
 using Game2048.Core.Models;
+using Game2048.Maui.Interfaces;
+using Game2048.Maui.Models;
+using Game2048.Maui.Services;
+using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
 
 namespace Game2048.Maui.ViewModels;
@@ -13,6 +16,10 @@ namespace Game2048.Maui.ViewModels;
 public partial class GameViewModel : BindableObject
 {
     private readonly Game _gameCore;
+
+    private readonly GameConfig _gameConfig;
+    private readonly ISaveService _saveService;
+    private readonly IProfileManager _profileManager;
     public ObservableCollection<TileViewModel> Tiles { get; } = new();
 
     public event Func<IEnumerable<TileTransition>, Task>? TilesMoved;
@@ -102,9 +109,15 @@ public partial class GameViewModel : BindableObject
     public int Rows => _gameCore.Grid.Height;
     public int Columns => _gameCore.Grid.Width;
 
-    public GameViewModel(GameConfig config)
+    public GameViewModel(GameConfig config, ISaveService saveService, IProfileManager profileManager)
     {
         _gameCore = GameFactory.CreateGame(config);
+        _saveService = saveService;
+        _profileManager = profileManager;
+        _gameConfig = config;
+
+        LoadGameSave(config);
+
         _actionQueue = new ActionInputQueue();
         MoveCommand = new AsyncRelayCommand<string>(OnMoveRequested);
         UndoCommand = new AsyncRelayCommand(OnUndoRequested);
@@ -121,6 +134,21 @@ public partial class GameViewModel : BindableObject
 
         _gameCore.OnVictory += HandleOnVictory;
         _gameCore.OnGameOver += HandleOnGameOver;
+        _gameCore.OnStateChanged += HandleOnStateChanged;
+    }
+
+    public void LoadGameSave(GameConfig config)
+    {
+        ArgumentNullException.ThrowIfNull(_profileManager.CurrentProfile);
+
+        if (_profileManager.CurrentProfile.Saves
+            .TryGetValue(config.GameMode, out GameSessionSave? save))
+        {
+            _gameCore.Clear();
+            _gameCore.Grid.ColdRestore(save.LastState);
+            if (save.History is null) return;
+            _gameCore.HistoryColdRestore(save.History);
+        }
     }
 
     public void StartNewGame()
@@ -240,6 +268,17 @@ public partial class GameViewModel : BindableObject
         IsEndGame = true;
         IsActiveGame = false;
         OnGameOver?.Invoke();
+    }
+
+    private void HandleOnStateChanged()
+    {
+        if (_profileManager.CurrentProfile is not null)
+        {
+            var gameMode = _gameConfig.GameMode;
+            var gameState = _gameCore.GetCurrentGridState();
+            var history = _gameCore.GetHistoryState();
+            _saveService.SaveCurrentGame(gameMode, gameState, history);
+        }
     }
 
     private async Task OnRestartRequested()
