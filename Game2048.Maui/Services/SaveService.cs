@@ -5,6 +5,7 @@ using Game2048.Maui.Models;
 using System.Text.Json;
 using System.Diagnostics;
 using System.Text.Json.Serialization;
+using Game2048.Core.Serialization;
 
 namespace Game2048.Maui.Services;
 
@@ -22,7 +23,10 @@ public class SaveService : ISaveService
         {
             WriteIndented = true,
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
+            Converters = { 
+                new JsonStringEnumConverter(JsonNamingPolicy.CamelCase),
+                new NullableIntTupleConverter() 
+            }
         };
         _profileManager = profileManager;
     }
@@ -74,16 +78,15 @@ public class SaveService : ISaveService
             string jsonString = await File.ReadAllTextAsync(_savePath);
             return JsonSerializer.Deserialize<PlayerProfile>(jsonString, _jsonOptions);
         }
+        catch (JsonException ex)
+        {
+            Debug.WriteLine($"Corrupted save file: {ex.Message}");
+            try { File.Delete(_savePath); } catch { }
+            return null;
+        }
         catch (Exception ex)
         {
-            #if DEBUG
             Debug.WriteLine($"Error while loading profile: {ex.Message}");
-            #endif
-
-            if (File.Exists(_savePath))
-            {
-                try { File.Delete(_savePath); } catch {}
-            }
             return null;
         }
     }
@@ -94,7 +97,7 @@ public class SaveService : ISaveService
         _profileManager.CurrentProfile.Saves[gameMode] = new GameSessionSave
         {
             LastState = currentState,
-            History = history
+            History = history?.ToList()
         };
     }
 

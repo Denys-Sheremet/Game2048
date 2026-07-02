@@ -9,6 +9,7 @@ namespace Game2048.Maui.Models;
 
 public class GameSessionSave
 {
-    public StateSnapshot LastState { get; set; }
-    public IReadOnlyList<StateSnapshot>? History { get; set; }
+    public required StateSnapshot LastState { get; set; }
+    public List<StateSnapshot>? History { get; set; }
+
 }
