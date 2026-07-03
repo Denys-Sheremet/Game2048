@@ -112,11 +112,10 @@ public partial class GameViewModel : BindableObject
     public GameViewModel(GameConfig config, ISaveService saveService, IProfileManager profileManager)
     {
         _gameCore = GameFactory.CreateGame(config);
+
         _saveService = saveService;
         _profileManager = profileManager;
         _gameConfig = config;
-
-        LoadGameSave(config);
 
         _actionQueue = new ActionInputQueue();
         MoveCommand = new AsyncRelayCommand<string>(OnMoveRequested);
@@ -137,18 +136,29 @@ public partial class GameViewModel : BindableObject
         _gameCore.OnStateChanged += HandleOnStateChanged;
     }
 
-    public void LoadGameSave(GameConfig config)
+    public bool TryLoadSave()
     {
         ArgumentNullException.ThrowIfNull(_profileManager.CurrentProfile);
 
-        if (_profileManager.CurrentProfile.Saves
-            .TryGetValue(config.GameMode, out GameSessionSave? save))
+        var gameMode = _gameConfig.GameMode;
+        if (_profileManager.CurrentProfile.Saves.TryGetValue(gameMode, out GameSessionSave? save))
+        {
+            _gameCore.ColdLoadFromSave(save.LastState, save.History);
+            return true;
+        }
+        return false;
+    }
+
+    public void StartGame()
+    {
+        if (!TryLoadSave())
         {
             _gameCore.Clear();
-            _gameCore.Grid.ColdRestore(save.LastState);
-            if (save.History is null) return;
-            _gameCore.HistoryColdRestore(save.History);
+            Tiles.Clear();
+            _gameCore.SpawnMultipleTiles(2);
         }
+
+        SyncState();
     }
 
     public void StartNewGame()
@@ -156,6 +166,11 @@ public partial class GameViewModel : BindableObject
         _gameCore.Clear();
         Tiles.Clear();
         _gameCore.SpawnMultipleTiles(2);
+        SyncState();
+    }
+
+    private void SyncState()
+    {
         SyncTiles();
         HistoryCount = _gameCore.HistoryCount;
         Score = _gameCore.Grid.Score;

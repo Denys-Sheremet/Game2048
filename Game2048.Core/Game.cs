@@ -283,7 +283,7 @@ public class Game
         IsVictory = false;
     }
 
-    public void HistoryColdRestore(IReadOnlyList<StateSnapshot>? restored)
+    public void HistoryColdRestore(List<StateSnapshot>? restored)
     {
         if (restored is null) return;
         _history.Clear();
@@ -317,5 +317,19 @@ public class Game
         _nextTileId = ss.NextId;
 
         IsGameOver = false;
+    }
+
+    public void ColdLoadFromSave(StateSnapshot state, List<StateSnapshot>? history)
+    {
+        if (Grid.Height != state.Height || Grid.Width != state.Width) 
+            throw new InvalidDataException("Save data is corrupted");
+        Clear();
+        Grid.ColdRestore(state);
+        for (int i = 0; i < Grid.Count; i++)
+        {
+            _tileRegistry.Register(Grid[i]);
+        }
+        HistoryColdRestore(history);
+        _nextTileId = state.NextId;
     }
 }

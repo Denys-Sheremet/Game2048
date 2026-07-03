@@ -1,11 +1,12 @@
 ﻿using Game2048.Core.Enums;
 using Game2048.Core.Models;
+using Game2048.Core.Serialization;
 using Game2048.Maui.Interfaces;
 using Game2048.Maui.Models;
-using System.Text.Json;
+using GoogleGson;
 using System.Diagnostics;
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Game2048.Core.Serialization;
 
 namespace Game2048.Maui.Services;
 
@@ -22,9 +23,8 @@ public class SaveService : ISaveService
         _jsonOptions = new JsonSerializerOptions
         {
             WriteIndented = true,
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
             Converters = { 
-                new JsonStringEnumConverter(JsonNamingPolicy.CamelCase),
+                new JsonStringEnumConverter(),
                 new NullableIntTupleConverter() 
             }
         };
@@ -76,6 +76,8 @@ public class SaveService : ISaveService
             }
 
             string jsonString = await File.ReadAllTextAsync(_savePath);
+            Debug.WriteLine(jsonString);//
+            Debug.WriteLine(jsonString.Length);//
             return JsonSerializer.Deserialize<PlayerProfile>(jsonString, _jsonOptions);
         }
         catch (JsonException ex)
@@ -86,6 +88,7 @@ public class SaveService : ISaveService
         }
         catch (Exception ex)
         {
+            Debug.WriteLine(ex.ToString());
             Debug.WriteLine($"Error while loading profile: {ex.Message}");
             return null;
         }

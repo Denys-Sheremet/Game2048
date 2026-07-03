@@ -252,7 +252,7 @@ public partial class GameView : ContentPage
         base.OnAppearing();
 
         BuildTheBoard(_viewModel.Rows, _viewModel.Columns);
-        _viewModel.StartNewGame();
+        _viewModel.StartGame();
         FullRedraw();
 
         Dispatcher.Dispatch(async () => 

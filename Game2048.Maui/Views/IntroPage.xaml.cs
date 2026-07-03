@@ -1,5 +1,6 @@
-using Game2048.Maui.Services;
+using AndroidX.Startup;
 using Game2048.Maui.Interfaces;
+using Game2048.Maui.Services;
 
 namespace Game2048.Maui.Views;
 
@@ -15,9 +16,13 @@ public partial class IntroPage : ContentPage
         _profileManager = profileManager;
 	}
 
-	protected override async void OnAppearing()
+    private bool _initialized;//
+    protected override async void OnAppearing()
 	{
 		base.OnAppearing();
+
+        if (_initialized) return;//
+        _initialized = true;//
 
         IntroLogoImage.Opacity = 0;
         IntroLogoImage.Scale = 0.5;

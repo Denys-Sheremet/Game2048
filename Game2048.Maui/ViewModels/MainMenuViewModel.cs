@@ -20,21 +20,4 @@ public partial class MainMenuViewModel : BindableObject
         _saveService = saveService;
         _profileManager = profileManager;
     }
-
-    public async Task InitializeProfileAsync()
-    {
-        var profile = await _saveService.LoadProfileAsync();
-
-        if (profile is null)
-        {
-            profile = CreateDefaultProfile();
-            await _saveService.SaveProfileAsync(profile);
-        }
-        _profileManager.CurrentProfile = profile;
-    }
-
-    private PlayerProfile CreateDefaultProfile()
-    {
-        return new PlayerProfile();
-    }
 }

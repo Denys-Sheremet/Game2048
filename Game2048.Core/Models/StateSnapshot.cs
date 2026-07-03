@@ -26,13 +26,12 @@ public class StateSnapshot
     }
 
     [JsonConstructor]
-    public StateSnapshot(int width, int height, int score, IEnumerable<TileSnapshot> tileSnapshots, int nextId)
+    public StateSnapshot(int width, int height, int score, IReadOnlyList<TileSnapshot> tileSnapshots, int nextId)
     {
-        ArgumentNullException.ThrowIfNull(tileSnapshots);
         Width = width;
         Height = height;
         Score = score;
         NextId = nextId;
-        TileSnapshots = tileSnapshots.ToList().AsReadOnly();
+        TileSnapshots = tileSnapshots;
     }
 }
