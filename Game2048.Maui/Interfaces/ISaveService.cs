@@ -13,6 +13,4 @@ public interface ISaveService
 {
     Task SaveProfileAsync(PlayerProfile profile);
     Task<PlayerProfile?> LoadProfileAsync();
-    void SaveCurrentGame(GameModeType gameMode, StateSnapshot currentState, IReadOnlyList<StateSnapshot>? history);
-    GameSessionSave? LoadCurrentGame(GameModeType gameMode);
 }

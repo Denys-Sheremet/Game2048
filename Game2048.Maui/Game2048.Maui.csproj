@@ -73,6 +73,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Resources\Localization\AppRecources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>AppRecources.resx</DependentUpon>
+	  </Compile>
 	  <Compile Update="Resources\Styles\Themes\ClassicTheme.xaml.cs">
 	    <DependentUpon>ClassicTheme.xaml</DependentUpon>
 	  </Compile>
@@ -85,6 +90,13 @@
 	  <Compile Update="Views\TileView.xaml.cs">
 	    <DependentUpon>TileView.xaml</DependentUpon>
 	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Resources\Localization\AppRecources.resx">
+	    <Generator>PublicResXFileCodeGenerator</Generator>
+	    <LastGenOutput>AppRecources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>

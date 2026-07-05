@@ -3,7 +3,6 @@ using Game2048.Core.Models;
 using Game2048.Core.Serialization;
 using Game2048.Maui.Interfaces;
 using Game2048.Maui.Models;
-using GoogleGson;
 using System.Diagnostics;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -92,41 +91,5 @@ public class SaveService : ISaveService
             Debug.WriteLine($"Error while loading profile: {ex.Message}");
             return null;
         }
-    }
-
-    public void SaveCurrentGame(GameModeType gameMode, StateSnapshot currentState, IReadOnlyList<StateSnapshot>? history)
-    {
-        if (_profileManager.CurrentProfile is null) throw new InvalidOperationException("No current profile found");
-        _profileManager.CurrentProfile.Saves[gameMode] = new GameSessionSave
-        {
-            LastState = currentState,
-            History = history?.ToList()
-        };
-    }
-
-    public GameSessionSave? LoadCurrentGame(GameModeType gameMode)
-    {
-        if (_profileManager.CurrentProfile is null) throw new InvalidOperationException("No current profile found");
-        if (_profileManager.CurrentProfile.Saves.TryGetValue(gameMode, out GameSessionSave? save))
-        {
-            return save;
-        }
-        return null;
-    }
-
-    public void SaveBestScore(GameModeType gameMode, int bestScore)
-    {
-        if (_profileManager.CurrentProfile is null) throw new InvalidOperationException("No current profile found");
-        _profileManager.CurrentProfile.BestScores[gameMode] = bestScore;
-    }
-
-    public int GetBestScore(GameModeType gameMode)
-    {
-        if (_profileManager.CurrentProfile is null) throw new InvalidOperationException("No current profile found");
-        if (_profileManager.CurrentProfile.BestScores.TryGetValue(gameMode, out int bestScore))
-        {
-            return bestScore;
-        }
-        return 0;
     }
 }

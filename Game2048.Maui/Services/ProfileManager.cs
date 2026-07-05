@@ -1,20 +1,127 @@
 ﻿using Game2048.Core.Models;
+using Game2048.Maui.Models;
 using Game2048.Core.Enums;
-using Game2048.Core;
+using Game2048.Maui.Enums;
 using Game2048.Maui.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Game2048.Maui.Services;
 
 public class ProfileManager : IProfileManager
 {
-    public PlayerProfile? CurrentProfile { get; set; }
+    public PlayerProfile? CurrentProfile { get; private set; }
     public void NewProfile()
     {
         CurrentProfile = new();
+    }
+
+    private PlayerProfile GetValidProfile()
+    {
+        return CurrentProfile ?? throw new InvalidOperationException("No current profile found");
+    }
+
+    public void SetCurrentProfile(PlayerProfile profile)
+    {
+        ArgumentNullException.ThrowIfNull(profile);
+        CurrentProfile = profile;
+    }
+
+    //Local save & load
+    public void SaveCurrentGame(GameModeType gameMode, StateSnapshot currentState, IReadOnlyList<StateSnapshot>? history)
+    {
+        var profile = GetValidProfile();
+        profile.Saves[gameMode] = new GameSessionSave
+        {
+            LastState = currentState,
+            History = history?.ToList()
+        };
+    }
+
+    public GameSessionSave? LoadCurrentGame(GameModeType gameMode)
+    {
+        var profile = GetValidProfile();
+        if (profile.Saves.TryGetValue(gameMode, out GameSessionSave? save))
+        {
+            return save;
+        }
+        return null;
+    }
+
+    //Best score
+    public void SaveBestScore(GameModeType gameMode, int bestScore)
+    {
+        var profile = GetValidProfile();
+        profile.BestScores[gameMode] = bestScore;
+    }
+
+    public int? GetBestScore(GameModeType gameMode)
+    {
+        var profile = GetValidProfile();
+        if (profile.BestScores.TryGetValue(gameMode, out int bestScore))
+        {
+            return bestScore;
+        }
+        return null;
+    }
+
+    //Achievements
+    public bool UnlockAchievement(AchievementType achievement)
+    {
+        var profile = GetValidProfile();
+        return profile.Achievements.Add(achievement);
+    }
+
+    public HashSet<AchievementType> GetUnlockedAchievements()
+    {
+        var profile = GetValidProfile();
+        return profile.Achievements;
+    }
+
+    //Themes
+    public void UnlockTheme(GameTheme theme)
+    {
+        var profile = GetValidProfile();
+        if (!profile.UnlockedThemes.Contains(theme))
+        {
+            profile.UnlockedThemes.Add(theme);
+        }
+    }
+
+    public List<GameTheme> GetUnlockedThemes()
+    {
+        var profile = GetValidProfile();
+        return profile.UnlockedThemes;
+    }
+
+    //Coins
+    public void EarnCoins(int amount)
+    {
+        var profile = GetValidProfile();
+        if (amount <= 0) throw new InvalidOperationException("Amount of coins to add should be more than 0");
+        profile.Coins += amount;
+    }
+
+    public bool SpendCoins(int amount)
+    {
+        var profile = GetValidProfile();
+        if (profile.Coins >= amount)
+        {
+            profile.Coins -= amount;
+            return true;
+        }
+        return false;
+    }
+
+    //Name
+    public void SetPlayerName(string name)
+    {
+        var profile = GetValidProfile();
+        profile.Name = name;
+    }
+
+    public string GetPlayerName()
+    {
+        var profile = GetValidProfile();
+        return profile.Name;
     }
 }

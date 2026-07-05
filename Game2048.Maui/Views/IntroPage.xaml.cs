@@ -1,4 +1,3 @@
-using AndroidX.Startup;
 using Game2048.Maui.Interfaces;
 using Game2048.Maui.Services;
 
@@ -16,13 +15,9 @@ public partial class IntroPage : ContentPage
         _profileManager = profileManager;
 	}
 
-    private bool _initialized;//
     protected override async void OnAppearing()
 	{
 		base.OnAppearing();
-
-        if (_initialized) return;//
-        _initialized = true;//
 
         IntroLogoImage.Opacity = 0;
         IntroLogoImage.Scale = 0.5;
@@ -50,7 +45,7 @@ public partial class IntroPage : ContentPage
 
         if (profile is not null)
         {
-            _profileManager.CurrentProfile = profile;
+            _profileManager.SetCurrentProfile(profile);
         }
         else
         {

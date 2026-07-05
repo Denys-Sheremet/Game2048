@@ -1,14 +1,26 @@
-﻿using Game2048.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Game2048.Core.Enums;
+using Game2048.Maui.Enums;
+using Game2048.Core.Models;
+using Game2048.Maui.Models;
+
 
 namespace Game2048.Maui.Interfaces;
 
 public interface IProfileManager
 {
-    PlayerProfile? CurrentProfile { get; set; }
+    PlayerProfile? CurrentProfile { get; }
     void NewProfile();
+    void SetCurrentProfile(PlayerProfile profile);
+    void SaveCurrentGame(GameModeType gameMode, StateSnapshot currentState, IReadOnlyList<StateSnapshot>? history);
+    GameSessionSave? LoadCurrentGame(GameModeType gameMode);
+    void SaveBestScore(GameModeType gameMode, int bestScore);
+    int? GetBestScore(GameModeType gameMode);
+    bool UnlockAchievement(AchievementType achievement);
+    HashSet<AchievementType> GetUnlockedAchievements();
+    void UnlockTheme(GameTheme theme);
+    List<GameTheme> GetUnlockedThemes();
+    void EarnCoins(int amount);
+    bool SpendCoins(int amount);
+    void SetPlayerName(string name);
+    string GetPlayerName();
 }

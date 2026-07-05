@@ -141,7 +141,8 @@ public partial class GameViewModel : BindableObject
         ArgumentNullException.ThrowIfNull(_profileManager.CurrentProfile);
 
         var gameMode = _gameConfig.GameMode;
-        if (_profileManager.CurrentProfile.Saves.TryGetValue(gameMode, out GameSessionSave? save))
+        var save = _profileManager.LoadCurrentGame(gameMode);
+        if (save is not null)
         {
             _gameCore.ColdLoadFromSave(save.LastState, save.History);
             return true;
@@ -292,7 +293,7 @@ public partial class GameViewModel : BindableObject
             var gameMode = _gameConfig.GameMode;
             var gameState = _gameCore.GetCurrentGridState();
             var history = _gameCore.GetHistoryState();
-            _saveService.SaveCurrentGame(gameMode, gameState, history);
+            _profileManager.SaveCurrentGame(gameMode, gameState, history);
         }
     }
 
