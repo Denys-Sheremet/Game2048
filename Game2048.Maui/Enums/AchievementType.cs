@@ -60,8 +60,5 @@ public enum AchievementType
     FirstUndo,
 
     /// <summary>Won a game without using Undo</summary>
-    NoUndoVictory,
-
-    /// <summary>Claimed all achievements</summary>
-    MasterOf2048
+    NoUndoVictory
 }

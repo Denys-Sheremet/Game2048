@@ -8,10 +8,10 @@ public class PlayerProfile
 {
     public string Name { get; set; }
     public int Coins { get; set; }
-    public List<GameTheme> UnlockedThemes { get;}
-    public HashSet<AchievementType> Achievements { get;}
-    public Dictionary<GameModeType, int> BestScores { get;}
-    public Dictionary<GameModeType, GameSessionSave> Saves { get;}
+    public List<GameTheme> UnlockedThemes { get; set; }
+    public HashSet<AchievementType> Achievements { get; set; }
+    public Dictionary<GameModeType, int> BestScores { get; set; }
+    public Dictionary<GameModeType, GameSessionSave> Saves { get; set; }
 
     public PlayerProfile()
     {
