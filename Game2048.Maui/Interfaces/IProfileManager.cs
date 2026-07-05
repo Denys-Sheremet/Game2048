@@ -10,6 +10,7 @@ public interface IProfileManager
 {
     PlayerProfile? CurrentProfile { get; }
     void NewProfile();
+    void UpdateStatistics(bool gameEnded, bool hasWon, int movesMade, int undosMade);
     void SetCurrentProfile(PlayerProfile profile);
     void SaveCurrentGame(GameModeType gameMode, StateSnapshot currentState, IReadOnlyList<StateSnapshot>? history);
     GameSessionSave? LoadCurrentGame(GameModeType gameMode);

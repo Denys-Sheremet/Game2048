@@ -20,6 +20,8 @@ public partial class GameViewModel : BindableObject
     private readonly GameConfig _gameConfig;
     private readonly ISaveService _saveService;
     private readonly IProfileManager _profileManager;
+    private readonly IStatisticsManager _statisticsManager;
+    private readonly IAchievementManager _achievementManager;
     public ObservableCollection<TileViewModel> Tiles { get; } = new();
 
     public event Func<IEnumerable<TileTransition>, Task>? TilesMoved;
@@ -109,13 +111,15 @@ public partial class GameViewModel : BindableObject
     public int Rows => _gameCore.Grid.Height;
     public int Columns => _gameCore.Grid.Width;
 
-    public GameViewModel(GameConfig config, ISaveService saveService, IProfileManager profileManager)
+    public GameViewModel(GameConfig config, ISaveService saveService, IProfileManager profileManager, IStatisticsManager statisticsManager, IAchievementManager achievementManager)
     {
         _gameCore = GameFactory.CreateGame(config);
 
         _saveService = saveService;
         _profileManager = profileManager;
         _gameConfig = config;
+        _statisticsManager = statisticsManager;
+        _achievementManager = achievementManager;
 
         _actionQueue = new ActionInputQueue();
         MoveCommand = new AsyncRelayCommand<string>(OnMoveRequested);
@@ -207,6 +211,10 @@ public partial class GameViewModel : BindableObject
                                                                     x.Type == TileTransitionType.Result ||
                                                                     x.Type == TileTransitionType.Respawn));
         UpdateScores();
+
+        _statisticsManager.Moved();
+
+        _ = _achievementManager.AnalyzeTurnAsync(transitions, _gameCore.GetCurrentGridState());
     }
 
     private async Task OnUndoRequested()
@@ -242,6 +250,10 @@ public partial class GameViewModel : BindableObject
         await InvokeTransition(TilesCreated, transitions.Where(x => x.Type == TileTransitionType.Respawn));
 
         UpdateScores();
+
+        _statisticsManager.Undone();
+
+        _ = _achievementManager.AnalyzeTurnAsync(transitions, _gameCore.GetCurrentGridState());
     }
 
     public void SyncTiles()
@@ -277,6 +289,9 @@ public partial class GameViewModel : BindableObject
         IsEndGame = true;
         IsActiveGame = false;
         OnVictory?.Invoke();
+
+        _statisticsManager.GameEnded(hasWon : true);
+        _statisticsManager.Push();
     }
 
     private void HandleOnGameOver()
@@ -284,6 +299,9 @@ public partial class GameViewModel : BindableObject
         IsEndGame = true;
         IsActiveGame = false;
         OnGameOver?.Invoke();
+
+        _statisticsManager.GameEnded(hasWon: false);
+        _statisticsManager.Push();
     }
 
     private void HandleOnStateChanged()
@@ -301,6 +319,8 @@ public partial class GameViewModel : BindableObject
     {
         _actionQueue.Clear();
 
+        _statisticsManager.Push();
+
         _actionQueue.Enqueue(() =>
         {
             StartNewGame();
@@ -315,6 +335,9 @@ public partial class GameViewModel : BindableObject
     private void OnUndoAndContinueRequested()
     {
         _actionQueue.Clear();
+
+        _statisticsManager.Push();
+
         _actionQueue.Enqueue(async () =>
         {
             await Task.Run(() => { _gameCore.UndoMultiple(5); });

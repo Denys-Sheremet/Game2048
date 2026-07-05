@@ -32,6 +32,8 @@ namespace Game2048.Maui
 
             builder.Services.AddSingleton<ISaveService, SaveService>();
             builder.Services.AddSingleton<IProfileManager, ProfileManager>();
+            builder.Services.AddSingleton<IStatisticsManager, StatisticsManager>();
+            builder.Services.AddSingleton<IAchievementManager, AchievementManager>();
 
             builder.Services.AddTransient<GameView>();
             builder.Services.AddTransient<GameViewModel>();

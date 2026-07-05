@@ -117,7 +117,88 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Menu_Note" xml:space="preserve">
-    <value>This note is just a test so here is your orange</value>
+  <data name="Ach_FirstGame_desc" xml:space="preserve">
+    <value>Played your first game in 2048</value>
+  </data>
+  <data name="Ach_FirstGame_title" xml:space="preserve">
+    <value>First steps</value>
+  </data>
+  <data name="Ach_FirstUndo_desc" xml:space="preserve">
+    <value>Used undo for the first time</value>
+  </data>
+  <data name="Ach_FirstUndo_title" xml:space="preserve">
+    <value>Back to the future!</value>
+  </data>
+  <data name="Ach_Merge100Tiles_desc" xml:space="preserve">
+    <value>Merged 100 tiles</value>
+  </data>
+  <data name="Ach_Merge100Tiles_title" xml:space="preserve">
+    <value>Doing some math</value>
+  </data>
+  <data name="Ach_NoUndoVictory_desc" xml:space="preserve">
+    <value>Beaten 2048 without undo </value>
+  </data>
+  <data name="Ach_NoUndoVictory_title" xml:space="preserve">
+    <value>No mistakes!</value>
+  </data>
+  <data name="Ach_Play10Games_desc" xml:space="preserve">
+    <value>Played 10 games</value>
+  </data>
+  <data name="Ach_Play10Games_title" xml:space="preserve">
+    <value>Keep trying</value>
+  </data>
+  <data name="Ach_Play100Games_desc" xml:space="preserve">
+    <value>Played 100 games</value>
+  </data>
+  <data name="Ach_Play100Games_title" xml:space="preserve">
+    <value>Gamer</value>
+  </data>
+  <data name="Ach_Reach64_desc" xml:space="preserve">
+    <value>Merged a 64 tile</value>
+  </data>
+  <data name="Ach_Reach64_title" xml:space="preserve">
+    <value>That's going somewhere!</value>
+  </data>
+  <data name="Ach_Reach128_desc" xml:space="preserve">
+    <value>Merged a 128 tile</value>
+  </data>
+  <data name="Ach_Reach128_title" xml:space="preserve">
+    <value>Wasn't that hard, right?</value>
+  </data>
+  <data name="Ach_Reach256_desc" xml:space="preserve">
+    <value>Merged a 256 tile</value>
+  </data>
+  <data name="Ach_Reach256_title" xml:space="preserve">
+    <value>2^8</value>
+  </data>
+  <data name="Ach_Reach512_desc" xml:space="preserve">
+    <value>Merged a 512 tile</value>
+  </data>
+  <data name="Ach_Reach512_title" xml:space="preserve">
+    <value>Two more to go!</value>
+  </data>
+  <data name="Ach_Reach1024_desc" xml:space="preserve">
+    <value>Merged a 1024 tile</value>
+  </data>
+  <data name="Ach_Reach1024_title" xml:space="preserve">
+    <value>Almost there!</value>
+  </data>
+  <data name="Ach_Reach2048_desc" xml:space="preserve">
+    <value>Merged a 2048 tile</value>
+  </data>
+  <data name="Ach_Reach2048_title" xml:space="preserve">
+    <value>GOLD GOLD GOLD</value>
+  </data>
+  <data name="Ach_Score1000_desc" xml:space="preserve">
+    <value>Score 1000 points in one game</value>
+  </data>
+  <data name="Ach_Score1000_title" xml:space="preserve">
+    <value>Scorer</value>
+  </data>
+  <data name="Ach_Score5000_desc" xml:space="preserve">
+    <value>Score 5000 points in one game</value>
+  </data>
+  <data name="Ach_Score5000_title" xml:space="preserve">
+    <value>Big numbers</value>
   </data>
 </root>

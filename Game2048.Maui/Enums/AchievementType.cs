@@ -11,18 +11,6 @@ public enum AchievementType
     /// <summary>Played the first game</summary>
     FirstGame,
 
-    /// <summary>Reached the 4 tile</summary>
-    Reach4,
-
-    /// <summary>Reached the 8 tile</summary>
-    Reach8,
-
-    /// <summary>Reached the 16 tile</summary>
-    Reach16,
-
-    /// <summary>Reached the 32 tile</summary>
-    Reach32,
-
     /// <summary>Reached the 64 tile</summary>
     Reach64,
 

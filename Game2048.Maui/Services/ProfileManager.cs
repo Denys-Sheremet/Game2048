@@ -10,6 +10,12 @@ namespace Game2048.Maui.Services;
 public class ProfileManager : IProfileManager
 {
     public PlayerProfile? CurrentProfile { get; private set; }
+    private readonly ISaveService _saveService;
+
+    public ProfileManager(ISaveService saveService)
+    {
+        _saveService = saveService;
+    }
     public void NewProfile()
     {
         CurrentProfile = new();
@@ -25,6 +31,17 @@ public class ProfileManager : IProfileManager
         ArgumentNullException.ThrowIfNull(profile);
         CurrentProfile = profile;
     }
+
+    //Statistics
+    public void UpdateStatistics(bool gameEnded, bool hasWon, int movesMade, int undosMade)
+    {
+        var profile = GetValidProfile();
+        var stats = profile.GlobalPlayerStatistics;
+        stats.TotalGamesPlayed = gameEnded ? stats.TotalGamesPlayed + 1 : stats.TotalGamesPlayed;
+        stats.TotalGamesWon = hasWon ? stats.TotalGamesWon + 1 : stats.TotalGamesWon;
+        stats.TotalMovesMade += movesMade;
+        stats.TotalUndosUsed += undosMade;
+    } 
 
     //Local save & load
     public void SaveCurrentGame(GameModeType gameMode, StateSnapshot currentState, IReadOnlyList<StateSnapshot>? history)
@@ -68,7 +85,14 @@ public class ProfileManager : IProfileManager
     public bool UnlockAchievement(AchievementType achievement)
     {
         var profile = GetValidProfile();
-        return profile.Achievements.Add(achievement);
+
+        bool isNew = profile.Achievements.Add(achievement);
+
+        if (isNew)
+        {
+            _ = _saveService.SaveProfileAsync(profile); //fire and forget, we don't need to await this
+        }
+        return isNew;
     }
 
     public HashSet<AchievementType> GetUnlockedAchievements()
