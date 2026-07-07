@@ -3,6 +3,8 @@ using Game2048.Maui.ViewModels;
 using Microsoft.Maui.Controls.Shapes;
 using Game2048.Maui.Services;
 using Game2048.Core.Enums;
+using Game2048.Maui.Interfaces;
+using Game2048.Maui.Enums;
 
 namespace Game2048.Maui.Views;
 
@@ -12,15 +14,18 @@ public partial class GameView : ContentPage
     private double _targetHeight;
 
     private readonly GameViewModel _viewModel;
+    private readonly IAchievementManager _achievementManager;
 
     private readonly Dictionary<int, TileView> _tileViews = new();
 
-    public GameView(GameViewModel viewModel)
+    public GameView(GameViewModel viewModel, IAchievementManager achievementManager)
     {
         InitializeComponent();
 
         _viewModel = viewModel;
         BindingContext = _viewModel;
+
+        _achievementManager = achievementManager;
 
         _viewModel.TilesMoved += async (transitions) =>
         {
@@ -255,6 +260,8 @@ public partial class GameView : ContentPage
         _viewModel.StartGame();
         FullRedraw();
 
+        _achievementManager.OnAchievementUnlocked += OnNewAchievementUnlocked;
+
         Dispatcher.Dispatch(async () => 
         {
             GamePageContainer.TranslationX = Width;
@@ -267,8 +274,24 @@ public partial class GameView : ContentPage
         });
     }
 
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        _achievementManager.OnAchievementUnlocked -= OnNewAchievementUnlocked;
+    }
+
+    private async void OnNewAchievementUnlocked(AchievementType achievementType)
+    {
+        Dispatcher.Dispatch(async () =>
+        {
+            // Show the achievement unlocked overlay
+        });
+    }
+
     private async void OnGoToMenu(object sender, EventArgs e)
     {
+        await _viewModel.OnGoToMenu();
+
         await Task.WhenAll(
             GamePageContainer.TranslateTo(Width, 0, 250, Easing.CubicIn),
             GamePageContainer.FadeTo(0, 250, Easing.Linear)

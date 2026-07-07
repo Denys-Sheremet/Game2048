@@ -73,10 +73,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Resources\Localization\AppRecources.Designer.cs">
+	  <Compile Update="Resources\Localization\AppResources.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
-	    <DependentUpon>AppRecources.resx</DependentUpon>
+	    <DependentUpon>AppResources.resx</DependentUpon>
 	  </Compile>
 	  <Compile Update="Resources\Styles\Themes\ClassicTheme.xaml.cs">
 	    <DependentUpon>ClassicTheme.xaml</DependentUpon>
@@ -93,9 +93,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Update="Resources\Localization\AppRecources.resx">
+	  <EmbeddedResource Update="Resources\Localization\AppResources.resx">
 	    <Generator>PublicResXFileCodeGenerator</Generator>
-	    <LastGenOutput>AppRecources.Designer.cs</LastGenOutput>
+	    <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
 	</ItemGroup>
 
