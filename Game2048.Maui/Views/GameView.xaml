@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:Game2048.Maui.Views"
              xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
+             xmlns:lang="clr-namespace:Game2048.Maui.Resources.Localization"
              x:Class="Game2048.Maui.Views.GameView"
              x:DataType="vm:GameViewModel"
              Shell.NavBarIsVisible="False"
@@ -34,14 +35,14 @@
                         FontFamily="FontAwesome"
                         Text="&#xf30a;"
                         FontSize="20"    
-                        Clicked="OnGoToMenu" 
+                        Clicked="OnBackToMenu" 
                         HorizontalOptions="Start"
                         VerticalOptions="Center"
                         Style="{StaticResource MainBtnStyle}"/>
 
                 <Label Grid.Column="1" 
                        Grid.ColumnSpan="2" 
-                       Text="2048" 
+                       Text="{x:Static lang:AppResources.Game_title}" 
                        FontSize="55" 
                        FontFamily="RubikBold" 
                        HorizontalOptions="Center" 
@@ -97,7 +98,7 @@
                   IsEnabled="{Binding IsActiveGame}">
             
                 <Button Grid.Column="0" 
-                        Text="Undo" 
+                        Text="{x:Static lang:AppResources.Game_undo_btn_text}" 
                         Command="{Binding UndoCommand}"
                         IsVisible="{Binding IsUndoEnabled}"
                         FontSize="24" 
@@ -105,7 +106,7 @@
                         FontFamily="MontBold"/>
 
                 <Button Grid.Column="1" 
-                        Text="Settings" 
+                        Text="{x:Static lang:AppResources.Game_settings_btn_text}" 
                         FontSize="24" 
                         Style="{StaticResource MainBtnStyle}" 
                         FontFamily="MontBold">

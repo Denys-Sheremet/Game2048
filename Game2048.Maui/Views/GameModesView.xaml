@@ -4,6 +4,7 @@
              xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
              xmlns:views="clr-namespace:Game2048.Maui.Views"
              xmlns:models="clr-namespace:Game2048.Maui.Models"
+             xmlns:lang="clr-namespace:Game2048.Maui.Resources.Localization"
              x:Class="Game2048.Maui.Views.GameModesView"
              x:DataType="vm:GameModesViewModel"
              Shell.NavBarIsVisible="False"
@@ -37,7 +38,7 @@
             
             </Button>
         
-            <Label Text="MODE SELECTION"
+            <Label Text="{x:Static lang:AppResources.GameModes_title}"
                    Grid.Row="1"
                    Grid.Column="0"
                    HorizontalOptions="Center"

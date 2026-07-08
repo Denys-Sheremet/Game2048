@@ -309,6 +309,21 @@ public partial class GameView : ContentPage
         );
     }
 
+    private async void OnBackToMenu(object? sender, EventArgs e)
+    {
+        await _viewModel.OnBackToMenu();
+
+        await Task.WhenAll(
+            GamePageContainer.TranslateTo(Width, 0, 250, Easing.CubicIn),
+            GamePageContainer.FadeTo(0, 250, Easing.Linear)
+        );
+
+        await Task.WhenAll(
+            Shell.Current.GoToAsync("///MainMenuPage", false)
+        );
+    }
+
+
     private async void HandleOnVictory()
     {
 

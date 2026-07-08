@@ -2,6 +2,7 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
+             xmlns:lang="clr-namespace:Game2048.Maui.Resources.Localization"
              x:DataType="vm:GameViewModel"
              x:Class="Game2048.Maui.Views.GameOverOverlayView"
              x:Name="GameOverOverlay">
@@ -15,7 +16,7 @@
 
         <VerticalStackLayout Spacing="15"
                              HorizontalOptions="Center">
-            <Label Text="GAME OVER"
+            <Label Text="{x:Static lang:AppResources.GameOverOverlay_title}"
                    FontFamily="RubikBold"
                    FontSize="30"
                    TextColor="{DynamicResource ScoreBoardTextColor}"
@@ -25,7 +26,7 @@
             </Label>
             <Button x:Name="RestartBtn"
                     Style="{StaticResource MainBtnStyle}"
-                    Text="Try again"
+                    Text="{x:Static lang:AppResources.GameOverOverlay_restart_btn_text}"
                     FontFamily="MontBold"
                     FontSize="20"
                     Command="{Binding RestartCommand}">
@@ -34,7 +35,7 @@
 
             <Button x:Name="GoToMenuBtn"
                     Style="{StaticResource MainBtnStyle}"
-                    Text="Menu"
+                    Text="{x:Static lang:AppResources.GameOverOverlay_menu_btn_text}"
                     FontFamily="MontBold"
                     FontSize="20"
                     Clicked="OnGoToMenuClicked">
@@ -44,7 +45,7 @@
             <Button x:Name="UndoLastBtn"
                     IsVisible="{Binding IsUndoEnabled}"
                     Style="{StaticResource MainBtnStyle}"
-                    Text="Undo 5 moves"
+                    Text="{x:Static lang:AppResources.GameOverOverlay_undo5_btn_text}"
                     FontFamily="MontBold"
                     FontSize="20"
                     Command="{Binding UndoLastAndContinue}">

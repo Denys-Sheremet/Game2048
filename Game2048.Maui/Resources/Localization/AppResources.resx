@@ -195,4 +195,40 @@
   <data name="Ach_Score5000_title" xml:space="preserve">
     <value>Big numbers</value>
   </data>
+  <data name="GameModes_title" xml:space="preserve">
+    <value>MODE SELECTION</value>
+  </data>
+  <data name="GameOverOverlay_menu_btn_text" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="GameOverOverlay_restart_btn_text" xml:space="preserve">
+    <value>Try again</value>
+  </data>
+  <data name="GameOverOverlay_title" xml:space="preserve">
+    <value>GAME OVER</value>
+  </data>
+  <data name="GameOverOverlay_undo5_btn_text" xml:space="preserve">
+    <value>Undo 5 moves</value>
+  </data>
+  <data name="Game_settings_btn_text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Game_title" xml:space="preserve">
+    <value>2048</value>
+  </data>
+  <data name="Game_undo_btn_text" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="Menu_game_modes_btn_text" xml:space="preserve">
+    <value>GAME MODES</value>
+  </data>
+  <data name="Menu_how_to_btn_text" xml:space="preserve">
+    <value>HOW TO</value>
+  </data>
+  <data name="Menu_settings_btn_text" xml:space="preserve">
+    <value>SETTINGS</value>
+  </data>
+  <data name="Menu_version_text" xml:space="preserve">
+    <value>ver. 1.0</value>
+  </data>
 </root>

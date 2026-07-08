@@ -293,5 +293,113 @@ namespace Game2048.Maui.Resources.Localization {
                 return ResourceManager.GetString("Ach_Score5000_title", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Settings.
+        /// </summary>
+        public static string Game_settings_btn_text {
+            get {
+                return ResourceManager.GetString("Game_settings_btn_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на 2048.
+        /// </summary>
+        public static string Game_title {
+            get {
+                return ResourceManager.GetString("Game_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Undo.
+        /// </summary>
+        public static string Game_undo_btn_text {
+            get {
+                return ResourceManager.GetString("Game_undo_btn_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на MODE SELECTION.
+        /// </summary>
+        public static string GameModes_title {
+            get {
+                return ResourceManager.GetString("GameModes_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Menu.
+        /// </summary>
+        public static string GameOverOverlay_menu_btn_text {
+            get {
+                return ResourceManager.GetString("GameOverOverlay_menu_btn_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Try again.
+        /// </summary>
+        public static string GameOverOverlay_restart_btn_text {
+            get {
+                return ResourceManager.GetString("GameOverOverlay_restart_btn_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на GAME OVER.
+        /// </summary>
+        public static string GameOverOverlay_title {
+            get {
+                return ResourceManager.GetString("GameOverOverlay_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Undo 5 moves.
+        /// </summary>
+        public static string GameOverOverlay_undo5_btn_text {
+            get {
+                return ResourceManager.GetString("GameOverOverlay_undo5_btn_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на GAME MODES.
+        /// </summary>
+        public static string Menu_game_modes_btn_text {
+            get {
+                return ResourceManager.GetString("Menu_game_modes_btn_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на HOW TO.
+        /// </summary>
+        public static string Menu_how_to_btn_text {
+            get {
+                return ResourceManager.GetString("Menu_how_to_btn_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на SETTINGS.
+        /// </summary>
+        public static string Menu_settings_btn_text {
+            get {
+                return ResourceManager.GetString("Menu_settings_btn_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ver. 1.0.
+        /// </summary>
+        public static string Menu_version_text {
+            get {
+                return ResourceManager.GetString("Menu_version_text", resourceCulture);
+            }
+        }
     }
 }

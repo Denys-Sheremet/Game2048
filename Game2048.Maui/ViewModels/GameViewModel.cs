@@ -383,6 +383,18 @@ public partial class GameViewModel : BindableObject, IDisposable
         await Task.CompletedTask;
     }
 
+    public async Task OnBackToMenu()
+    {
+        _actionQueue.Clear();
+
+        _statisticsManager.Push();
+
+        _achievementManager.CheckGlobalAchievements();
+
+        if (_profileManager.CurrentProfile is not null)
+            await _saveService.SaveProfileAsync(_profileManager.CurrentProfile);
+    }
+
     public async Task OnGoToMenu()
     {
         _actionQueue.Clear();
