@@ -129,12 +129,6 @@
   <data name="Ach_FirstUndo_title" xml:space="preserve">
     <value>Back to the future!</value>
   </data>
-  <data name="Ach_Merge100Tiles_desc" xml:space="preserve">
-    <value>Merged 100 tiles</value>
-  </data>
-  <data name="Ach_Merge100Tiles_title" xml:space="preserve">
-    <value>Doing some math</value>
-  </data>
   <data name="Ach_NoUndoVictory_desc" xml:space="preserve">
     <value>Beaten 2048 without undo </value>
   </data>

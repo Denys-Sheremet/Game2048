@@ -97,24 +97,6 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Merged 100 tiles.
-        /// </summary>
-        public static string Ach_Merge100Tiles_desc {
-            get {
-                return ResourceManager.GetString("Ach_Merge100Tiles_desc", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Doing some math.
-        /// </summary>
-        public static string Ach_Merge100Tiles_title {
-            get {
-                return ResourceManager.GetString("Ach_Merge100Tiles_title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Ищет локализованную строку, похожую на Beaten 2048 without undo .
         /// </summary>
         public static string Ach_NoUndoVictory_desc {

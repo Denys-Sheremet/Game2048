@@ -278,9 +278,14 @@ public partial class GameView : ContentPage
     {
         base.OnDisappearing();
         _achievementManager.OnAchievementUnlocked -= OnNewAchievementUnlocked;
+
+        if (BindingContext is IDisposable disposableViewModel)
+        {
+            disposableViewModel.Dispose();
+        }
     }
 
-    private async void OnNewAchievementUnlocked(AchievementType achievementType)
+    private void OnNewAchievementUnlocked(AchievementType achievementType)
     {
         Dispatcher.Dispatch(async () =>
         {

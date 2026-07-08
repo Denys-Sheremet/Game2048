@@ -7,5 +7,7 @@ namespace Game2048.Maui.Interfaces;
 public interface IAchievementManager
 {
     event Action<AchievementType>? OnAchievementUnlocked;
-    Task AnalyzeTurnAsync(List<TileTransition> transitions, StateSnapshot afterState);
+    void CheckGlobalAchievements();
+    void CheckSessionAchievements(StateSnapshot afterState, List<TileTransition> transitions);
+    void CheckSpecialAchievements(IStatisticsManager statisticsManager);
 }

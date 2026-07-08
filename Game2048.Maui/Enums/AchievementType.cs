@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Game2048.Maui.Enums;
+﻿namespace Game2048.Maui.Enums;
 
 public enum AchievementType
 {
@@ -40,9 +34,6 @@ public enum AchievementType
 
     /// <summary>Played 100 games</summary>
     Play100Games,
-
-    /// <summary>Performed 100 tile merges</summary>
-    Merge100Tiles,
 
     /// <summary>Used Undo for the first time</summary>
     FirstUndo,

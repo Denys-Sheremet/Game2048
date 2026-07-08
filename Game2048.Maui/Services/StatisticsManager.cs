@@ -9,38 +9,55 @@ public class StatisticsManager : IStatisticsManager
 {
     private readonly IProfileManager _profileManager;
 
-    private bool _gameEnded = false;
-    private bool _hasWon = false;
-    private int _movesMade = 0;
-    private int _undosMade = 0;
+    public bool GameOver { get; private set; } = false;
+    public bool HasWon { get; private set; } = false;
+    public int MovesMade { get; private set; } = 0;
+    public int UndosMade { get; private set; } = 0;
 
+    // This property tracks the total number of tiles merged during the game session
+    // Not saved in profile
+    public int TilesMerged { get; private set; } = 0;
+
+    public StatisticsManager GetStatisticsManager()
+    {
+        return this;
+    }
     public StatisticsManager(IProfileManager profileManager)
     {
         _profileManager = profileManager;
     }
+    public void Merged(int count)
+    {
+        TilesMerged += count;
+    }
+
+    public void Respawned(int count)
+    {
+        TilesMerged -= count;
+    }
 
     public void Moved()
     {
-            _movesMade++;
+        MovesMade++;
     }
 
     public void Undone()
     {
-            _undosMade++;
+        UndosMade++;
     }
 
     public void GameEnded(bool hasWon = false)
     {
-        _gameEnded = true;
-        _hasWon = hasWon;
+        GameOver = true;
+        HasWon = hasWon;
     }
 
     public void Reset() 
-    {         
-        _gameEnded = false;
-        _hasWon = false;
-        _movesMade = 0;
-        _undosMade = 0;
+    {
+        GameOver = false;
+        HasWon = false;
+        MovesMade = 0;
+        UndosMade = 0;
     }
 
     public void Push()
@@ -48,7 +65,7 @@ public class StatisticsManager : IStatisticsManager
         if (_profileManager.CurrentProfile is null) 
             throw new InvalidOperationException("No current profile found");
 
-        _profileManager.UpdateStatistics(_gameEnded, _hasWon, _movesMade, _undosMade);
+        _profileManager.UpdateStatistics(GameOver, HasWon, MovesMade, UndosMade);
         Reset();
     }
 }

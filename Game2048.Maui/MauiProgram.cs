@@ -4,6 +4,7 @@ using Game2048.Maui.Services;
 using Game2048.Maui.ViewModels;
 using Game2048.Maui.Views;
 using Microsoft.Extensions.Logging;
+using Game2048.Maui.Extensions;
 
 namespace Game2048.Maui
 {
@@ -34,6 +35,8 @@ namespace Game2048.Maui
             builder.Services.AddSingleton<IProfileManager, ProfileManager>();
             builder.Services.AddSingleton<IStatisticsManager, StatisticsManager>();
             builder.Services.AddSingleton<IAchievementManager, AchievementManager>();
+
+            builder.Services.AddAchievementCheckers();
 
             builder.Services.AddTransient<GameView>();
             builder.Services.AddTransient<GameViewModel>();

@@ -2,6 +2,7 @@
 using Game2048.Core;
 using Game2048.Core.DTOs;
 using Game2048.Core.Enums;
+using Game2048.Maui.Enums;
 using Game2048.Core.Factories;
 using Game2048.Core.Interfaces;
 using Game2048.Core.Models;
@@ -13,7 +14,7 @@ using System.Runtime.CompilerServices;
 
 namespace Game2048.Maui.ViewModels;
 
-public partial class GameViewModel : BindableObject
+public partial class GameViewModel : BindableObject, IDisposable
 {
     private readonly Game _gameCore;
 
@@ -138,6 +139,26 @@ public partial class GameViewModel : BindableObject
         _gameCore.OnVictory += HandleOnVictory;
         _gameCore.OnGameOver += HandleOnGameOver;
         _gameCore.OnStateChanged += HandleOnStateChanged;
+
+        _achievementManager.OnAchievementUnlocked += HandleAchievementUnlocked;
+    }
+
+    private void HandleAchievementUnlocked(AchievementType achievementType)
+    {
+        _profileManager.UnlockAchievement(achievementType);
+        _actionQueue.Enqueue(async () =>
+        {
+            if (_profileManager.CurrentProfile is not null)
+                await _saveService.SaveProfileAsync(_profileManager.CurrentProfile);
+        });
+    }
+
+    public void Dispose()
+    {
+        _gameCore.OnVictory -= HandleOnVictory;
+        _gameCore.OnGameOver -= HandleOnGameOver;
+        _gameCore.OnStateChanged -= HandleOnStateChanged;
+        _achievementManager.OnAchievementUnlocked -= HandleAchievementUnlocked;
     }
 
     public bool TryLoadSave()
@@ -213,8 +234,9 @@ public partial class GameViewModel : BindableObject
         UpdateScores();
 
         _statisticsManager.Moved();
+        _statisticsManager.Merged(transitions.Where(x => x.Type == TileTransitionType.Merge).Count());
 
-        _ = _achievementManager.AnalyzeTurnAsync(transitions, _gameCore.GetCurrentGridState());
+        _achievementManager.CheckSessionAchievements(_gameCore.GetCurrentGridState(), transitions);
     }
 
     private async Task OnUndoRequested()
@@ -252,8 +274,9 @@ public partial class GameViewModel : BindableObject
         UpdateScores();
 
         _statisticsManager.Undone();
+        _statisticsManager.Respawned(transitions.Where(x => x.Type == TileTransitionType.Respawn).Count());
 
-        _ = _achievementManager.AnalyzeTurnAsync(transitions, _gameCore.GetCurrentGridState());
+        _achievementManager.CheckSessionAchievements(_gameCore.GetCurrentGridState(), transitions);
     }
 
     public void SyncTiles()
@@ -291,7 +314,15 @@ public partial class GameViewModel : BindableObject
         OnVictory?.Invoke();
 
         _statisticsManager.GameEnded(hasWon : true);
+        _achievementManager.CheckSpecialAchievements(_statisticsManager);
         _statisticsManager.Push();
+        _achievementManager.CheckGlobalAchievements();
+
+        _actionQueue.Enqueue(async () =>
+        {
+            if (_profileManager.CurrentProfile is not null)
+                await _saveService.SaveProfileAsync(_profileManager.CurrentProfile);
+        });
     }
 
     private void HandleOnGameOver()
@@ -301,7 +332,15 @@ public partial class GameViewModel : BindableObject
         OnGameOver?.Invoke();
 
         _statisticsManager.GameEnded(hasWon: false);
+        _achievementManager.CheckSpecialAchievements(_statisticsManager);
         _statisticsManager.Push();
+        _achievementManager.CheckGlobalAchievements();
+
+        _actionQueue.Enqueue(async () =>
+        {
+            if (_profileManager.CurrentProfile is not null)
+                await _saveService.SaveProfileAsync(_profileManager.CurrentProfile);
+        });
     }
 
     private void HandleOnStateChanged()
@@ -321,25 +360,47 @@ public partial class GameViewModel : BindableObject
 
         _statisticsManager.Push();
 
-        _actionQueue.Enqueue(() =>
+        _achievementManager.CheckGlobalAchievements();
+
+        _actionQueue.Enqueue(async () =>
         {
+            if (_profileManager.CurrentProfile is not null)
+                await _saveService.SaveProfileAsync(_profileManager.CurrentProfile);
+
             StartNewGame();
             OnRestart?.Invoke();
             IsEndGame = false;
             IsActiveGame = true;
-            return Task.CompletedTask;
         });
         
         await Task.CompletedTask;
     }
+
+    public async Task OnGoToMenu()
+    {
+        _actionQueue.Clear();
+
+        _statisticsManager.Push();
+
+        _achievementManager.CheckGlobalAchievements();
+
+        if (_profileManager.CurrentProfile is not null)
+            await _saveService.SaveProfileAsync(_profileManager.CurrentProfile);
+    }
+
     private void OnUndoAndContinueRequested()
     {
         _actionQueue.Clear();
 
         _statisticsManager.Push();
 
+        _achievementManager.CheckGlobalAchievements();
+
         _actionQueue.Enqueue(async () =>
         {
+            if (_profileManager.CurrentProfile is not null)
+                await _saveService.SaveProfileAsync(_profileManager.CurrentProfile);
+
             await Task.Run(() => { _gameCore.UndoMultiple(5); });
 
             Score = _gameCore.Grid.Score;

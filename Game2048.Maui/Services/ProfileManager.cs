@@ -82,17 +82,11 @@ public class ProfileManager : IProfileManager
     }
 
     //Achievements
-    public bool UnlockAchievement(AchievementType achievement)
+    public void UnlockAchievement(AchievementType achievement)
     {
         var profile = GetValidProfile();
 
-        bool isNew = profile.Achievements.Add(achievement);
-
-        if (isNew)
-        {
-            _ = _saveService.SaveProfileAsync(profile); //fire and forget, we don't need to await this
-        }
-        return isNew;
+        profile.Achievements.Add(achievement);
     }
 
     public HashSet<AchievementType> GetUnlockedAchievements()

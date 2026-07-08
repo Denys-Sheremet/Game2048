@@ -16,7 +16,7 @@ public interface IProfileManager
     GameSessionSave? LoadCurrentGame(GameModeType gameMode);
     void SaveBestScore(GameModeType gameMode, int bestScore);
     int? GetBestScore(GameModeType gameMode);
-    bool UnlockAchievement(AchievementType achievement);
+    void UnlockAchievement(AchievementType achievement);
     HashSet<AchievementType> GetUnlockedAchievements();
     void UnlockTheme(GameTheme theme);
     List<GameTheme> GetUnlockedThemes();
