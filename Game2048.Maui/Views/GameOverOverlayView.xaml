@@ -36,7 +36,8 @@
                     Style="{StaticResource MainBtnStyle}"
                     Text="Menu"
                     FontFamily="MontBold"
-                    FontSize="20">
+                    FontSize="20"
+                    Clicked="OnGoToMenuClicked">
 
             </Button>
 

@@ -2,8 +2,15 @@ namespace Game2048.Maui.Views;
 
 public partial class GameOverOverlayView : ContentView
 {
-	public GameOverOverlayView()
+    public event EventHandler? GoToMenuRequested;
+
+    public GameOverOverlayView()
 	{
 		InitializeComponent();
 	}
+
+    private void OnGoToMenuClicked(object sender, EventArgs e)
+    {
+        GoToMenuRequested?.Invoke(this, EventArgs.Empty);
+    }
 }

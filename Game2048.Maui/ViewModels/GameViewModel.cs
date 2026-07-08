@@ -343,14 +343,21 @@ public partial class GameViewModel : BindableObject, IDisposable
         });
     }
 
+    private void SaveCurrentGameState()
+    {
+        var gameMode = _gameConfig.GameMode;
+
+        _profileManager.SaveCurrentGame(
+            gameMode,
+            _gameCore.GetCurrentGridState(),
+            _gameCore.GetHistoryState());
+    }
+
     private void HandleOnStateChanged()
     {
         if (_profileManager.CurrentProfile is not null)
         {
-            var gameMode = _gameConfig.GameMode;
-            var gameState = _gameCore.GetCurrentGridState();
-            var history = _gameCore.GetHistoryState();
-            _profileManager.SaveCurrentGame(gameMode, gameState, history);
+            SaveCurrentGameState();
         }
     }
 
@@ -383,6 +390,12 @@ public partial class GameViewModel : BindableObject, IDisposable
         _statisticsManager.Push();
 
         _achievementManager.CheckGlobalAchievements();
+
+        StartNewGame();
+        IsEndGame = false;
+        IsActiveGame = true;
+
+        HandleOnStateChanged();
 
         if (_profileManager.CurrentProfile is not null)
             await _saveService.SaveProfileAsync(_profileManager.CurrentProfile);

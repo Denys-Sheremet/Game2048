@@ -45,6 +45,8 @@ public partial class GameView : ContentPage
         _viewModel.OnVictory += HandleOnVictory;
         _viewModel.OnGameOver += HandleOnGameOver;
         _viewModel.OnRestart += HandleRestart;
+
+        GameOverOverlay.GoToMenuRequested += OnGoToMenu;
     }
 
     private async Task ApplyMoveTransitionsAsync(IEnumerable<TileTransition> transitions)
@@ -293,7 +295,7 @@ public partial class GameView : ContentPage
         });
     }
 
-    private async void OnGoToMenu(object sender, EventArgs e)
+    private async void OnGoToMenu(object? sender, EventArgs e)
     {
         await _viewModel.OnGoToMenu();
 
