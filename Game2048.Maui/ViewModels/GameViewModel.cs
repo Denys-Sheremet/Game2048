@@ -32,34 +32,16 @@ public partial class GameViewModel : BindableObject, IDisposable
     private ActionInputQueue _actionQueue;
     public IAsyncRelayCommand MoveCommand { get; private set; }
     public IAsyncRelayCommand UndoCommand { get; private set; }
-    public IAsyncRelayCommand RestartCommand { get; private set; }
+    public IAsyncRelayCommand RestartCommand { get; private set; } //maybe should not be async
     public IRelayCommand UndoLastAndContinue { get; private set; }
+    public IRelayCommand ExtendCommand { get; private set; }
+    public IRelayCommand SettingsCommand { get; private set; }
 
     public event Action? OnVictory;
     public event Action? OnGameOver;
     public event Action? OnRestart;
-
-    private bool _isActiveGame = true;
-    public bool IsActiveGame
-    {
-        get => _isActiveGame;
-        set
-        {
-            _isActiveGame = value;
-            OnPropertyChanged();
-        }
-    }
-
-    private bool _isEndGame = false;
-    public bool IsEndGame
-    {
-        get => _isEndGame;
-        set
-        {
-            _isEndGame = value;
-            OnPropertyChanged();
-        }
-    }
+    public event Action? OnSettings;
+    public event Action? OnActive;
 
     private int _score;
     public int Score
@@ -109,6 +91,95 @@ public partial class GameViewModel : BindableObject, IDisposable
         set { _isUndoEnabled = value; OnPropertyChanged(); }
     }
 
+    private bool _isExtendedAllowed;
+
+    public bool IsExtendedAllowed
+    {
+        get => _isExtendedAllowed;
+        set { _isExtendedAllowed = value; OnPropertyChanged(); }
+    }
+
+    // start (for overlays and additional windows inside the gameview) 
+    private bool _isActiveGame = true;
+    public bool IsActiveGame
+    {
+        get => _isActiveGame;
+        set
+        {
+            _isActiveGame = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private bool _isBoardBlocked = false;
+    public bool IsBoardBlocked
+    {
+        get => _isBoardBlocked;
+        set
+        {
+            _isBoardBlocked = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private bool _isGameOver;
+    public bool IsGameOver
+    {
+        get => _isGameOver;
+        set { _isGameOver = value; OnPropertyChanged(); }
+    }
+
+    private bool _isVictory;
+    public bool IsVictory
+    {
+        get => _isVictory;
+        set { _isVictory = value; OnPropertyChanged(); }
+    }
+
+    private bool _isSettings;
+    public bool IsSettings
+    {
+        get => _isSettings;
+        set { _isSettings = value; OnPropertyChanged(); }
+    }
+    //methods
+    private void SetGameOverState() 
+    {
+        IsGameOver = true;
+        IsBoardBlocked = true;
+
+        IsVictory = false;
+        IsActiveGame = false;
+        IsSettings = false;
+    }
+
+    private void SetVictoryState()
+    {
+        IsVictory = true;
+        IsBoardBlocked = true;
+
+        IsGameOver = false;
+        IsActiveGame = false;
+        IsSettings = false;
+    }
+
+    private void SetSettingsState()
+    {
+        IsSettings = true;
+        IsBoardBlocked = true;
+
+        IsActiveGame = false;
+    }
+
+    private void SetActiveState()
+    {
+        IsActiveGame = true;
+
+        IsSettings = false;
+        IsBoardBlocked = false;
+    }
+    // end 
+
     public int Rows => _gameCore.Grid.Height;
     public int Columns => _gameCore.Grid.Width;
 
@@ -127,14 +198,13 @@ public partial class GameViewModel : BindableObject, IDisposable
         UndoCommand = new AsyncRelayCommand(OnUndoRequested);
         RestartCommand = new AsyncRelayCommand(OnRestartRequested);
         UndoLastAndContinue = new RelayCommand(OnUndoAndContinueRequested);
-        if (config.GameMode == GameModeType.Classic)
-        {
-            _isUndoEnabled = false;
-        }
-        else 
-        { 
-            _isUndoEnabled = true; 
-        }
+        ExtendCommand = new RelayCommand(OnExtendRequested);
+        
+        _isUndoEnabled = config.GameMode != GameModeType.Classic;
+
+        _isExtendedAllowed = config.GameMode != GameModeType.Compact && 
+                             config.GameMode != GameModeType.Extended &&
+                             config.GameMode != GameModeType.ChillZone;
 
         _gameCore.OnVictory += HandleOnVictory;
         _gameCore.OnGameOver += HandleOnGameOver;
@@ -309,8 +379,7 @@ public partial class GameViewModel : BindableObject, IDisposable
 
     private void HandleOnVictory()
     {
-        IsEndGame = true;
-        IsActiveGame = false;
+        SetVictoryState();
         OnVictory?.Invoke();
 
         _statisticsManager.GameEnded(hasWon : true);
@@ -327,8 +396,7 @@ public partial class GameViewModel : BindableObject, IDisposable
 
     private void HandleOnGameOver()
     {
-        IsEndGame = true;
-        IsActiveGame = false;
+        SetGameOverState();
         OnGameOver?.Invoke();
 
         _statisticsManager.GameEnded(hasWon: false);
@@ -376,8 +444,7 @@ public partial class GameViewModel : BindableObject, IDisposable
 
             StartNewGame();
             OnRestart?.Invoke();
-            IsEndGame = false;
-            IsActiveGame = true;
+            SetActiveState();
         });
         
         await Task.CompletedTask;
@@ -404,8 +471,7 @@ public partial class GameViewModel : BindableObject, IDisposable
         _achievementManager.CheckGlobalAchievements();
 
         StartNewGame();
-        IsEndGame = false;
-        IsActiveGame = true;
+        SetActiveState();
 
         HandleOnStateChanged();
 
@@ -436,8 +502,30 @@ public partial class GameViewModel : BindableObject, IDisposable
 
             OnRestart?.Invoke();
 
-            IsEndGame = false;
-            IsActiveGame = true;
+            SetActiveState();
+        });
+    }
+
+    private void OnExtendRequested()
+    {
+        if(!IsExtendedAllowed) return;
+
+        _actionQueue.Clear();
+
+        _statisticsManager.Push();
+
+        _achievementManager.CheckGlobalAchievements();
+
+        _actionQueue.Enqueue(async () =>
+        {
+            if (_profileManager.CurrentProfile is not null)
+                await _saveService.SaveProfileAsync(_profileManager.CurrentProfile);
+
+            IsExtendedAllowed = false;
+
+            _gameCore.Extend(4096);
+
+            SetActiveState();
         });
     }
 

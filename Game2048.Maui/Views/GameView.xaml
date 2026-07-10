@@ -127,7 +127,7 @@
         </Grid>
 
         <Grid x:Name="EndOfGameOverlay"
-              IsVisible="{Binding IsEndGame}"
+              IsVisible="{Binding IsBoardBlocked}"
               BackgroundColor="#80000000"
               InputTransparent="False"
               CascadeInputTransparent="False"
@@ -141,7 +141,8 @@
                 <SwipeGestureRecognizer Direction="Up,Down,Left,Right" />
             </Grid.GestureRecognizers>
 
-            <views:GameOverOverlayView x:Name="GameOverOverlay"/>
+            <views:GameOverOverlayView x:Name="GameOverOverlay" IsVisible="{Binding IsGameOver}"/>
+            <views:VictoryOverlayView x:Name="VictoryOverlay" IsVisible="{Binding IsVictory}"/>
             
         </Grid>
         

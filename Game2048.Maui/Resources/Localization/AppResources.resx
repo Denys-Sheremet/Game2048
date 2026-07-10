@@ -231,4 +231,16 @@
   <data name="Menu_version_text" xml:space="preserve">
     <value>ver. 1.0</value>
   </data>
+  <data name="VictoryOverlay_continue_btn_text" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="VictoryOverlay_menu_btn_text" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="VictoryOverlay_restart_btn_text" xml:space="preserve">
+    <value>Restart</value>
+  </data>
+  <data name="VictoryOverlay_title" xml:space="preserve">
+    <value>VICTORY</value>
+  </data>
 </root>

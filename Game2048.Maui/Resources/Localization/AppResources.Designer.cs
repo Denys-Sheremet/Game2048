@@ -401,5 +401,41 @@ namespace Game2048.Maui.Resources.Localization {
                 return ResourceManager.GetString("Menu_version_text", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Continue.
+        /// </summary>
+        public static string VictoryOverlay_continue_btn_text {
+            get {
+                return ResourceManager.GetString("VictoryOverlay_continue_btn_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Menu.
+        /// </summary>
+        public static string VictoryOverlay_menu_btn_text {
+            get {
+                return ResourceManager.GetString("VictoryOverlay_menu_btn_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Restart.
+        /// </summary>
+        public static string VictoryOverlay_restart_btn_text {
+            get {
+                return ResourceManager.GetString("VictoryOverlay_restart_btn_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на VICTORY.
+        /// </summary>
+        public static string VictoryOverlay_title {
+            get {
+                return ResourceManager.GetString("VictoryOverlay_title", resourceCulture);
+            }
+        }
     }
 }

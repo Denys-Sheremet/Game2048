@@ -15,6 +15,8 @@ public class SaveService : ISaveService
     private readonly string _backupPath;
     private readonly JsonSerializerOptions _jsonOptions;
 
+    private readonly SemaphoreSlim _semaphore = new(1, 1);
+
     public SaveService()
     {
         _savePath = Path.Combine(FileSystem.AppDataDirectory, "player_profile.json");
@@ -33,6 +35,8 @@ public class SaveService : ISaveService
 
     public async Task SaveProfileAsync(PlayerProfile profile)
     {
+        await _semaphore.WaitAsync();
+
         string tempPath = _savePath + ".tmp";
 
         try
@@ -68,6 +72,7 @@ public class SaveService : ISaveService
                     throw; //throw the exception to be handled by the caller if needed
                 }
             }
+            _semaphore.Release();
         }
     }
 

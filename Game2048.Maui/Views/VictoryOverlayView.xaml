@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
+             xmlns:lang="clr-namespace:Game2048.Maui.Resources.Localization"
+             x:DataType="vm:GameViewModel"
+             x:Class="Game2048.Maui.Views.VictoryOverlayView"
+             x:Name="VictoryOverlay">
+
+    <Border VerticalOptions="Center"
+            HorizontalOptions="Center"
+            StrokeShape="RoundRectangle 20"
+            Padding="30"
+            BackgroundColor="{DynamicResource GameFieldBackgroundColor}"
+            WidthRequest="300">
+
+        <VerticalStackLayout Spacing="15"
+                             HorizontalOptions="Center">
+
+            <Label Text="{x:Static lang:AppResources.VictoryOverlay_title}"
+                   FontFamily="RubikBold"
+                   FontSize="30"
+                   TextColor="{DynamicResource ScoreBoardTextColor}"
+                   HorizontalOptions="Center"
+                   Margin="0, 0, 0, 10">
+            </Label>
+
+            <Button x:Name="ContinueBtn"
+                    IsVisible="{Binding IsExtendedAllowed}"
+                    Style="{StaticResource MainBtnStyle}"
+                    Text="{x:Static lang:AppResources.VictoryOverlay_continue_btn_text}"
+                    FontFamily="MontBold"
+                    FontSize="20"
+                    Command="{Binding ExtendCommand}">
+            </Button>
+
+            <Button x:Name="RestartBtn"
+                    Style="{StaticResource MainBtnStyle}"
+                    Text="{x:Static lang:AppResources.VictoryOverlay_restart_btn_text}"
+                    FontFamily="MontBold"
+                    FontSize="20"
+                    Command="{Binding RestartCommand}">
+            </Button>
+
+            <Button x:Name="GoToMenuBtn"
+                    Style="{StaticResource MainBtnStyle}"
+                    Text="{x:Static lang:AppResources.VictoryOverlay_menu_btn_text}"
+                    FontFamily="MontBold"
+                    FontSize="20"
+                    Clicked="OnGoToMenuClicked">
+            </Button>
+
+        </VerticalStackLayout>
+    </Border>
+</ContentView>

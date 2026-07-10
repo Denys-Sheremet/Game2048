@@ -283,6 +283,15 @@ public class Game
         IsVictory = false;
     }
 
+    public void Extend(int newMaxValue) 
+    {
+        if (newMaxValue <= _maxTileValue) throw new ArgumentException($"New max value {newMaxValue} must be greater than current max value {_maxTileValue}");
+        SetMaxValue(newMaxValue);
+
+        IsGameOver = false;
+        IsVictory = false;
+    }
+
     public void HistoryColdRestore(List<StateSnapshot>? restored)
     {
         if (restored is null) return;
