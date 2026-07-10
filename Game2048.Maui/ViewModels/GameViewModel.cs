@@ -35,7 +35,8 @@ public partial class GameViewModel : BindableObject, IDisposable
     public IAsyncRelayCommand RestartCommand { get; private set; } //maybe should not be async
     public IRelayCommand UndoLastAndContinue { get; private set; }
     public IRelayCommand ExtendCommand { get; private set; }
-    public IRelayCommand SettingsCommand { get; private set; }
+    public IRelayCommand OpenSettingsCommand { get; private set; }
+    public IRelayCommand CloseSettingsCommand { get; private set; }
 
     public event Action? OnVictory;
     public event Action? OnGameOver;
@@ -199,6 +200,8 @@ public partial class GameViewModel : BindableObject, IDisposable
         RestartCommand = new AsyncRelayCommand(OnRestartRequested);
         UndoLastAndContinue = new RelayCommand(OnUndoAndContinueRequested);
         ExtendCommand = new RelayCommand(OnExtendRequested);
+        OpenSettingsCommand = new RelayCommand(OnOpenSettingsRequested);
+        CloseSettingsCommand = new RelayCommand(OnCloseSettingsRequested);
         
         _isUndoEnabled = config.GameMode != GameModeType.Classic;
 
@@ -527,6 +530,18 @@ public partial class GameViewModel : BindableObject, IDisposable
 
             SetActiveState();
         });
+    }
+
+    private void OnOpenSettingsRequested()
+    {
+        SetSettingsState();
+        OnSettings?.Invoke();
+    }
+
+    private void OnCloseSettingsRequested()
+    {
+        SetActiveState();
+        OnActive?.Invoke();
     }
 
 

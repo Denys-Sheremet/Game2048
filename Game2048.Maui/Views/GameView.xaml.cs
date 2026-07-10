@@ -45,7 +45,8 @@ public partial class GameView : ContentPage
         _viewModel.OnVictory += HandleOnVictory;
         _viewModel.OnGameOver += HandleOnGameOver;
         _viewModel.OnRestart += HandleRestart;
-
+        _viewModel.OnSettings += HandleOnSettings;
+        _viewModel.OnActive += HandleOnActive;
         GameOverOverlay.GoToMenuRequested += OnGoToMenu;
         VictoryOverlay.GoToMenuRequested += OnGoToMenu;
     }
@@ -327,7 +328,14 @@ public partial class GameView : ContentPage
 
     private async void HandleOnVictory()
     {
+        VictoryOverlay.TranslationY = 800;
+        VictoryOverlay.Opacity = 0;
+        VictoryOverlay.IsVisible = true;
 
+        await Task.WhenAll(
+            VictoryOverlay.FadeTo(1, 400),
+            VictoryOverlay.TranslateTo(0, 0, 800, Easing.BounceOut)
+        );
     }
 
     private async void HandleOnGameOver()
@@ -351,5 +359,23 @@ public partial class GameView : ContentPage
         await Task.WhenAll(
             GameGridLayout.FadeTo(1.0, 150)
         );
+    }
+
+    private async void HandleOnSettings()
+    {
+        Settings.Opacity = 0;
+        Settings.Scale = 0.0;
+        Settings.IsVisible = true;
+
+        await Task.WhenAll(
+            Settings.FadeTo(1, 200),
+            Settings.ScaleTo(1.1, 300, Easing.CubicIn)
+        );
+        await Settings.ScaleTo(1.0, 100, Easing.CubicOut);
+    }
+
+    private async void HandleOnActive()
+    {
+        //
     }
 }

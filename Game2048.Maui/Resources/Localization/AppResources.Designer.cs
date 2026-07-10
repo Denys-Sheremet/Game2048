@@ -403,6 +403,42 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на How to.
+        /// </summary>
+        public static string Settings_how_to_btn_text {
+            get {
+                return ResourceManager.GetString("Settings_how_to_btn_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Restart.
+        /// </summary>
+        public static string Settings_restart_btn_text {
+            get {
+                return ResourceManager.GetString("Settings_restart_btn_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Themes.
+        /// </summary>
+        public static string Settings_themes_btn_text {
+            get {
+                return ResourceManager.GetString("Settings_themes_btn_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Settings.
+        /// </summary>
+        public static string Settings_title {
+            get {
+                return ResourceManager.GetString("Settings_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Continue.
         /// </summary>
         public static string VictoryOverlay_continue_btn_text {

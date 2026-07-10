@@ -107,6 +107,7 @@
 
                 <Button Grid.Column="1" 
                         Text="{x:Static lang:AppResources.Game_settings_btn_text}" 
+                        Command="{Binding OpenSettingsCommand}"
                         FontSize="24" 
                         Style="{StaticResource MainBtnStyle}" 
                         FontFamily="MontBold">
@@ -143,6 +144,7 @@
 
             <views:GameOverOverlayView x:Name="GameOverOverlay" IsVisible="{Binding IsGameOver}"/>
             <views:VictoryOverlayView x:Name="VictoryOverlay" IsVisible="{Binding IsVictory}"/>
+            <views:SettingsView x:Name="Settings" IsVisible="{Binding IsSettings}"/>
             
         </Grid>
         

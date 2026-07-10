@@ -1,10 +1,69 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
+             xmlns:lang="clr-namespace:Game2048.Maui.Resources.Localization"
+             x:DataType="vm:GameViewModel"
              x:Class="Game2048.Maui.Views.SettingsView"
-             x:DataType="vm:SettingsViewModel"
-             Shell.NavBarIsVisible="False">
+             x:Name="Settings">
 
-    
-</ContentPage>
+    <Border VerticalOptions="Center"
+            HorizontalOptions="Center"
+            StrokeShape="RoundRectangle 20"
+            Padding="25, 20, 25, 30"
+            BackgroundColor="{DynamicResource GameFieldBackgroundColor}"
+            WidthRequest="300">
+
+        <VerticalStackLayout Spacing="15">
+
+            <Grid ColumnDefinitions="40, *, 40" Margin="0, 0, 0, 10">
+
+                <Label Grid.Column="1"
+                       Text="{x:Static lang:AppResources.Settings_title}"
+                       FontFamily="RubikBold"
+                       FontSize="26"
+                       TextColor="{DynamicResource ScoreBoardTextColor}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+
+                <Button Grid.Column="2"
+                        Text="&#xf00d;" 
+                        FontFamily="FontAwesome"
+                        FontSize="24"
+                        TextColor="{DynamicResource ScoreBoardTextColor}"
+                        BackgroundColor="Transparent"
+                        Padding="0"
+                        HeightRequest="40"
+                        WidthRequest="40"
+                        HorizontalOptions="End"
+                        VerticalOptions="Center"
+                        Command="{Binding CloseSettingsCommand}" />
+            </Grid>
+
+            <Button x:Name="RestartBtn"
+                    Style="{StaticResource MainBtnStyle}"
+                    Text="{x:Static lang:AppResources.Settings_restart_btn_text}"
+                    FontFamily="MontBold"
+                    FontSize="20"
+                    Command="{Binding RestartCommand}">
+            </Button>
+
+            <Button x:Name="ThemesBtn"
+                    Style="{StaticResource MainBtnStyle}"
+                    Text="{x:Static lang:AppResources.Settings_themes_btn_text}"
+                    FontFamily="MontBold"
+                    FontSize="20"
+                    Clicked="OnThemesClicked">
+            </Button>
+
+            <Button x:Name="HowToBtn"
+                    Style="{StaticResource MainBtnStyle}"
+                    Text="{x:Static lang:AppResources.Settings_how_to_btn_text}"
+                    FontFamily="MontBold"
+                    FontSize="20"
+                    Clicked="OnHowToClicked">
+            </Button>
+
+        </VerticalStackLayout>
+    </Border>
+</ContentView>
