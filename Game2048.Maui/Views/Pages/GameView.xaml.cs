@@ -6,6 +6,8 @@ using Game2048.Core.Enums;
 using Game2048.Maui.Interfaces;
 using Game2048.Maui.Enums;
 using Game2048.Maui.Views.Components;
+using Game2048.Maui.Resources.Localization;
+using Game2048.Maui.Views.Overlays;
 
 namespace Game2048.Maui.Views.Pages;
 
@@ -292,9 +294,17 @@ public partial class GameView : ContentPage
 
     private void OnNewAchievementUnlocked(AchievementType achievementType)
     {
-        Dispatcher.Dispatch(async () =>
+        string titleKey = $"Ach_{achievementType}_title";
+        string descKey = $"Ach_{achievementType}_desc";
+
+        string localizedTitle = AppResources.ResourceManager.GetString(titleKey) ?? achievementType.ToString();
+        string localizedDesc = AppResources.ResourceManager.GetString(descKey) ?? "Description";
+
+        string imageName = $"ach_{achievementType.ToString().ToLower()}.png";
+
+        Dispatcher.DispatchAsync(async () =>
         {
-            // Show the achievement unlocked overlay
+            await AchievementToast.ShowAsync(localizedTitle, localizedDesc, imageName);
         });
     }
 

@@ -146,8 +146,11 @@
             <ovr:GameOverOverlayView x:Name="GameOverOverlay" IsVisible="{Binding IsGameOver}"/>
             <ovr:VictoryOverlayView x:Name="VictoryOverlay" IsVisible="{Binding IsVictory}"/>
             <ovr:SettingsView x:Name="Settings" IsVisible="{Binding IsSettings}"/>
-            
         </Grid>
-        
+
+
+        <ovr:AchievementToastView x:Name="AchievementToast" 
+              ZIndex="100" 
+              InputTransparent="True"/>
     </Grid>
 </ContentPage>

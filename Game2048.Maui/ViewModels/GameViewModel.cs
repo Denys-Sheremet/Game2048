@@ -236,7 +236,7 @@ public partial class GameViewModel : BindableObject, IDisposable
 
     public bool TryLoadSave()
     {
-        ArgumentNullException.ThrowIfNull(_profileManager.CurrentProfile);
+        if(_profileManager.CurrentProfile is null) return false;
 
         var gameMode = _gameConfig.GameMode;
         var save = _profileManager.LoadCurrentGame(gameMode);
