@@ -1,4 +1,4 @@
-namespace Game2048.Maui.Views;
+namespace Game2048.Maui.Views.Components;
 
 public partial class TileView : Border
 {

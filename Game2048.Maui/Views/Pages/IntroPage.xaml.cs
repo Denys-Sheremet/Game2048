@@ -1,7 +1,7 @@
 using Game2048.Maui.Interfaces;
 using Game2048.Maui.Services;
 
-namespace Game2048.Maui.Views;
+namespace Game2048.Maui.Views.Pages;
 
 public partial class IntroPage : ContentPage
 {

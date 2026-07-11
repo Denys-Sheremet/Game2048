@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:views="clr-namespace:Game2048.Maui.Views"
+             xmlns:comp="clr-namespace:Game2048.Maui.Views.Components"
+             xmlns:ovr="clr-namespace:Game2048.Maui.Views.Overlays"
              xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
              xmlns:lang="clr-namespace:Game2048.Maui.Resources.Localization"
-             x:Class="Game2048.Maui.Views.GameView"
+             x:Class="Game2048.Maui.Views.Pages.GameView"
              x:DataType="vm:GameViewModel"
              Shell.NavBarIsVisible="False"
              BackgroundColor="{DynamicResource GameBackgroundColor}">
@@ -55,7 +56,7 @@
                       Margin="0, 15, 0, 0" 
                       ColumnSpacing="20">
 
-                    <views:ScoreBoardView Grid.Column="0" VerticalOptions="Center"/>
+                    <comp:ScoreBoardView Grid.Column="0" VerticalOptions="Center"/>
                 </Grid>
             </Grid>
 
@@ -142,9 +143,9 @@
                 <SwipeGestureRecognizer Direction="Up,Down,Left,Right" />
             </Grid.GestureRecognizers>
 
-            <views:GameOverOverlayView x:Name="GameOverOverlay" IsVisible="{Binding IsGameOver}"/>
-            <views:VictoryOverlayView x:Name="VictoryOverlay" IsVisible="{Binding IsVictory}"/>
-            <views:SettingsView x:Name="Settings" IsVisible="{Binding IsSettings}"/>
+            <ovr:GameOverOverlayView x:Name="GameOverOverlay" IsVisible="{Binding IsGameOver}"/>
+            <ovr:VictoryOverlayView x:Name="VictoryOverlay" IsVisible="{Binding IsVictory}"/>
+            <ovr:SettingsView x:Name="Settings" IsVisible="{Binding IsSettings}"/>
             
         </Grid>
         

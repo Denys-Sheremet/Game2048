@@ -1,4 +1,4 @@
-namespace Game2048.Maui.Views;
+namespace Game2048.Maui.Views.Overlays;
 
 public partial class SettingsView : ContentView
 {

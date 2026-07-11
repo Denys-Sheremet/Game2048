@@ -4,7 +4,7 @@
              xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
              xmlns:lang="clr-namespace:Game2048.Maui.Resources.Localization"
              x:DataType="vm:GameViewModel"
-             x:Class="Game2048.Maui.Views.GameOverOverlayView"
+             x:Class="Game2048.Maui.Views.Overlays.GameOverOverlayView"
              x:Name="GameOverOverlay">
     
     <Border VerticalOptions="Center"

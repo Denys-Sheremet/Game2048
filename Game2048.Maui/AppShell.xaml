@@ -3,16 +3,16 @@
     x:Class="Game2048.Maui.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:views="clr-namespace:Game2048.Maui.Views"
+    xmlns:pages="clr-namespace:Game2048.Maui.Views.Pages"
     Shell.FlyoutBehavior="Disabled"
     Title="2048">
-    
-    <ShellContent ContentTemplate="{DataTemplate views:IntroPage}" Route="IntroPage"/>
-    <ShellContent ContentTemplate="{DataTemplate views:MainMenuView}" Route="MainMenuPage"/>
-    <ShellContent ContentTemplate="{DataTemplate views:GameView}" Route="GamePage"/>
-    <ShellContent ContentTemplate="{DataTemplate views:AchievementsView}" Route="AchievementsPage"/>
-    <ShellContent ContentTemplate="{DataTemplate views:GameModesView}" Route="GameModesPage"/>
-    <ShellContent ContentTemplate="{DataTemplate views:HowToView}" Route="HowToPage"/>
-    <ShellContent ContentTemplate="{DataTemplate views:SettingsView}" Route="SettingsPage"/>
+
+    <ShellContent ContentTemplate="{DataTemplate pages:IntroPage}" Route="IntroPage"/>
+    <ShellContent ContentTemplate="{DataTemplate pages:MainMenuView}" Route="MainMenuPage"/>
+    <ShellContent ContentTemplate="{DataTemplate pages:GameView}" Route="GamePage"/>
+    <ShellContent ContentTemplate="{DataTemplate pages:AchievementsView}" Route="AchievementsPage"/>
+    <ShellContent ContentTemplate="{DataTemplate pages:GameModesView}" Route="GameModesPage"/>
+    <ShellContent ContentTemplate="{DataTemplate pages:HowToView}" Route="HowToPage"/>
+    <ShellContent ContentTemplate="{DataTemplate pages:SettingsPageView}" Route="SettingsPage"/>
 
 </Shell>

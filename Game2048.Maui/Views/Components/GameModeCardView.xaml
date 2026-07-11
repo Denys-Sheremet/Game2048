@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:views="clr-namespace:Game2048.Maui.Views"
+             xmlns:comp="clr-namespace:Game2048.Maui.Views.Components"
+             xmlns:ovr="clr-namespace:Game2048.Maui.Views.Overlays"
              xmlns:models="clr-namespace:Game2048.Maui.Models"
-             x:Class="Game2048.Maui.Views.GameModeCardView"
+             x:Class="Game2048.Maui.Views.Components.GameModeCardView"
              x:DataType="models:GameMode">
 
     <Border x:Name="CardContainer"
@@ -18,8 +19,8 @@
 
         <Border.GestureRecognizers>
             <TapGestureRecognizer 
-                    Command="{Binding Command, Source={RelativeSource AncestorType={x:Type views:GameModeCardView}}, x:DataType={x:Type views:GameModeCardView}}"
-                    CommandParameter="{Binding CommandParameter, Source={RelativeSource AncestorType={x:Type views:GameModeCardView}}, x:DataType={x:Type views:GameModeCardView}}" />
+                    Command="{Binding Command, Source={RelativeSource AncestorType={x:Type comp:GameModeCardView}}, x:DataType={x:Type comp:GameModeCardView}}"
+                    CommandParameter="{Binding CommandParameter, Source={RelativeSource AncestorType={x:Type comp:GameModeCardView}}, x:DataType={x:Type comp:GameModeCardView}}" />
         </Border.GestureRecognizers>
 
         <VerticalStackLayout Spacing="0" VerticalOptions="Fill">

@@ -86,13 +86,13 @@
 	  <Compile Update="Resources\Styles\Themes\ClassicTheme.xaml.cs">
 	    <DependentUpon>ClassicTheme.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\GameModesView.xaml.cs">
+	  <Compile Update="Views\Pages\GameModesView.xaml.cs">
 	    <DependentUpon>GameModesView.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\GameView.xaml.cs">
+	  <Compile Update="Views\Pages\GameView.xaml.cs">
 	    <DependentUpon>GameView.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\TileView.xaml.cs">
+	  <Compile Update="Views\Components\TileView.xaml.cs">
 	    <DependentUpon>TileView.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
@@ -114,40 +114,43 @@
 	  <MauiXaml Update="Resources\Styles\Themes\NatureTheme.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\AchievementsView.xaml">
+	  <MauiXaml Update="Views\Pages\AchievementsView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\GameModeCardView.xaml">
+	  <MauiXaml Update="Views\Components\GameModeCardView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\GameModesView.xaml">
+	  <MauiXaml Update="Views\Pages\GameModesView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\GameOverOverlayView.xaml">
+	  <MauiXaml Update="Views\Overlays\GameOverOverlayView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\GameView.xaml">
+	  <MauiXaml Update="Views\Pages\GameView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\HowToView.xaml">
+	  <MauiXaml Update="Views\Pages\HowToView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\IntroPage.xaml">
+	  <MauiXaml Update="Views\Pages\IntroPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\MainMenuView.xaml">
+	  <MauiXaml Update="Views\Pages\MainMenuView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ScoreBoardView.xaml">
+	  <MauiXaml Update="Views\Components\ScoreBoardView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\SettingsView.xaml">
+	  <MauiXaml Update="Views\Overlays\SettingsView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\TileView.xaml">
+	  <MauiXaml Update="Views\Components\TileView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\VictoryOverlayView.xaml">
+	  <MauiXaml Update="Views\Overlays\VictoryOverlayView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Pages\SettingsPageView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

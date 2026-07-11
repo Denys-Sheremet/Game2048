@@ -5,8 +5,9 @@ using Game2048.Maui.Services;
 using Game2048.Core.Enums;
 using Game2048.Maui.Interfaces;
 using Game2048.Maui.Enums;
+using Game2048.Maui.Views.Components;
 
-namespace Game2048.Maui.Views;
+namespace Game2048.Maui.Views.Pages;
 
 public partial class GameView : ContentPage
 {

@@ -2,7 +2,7 @@
 using Game2048.Maui.Interfaces;
 using Game2048.Maui.Services;
 using Game2048.Maui.ViewModels;
-using Game2048.Maui.Views;
+using Game2048.Maui.Views.Pages;
 using Microsoft.Extensions.Logging;
 using Game2048.Maui.Extensions;
 

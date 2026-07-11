@@ -1,6 +1,6 @@
 using Game2048.Maui.ViewModels;
 
-namespace Game2048.Maui.Views;
+namespace Game2048.Maui.Views.Pages;
 
 public partial class GameModesView : ContentPage
 {
