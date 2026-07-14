@@ -46,7 +46,7 @@
                    VerticalOptions="End"
                    FontFamily="RubikSemi"
                    FontSize="40"
-                   TextColor="{DynamicResource MainTextColor}">
+                   TextColor="{DynamicResource MainTitleColor}">
             
             </Label>
 

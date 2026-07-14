@@ -44,9 +44,11 @@ namespace Game2048.Maui
             builder.Services.AddTransient<MainMenuView>();
             builder.Services.AddTransient<GameModesView>();
             builder.Services.AddTransient<GameModesViewModel>();
+            builder.Services.AddTransient<AchievementsViewModel>();
+            builder.Services.AddTransient<AchievementsView>();
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

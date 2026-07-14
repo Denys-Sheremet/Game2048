@@ -295,6 +295,24 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Progress.
+        /// </summary>
+        public static string Achievements_progress_label {
+            get {
+                return ResourceManager.GetString("Achievements_progress_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Achievements.
+        /// </summary>
+        public static string Achievements_title {
+            get {
+                return ResourceManager.GetString("Achievements_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Settings.
         /// </summary>
         public static string Game_settings_btn_text {

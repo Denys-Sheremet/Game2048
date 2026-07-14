@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Achievements_progress_label" xml:space="preserve">
+    <value>Progress</value>
+  </data>
+  <data name="Achievements_title" xml:space="preserve">
+    <value>Achievements</value>
+  </data>
   <data name="Ach_FirstGame_desc" xml:space="preserve">
     <value>Played your first game in 2048</value>
   </data>

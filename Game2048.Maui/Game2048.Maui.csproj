@@ -114,6 +114,12 @@
 	  <MauiXaml Update="Resources\Styles\Themes\NatureTheme.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Components\AchievementCardView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Overlays\AchievementDetailView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Overlays\AchievementToastView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

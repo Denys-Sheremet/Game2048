@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
+             x:DataType="vm:AchievementData"
+             x:Class="Game2048.Maui.Views.Components.AchievementCardView">
+
+    <Border StrokeShape="RoundRectangle 15"
+            StrokeThickness="0"
+            BackgroundColor="{DynamicResource AchievementBackgroundColor}"
+            HeightRequest="110"
+            WidthRequest="110"
+            Padding="10">
+        
+        <Border.Triggers>
+            <DataTrigger TargetType="Border" Binding="{Binding IsUnlocked}" Value="False">
+                <Setter Property="Opacity" Value="0.4" />
+            </DataTrigger>
+        </Border.Triggers>
+
+        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="8">
+            <Border HeightRequest="40" 
+                    WidthRequest="40"
+                    StrokeShape="RoundRectangle 8" StrokeThickness="0"
+                    Padding="0"
+                    HorizontalOptions="Center">
+                <Image Source="{Binding ImageName}" 
+                   HeightRequest="40" 
+                   WidthRequest="40" 
+                   Aspect="AspectFit"/>
+            </Border>
+
+            <Label Text="{Binding Title}" 
+                   FontSize="11" 
+                   FontFamily="MontBold" 
+                   TextColor="{DynamicResource MainTextColor}"
+                   HorizontalTextAlignment="Center" 
+                   MaxLines="2" 
+                   LineBreakMode="TailTruncation"/>
+        </VerticalStackLayout>
+
+    </Border>
+</ContentView>
