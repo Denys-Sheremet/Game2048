@@ -25,8 +25,8 @@
               x:Name="ToastContentGrid">
 
             <Border Grid.Column="0"
-                    HeightRequest="50" 
-                    WidthRequest="50"
+                    HeightRequest="60" 
+                    WidthRequest="60"
                     StrokeShape="RoundRectangle 25"
                     StrokeThickness="0"
                     Padding="0"

@@ -4,13 +4,10 @@ using Game2048.Core.DTOs;
 using Game2048.Core.Enums;
 using Game2048.Maui.Enums;
 using Game2048.Core.Factories;
-using Game2048.Core.Interfaces;
 using Game2048.Core.Models;
 using Game2048.Maui.Interfaces;
-using Game2048.Maui.Models;
 using Game2048.Maui.Services;
 using System.Collections.ObjectModel;
-using System.Runtime.CompilerServices;
 
 namespace Game2048.Maui.ViewModels;
 
@@ -32,7 +29,7 @@ public partial class GameViewModel : BindableObject, IDisposable
     private ActionInputQueue _actionQueue;
     public IAsyncRelayCommand MoveCommand { get; private set; }
     public IAsyncRelayCommand UndoCommand { get; private set; }
-    public IAsyncRelayCommand RestartCommand { get; private set; } //maybe should not be async
+    public IRelayCommand RestartCommand { get; private set; }
     public IRelayCommand UndoLastAndContinue { get; private set; }
     public IRelayCommand ExtendCommand { get; private set; }
     public IRelayCommand OpenSettingsCommand { get; private set; }
@@ -42,7 +39,6 @@ public partial class GameViewModel : BindableObject, IDisposable
     public event Action? OnGameOver;
     public event Action? OnRestart;
     public event Action? OnSettings;
-    public event Action? OnActive;
 
     private int _score;
     public int Score
@@ -197,7 +193,7 @@ public partial class GameViewModel : BindableObject, IDisposable
         _actionQueue = new ActionInputQueue();
         MoveCommand = new AsyncRelayCommand<string>(OnMoveRequested);
         UndoCommand = new AsyncRelayCommand(OnUndoRequested);
-        RestartCommand = new AsyncRelayCommand(OnRestartRequested);
+        RestartCommand = new RelayCommand(OnRestartRequested);
         UndoLastAndContinue = new RelayCommand(OnUndoAndContinueRequested);
         ExtendCommand = new RelayCommand(OnExtendRequested);
         OpenSettingsCommand = new RelayCommand(OnOpenSettingsRequested);
@@ -432,7 +428,7 @@ public partial class GameViewModel : BindableObject, IDisposable
         }
     }
 
-    private async Task OnRestartRequested()
+    private void OnRestartRequested()
     {
         _actionQueue.Clear();
 
@@ -449,8 +445,6 @@ public partial class GameViewModel : BindableObject, IDisposable
             OnRestart?.Invoke();
             SetActiveState();
         });
-        
-        await Task.CompletedTask;
     }
 
     public async Task OnBackToMenu()
@@ -541,7 +535,6 @@ public partial class GameViewModel : BindableObject, IDisposable
     private void OnCloseSettingsRequested()
     {
         SetActiveState();
-        OnActive?.Invoke();
     }
 
 

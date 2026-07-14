@@ -8,6 +8,8 @@ using Game2048.Maui.Enums;
 using Game2048.Maui.Views.Components;
 using Game2048.Maui.Resources.Localization;
 using Game2048.Maui.Views.Overlays;
+using Game2048.Maui.Achievements.Services;
+using System.Diagnostics;
 
 namespace Game2048.Maui.Views.Pages;
 
@@ -49,7 +51,6 @@ public partial class GameView : ContentPage
         _viewModel.OnGameOver += HandleOnGameOver;
         _viewModel.OnRestart += HandleRestart;
         _viewModel.OnSettings += HandleOnSettings;
-        _viewModel.OnActive += HandleOnActive;
         GameOverOverlay.GoToMenuRequested += OnGoToMenu;
         VictoryOverlay.GoToMenuRequested += OnGoToMenu;
     }
@@ -292,19 +293,24 @@ public partial class GameView : ContentPage
         }
     }
 
-    private void OnNewAchievementUnlocked(AchievementType achievementType)
+    private void OnNewAchievementUnlocked(AchievementType type)
     {
-        string titleKey = $"Ach_{achievementType}_title";
-        string descKey = $"Ach_{achievementType}_desc";
+        string title = AchievementDataParser.GetTitle(type);
+        string desc = AchievementDataParser.GetDesc(type);
+        string imageName = AchievementDataParser.GetImageName(type);
 
-        string localizedTitle = AppResources.ResourceManager.GetString(titleKey) ?? achievementType.ToString();
-        string localizedDesc = AppResources.ResourceManager.GetString(descKey) ?? "Description";
-
-        string imageName = $"ach_{achievementType.ToString().ToLower()}.png";
-
-        Dispatcher.DispatchAsync(async () =>
+        Dispatcher.Dispatch(async () =>
         {
-            await AchievementToast.ShowAsync(localizedTitle, localizedDesc, imageName);
+            try
+            {
+                await AchievementToast.ShowAsync(title, desc, imageName);
+            }
+            catch (Exception ex) 
+            {
+#if DEBUG
+                Debug.WriteLine($"Error showing achievement toast: {ex.Message}");
+#endif
+            }
         });
     }
 
@@ -383,10 +389,5 @@ public partial class GameView : ContentPage
             Settings.ScaleTo(1.1, 300, Easing.CubicIn)
         );
         await Settings.ScaleTo(1.0, 100, Easing.CubicOut);
-    }
-
-    private async void HandleOnActive()
-    {
-        //
     }
 }
