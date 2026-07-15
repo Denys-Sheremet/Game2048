@@ -305,7 +305,7 @@ public partial class GameViewModel : BindableObject, IDisposable
         _statisticsManager.Moved();
         _statisticsManager.Merged(transitions.Where(x => x.Type == TileTransitionType.Merge).Count());
 
-        _achievementManager.CheckSessionAchievements(_gameCore.GetCurrentGridState(), transitions);
+        _achievementManager.CheckAllAchievements(_gameCore.GetCurrentGridState(), transitions, _statisticsManager);
     }
 
     private async Task OnUndoRequested()
@@ -345,7 +345,7 @@ public partial class GameViewModel : BindableObject, IDisposable
         _statisticsManager.Undone();
         _statisticsManager.Respawned(transitions.Where(x => x.Type == TileTransitionType.Respawn).Count());
 
-        _achievementManager.CheckSessionAchievements(_gameCore.GetCurrentGridState(), transitions);
+        _achievementManager.CheckAllAchievements(_gameCore.GetCurrentGridState(), transitions, _statisticsManager);
     }
 
     public void SyncTiles()

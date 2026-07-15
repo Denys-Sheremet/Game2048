@@ -1,9 +1,10 @@
 ﻿using Game2048.Core.DTOs;
 using Game2048.Core.Enums;
 using Game2048.Core.Models;
-using Game2048.Maui.Interfaces;
-using Game2048.Maui.Enums;
 using Game2048.Maui.Achievements.Interfaces;
+using Game2048.Maui.Enums;
+using Game2048.Maui.Interfaces;
+using System.Collections.Generic;
 
 namespace Game2048.Maui.Services;
 
@@ -25,6 +26,13 @@ public class AchievementManager : IAchievementManager
         _globalAchievements = globalAchievements.ToList();
         _sessionAchievements = sessionAchievements.ToList();
         _specialAchievements = specialAchievements.ToList();
+    }
+
+    public void CheckAllAchievements(StateSnapshot afterState, List<TileTransition> transitions, IStatisticsManager statisticsManager)
+    {
+        CheckGlobalAchievements();
+        CheckSessionAchievements(afterState, transitions);
+        CheckSpecialAchievements(statisticsManager);
     }
 
     public void CheckGlobalAchievements()

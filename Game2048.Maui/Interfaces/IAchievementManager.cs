@@ -10,4 +10,5 @@ public interface IAchievementManager
     void CheckGlobalAchievements();
     void CheckSessionAchievements(StateSnapshot afterState, List<TileTransition> transitions);
     void CheckSpecialAchievements(IStatisticsManager statisticsManager);
+    void CheckAllAchievements(StateSnapshot afterState, List<TileTransition> transitions, IStatisticsManager statisticsManager);
 }
