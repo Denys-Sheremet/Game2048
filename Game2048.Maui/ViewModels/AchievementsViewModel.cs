@@ -1,6 +1,7 @@
 ﻿using Game2048.Maui.Achievements.Services;
 using Game2048.Maui.Enums;
 using Game2048.Maui.Interfaces;
+using Game2048.Maui.Views.Pages;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,8 @@ public partial class AchievementsViewModel : BindableObject
 {
     public ObservableCollection<AchievementData> Achievements { get; } = new();
     private readonly IProfileManager _profileManager;
+
+    public event Action<string, string, string>? OnAchievementSelected;
 
     private double _totalProgressFraction;
     private string _achievementsCountText = "0 / 0";
@@ -61,43 +64,50 @@ public partial class AchievementsViewModel : BindableObject
     public AchievementsViewModel(IProfileManager profileManager)
     {
         _profileManager = profileManager;
-        OpenAchievementCommand = new Command<AchievementData>(async (selected) => await OnOpenAchievementAsync(selected));
 
-        LoadAchievements();
+        OpenAchievementCommand = new Command<AchievementData>(OnOpenAchievement);
     }
 
-    private void LoadAchievements()
+    public async Task InitializeDataAsync()
     {
-        Achievements.Clear();
-        var achievementTypes = Enum.GetValues<AchievementType>();
-        var unlockedAchievements = _profileManager.GetUnlockedAchievements();
+        if (Achievements.Count > 0) return;
+
         int unlockedCount = 0;
 
-        foreach (var type in achievementTypes)
+        var itemsToLoad = await Task.Run(() =>
         {
-            string title = AchievementDataParser.GetTitle(type);
-            string desc = AchievementDataParser.GetDesc(type);
-            string imageName = AchievementDataParser.GetImageName(type);
+            var tempCollection = new List<AchievementData>();
+            var achievementTypes = Enum.GetValues<AchievementType>();
+            var unlockedAchievements = _profileManager.GetUnlockedAchievements();
 
-            bool isUnlocked = unlockedAchievements.Contains(type);
+            foreach (var type in achievementTypes)
+            {
+                string title = AchievementDataParser.GetTitle(type);
+                string desc = AchievementDataParser.GetDesc(type);
+                string imageName = AchievementDataParser.GetImageName(type);
+                bool isUnlocked = unlockedAchievements.Contains(type);
 
-            if (isUnlocked) unlockedCount++;
+                if (isUnlocked) unlockedCount++;
 
-            Achievements.Add(new AchievementData(title, desc, imageName, isUnlocked));
+                tempCollection.Add(new AchievementData(title, desc, imageName, isUnlocked));
+            }
+            return tempCollection;
+        });
+
+        foreach (var item in itemsToLoad)
+        {
+            Achievements.Add(item);
         }
 
-        if (Achievements.Count > 0)
-        {
-            TotalProgressFraction = (double)unlockedCount / Achievements.Count;
-            AchievementsCountText = $"{unlockedCount} / {Achievements.Count}";
-        }
+        TotalProgressFraction = (double)unlockedCount / itemsToLoad.Count;
+        AchievementsCountText = $"{unlockedCount} / {itemsToLoad.Count}";
     }
 
-    private async Task OnOpenAchievementAsync(AchievementData? selected)
+    private void OnOpenAchievement(AchievementData? selected)
     {
         if (selected is null) return;
 
-        
+        OnAchievementSelected?.Invoke(selected.Title, selected.Desc, selected.ImageName);
     }
 
 }

@@ -7,19 +7,39 @@ public partial class AchievementsView : ContentPage
 {
     private int _cardCounter = 0;
     private bool _isInitialLoad = false;
+
+    private readonly AchievementsViewModel _viewModel;
     public AchievementsView(AchievementsViewModel viewModel)
 	{
 		InitializeComponent();
-        BindingContext = viewModel;
-	}
+        _viewModel = viewModel;
+        BindingContext = _viewModel;
+
+        _viewModel.OnAchievementSelected += async (title, desc, imgName) =>
+        {
+            await ShowDetails(title, desc, imgName);
+        };
+    }
 
     protected override async void OnAppearing()
     {
         base.OnAppearing();
 
+        await Dispatcher.DispatchAsync(async () =>
+        {
+            AchievementsPageGrid.TranslationY = Height;
+            AchievementsPageGrid.Opacity = 0;
+
+            await Task.WhenAll(
+                AchievementsPageGrid.TranslateTo(0, 0, 300, Easing.SpringOut),
+                AchievementsPageGrid.FadeTo(1, 300, Easing.CubicOut)
+            );
+        });
+
         _cardCounter = 0;
         _isInitialLoad = true;
 
+        await _viewModel.InitializeDataAsync();
         await Task.Delay(150);
 
         _isInitialLoad = false;
@@ -69,13 +89,27 @@ public partial class AchievementsView : ContentPage
             Microsoft.Maui.Controls.ViewExtensions.CancelAnimations(clickedView);
 
             await clickedView.ScaleTo(0.92, 100, Easing.CubicOut);
-
             await clickedView.ScaleTo(1.0, 200, Easing.SpringOut);
+
+            if (clickedView.BindingContext is AchievementData tappedAchievement)
+            {
+                _viewModel.OpenAchievementCommand.Execute(tappedAchievement);
+            }
         }
     }
 
     private async void OnBackToMenu(object sender, EventArgs e)
     {
+        await Task.WhenAll(
+            AchievementsPageGrid.TranslateTo(Width, 0, 250, Easing.CubicIn),
+            AchievementsPageGrid.FadeTo(0, 250, Easing.Linear)
+        );
+
         await Shell.Current.GoToAsync("///MainMenuPage", false);
+    }
+
+    public async Task ShowDetails(string title, string desc, string imageName)
+    {
+        await DetailOverlay.ShowAsync(title, desc, imageName);
     }
 }

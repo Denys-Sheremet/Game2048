@@ -62,10 +62,10 @@
 
     <Color x:Key="MainTextColor">#FFFFFF</Color>
     <Color x:Key="MainTitleColor">#323030</Color>
-    
-    
-    
-    
+
+    <Color x:Key="SignsTextColor">#3E555C</Color>
+
+
 
 
 </ResourceDictionary>

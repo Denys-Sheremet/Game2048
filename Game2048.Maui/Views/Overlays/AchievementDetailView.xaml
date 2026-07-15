@@ -1,6 +1,65 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Game2048.Maui.Views.Overlays.AchievementDetailView">
-    
+             x:Class="Game2048.Maui.Views.Overlays.AchievementDetailView"
+             xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
+             xmlns:lang="clr-namespace:Game2048.Maui.Resources.Localization"
+             x:DataType="vm:GameViewModel">
+    <Border 
+        VerticalOptions="Center"
+        HorizontalOptions="Center"
+        StrokeShape="RoundRectangle 20"
+        Padding="30, 10, 30, 15"
+        BackgroundColor="{DynamicResource GameFieldBackgroundColor}"
+        WidthRequest="300">
+
+        <VerticalStackLayout Spacing="5">
+
+            <Grid ColumnDefinitions="40, *, 40">
+                <Border HeightRequest="70" 
+                        WidthRequest="70"
+                        Grid.Column="1"
+                        StrokeShape="RoundRectangle 8" StrokeThickness="0"
+                        Padding="0"
+                        HorizontalOptions="Center">
+                      <Image x:Name="DetailImage"
+                             HeightRequest="70" 
+                             WidthRequest="70" 
+                             Aspect="AspectFit"/>
+                </Border>
+
+                <Button Grid.Column="2"
+                    Text="&#xf00d;" 
+                    FontFamily="FontAwesome"
+                    FontSize="24"
+                    TextColor="{DynamicResource SignsTextColor}"
+                    BackgroundColor="Transparent"
+                    Padding="0"
+                    HeightRequest="40"
+                    WidthRequest="40"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"
+                    Clicked="OnCloseDetail" />
+            </Grid>
+            <Label Grid.Column="1"
+                   x:Name="DetailTitleLabel"
+                   Text=""
+                   FontFamily="RubikBold"
+                   FontSize="26"
+                   TextColor="{DynamicResource SignsTextColor}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" 
+                   HorizontalTextAlignment="Center"/>
+
+            <Label x:Name="DetailDescLabel"
+                   Text=""
+                   FontFamily="RubikSemi"
+                   FontSize="22"
+                   TextColor="{DynamicResource SignsTextColor}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   HorizontalTextAlignment="Center"/>  
+        </VerticalStackLayout>
+    </Border>
+
 </ContentView>

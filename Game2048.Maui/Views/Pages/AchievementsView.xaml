@@ -5,120 +5,120 @@
              xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
              xmlns:lang="clr-namespace:Game2048.Maui.Resources.Localization"
              xmlns:comp="clr-namespace:Game2048.Maui.Views.Components"
+             xmlns:ovr="clr-namespace:Game2048.Maui.Views.Overlays"
              x:DataType="vm:AchievementsViewModel"
              Shell.NavBarIsVisible="False"
              SizeChanged="OnPageSizeChanged"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
 
-    <Grid RowDefinitions="Auto, *"
-          VerticalOptions="Fill"
+    <Grid x:Name="AchievementsPageGrid"
           HorizontalOptions="Fill"
-          Padding="15, 0, 15, 0">
+          VerticalOptions="Fill">
+        
+        <Grid RowDefinitions="Auto, *"
+              VerticalOptions="Fill"
+              HorizontalOptions="Fill"
+              Padding="15, 0, 15, 0">
 
-        <Grid Grid.Row="0"
-              ColumnDefinitions="*, Auto, Auto, *" 
-              Padding="15"
-              VerticalOptions="Start"
-              HorizontalOptions="Fill">
+            <Grid Grid.Row="0"
+                  ColumnDefinitions="*, Auto, Auto, *" 
+                  Padding="15"
+                  VerticalOptions="Start"
+                  HorizontalOptions="Fill">
 
-            <Button x:Name="BackBtn"
-                    Grid.Column="0"
-                    FontFamily="FontAwesome"
-                    Text="&#xf30a;"
-                    FontSize="20"
-                    WidthRequest="55"
-                    HeightRequest="55"
-                    Clicked="OnBackToMenu" 
-                    Style="{StaticResource MainBtnStyle}"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Start"/>
+                <Button x:Name="BackBtn"
+                        Grid.Column="0"
+                        FontFamily="FontAwesome"
+                        Text="&#xf30a;"
+                        FontSize="20"
+                        WidthRequest="55"
+                        HeightRequest="55"
+                        Clicked="OnBackToMenu" 
+                        Style="{StaticResource MainBtnStyle}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"/>
 
-            <Label Grid.Column="1"
-                   Grid.ColumnSpan="2"
-                   Text="{x:Static lang:AppResources.Achievements_title}" 
-                   FontFamily="MontBold"
-                   FontSize="28"
-                   TextColor="{DynamicResource MainTitleColor}"
-                   VerticalOptions="Center"
-                   HorizontalOptions="Center"/>
+                <Label Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Text="{x:Static lang:AppResources.Achievements_title}" 
+                       FontFamily="MontBold"
+                       FontSize="28"
+                       TextColor="{DynamicResource MainTitleColor}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+
+                <CollectionView ItemsSource="{Binding Achievements}"
+                                SelectionMode="None">
+
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout x:Name="AchievementsLayout"
+                                         Orientation="Vertical"
+                                         Span="3"
+                                         VerticalItemSpacing="15"
+                                         HorizontalItemSpacing="15" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="vm:AchievementData">
+                            <comp:AchievementCardView Loaded="OnAchievementTileLoaded">
+                                <comp:AchievementCardView.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnCardTapped" />
+                                </comp:AchievementCardView.GestureRecognizers>
+                            </comp:AchievementCardView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                    <CollectionView.Footer>
+                        <Border HeightRequest="110" 
+                                StrokeThickness="0"
+                                BackgroundColor="Transparent" />
+                    </CollectionView.Footer>
+                </CollectionView>
+
+                <Border VerticalOptions="End"
+                        Margin="15, 0, 15, 20"
+                        Grid.Row="0"
+                        Padding="20, 15, 20, 18"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 20"
+                        BackgroundColor="{DynamicResource ProgressBarBGColor}">
+                    <Border.Shadow>
+                        <Shadow Brush="Black" Offset="0, 8" Radius="15" Opacity="0.15" />
+                    </Border.Shadow>
+
+                    <VerticalStackLayout Spacing="8"
+                                         VerticalOptions="Center">
+
+                        <Grid ColumnDefinitions="*, Auto"
+                              VerticalOptions="Center">
+
+                            <Label Grid.Column="0" 
+                                   Text="{x:Static lang:AppResources.Achievements_progress_label}" 
+                                   FontFamily="MontBold" 
+                                   FontSize="14" 
+                                   TextColor="{DynamicResource MainTextColor}"/>
+
+                            <Label Grid.Column="1" 
+                                   Text="{Binding AchievementsCountText}" 
+                                   FontFamily="MontBold" 
+                                   FontSize="14"
+                                   TextColor="{DynamicResource MainTextColor}"/>
+                        </Grid>
+
+                        <ProgressBar Progress="{Binding TotalProgressFraction}" 
+                                     ProgressColor="{DynamicResource ProgressBarColor}" 
+                                     BackgroundColor="{DynamicResource PageBackgroundColor}"
+                                     HeightRequest="8"
+                                     VerticalOptions="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+
+            </Grid>
+
         </Grid>
-
-        <Grid Grid.Row="1">
-
-            <CollectionView ItemsSource="{Binding Achievements}"
-                            SelectionMode="None">
-
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout x:Name="AchievementsLayout"
-                                     Orientation="Vertical"
-                                     Span="3"
-                                     VerticalItemSpacing="15"
-                                     HorizontalItemSpacing="15" />
-                </CollectionView.ItemsLayout>
-
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <comp:AchievementCardView 
-                            Loaded="OnAchievementTileLoaded">
-                            <comp:AchievementCardView.GestureRecognizers>
-                                <TapGestureRecognizer 
-                                    Tapped="OnCardTapped"
-                                    Command="{Binding 
-                                        Source={RelativeSource 
-                                        AncestorType={x:Type vm:AchievementsViewModel}}, 
-                                        Path=OpenAchievementCommand}" 
-                                    CommandParameter="{Binding .}" />   
-                            </comp:AchievementCardView.GestureRecognizers>
-                        </comp:AchievementCardView>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-
-                <CollectionView.Footer>
-                    <Border HeightRequest="110" 
-                            StrokeThickness="0"
-                            BackgroundColor="Transparent" />
-                </CollectionView.Footer>
-            </CollectionView>
-
-            <Border VerticalOptions="End"
-                    Margin="15, 0, 15, 20"
-                    Grid.Row="0"
-                    Padding="20, 15, 20, 18"
-                    StrokeThickness="0"
-                    StrokeShape="RoundRectangle 20"
-                    BackgroundColor="{DynamicResource ProgressBarBGColor}">
-                <Border.Shadow>
-                    <Shadow Brush="Black" Offset="0, 8" Radius="15" Opacity="0.15" />
-                </Border.Shadow>
-
-                <VerticalStackLayout Spacing="8"
-                                     VerticalOptions="Center">
-
-                    <Grid ColumnDefinitions="*, Auto"
-                          VerticalOptions="Center">
-
-                        <Label Grid.Column="0" 
-                               Text="{x:Static lang:AppResources.Achievements_progress_label}" 
-                               FontFamily="MontBold" 
-                               FontSize="14" 
-                               TextColor="{DynamicResource MainTextColor}"/>
-
-                        <Label Grid.Column="1" 
-                               Text="{Binding AchievementsCountText}" 
-                               FontFamily="MontBold" 
-                               FontSize="14"
-                               TextColor="{DynamicResource MainTextColor}"/>
-                    </Grid>
-
-                    <ProgressBar Progress="{Binding TotalProgressFraction}" 
-                                 ProgressColor="{DynamicResource ProgressBarColor}" 
-                                 BackgroundColor="{DynamicResource PageBackgroundColor}"
-                                 HeightRequest="8"
-                                 VerticalOptions="Center"/>
-                </VerticalStackLayout>
-            </Border>
-
-        </Grid>
-
+        <ovr:AchievementDetailView x:Name="DetailOverlay" IsVisible="False"/>
     </Grid>
 </ContentPage>

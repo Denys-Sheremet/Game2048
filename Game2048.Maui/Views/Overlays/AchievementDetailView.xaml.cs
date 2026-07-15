@@ -6,4 +6,46 @@ public partial class AchievementDetailView : ContentView
 	{
 		InitializeComponent();
 	}
+
+	public async void OnCloseDetail(object sender, EventArgs e)
+	{
+		await CloseAsync();
+    }
+
+	public async Task CloseAsync()
+	{
+		if (this.IsVisible)
+		{
+            await Dispatcher.DispatchAsync(async () =>
+            {
+                await this.ScaleTo(1.1, 150, Easing.CubicIn);
+                await Task.WhenAll(
+                    this.FadeTo(0, 250, Easing.CubicIn),
+                    this.ScaleTo(0.7, 250, Easing.CubicIn)
+                );
+                this.IsVisible = false;
+            });
+        }
+	}
+
+	public async Task ShowAsync(string title, string desc, string imageName)
+	{
+        if (this.IsVisible) await CloseAsync();
+
+        this.DetailTitleLabel.Text = title;
+        this.DetailDescLabel.Text = desc;
+        this.DetailImage.Source = imageName;
+
+        await Dispatcher.DispatchAsync(async () =>
+		{
+            this.IsVisible = true;
+			this.Scale = 0.0;
+			this.Opacity = 0.0;
+            await Task.WhenAll(
+                this.FadeTo(1, 250, Easing.CubicIn),
+                this.ScaleTo(1.1, 250, Easing.CubicIn)
+            );
+            await this.ScaleTo(1.0, 150, Easing.CubicIn);
+        });
+    }
 }
