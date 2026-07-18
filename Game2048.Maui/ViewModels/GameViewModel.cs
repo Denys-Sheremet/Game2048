@@ -453,8 +453,6 @@ public partial class GameViewModel : BindableObject, IDisposable
 
         _statisticsManager.Push();
 
-        _achievementManager.CheckGlobalAchievements();
-
         if (_profileManager.CurrentProfile is not null)
             await _saveService.SaveProfileAsync(_profileManager.CurrentProfile);
     }
@@ -464,8 +462,6 @@ public partial class GameViewModel : BindableObject, IDisposable
         _actionQueue.Clear();
 
         _statisticsManager.Push();
-
-        _achievementManager.CheckGlobalAchievements();
 
         StartNewGame();
         SetActiveState();

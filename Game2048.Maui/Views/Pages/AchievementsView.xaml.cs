@@ -5,7 +5,6 @@ namespace Game2048.Maui.Views.Pages;
 
 public partial class AchievementsView : ContentPage
 {
-    private int _cardCounter = 0;
     private bool _isInitialLoad = false;
 
     private readonly AchievementsViewModel _viewModel;
@@ -36,18 +35,17 @@ public partial class AchievementsView : ContentPage
             );
         });
 
-        _cardCounter = 0;
         _isInitialLoad = true;
 
         await _viewModel.InitializeDataAsync();
-        await Task.Delay(150);
+        await Task.Delay(800);
 
         _isInitialLoad = false;
     }
 
     private async void OnAchievementTileLoaded(object sender, EventArgs e)
     {
-        if (sender is ContentView tile)
+        if (sender is ContentView tile && tile.BindingContext is AchievementData data)
         {
             tile.Opacity = 0;
             tile.Scale = 0.5;
@@ -56,8 +54,12 @@ public partial class AchievementsView : ContentPage
 
             if (_isInitialLoad)
             {
-                delay = _cardCounter * 80;
-                _cardCounter++;
+                int index = _viewModel.Achievements.IndexOf(data);
+                if (index >= 0)
+                {
+                    int visualIndex = Math.Min(index, 12);
+                    delay = visualIndex * 80;
+                }
             }
 
             if (delay > 0)
