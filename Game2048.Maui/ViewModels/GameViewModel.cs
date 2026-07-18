@@ -62,7 +62,10 @@ public partial class GameViewModel : BindableObject, IDisposable
 
     private void UpdateScores()
     {
-        Score = _gameCore.Grid.Score;
+        if (Score != _gameCore.Grid.Score)
+        {
+            Score = _gameCore.Grid.Score;
+        }
 
         if (Score > BestScore)
         {
