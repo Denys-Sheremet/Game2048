@@ -3,14 +3,12 @@ namespace Game2048.Maui
 {
     public partial class App : Application
     {
-        private readonly ISaveService _saveService;
         private readonly IProfileManager _profileManager;
 
-        public App(ISaveService saveService, IProfileManager profileManager)
+        public App(IProfileManager profileManager)
         {
             InitializeComponent();
 
-            _saveService = saveService;
             _profileManager = profileManager;
         }
 
@@ -21,13 +19,11 @@ namespace Game2048.Maui
 
         protected override void OnSleep()
         {
-            var profileToSave = _profileManager.CurrentProfile;
-
-            if (profileToSave is not null)
+            if (_profileManager.CurrentProfile is not null)
             {
                 Task.Run(async () =>
                 {
-                    await _saveService.SaveProfileAsync(profileToSave);
+                    await _profileManager.SaveCurrentProfileAsync();
                 });
             }
         }

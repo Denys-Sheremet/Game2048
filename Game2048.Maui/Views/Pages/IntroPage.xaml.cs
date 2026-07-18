@@ -5,13 +5,11 @@ namespace Game2048.Maui.Views.Pages;
 
 public partial class IntroPage : ContentPage
 {
-    private readonly ISaveService _saveService;
     private readonly IProfileManager _profileManager;
 
-    public IntroPage(ISaveService saveService, IProfileManager profileManager)
+    public IntroPage(IProfileManager profileManager)
 	{
 		InitializeComponent();
-        _saveService = saveService;
         _profileManager = profileManager;
 	}
 
@@ -41,13 +39,8 @@ public partial class IntroPage : ContentPage
 
     private async Task InitializeProfileAsync()
     {
-        var profile = await _saveService.LoadProfileAsync();
-
-        if (profile is not null)
-        {
-            _profileManager.SetCurrentProfile(profile);
-        }
-        else
+        bool isLoaded = await _profileManager.TryLoadProfileFromSave();
+        if (!isLoaded)
         {
             _profileManager.NewProfile();
         }

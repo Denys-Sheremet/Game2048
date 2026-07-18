@@ -69,7 +69,6 @@ public class SaveService : ISaveService
 #if DEBUG
                     Debug.WriteLine($"Error while deleting temporary file: {cleanupEx.Message}");
 #endif
-                    throw; //throw the exception to be handled by the caller if needed
                 }
             }
             _semaphore.Release();

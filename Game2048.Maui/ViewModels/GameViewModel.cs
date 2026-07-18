@@ -16,7 +16,6 @@ public partial class GameViewModel : BindableObject, IDisposable
     private readonly Game _gameCore;
 
     private readonly GameConfig _gameConfig;
-    private readonly ISaveService _saveService;
     private readonly IProfileManager _profileManager;
     private readonly IStatisticsManager _statisticsManager;
     private readonly IAchievementManager _achievementManager;
@@ -57,7 +56,7 @@ public partial class GameViewModel : BindableObject, IDisposable
 
     public void LoadBestScore()
     {
-        BestScore = Preferences.Default.Get("best_score", 0);
+        BestScore = _profileManager.GetBestScore(_gameConfig.GameMode) ?? 0;
     }
 
     private void UpdateScores()
@@ -70,7 +69,7 @@ public partial class GameViewModel : BindableObject, IDisposable
         if (Score > BestScore)
         {
             BestScore = Score;
-            Preferences.Default.Set("best_score", BestScore);
+            _profileManager.SaveBestScore(_gameConfig.GameMode, BestScore);
         }
     }
 
@@ -183,11 +182,10 @@ public partial class GameViewModel : BindableObject, IDisposable
     public int Rows => _gameCore.Grid.Height;
     public int Columns => _gameCore.Grid.Width;
 
-    public GameViewModel(GameConfig config, ISaveService saveService, IProfileManager profileManager, IStatisticsManager statisticsManager, IAchievementManager achievementManager)
+    public GameViewModel(GameConfig config, IProfileManager profileManager, IStatisticsManager statisticsManager, IAchievementManager achievementManager)
     {
         _gameCore = GameFactory.CreateGame(config);
 
-        _saveService = saveService;
         _profileManager = profileManager;
         _gameConfig = config;
         _statisticsManager = statisticsManager;
@@ -220,8 +218,7 @@ public partial class GameViewModel : BindableObject, IDisposable
         _profileManager.UnlockAchievement(achievementType);
         _actionQueue.Enqueue(async () =>
         {
-            if (_profileManager.CurrentProfile is not null)
-                await _saveService.SaveProfileAsync(_profileManager.CurrentProfile);
+            await _profileManager.SaveCurrentProfileAsync();
         });
     }
 
@@ -242,6 +239,7 @@ public partial class GameViewModel : BindableObject, IDisposable
         if (save is not null)
         {
             _gameCore.ColdLoadFromSave(save.LastState, save.History);
+            LoadBestScore();
             return true;
         }
         return false;
@@ -265,6 +263,7 @@ public partial class GameViewModel : BindableObject, IDisposable
         Tiles.Clear();
         _gameCore.SpawnMultipleTiles(2);
         SyncState();
+        SaveCurrentGameState();
     }
 
     private void SyncState()
@@ -391,8 +390,7 @@ public partial class GameViewModel : BindableObject, IDisposable
 
         _actionQueue.Enqueue(async () =>
         {
-            if (_profileManager.CurrentProfile is not null)
-                await _saveService.SaveProfileAsync(_profileManager.CurrentProfile);
+            await _profileManager.SaveCurrentProfileAsync();
         });
     }
 
@@ -408,8 +406,7 @@ public partial class GameViewModel : BindableObject, IDisposable
 
         _actionQueue.Enqueue(async () =>
         {
-            if (_profileManager.CurrentProfile is not null)
-                await _saveService.SaveProfileAsync(_profileManager.CurrentProfile);
+            await _profileManager.SaveCurrentProfileAsync();
         });
     }
 
@@ -441,8 +438,7 @@ public partial class GameViewModel : BindableObject, IDisposable
 
         _actionQueue.Enqueue(async () =>
         {
-            if (_profileManager.CurrentProfile is not null)
-                await _saveService.SaveProfileAsync(_profileManager.CurrentProfile);
+            await _profileManager.SaveCurrentProfileAsync();
 
             StartNewGame();
             OnRestart?.Invoke();
@@ -456,8 +452,7 @@ public partial class GameViewModel : BindableObject, IDisposable
 
         _statisticsManager.Push();
 
-        if (_profileManager.CurrentProfile is not null)
-            await _saveService.SaveProfileAsync(_profileManager.CurrentProfile);
+        await _profileManager.SaveCurrentProfileAsync();
     }
 
     public async Task OnGoToMenu()
@@ -471,8 +466,7 @@ public partial class GameViewModel : BindableObject, IDisposable
 
         HandleOnStateChanged();
 
-        if (_profileManager.CurrentProfile is not null)
-            await _saveService.SaveProfileAsync(_profileManager.CurrentProfile);
+        await _profileManager.SaveCurrentProfileAsync();
     }
 
     private void OnUndoAndContinueRequested()
@@ -485,8 +479,7 @@ public partial class GameViewModel : BindableObject, IDisposable
 
         _actionQueue.Enqueue(async () =>
         {
-            if (_profileManager.CurrentProfile is not null)
-                await _saveService.SaveProfileAsync(_profileManager.CurrentProfile);
+            await _profileManager.SaveCurrentProfileAsync();
 
             await Task.Run(() => { _gameCore.UndoMultiple(5); });
 
@@ -514,8 +507,7 @@ public partial class GameViewModel : BindableObject, IDisposable
 
         _actionQueue.Enqueue(async () =>
         {
-            if (_profileManager.CurrentProfile is not null)
-                await _saveService.SaveProfileAsync(_profileManager.CurrentProfile);
+            await _profileManager.SaveCurrentProfileAsync();
 
             IsExtendedAllowed = false;
 

@@ -21,6 +21,28 @@ public class ProfileManager : IProfileManager
         CurrentProfile = new();
     }
 
+    //global save / load
+    public async Task<bool> TryLoadProfileFromSave()
+    {
+        var profile = await _saveService.LoadProfileAsync();
+
+        if (profile is not null)
+        {
+            CurrentProfile = profile;
+            return true;
+        }
+        return false;
+    }
+
+    
+    public async Task SaveCurrentProfileAsync()
+    {
+        if (CurrentProfile is not null)
+        {
+            await _saveService.SaveProfileAsync(CurrentProfile);
+        }
+    }
+
     private PlayerProfile GetValidProfile()
     {
         return CurrentProfile ?? throw new InvalidOperationException("No current profile found");
