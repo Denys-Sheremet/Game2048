@@ -70,7 +70,7 @@
                 <Border x:Name="GameFrame" 
                         Padding="0" 
                         StrokeThickness="0"
-                        StrokeShape="RoundRectangle 10" 
+                        StrokeShape="RoundRectangle 8" 
                         BackgroundColor="{DynamicResource GameFieldBackgroundColor}">
 
                     <Grid>

@@ -6,4 +6,8 @@ public partial class HowToView : ContentPage
 	{
 		InitializeComponent();
 	}
+
+
+
+    protected override bool OnBackButtonPressed() => true;
 }

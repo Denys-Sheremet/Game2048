@@ -276,7 +276,7 @@ public partial class GameView : ContentPage
             GamePageContainer.Opacity = 0;
 
             await Task.WhenAll(
-                GamePageContainer.TranslateTo(0, 0, 300, Easing.SpringOut),
+                GamePageContainer.TranslateTo(0, 0, 300, Easing.CubicOut),
                 GamePageContainer.FadeTo(1, 300, Easing.CubicOut)
             );
         });
@@ -389,5 +389,24 @@ public partial class GameView : ContentPage
             Settings.ScaleTo(1.1, 300, Easing.CubicIn)
         );
         await Settings.ScaleTo(1.0, 100, Easing.CubicOut);
+    }
+
+    protected override bool OnBackButtonPressed()
+    {
+        if (BindingContext is GameViewModel vm)
+        {
+            if (vm.IsActiveGame)
+            {
+                vm.OpenSettingsCommand.Execute(null);
+                return true;
+            }
+
+            if (vm.IsSettings)
+            {
+                vm.CloseSettingsCommand.Execute(null);
+                return true;
+            }
+        }
+        return true;
     }
 }

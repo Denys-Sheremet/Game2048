@@ -30,7 +30,7 @@ public partial class AchievementsView : ContentPage
             AchievementsPageGrid.Opacity = 0;
 
             await Task.WhenAll(
-                AchievementsPageGrid.TranslateTo(0, 0, 300, Easing.SpringOut),
+                AchievementsPageGrid.TranslateTo(0, 0, 300, Easing.CubicOut),
                 AchievementsPageGrid.FadeTo(1, 300, Easing.CubicOut)
             );
         });
@@ -114,4 +114,6 @@ public partial class AchievementsView : ContentPage
     {
         await DetailOverlay.ShowAsync(title, desc, imageName);
     }
+
+    protected override bool OnBackButtonPressed() => true;
 }

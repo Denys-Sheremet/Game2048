@@ -4,7 +4,7 @@ namespace Game2048.Maui.Views.Pages;
 
 public partial class GameModesView : ContentPage
 {
-    private GameModesViewModel _viewModel;
+    private readonly GameModesViewModel _viewModel;
 	public GameModesView(GameModesViewModel viewModel)
 	{
         InitializeComponent();
@@ -23,7 +23,7 @@ public partial class GameModesView : ContentPage
             GameModesPageContainer.Opacity = 0;
 
             await Task.WhenAll(
-                GameModesPageContainer.TranslateTo(0, 0, 300, Easing.SpringOut),
+                GameModesPageContainer.TranslateTo(0, 0, 300, Easing.CubicOut),
                 GameModesPageContainer.FadeTo(1, 300, Easing.CubicOut)
             );
         });
@@ -54,4 +54,6 @@ public partial class GameModesView : ContentPage
                 Shell.Current.GoToAsync("///GamePage", false)
             );
     }
+
+    protected override bool OnBackButtonPressed() => true;
 }

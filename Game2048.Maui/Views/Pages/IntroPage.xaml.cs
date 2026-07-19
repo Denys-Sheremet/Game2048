@@ -30,9 +30,8 @@ public partial class IntroPage : ContentPage
 
         await initProfileTask;
 
-        await Task.WhenAll(
-            IntroLogoImage.FadeTo(0, 400, Easing.CubicOut)
-        );
+        await IntroLogoImage.FadeTo(0, 400, Easing.CubicOut);
+        
 
         await Shell.Current.GoToAsync("///MainMenuPage");
     }
@@ -45,4 +44,6 @@ public partial class IntroPage : ContentPage
             _profileManager.NewProfile();
         }
     }
+
+    protected override bool OnBackButtonPressed() => true;
 }

@@ -6,4 +6,8 @@ public partial class SettingsPageView : ContentPage
 	{
 		InitializeComponent();
 	}
+
+
+
+    protected override bool OnBackButtonPressed() => true;
 }
