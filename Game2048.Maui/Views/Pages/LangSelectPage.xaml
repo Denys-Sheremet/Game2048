@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Game2048.Maui.ViewModels" 
+             x:DataType="vm:LangSelectViewModel"
+             x:Class="Game2048.Maui.Views.Pages.LangSelectPage"
+             Shell.NavBarIsVisible="False">
+    
+    <Grid   ColumnDefinitions="*" 
+            RowDefinitions="*" 
+            BackgroundColor="{DynamicResource PageBackgroundColor}">
+        <Grid x:Name="PageContainer" ColumnDefinitions="*" RowDefinitions="*" >
+            <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="30">
+
+                <Border StrokeShape="RoundRectangle 8" StrokeThickness="0" BackgroundColor="Transparent">
+                    <ImageButton     x:Name="UkLangBtn"
+                                     Source="uk_btn_img.svg" 
+                                     Command="{Binding SelectLanguageCommand}" 
+                                     CommandParameter="uk"
+                                     Clicked="OnBtnClicked"
+                                     WidthRequest="120"
+                                     HeightRequest="75"
+                                     CornerRadius="8" 
+                                     Aspect="AspectFill" />
+                </Border>
+
+                <Border StrokeShape="RoundRectangle 8" StrokeThickness="0" BackgroundColor="Transparent">
+                    <ImageButton     x:Name="EnLangBtn"
+                                     Source="en_btn_img.svg" 
+                                     Command="{Binding SelectLanguageCommand}" 
+                                     CommandParameter="en"
+                                     Clicked="OnBtnClicked"
+                                     WidthRequest="120"
+                                     HeightRequest="75"
+                                     CornerRadius="8" 
+                                     Aspect="AspectFill" />
+                </Border>
+
+                <Border StrokeShape="RoundRectangle 8" StrokeThickness="0" BackgroundColor="Transparent">
+                    <ImageButton     x:Name="CsLangBtn"
+                                     Source="cs_btn_img.svg" 
+                                     Command="{Binding SelectLanguageCommand}" 
+                                     CommandParameter="cs"
+                                     Clicked="OnBtnClicked"
+                                     WidthRequest="120"
+                                     HeightRequest="75"
+                                     CornerRadius="8" 
+                                     Aspect="AspectFill" />
+                </Border>
+
+                <Border StrokeShape="RoundRectangle 8" StrokeThickness="0" BackgroundColor="Transparent">
+                    <ImageButton     x:Name="DeLangBtn"
+                                     Source="de_btn_img.svg" 
+                                     Command="{Binding SelectLanguageCommand}" 
+                                     CommandParameter="de"
+                                     Clicked="OnBtnClicked"
+                                     WidthRequest="120"
+                                     HeightRequest="75"
+                                     CornerRadius="8" 
+                                     Aspect="AspectFill" />
+                </Border>
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>

@@ -7,6 +7,7 @@
     Shell.FlyoutBehavior="Disabled"
     Title="2048">
 
+    <ShellContent ContentTemplate="{DataTemplate pages:LangSelectPage}" Route="LangSelectPage"/>
     <ShellContent ContentTemplate="{DataTemplate pages:IntroPage}" Route="IntroPage"/>
     <ShellContent ContentTemplate="{DataTemplate pages:MainMenuView}" Route="MainMenuPage"/>
     <ShellContent ContentTemplate="{DataTemplate pages:GameView}" Route="GamePage"/>

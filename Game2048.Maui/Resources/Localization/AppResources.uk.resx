@@ -118,153 +118,153 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Achievements_progress_label" xml:space="preserve">
-    <value>Progress</value>
+    <value>Прогрес</value>
   </data>
   <data name="Achievements_title" xml:space="preserve">
-    <value>Achievements</value>
+    <value>Досягнення</value>
   </data>
   <data name="Ach_FirstGame_desc" xml:space="preserve">
-    <value>Played your first game in 2048</value>
+    <value>Зіграно першу гру в 2048</value>
   </data>
   <data name="Ach_FirstGame_title" xml:space="preserve">
-    <value>First steps</value>
+    <value>Перші кроки</value>
   </data>
   <data name="Ach_FirstUndo_desc" xml:space="preserve">
-    <value>Used undo for the first time</value>
+    <value>Вперше використано скасування ходу</value>
   </data>
   <data name="Ach_FirstUndo_title" xml:space="preserve">
-    <value>Back to the future!</value>
+    <value>Назад у майбутнє!</value>
   </data>
   <data name="Ach_NoUndoVictory_desc" xml:space="preserve">
-    <value>Beaten 2048 without undo </value>
+    <value>Пройдено 2048 без скасування ходів </value>
   </data>
   <data name="Ach_NoUndoVictory_title" xml:space="preserve">
-    <value>No mistakes!</value>
+    <value>Без помилок!</value>
   </data>
   <data name="Ach_Play10Games_desc" xml:space="preserve">
-    <value>Played 10 games</value>
+    <value>Зіграно 10 ігор</value>
   </data>
   <data name="Ach_Play10Games_title" xml:space="preserve">
-    <value>Keep trying</value>
+    <value>Продовжуй намагатися!</value>
   </data>
   <data name="Ach_Play100Games_desc" xml:space="preserve">
-    <value>Played 100 games</value>
+    <value>Зіграно 100 ігор</value>
   </data>
   <data name="Ach_Play100Games_title" xml:space="preserve">
-    <value>Gamer</value>
+    <value>Незламний!</value>
   </data>
   <data name="Ach_Reach64_desc" xml:space="preserve">
-    <value>Merged a 64 tile</value>
+    <value>Зібрано плитку 64</value>
   </data>
   <data name="Ach_Reach64_title" xml:space="preserve">
-    <value>That's going somewhere!</value>
+    <value>Вже щось!</value>
   </data>
   <data name="Ach_Reach128_desc" xml:space="preserve">
-    <value>Merged a 128 tile</value>
+    <value>Зібрано плитку 128</value>
   </data>
   <data name="Ach_Reach128_title" xml:space="preserve">
-    <value>Wasn't that hard, right?</value>
+    <value>Було не так вже й складно, правда?</value>
   </data>
   <data name="Ach_Reach256_desc" xml:space="preserve">
-    <value>Merged a 256 tile</value>
+    <value>Зібрано плитку 256</value>
   </data>
   <data name="Ach_Reach256_title" xml:space="preserve">
     <value>2^8</value>
   </data>
   <data name="Ach_Reach512_desc" xml:space="preserve">
-    <value>Merged a 512 tile</value>
+    <value>Зібрано плитку 512</value>
   </data>
   <data name="Ach_Reach512_title" xml:space="preserve">
-    <value>Two more to go!</value>
+    <value>Ще дві попереду!</value>
   </data>
   <data name="Ach_Reach1024_desc" xml:space="preserve">
-    <value>Merged a 1024 tile</value>
+    <value>Зібрано плитку 1024</value>
   </data>
   <data name="Ach_Reach1024_title" xml:space="preserve">
-    <value>Almost there!</value>
+    <value>Ось-ось!</value>
   </data>
   <data name="Ach_Reach2048_desc" xml:space="preserve">
-    <value>Merged a 2048 tile</value>
+    <value>Зібрано плитку 2048</value>
   </data>
   <data name="Ach_Reach2048_title" xml:space="preserve">
-    <value>GOLD GOLD GOLD</value>
+    <value>Бог потужності!</value>
   </data>
   <data name="Ach_Score1000_desc" xml:space="preserve">
-    <value>Score 1000 points in one game</value>
+    <value>Набрати 1000 очок в одній грі</value>
   </data>
   <data name="Ach_Score1000_title" xml:space="preserve">
-    <value>Scorer</value>
+    <value>Рекордсмен</value>
   </data>
   <data name="Ach_Score5000_desc" xml:space="preserve">
-    <value>Score 5000 points in one game</value>
+    <value>Набрати 5000 очок в одній грі</value>
   </data>
   <data name="Ach_Score5000_title" xml:space="preserve">
-    <value>Big numbers</value>
+    <value>Великих чисел майстер</value>
   </data>
   <data name="GameModes_title" xml:space="preserve">
-    <value>MODE SELECTION</value>
+    <value>ВИБІР РЕЖИМУ</value>
   </data>
   <data name="GameOverOverlay_menu_btn_text" xml:space="preserve">
-    <value>Menu</value>
+    <value>Меню</value>
   </data>
   <data name="GameOverOverlay_restart_btn_text" xml:space="preserve">
-    <value>Try again</value>
+    <value>Спробувати ще раз</value>
   </data>
   <data name="GameOverOverlay_title" xml:space="preserve">
-    <value>GAME OVER</value>
+    <value>ГРУ ЗАКІНЧЕНО</value>
   </data>
   <data name="GameOverOverlay_undo5_btn_text" xml:space="preserve">
-    <value>Undo 5 moves</value>
+    <value>Скасувати 5 ходів</value>
   </data>
   <data name="Game_ScoreBoard_best_score_label" xml:space="preserve">
-    <value>Best</value>
+    <value>Рекорд</value>
   </data>
   <data name="Game_ScoreBoard_score_label" xml:space="preserve">
-    <value>Score</value>
+    <value>Рахунок</value>
   </data>
   <data name="Game_settings_btn_text" xml:space="preserve">
-    <value>Settings</value>
+    <value>Опції</value>
   </data>
   <data name="Game_title" xml:space="preserve">
     <value>2048</value>
   </data>
   <data name="Game_undo_btn_text" xml:space="preserve">
-    <value>Undo</value>
+    <value>Скасувати</value>
   </data>
   <data name="Menu_game_modes_btn_text" xml:space="preserve">
-    <value>GAME MODES</value>
+    <value>РЕЖИМИ ГРИ</value>
   </data>
   <data name="Menu_how_to_btn_text" xml:space="preserve">
-    <value>HOW TO</value>
+    <value>ЯК ГРАТИ</value>
   </data>
   <data name="Menu_settings_btn_text" xml:space="preserve">
-    <value>SETTINGS</value>
+    <value>ОПЦІЇ</value>
   </data>
   <data name="Menu_version_text" xml:space="preserve">
-    <value>ver. 1.0</value>
+    <value>вер. 1.0</value>
   </data>
   <data name="Settings_how_to_btn_text" xml:space="preserve">
-    <value>How to</value>
+    <value>Як грати</value>
   </data>
   <data name="Settings_restart_btn_text" xml:space="preserve">
-    <value>Restart</value>
+    <value>Перезапустити</value>
   </data>
   <data name="Settings_themes_btn_text" xml:space="preserve">
-    <value>Themes</value>
+    <value>Теми</value>
   </data>
   <data name="Settings_title" xml:space="preserve">
-    <value>Settings</value>
+    <value>Опції</value>
   </data>
   <data name="VictoryOverlay_continue_btn_text" xml:space="preserve">
-    <value>Continue</value>
+    <value>Продовжити</value>
   </data>
   <data name="VictoryOverlay_menu_btn_text" xml:space="preserve">
-    <value>Menu</value>
+    <value>Меню</value>
   </data>
   <data name="VictoryOverlay_restart_btn_text" xml:space="preserve">
-    <value>Restart</value>
+    <value>Перезапустити</value>
   </data>
   <data name="VictoryOverlay_title" xml:space="preserve">
-    <value>VICTORY</value>
+    <value>ПЕРЕМОГА</value>
   </data>
 </root>

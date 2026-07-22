@@ -2,9 +2,9 @@
 
 public record GameConfig
 {
-    public int Rows { get; set; } = 4;
-    public int Cols { get; set; } = 4;
-    public GameModeType GameMode { get; set; } = GameModeType.Classic;
+    public int Rows { get; private set; } = 4;
+    public int Cols { get; private set; } = 4;
+    public GameModeType GameMode { get; private set; } = GameModeType.Classic;
 
     public void SetConfig(GameModeType gameMode)
     { 

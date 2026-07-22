@@ -35,9 +35,12 @@ namespace Game2048.Maui
             builder.Services.AddSingleton<IProfileManager, ProfileManager>();
             builder.Services.AddSingleton<IStatisticsManager, StatisticsManager>();
             builder.Services.AddSingleton<IAchievementManager, AchievementManager>();
+            builder.Services.AddSingleton<ISettingsManager, SettingsManager>();
 
             builder.Services.AddAchievementCheckers();
 
+            builder.Services.AddTransient<LangSelectPage>();
+            builder.Services.AddTransient<LangSelectViewModel>();
             builder.Services.AddTransient<GameView>();
             builder.Services.AddTransient<GameViewModel>();
             builder.Services.AddTransient<MainMenuViewModel>();

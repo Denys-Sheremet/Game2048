@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Game2048.Maui.Views.Components.ScoreBoardView"
              xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
+             xmlns:lang="clr-namespace:Game2048.Maui.Resources.Localization"
              x:DataType="vm:GameViewModel">
 
     <Grid ColumnDefinitions="*, *"
@@ -17,7 +18,7 @@
 
             <VerticalStackLayout HorizontalOptions="Center">
 
-                <Label Text="Score" 
+                <Label Text="{x:Static lang:AppResources.Game_ScoreBoard_score_label}" 
                         FontSize="24" 
                         FontFamily="MontBold"  
                         HorizontalOptions="Center" 
@@ -41,7 +42,7 @@
 
             <VerticalStackLayout HorizontalOptions="Center">
 
-                <Label Text="Best" 
+                <Label Text="{x:Static lang:AppResources.Game_ScoreBoard_best_score_label}" 
                        FontSize="24" 
                        FontFamily="MontBold"  
                        HorizontalOptions="Center" 

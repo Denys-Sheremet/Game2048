@@ -313,6 +313,24 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Best.
+        /// </summary>
+        public static string Game_ScoreBoard_best_score_label {
+            get {
+                return ResourceManager.GetString("Game_ScoreBoard_best_score_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Score.
+        /// </summary>
+        public static string Game_ScoreBoard_score_label {
+            get {
+                return ResourceManager.GetString("Game_ScoreBoard_score_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Settings.
         /// </summary>
         public static string Game_settings_btn_text {
