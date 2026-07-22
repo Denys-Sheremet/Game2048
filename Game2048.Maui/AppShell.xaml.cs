@@ -6,5 +6,10 @@
         {
             InitializeComponent();
         }
+
+        public void SetCurrentToLangSelect()
+        {
+            this.CurrentItem = LangSelect;
+        }
     }
 }

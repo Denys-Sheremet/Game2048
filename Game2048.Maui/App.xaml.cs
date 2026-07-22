@@ -19,15 +19,13 @@ namespace Game2048.Maui
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            var shell = new AppShell();
+            var shell = _serviceProvider.GetRequiredService<AppShell>();
 
-            if (!_settingsManager.LoadInitialSettings())
+            bool isInit = _settingsManager.LoadInitialSettings();
+
+            if (!isInit)
             {
-                var langPage = shell.Items.FirstOrDefault(i => i.Route == "LangSelectPage");
-                if (langPage is not null)
-                {
-                    shell.CurrentItem = langPage;
-                }
+                shell.SetCurrentToLangSelect();
             }
 
             return new Window(shell);

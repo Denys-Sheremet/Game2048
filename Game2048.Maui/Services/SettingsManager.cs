@@ -2,6 +2,7 @@
 using Game2048.Core.Models;
 using Game2048.Maui.Interfaces;
 using Game2048.Maui.Resources.Localization;
+using System.Diagnostics;
 using System.Globalization;
 
 namespace Game2048.Maui.Services;
@@ -77,6 +78,9 @@ public class SettingsManager : ISettingsManager
     public void SetLanguage(string langCode)
     {
         var currentLang = Preferences.Default.Get(KeyLanguage, string.Empty);
+        //
+        Debug.WriteLine(currentLang);
+        //
         if (currentLang == langCode)
         {
             return;

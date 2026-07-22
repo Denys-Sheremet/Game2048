@@ -21,7 +21,7 @@ public partial class IntroPage : ContentPage
         IntroLogoImage.Scale = 0.5;
         IntroLogoImage.WidthRequest = LayoutConstants.GetLogoWidth(400);
 
-        var initProfileTask = InitializeProfileAsync();
+        var initProfileTask = Task.Run(async () => await InitializeProfileAsync());
 
         await Task.WhenAll(
             IntroLogoImage.FadeTo(1, 900, Easing.CubicOut),

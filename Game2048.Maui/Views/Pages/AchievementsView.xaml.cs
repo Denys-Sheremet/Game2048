@@ -26,7 +26,7 @@ public partial class AchievementsView : ContentPage
 
         await Dispatcher.DispatchAsync(async () =>
         {
-            AchievementsPageGrid.TranslationY = Height;
+            AchievementsPageGrid.TranslationY = -Height;
             AchievementsPageGrid.Opacity = 0;
 
             await Task.WhenAll(

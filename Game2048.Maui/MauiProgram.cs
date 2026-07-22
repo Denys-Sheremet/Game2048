@@ -28,6 +28,8 @@ namespace Game2048.Maui
                     fonts.AddFont("fontawesome_solid.otf", "FontAwesome");
                 });
 
+            builder.Services.AddSingleton<AppShell>();
+
             builder.Services.AddSingleton<GameConfig>();
             builder.Services.AddSingleton<IGameModeService, GameModeService>();
 

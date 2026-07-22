@@ -8,11 +8,11 @@
     
     <Grid   ColumnDefinitions="*" 
             RowDefinitions="*" 
-            BackgroundColor="{DynamicResource PageBackgroundColor}">
+            BackgroundColor="Black">
         <Grid x:Name="PageContainer" ColumnDefinitions="*" RowDefinitions="*" >
             <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="30">
 
-                <Border StrokeShape="RoundRectangle 8" StrokeThickness="0" BackgroundColor="Transparent">
+                <Border StrokeShape="RoundRectangle 8" Stroke="White" StrokeThickness="2" BackgroundColor="Transparent">
                     <ImageButton     x:Name="UkLangBtn"
                                      Source="uk_btn_img.svg" 
                                      Command="{Binding SelectLanguageCommand}" 
@@ -24,7 +24,7 @@
                                      Aspect="AspectFill" />
                 </Border>
 
-                <Border StrokeShape="RoundRectangle 8" StrokeThickness="0" BackgroundColor="Transparent">
+                <Border StrokeShape="RoundRectangle 8" Stroke="White" StrokeThickness="2" BackgroundColor="Transparent">
                     <ImageButton     x:Name="EnLangBtn"
                                      Source="en_btn_img.svg" 
                                      Command="{Binding SelectLanguageCommand}" 
@@ -36,7 +36,7 @@
                                      Aspect="AspectFill" />
                 </Border>
 
-                <Border StrokeShape="RoundRectangle 8" StrokeThickness="0" BackgroundColor="Transparent">
+                <Border StrokeShape="RoundRectangle 8" Stroke="White" StrokeThickness="2" BackgroundColor="Transparent">
                     <ImageButton     x:Name="CsLangBtn"
                                      Source="cs_btn_img.svg" 
                                      Command="{Binding SelectLanguageCommand}" 
@@ -48,7 +48,7 @@
                                      Aspect="AspectFill" />
                 </Border>
 
-                <Border StrokeShape="RoundRectangle 8" StrokeThickness="0" BackgroundColor="Transparent">
+                <Border StrokeShape="RoundRectangle 8" Stroke="White" StrokeThickness="2" BackgroundColor="Transparent">
                     <ImageButton     x:Name="DeLangBtn"
                                      Source="de_btn_img.svg" 
                                      Command="{Binding SelectLanguageCommand}" 

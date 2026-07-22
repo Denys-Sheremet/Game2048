@@ -7,13 +7,13 @@
     Shell.FlyoutBehavior="Disabled"
     Title="2048">
 
-    <ShellContent ContentTemplate="{DataTemplate pages:LangSelectPage}" Route="LangSelectPage"/>
-    <ShellContent ContentTemplate="{DataTemplate pages:IntroPage}" Route="IntroPage"/>
-    <ShellContent ContentTemplate="{DataTemplate pages:MainMenuView}" Route="MainMenuPage"/>
-    <ShellContent ContentTemplate="{DataTemplate pages:GameView}" Route="GamePage"/>
-    <ShellContent ContentTemplate="{DataTemplate pages:AchievementsView}" Route="AchievementsPage"/>
-    <ShellContent ContentTemplate="{DataTemplate pages:GameModesView}" Route="GameModesPage"/>
-    <ShellContent ContentTemplate="{DataTemplate pages:HowToView}" Route="HowToPage"/>
-    <ShellContent ContentTemplate="{DataTemplate pages:SettingsPageView}" Route="SettingsPage"/>
+    <ShellContent ContentTemplate="{DataTemplate pages:IntroPage}" x:Name="Intro" Route="IntroPage"/>
+    <ShellContent ContentTemplate="{DataTemplate pages:LangSelectPage}" x:Name="LangSelect" Route="LangSelectPage"/>
+    <ShellContent ContentTemplate="{DataTemplate pages:MainMenuView}" x:Name="MainMenu" Route="MainMenuPage"/>
+    <ShellContent ContentTemplate="{DataTemplate pages:GameView}" x:Name="Game" Route="GamePage"/>
+    <ShellContent ContentTemplate="{DataTemplate pages:AchievementsView}" x:Name="Achievements" Route="AchievementsPage"/>
+    <ShellContent ContentTemplate="{DataTemplate pages:GameModesView}" x:Name="GameModes" Route="GameModesPage"/>
+    <ShellContent ContentTemplate="{DataTemplate pages:HowToView}" x:Name="HowTo" Route="HowToPage"/>
+    <ShellContent ContentTemplate="{DataTemplate pages:SettingsPageView}" x:Name="Settings" Route="SettingsPage"/>
 
 </Shell>
