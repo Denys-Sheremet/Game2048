@@ -42,15 +42,12 @@ public partial class LangSelectPage : ContentPage
         );
     }
 
-    private void OnBtnClicked(object sender, EventArgs e)
+    private async void OnBtnClicked(object sender, EventArgs e)
     {
-		Dispatcher.Dispatch(async () =>
+		if (sender is ImageButton btn) 
 		{
-			if (sender is ImageButton btn) 
-			{
-				await btn.ScaleTo(0.9, 100, Easing.CubicIn);
-				await btn.ScaleTo(1.0, 100, Easing.CubicOut);
-			}
-		});
+			await btn.ScaleTo(0.9, 100, Easing.CubicIn);
+			await btn.ScaleTo(1.0, 100, Easing.CubicOut);
+		}
     }
 }

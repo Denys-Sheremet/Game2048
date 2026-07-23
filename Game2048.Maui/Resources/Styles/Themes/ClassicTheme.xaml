@@ -63,6 +63,11 @@
     <Color x:Key="MainTextColor">#FFFFFF</Color>
     <Color x:Key="MainTitleColor">#323030</Color>
 
+    <Color x:Key="CardBGColor">#C0B5AB</Color>
+
+    <Color x:Key="MainBorderColor">#323030</Color>
+    <Color x:Key="SecondaryFieldBGColor">#C0B5AB</Color>
+
     <Color x:Key="SignsTextColor">#3E555C</Color>
 
 

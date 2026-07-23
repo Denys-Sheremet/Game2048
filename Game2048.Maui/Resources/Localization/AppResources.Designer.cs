@@ -439,6 +439,15 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Apply.
+        /// </summary>
+        public static string Settings_apply_btn {
+            get {
+                return ResourceManager.GetString("Settings_apply_btn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на How to.
         /// </summary>
         public static string Settings_how_to_btn_text {
@@ -448,11 +457,56 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Language.
+        /// </summary>
+        public static string Settings_lang_pick_label {
+            get {
+                return ResourceManager.GetString("Settings_lang_pick_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Nickname.
+        /// </summary>
+        public static string Settings_nickname_label {
+            get {
+                return ResourceManager.GetString("Settings_nickname_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Restart.
         /// </summary>
         public static string Settings_restart_btn_text {
             get {
                 return ResourceManager.GetString("Settings_restart_btn_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Choose the theme style.
+        /// </summary>
+        public static string Settings_theme_pick_desc_label {
+            get {
+                return ResourceManager.GetString("Settings_theme_pick_desc_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Customization.
+        /// </summary>
+        public static string Settings_theme_pick_label {
+            get {
+                return ResourceManager.GetString("Settings_theme_pick_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Themes.
+        /// </summary>
+        public static string Settings_theme_pick_sub_label {
+            get {
+                return ResourceManager.GetString("Settings_theme_pick_sub_label", resourceCulture);
             }
         }
         

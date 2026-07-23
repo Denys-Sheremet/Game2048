@@ -15,6 +15,8 @@ public class SettingsManager : ISettingsManager
     private const string KeyLanguage = "app_lang";
     private const string KeyTheme = "app_theme";
 
+    public string GetCurrentLang() => Preferences.Default.Get(KeyLanguage, "en");
+
     public SettingsManager(GameConfig config)
     {
         _config = config;
