@@ -1,8 +1,8 @@
 namespace Game2048.Maui.Resources.Styles.Themes;
 
-public partial class ClassicTheme : ResourceDictionary
+public partial class BWTheme : ResourceDictionary
 {
-	public ClassicTheme()
+	public BWTheme()
 	{
 		InitializeComponent();
 	}

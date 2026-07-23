@@ -33,6 +33,8 @@ namespace Game2048.Maui
             builder.Services.AddSingleton<GameConfig>();
             builder.Services.AddSingleton<IGameModeService, GameModeService>();
 
+            builder.Services.AddSingleton<IThemesManager, ThemesManager>();
+
             builder.Services.AddSingleton<ISaveService, SaveService>();
             builder.Services.AddSingleton<IProfileManager, ProfileManager>();
             builder.Services.AddSingleton<IStatisticsManager, StatisticsManager>();

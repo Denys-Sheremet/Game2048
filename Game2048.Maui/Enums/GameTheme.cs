@@ -13,5 +13,11 @@ public enum GameTheme
     /// <summary>Dark mode of 2048</summary>
     DarkTheme,
     /// <summary>Green and blue based 2048 theme</summary>
-    NatureTheme
+    NatureTheme,
+    /// <summary>Colorful theme with transparent background</summary>
+    NeonColorTheme,
+    /// <summary>Rainbow colors 2048 theme</summary>
+    RainbowTheme,
+    /// <summary>Black and white theme</summary>
+    BWTheme
 }

@@ -1,8 +1,8 @@
 ﻿using Game2048.Core.Enums;
 using Game2048.Core.Models;
+using Game2048.Maui.Enums;
 using Game2048.Maui.Interfaces;
 using Game2048.Maui.Resources.Localization;
-using System.Diagnostics;
 using System.Globalization;
 
 namespace Game2048.Maui.Services;
@@ -10,6 +10,8 @@ namespace Game2048.Maui.Services;
 public class SettingsManager : ISettingsManager
 {
     private readonly GameConfig _config;
+    private readonly IThemesManager _themesManager;
+    public GameTheme CurrentTheme { get; private set; }
 
     private const string KeyGameMode = "game_mode";
     private const string KeyLanguage = "app_lang";
@@ -17,9 +19,14 @@ public class SettingsManager : ISettingsManager
 
     public string GetCurrentLang() => Preferences.Default.Get(KeyLanguage, "en");
 
-    public SettingsManager(GameConfig config)
+    public SettingsManager(GameConfig config, IThemesManager themesManager)
     {
         _config = config;
+        _themesManager = themesManager;
+
+        string themeStr = Preferences.Default.Get(KeyTheme, nameof(GameTheme.ClassicTheme));
+
+        CurrentTheme = _themesManager.GetThemeFromString(themeStr);
     }
 
     public bool LoadInitialSettings()
@@ -34,21 +41,17 @@ public class SettingsManager : ISettingsManager
             _config.SetConfig(GameModeType.Classic);
         }
 
-        var themeStr = Preferences.Default.Get(KeyTheme, "ClassicTheme");
-        // TODO ApplyTheme(themeStr); 
+        if (CurrentTheme != GameTheme.ClassicTheme)
+        {
+            _themesManager.ApplyTheme(CurrentTheme);
+        }
 
         if (Preferences.Default.ContainsKey(KeyLanguage))
         {
             var langStr = Preferences.Default.Get(KeyLanguage, "en");
-            var culture = new System.Globalization.CultureInfo(langStr);
+            var culture = new CultureInfo(langStr);
 
-            System.Threading.Thread.CurrentThread.CurrentCulture = culture;
-            System.Threading.Thread.CurrentThread.CurrentUICulture = culture;
-
-            System.Globalization.CultureInfo.DefaultThreadCurrentCulture = culture;
-            System.Globalization.CultureInfo.DefaultThreadCurrentUICulture = culture;
-
-            AppResources.Culture = culture;
+            ApplyCulture(culture);
 
             return true;
         }
@@ -64,25 +67,31 @@ public class SettingsManager : ISettingsManager
         _config.SetConfig(mode);
     }
 
-    public void SetTheme(string themeName)
+    public void SetTheme(GameTheme theme)
+    {
+        if (CurrentTheme == theme) return;
+        CurrentTheme = theme;
+
+        _themesManager.ApplyTheme(CurrentTheme);
+    }
+
+    public void SaveLastTheme(GameTheme theme)
     {
         var currentTheme = Preferences.Default.Get(KeyTheme, string.Empty);
-        if (currentTheme == themeName)
+
+        string themeStr = theme.ToString();
+
+        if (currentTheme == themeStr)
         {
             return;
         }
 
-        Preferences.Default.Set(KeyTheme, themeName);
-
-        // TODO: (MergedDictionaries)
+        Preferences.Default.Set(KeyTheme, themeStr);
     }
 
     public void SetLanguage(string langCode)
     {
         var currentLang = Preferences.Default.Get(KeyLanguage, string.Empty);
-        //
-        Debug.WriteLine(currentLang);
-        //
         if (currentLang == langCode)
         {
             return;
@@ -91,6 +100,12 @@ public class SettingsManager : ISettingsManager
         Preferences.Default.Set(KeyLanguage, langCode);
 
         var culture = new CultureInfo(langCode);
+
+        ApplyCulture(culture);
+    }
+
+    private void ApplyCulture(CultureInfo culture)
+    {
         Thread.CurrentThread.CurrentCulture = culture;
         Thread.CurrentThread.CurrentUICulture = culture;
         CultureInfo.DefaultThreadCurrentCulture = culture;

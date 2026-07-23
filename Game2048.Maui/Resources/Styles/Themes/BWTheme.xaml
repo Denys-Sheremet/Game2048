@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Game2048.Maui.Resources.Styles.Themes.BWTheme">
+
+    <Color x:Key="GameBackgroundColor">#FFFFFF</Color>
+    <Color x:Key="GameFieldBackgroundColor">#000000</Color>
+    <Color x:Key="EmptyCellColor">#404040</Color>
+    <Color x:Key="TileBorderColor">#000000</Color>
+
+    <Color x:Key="PageBackgroundColor">#FFFFFF</Color>
+
+    <Color x:Key="Tile2BGColor">#FFFFFF</Color>
+    <Color x:Key="Tile2TextColor">#000000</Color>
+
+    <Color x:Key="Tile4BGColor">#000000</Color>
+    <Color x:Key="Tile4TextColor">#FFFFFF</Color>
+
+    <Color x:Key="Tile8BGColor">#FFFFFF</Color>
+    <Color x:Key="Tile8TextColor">#000000</Color>
+
+    <Color x:Key="Tile16BGColor">#000000</Color>
+    <Color x:Key="Tile16TextColor">#FFFFFF</Color>
+
+    <Color x:Key="Tile32BGColor">#FFFFFF</Color>
+    <Color x:Key="Tile32TextColor">#000000</Color>
+
+    <Color x:Key="Tile64BGColor">#000000</Color>
+    <Color x:Key="Tile64TextColor">#FFFFFF</Color>
+
+    <Color x:Key="Tile128BGColor">#FFFFFF</Color>
+    <Color x:Key="Tile128TextColor">#000000</Color>
+
+    <Color x:Key="Tile256BGColor">#000000</Color>
+    <Color x:Key="Tile256TextColor">#FFFFFF</Color>
+
+    <Color x:Key="Tile512BGColor">#FFFFFF</Color>
+    <Color x:Key="Tile512TextColor">#000000</Color>
+
+    <Color x:Key="Tile1024BGColor">#000000</Color>
+    <Color x:Key="Tile1024TextColor">#FFFFFF</Color>
+
+    <Color x:Key="Tile2048BGColor">#FFFFFF</Color>
+    <Color x:Key="Tile2048TextColor">#000000</Color>
+
+    <Color x:Key="TileExtraBGColor">#000000</Color>
+    <Color x:Key="TileExtraTextColor">#FFFFFF</Color>
+
+    <Color x:Key="MainButtonBGColor">#000000</Color>
+    <Color x:Key="MainButtonTextColor">#FFFFFF</Color>
+
+    <Color x:Key="ScoreBoardBGColor">#000000</Color>
+    <Color x:Key="ScoreBoardTextColor">#FFFFFF</Color>
+    <Color x:Key="ScoreBoardNumColor">#FFFFFF</Color>
+
+    <Color x:Key="LogoNumColor">#000000</Color>
+
+    <Color x:Key="AchievementBackgroundColor">#000000</Color>
+    <Color x:Key="ProgressBarColor">#FFFFFF</Color>
+    <Color x:Key="ProgressBarBGColor">#808080</Color>
+
+    <Color x:Key="MainTextColor">#000000</Color>
+    <Color x:Key="MainTitleColor">#000000</Color>
+
+    <Color x:Key="CardBGColor">#F2F2F2</Color>
+
+    <Color x:Key="MainBorderColor">#000000</Color>
+    <Color x:Key="SecondaryFieldBGColor">#D9D9D9</Color>
+
+    <Color x:Key="SignsTextColor">#404040</Color>
+
+</ResourceDictionary>
