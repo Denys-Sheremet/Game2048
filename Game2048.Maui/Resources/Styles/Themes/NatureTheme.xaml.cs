@@ -1,6 +1,6 @@
 namespace Game2048.Maui.Resources.Styles.Themes;
 
-public partial class NatureTheme : ResourceDictionary
+public partial class NatureTheme : ResourceDictionary, IThemeResource
 {
 	public NatureTheme()
 	{

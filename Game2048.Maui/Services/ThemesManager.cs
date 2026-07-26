@@ -16,6 +16,13 @@ public class ThemesManager : IThemesManager
         { GameTheme.BWTheme, new BWTheme()}
     };
 
+    private ResourceDictionary _currentTheme;
+
+    public ThemesManager()
+    {
+        _currentTheme = _themes[GameTheme.ClassicTheme];
+    }
+
     public GameTheme GetThemeFromString(string str)
     {
         if(Enum.TryParse<GameTheme>(str, out var theme)){
@@ -24,22 +31,29 @@ public class ThemesManager : IThemesManager
         return GameTheme.ClassicTheme;
     }
 
-    
-
-    public void ApplyTheme(GameTheme theme) 
+    public void ApplyTheme(GameTheme theme)
+    //Each theme should implement IThemeResource to be correctly worked with
     {
         var themeToApply = GetResource(theme);
 
+        if (ReferenceEquals(themeToApply, _currentTheme)) return;
+
         ICollection<ResourceDictionary> mergedDictionaries = Application.Current!.Resources.MergedDictionaries;
 
-        foreach (var existingTheme in mergedDictionaries.ToList())
+        if (!mergedDictionaries.Remove(_currentTheme))
         {
-            if (_themes.Values.Contains(existingTheme))
+            var existingTheme = mergedDictionaries.FirstOrDefault(d => d is IThemeResource);
+            if (existingTheme is not null)
             {
                 mergedDictionaries.Remove(existingTheme);
             }
         }
+        //
+        //maybe some animation coming soon
+        //
+
         mergedDictionaries.Add(themeToApply);
+        _currentTheme = themeToApply;
     }
 
     private ResourceDictionary GetResource(GameTheme theme)
