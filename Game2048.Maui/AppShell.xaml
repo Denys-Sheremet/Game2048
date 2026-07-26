@@ -15,5 +15,6 @@
     <ShellContent ContentTemplate="{DataTemplate pages:GameModesView}" x:Name="GameModes" Route="GameModesPage"/>
     <ShellContent ContentTemplate="{DataTemplate pages:HowToView}" x:Name="HowTo" Route="HowToPage"/>
     <ShellContent ContentTemplate="{DataTemplate pages:SettingsPageView}" x:Name="Settings" Route="SettingsPage"/>
+    <ShellContent ContentTemplate="{DataTemplate pages:ThemeSelectionView}" x:Name="Themes" Route="ThemeSelectionPage"/>
 
 </Shell>

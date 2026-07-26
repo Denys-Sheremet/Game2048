@@ -26,7 +26,6 @@ public partial class SettingsViewModel : BindableObject
 
         SaveNameCommand = new AsyncRelayCommand(SaveNameAsync);
         SelectLanguageCommand = new RelayCommand<string>(SelectLanguage);
-        NavigateToThemeSelectCommand = new AsyncRelayCommand(NavigateToThemeSelectAsync);
         ApplySettingsCommand = new AsyncRelayCommand(ApplySettingsAsync);
 
         CurrentProfileName = _profileManager.CurrentProfile?.Name ?? DefaultPlayerName;
@@ -77,7 +76,6 @@ public partial class SettingsViewModel : BindableObject
 
     public IRelayCommand SaveNameCommand { get; }
     public IRelayCommand SelectLanguageCommand { get; }
-    public IRelayCommand NavigateToThemeSelectCommand { get; }
     public IRelayCommand ApplySettingsCommand { get; }
 
     private async Task SaveNameAsync() 
@@ -117,8 +115,6 @@ public partial class SettingsViewModel : BindableObject
 
         OnPropertyChanged(nameof(IsNotCurrentLang));
     }
-
-    private async Task NavigateToThemeSelectAsync() { }
 
     private async Task ApplySettingsAsync() { }
 

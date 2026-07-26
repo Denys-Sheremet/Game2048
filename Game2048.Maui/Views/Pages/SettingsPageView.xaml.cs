@@ -56,6 +56,12 @@ public partial class SettingsPageView : ContentPage
         return currentColumn;
     }
 
+    public async void OnGoToThemeSelect(object sender, EventArgs e)
+    {
+        await GoToThemeSelectBtn.ScaleTo(0.95, 100, Easing.CubicIn);
+        await GoToThemeSelectBtn.ScaleTo(1.0, 100, Easing.CubicOut);
+        await Shell.Current.GoToAsync("///ThemeSelectionPage", false);
+    }
 
     public async void OnBtnClicked(object sender, EventArgs e)
 	{
