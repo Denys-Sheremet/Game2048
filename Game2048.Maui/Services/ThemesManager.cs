@@ -7,6 +7,7 @@ namespace Game2048.Maui.Services;
 public class ThemesManager : IThemesManager
 {
     private readonly Dictionary<GameTheme, ResourceDictionary> _themes = new()
+    //Each theme should implement IThemeResource to be correctly worked with
     {
         { GameTheme.ClassicTheme, new ClassicTheme()},
         { GameTheme.DarkTheme, new DarkTheme()},

@@ -255,6 +255,9 @@
   <data name="Settings_nickname_label" xml:space="preserve">
     <value>Nickname</value>
   </data>
+  <data name="Settings_nickname_placeholder_text" xml:space="preserve">
+    <value>Enter the name...</value>
+  </data>
   <data name="Settings_restart_btn_text" xml:space="preserve">
     <value>Restart</value>
   </data>

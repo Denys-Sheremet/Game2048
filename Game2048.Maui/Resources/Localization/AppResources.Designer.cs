@@ -475,6 +475,15 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Enter the name....
+        /// </summary>
+        public static string Settings_nickname_placeholder_text {
+            get {
+                return ResourceManager.GetString("Settings_nickname_placeholder_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Restart.
         /// </summary>
         public static string Settings_restart_btn_text {

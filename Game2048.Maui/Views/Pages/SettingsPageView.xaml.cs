@@ -1,4 +1,5 @@
 using Game2048.Maui.Interfaces;
+using Game2048.Maui.ViewModels;
 using Microsoft.Maui.Controls;
 
 namespace Game2048.Maui.Views.Pages;
@@ -6,9 +7,12 @@ namespace Game2048.Maui.Views.Pages;
 public partial class SettingsPageView : ContentPage
 {
     private readonly ISettingsManager _settingsManager;
-	public SettingsPageView(ISettingsManager settingsManager)
+    private readonly SettingsViewModel _viewModel;
+    public SettingsPageView(ISettingsManager settingsManager, SettingsViewModel viewModel)
 	{
 		InitializeComponent();
+        _viewModel = viewModel;
+        BindingContext = _viewModel;
         _settingsManager = settingsManager;
 	}
 

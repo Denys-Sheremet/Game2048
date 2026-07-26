@@ -255,6 +255,9 @@
   <data name="Settings_nickname_label" xml:space="preserve">
     <value>Ім'я гравця</value>
   </data>
+  <data name="Settings_nickname_placeholder_text" xml:space="preserve">
+    <value>Введіть ім'я...</value>
+  </data>
   <data name="Settings_restart_btn_text" xml:space="preserve">
     <value>Перезапустити</value>
   </data>

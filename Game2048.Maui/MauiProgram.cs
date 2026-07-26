@@ -53,6 +53,8 @@ namespace Game2048.Maui
             builder.Services.AddTransient<GameModesViewModel>();
             builder.Services.AddTransient<AchievementsViewModel>();
             builder.Services.AddTransient<AchievementsView>();
+            builder.Services.AddTransient<SettingsViewModel>();
+            builder.Services.AddTransient<SettingsPageView>();
 
 #if DEBUG
             builder.Logging.AddDebug();

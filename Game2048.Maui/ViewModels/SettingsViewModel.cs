@@ -1,10 +1,12 @@
 ﻿using Game2048.Maui.Interfaces;
-using Game2048.Maui.Services;
 using CommunityToolkit.Mvvm.Input;
 namespace Game2048.Maui.ViewModels;
 
 public partial class SettingsViewModel : BindableObject
 {
+    public const int MaxNameLength = 14;
+    private const string DefaultPlayerName = "Player";
+
     private readonly IProfileManager _profileManager;
     private readonly ISettingsManager _settingsManager;
     private readonly IServiceProvider _serviceProvider;
@@ -12,6 +14,9 @@ public partial class SettingsViewModel : BindableObject
     private string _playerName = string.Empty;
     private string _currentProfileName = string.Empty;
     private string _selectedLanguage = "en";
+
+    public bool NameIsUnsaved => (PlayerName.Trim() ?? string.Empty) != CurrentProfileName;
+    public bool IsNotCurrentLang => _selectedLanguage != _settingsManager.GetCurrentLang();
 
     public SettingsViewModel(IProfileManager profileManager, ISettingsManager settingsManager, IServiceProvider serviceProvider)
     {
@@ -24,9 +29,9 @@ public partial class SettingsViewModel : BindableObject
         NavigateToThemeSelectCommand = new AsyncRelayCommand(NavigateToThemeSelectAsync);
         ApplySettingsCommand = new AsyncRelayCommand(ApplySettingsAsync);
 
-        CurrentProfileName = _profileManager.CurrentProfile?.Name ?? "Player";
+        CurrentProfileName = _profileManager.CurrentProfile?.Name ?? DefaultPlayerName;
         PlayerName = CurrentProfileName;
-        SelectedLanguage = "en"; //
+        SelectedLanguage = _settingsManager.GetCurrentLang(); 
     }
 
     public string PlayerName
@@ -38,6 +43,7 @@ public partial class SettingsViewModel : BindableObject
             {
                 _playerName = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(NameIsUnsaved));
             }
         }
     }
@@ -51,6 +57,7 @@ public partial class SettingsViewModel : BindableObject
             {
                 _currentProfileName = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(NameIsUnsaved));
             }
         }
     }
@@ -73,9 +80,43 @@ public partial class SettingsViewModel : BindableObject
     public IRelayCommand NavigateToThemeSelectCommand { get; }
     public IRelayCommand ApplySettingsCommand { get; }
 
-    private async Task SaveNameAsync() { }
+    private async Task SaveNameAsync() 
+    {
+        if (!NameIsUnsaved) return;
 
-    private void SelectLanguage(string? langCode) { }
+        string finalName = ValidateName(PlayerName);
+
+        _profileManager.SetPlayerName(finalName);
+        await _profileManager.SaveCurrentProfileAsync();
+
+        CurrentProfileName = finalName; 
+        PlayerName = finalName;
+    }
+
+    private string ValidateName(string rawName)
+    {
+        if (string.IsNullOrWhiteSpace(rawName))
+        {
+            return CurrentProfileName ?? DefaultPlayerName;
+        }
+
+        string trimmed = rawName.Trim();
+
+        if (trimmed.Length == 0)
+        {
+            return CurrentProfileName ?? DefaultPlayerName;
+        }
+
+        return trimmed;
+    }
+
+    private void SelectLanguage(string? langCode) 
+    {
+        if (langCode is null || _selectedLanguage == langCode) return;
+        _selectedLanguage = langCode;
+
+        OnPropertyChanged(nameof(IsNotCurrentLang));
+    }
 
     private async Task NavigateToThemeSelectAsync() { }
 
