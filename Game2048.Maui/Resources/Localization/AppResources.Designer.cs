@@ -313,6 +313,33 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Confirm.
+        /// </summary>
+        public static string ConfirmationOverlay_confirm_btn_text {
+            get {
+                return ResourceManager.GetString("ConfirmationOverlay_confirm_btn_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Restart is needed to change the language. Please confirm restart..
+        /// </summary>
+        public static string ConfirmationOverlay_desc {
+            get {
+                return ResourceManager.GetString("ConfirmationOverlay_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Confirmation.
+        /// </summary>
+        public static string ConfirmationOverlay_title {
+            get {
+                return ResourceManager.GetString("ConfirmationOverlay_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Best.
         /// </summary>
         public static string Game_ScoreBoard_best_score_label {

@@ -18,6 +18,8 @@ public partial class SettingsViewModel : BindableObject
     public bool NameIsUnsaved => (PlayerName.Trim() ?? string.Empty) != CurrentProfileName;
     public bool IsNotCurrentLang => _selectedLanguage != _settingsManager.GetCurrentLang();
 
+    public bool IsConfirmationNeeded = false;
+
     public SettingsViewModel(IProfileManager profileManager, ISettingsManager settingsManager, IServiceProvider serviceProvider)
     {
         _profileManager = profileManager;
@@ -26,7 +28,7 @@ public partial class SettingsViewModel : BindableObject
 
         SaveNameCommand = new AsyncRelayCommand(SaveNameAsync);
         SelectLanguageCommand = new RelayCommand<string>(SelectLanguage);
-        ApplySettingsCommand = new AsyncRelayCommand(ApplySettingsAsync);
+        ConfirmAndRestartCommand = new AsyncRelayCommand(ConfirmAndRestart);
 
         CurrentProfileName = _profileManager.CurrentProfile?.Name ?? DefaultPlayerName;
         PlayerName = CurrentProfileName;
@@ -74,9 +76,9 @@ public partial class SettingsViewModel : BindableObject
         }
     }
 
-    public IRelayCommand SaveNameCommand { get; }
+    public IAsyncRelayCommand SaveNameCommand { get; }
     public IRelayCommand SelectLanguageCommand { get; }
-    public IRelayCommand ApplySettingsCommand { get; }
+    public IAsyncRelayCommand ConfirmAndRestartCommand { get; }
 
     private async Task SaveNameAsync() 
     {
@@ -116,7 +118,15 @@ public partial class SettingsViewModel : BindableObject
         OnPropertyChanged(nameof(IsNotCurrentLang));
     }
 
-    private async Task ApplySettingsAsync() { }
+    private async Task ConfirmAndRestart()
+    {
+        await _profileManager.SaveCurrentProfileAsync();
 
+        _settingsManager.SetLanguage(_selectedLanguage);
 
+        if (Application.Current is App app) 
+        {
+            app.RestartApp();
+        }
+    }
 }

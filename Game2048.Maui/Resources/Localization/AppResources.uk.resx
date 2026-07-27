@@ -201,6 +201,15 @@
   <data name="Ach_Score5000_title" xml:space="preserve">
     <value>Великих чисел майстер</value>
   </data>
+  <data name="ConfirmationOverlay_confirm_btn_text" xml:space="preserve">
+    <value>Підтвердити</value>
+  </data>
+  <data name="ConfirmationOverlay_desc" xml:space="preserve">
+    <value>Для зміни мови потрібен перезапуск гри. Підтвердьте перезапуск.</value>
+  </data>
+  <data name="ConfirmationOverlay_title" xml:space="preserve">
+    <value>Підтвердження</value>
+  </data>
   <data name="GameModes_title" xml:space="preserve">
     <value>ВИБІР РЕЖИМУ</value>
   </data>

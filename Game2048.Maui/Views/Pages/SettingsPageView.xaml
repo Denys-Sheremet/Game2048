@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:lang="clr-namespace:Game2048.Maui.Resources.Localization"
              xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
+             xmlns:ovr="clr-namespace:Game2048.Maui.Views.Overlays"
              x:DataType="vm:SettingsViewModel"
              x:Class="Game2048.Maui.Views.Pages.SettingsPageView"
              Shell.NavBarIsVisible="False"
@@ -10,280 +11,301 @@
     <Grid x:Name="PageContainer"
           BackgroundColor="{DynamicResource GameBackgroundColor}"
           VerticalOptions="Fill"
-          HorizontalOptions="Fill">    
-        <ScrollView>
-            <VerticalStackLayout Spacing="25" Padding="10">
-                <Grid RowDefinitions="Auto, Auto, *"
-                      ColumnDefinitions="*"
-                      RowSpacing="10"
-                      Padding="0, 20, 0, 5"
-                      HorizontalOptions="Fill"
-                      VerticalOptions="Fill">
-                    <Button x:Name="BackToMenuBtn"
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            Margin="15, 0, 0, 0"
-                            WidthRequest="55"
-                            HeightRequest="55"
-                            FontFamily="FontAwesome"
-                            Text="&#xf30a;"
-                            FontSize="20"    
-                            Clicked="OnBackToMenu" 
-                            HorizontalOptions="Start"
-                            VerticalOptions="Center"
-                            Style="{StaticResource MainBtnStyle}">
-                    </Button>
+          HorizontalOptions="Fill">
+        <Grid x:Name="PageContentContainer"
+              VerticalOptions="Fill"
+              HorizontalOptions="Fill"
+              ZIndex="10">
 
-                    <Label Text="{x:Static lang:AppResources.Settings_title}"
-                           Grid.Row="0"
-                           Grid.Column="1"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
-                           FontFamily="RubikSemi"
-                           FontSize="40"
-                           TextColor="{DynamicResource MainTitleColor}">
+            <ScrollView>
+                <VerticalStackLayout Spacing="25" Padding="10">
+                    <Grid RowDefinitions="Auto, Auto, *"
+                          ColumnDefinitions="*"
+                          RowSpacing="10"
+                          Padding="0, 20, 0, 5"
+                          HorizontalOptions="Fill"
+                          VerticalOptions="Fill">
+                        <Button x:Name="BackToMenuBtn"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Margin="15, 0, 0, 0"
+                                WidthRequest="55"
+                                HeightRequest="55"
+                                FontFamily="FontAwesome"
+                                Text="&#xf30a;"
+                                FontSize="20"    
+                                Clicked="OnBackToMenu" 
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                Style="{StaticResource MainBtnStyle}">
+                        </Button>
 
-                    </Label>
-                </Grid>
-                <Border x:Name="NicknameField"
-                        StrokeShape="RoundRectangle 8"
-                        StrokeThickness="2"
-                        Stroke="{DynamicResource MainBorderColor}"
-                        Padding="10, 5, 10, 10"
-                        BackgroundColor="{DynamicResource SecondaryFieldBGColor}">
-                    <Border.Triggers>
-                        <DataTrigger TargetType="Border" 
-                                     Binding="{Binding NameIsUnsaved}" 
-                                     Value="True">
-                            <Setter Property="Stroke" Value="Orange" />
-                        </DataTrigger>
-                    </Border.Triggers>
-
-                    <VerticalStackLayout Spacing="8">
-
-                        <Label Text="{x:Static lang:AppResources.Settings_nickname_label}" 
-                               FontSize="20"
+                        <Label Text="{x:Static lang:AppResources.Settings_title}"
+                               Grid.Row="0"
+                               Grid.Column="1"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
                                FontFamily="RubikSemi"
-                               TextColor="{DynamicResource SignsTextColor}" 
-                               Margin="5,0"/>
+                               FontSize="40"
+                               TextColor="{DynamicResource MainTitleColor}">
 
-                        <Border StrokeThickness="1" 
-                                Stroke="{DynamicResource MainBorderColor}"
-                                BackgroundColor="{DynamicResource MainBorderColor}" 
-                                StrokeShape="RoundRectangle 8" 
-                                Padding="10,5,10,5">
+                        </Label>
+                    </Grid>
+                    <Border x:Name="NicknameField"
+                            StrokeShape="RoundRectangle 8"
+                            StrokeThickness="2"
+                            Stroke="{DynamicResource MainBorderColor}"
+                            Padding="10, 5, 10, 10"
+                            BackgroundColor="{DynamicResource SecondaryFieldBGColor}">
+                        <Border.Triggers>
+                            <DataTrigger TargetType="Border" 
+                                         Binding="{Binding NameIsUnsaved}" 
+                                         Value="True">
+                                <Setter Property="Stroke" Value="Orange" />
+                            </DataTrigger>
+                        </Border.Triggers>
+
+                        <VerticalStackLayout Spacing="8">
+
+                            <Label Text="{x:Static lang:AppResources.Settings_nickname_label}" 
+                                   FontSize="20"
+                                   FontFamily="RubikSemi"
+                                   TextColor="{DynamicResource SignsTextColor}" 
+                                   Margin="5,0"/>
+
+                            <Border StrokeThickness="1" 
+                                    Stroke="{DynamicResource MainBorderColor}"
+                                    BackgroundColor="{DynamicResource MainBorderColor}" 
+                                    StrokeShape="RoundRectangle 8" 
+                                    Padding="10,5,10,5">
                             
-                            <Grid ColumnDefinitions="*, Auto" ColumnSpacing="10">
+                                <Grid ColumnDefinitions="*, Auto" ColumnSpacing="10">
 
-                                <Entry Grid.Column="0"
-                                       Text="{Binding PlayerName, Mode=TwoWay}"
-                                       Placeholder="{x:Static lang:AppResources.Settings_nickname_placeholder_text}"
-                                       MaxLength="{x:Static vm:SettingsViewModel.MaxNameLength}"
-                                       FontSize="16"
-                                       FontFamily="RubikSemi"
-                                       TextColor="{DynamicResource MainTextColor}"
-                                       VerticalOptions="Center"/>
+                                    <Entry Grid.Column="0"
+                                           Text="{Binding PlayerName, Mode=TwoWay}"
+                                           Placeholder="{x:Static lang:AppResources.Settings_nickname_placeholder_text}"
+                                           MaxLength="{x:Static vm:SettingsViewModel.MaxNameLength}"
+                                           FontSize="16"
+                                           FontFamily="RubikSemi"
+                                           TextColor="{DynamicResource MainTextColor}"
+                                           VerticalOptions="Center"/>
 
-                                <Button Grid.Column="1"
-                                        Text="✓"
-                                        FontSize="20"
-                                        FontAttributes="Bold"
-                                        TextColor="White"
-                                        BackgroundColor="Green"
-                                        CornerRadius="8"
-                                        WidthRequest="40"
-                                        HeightRequest="40"
-                                        Padding="0"
-                                        Command="{Binding SaveNameCommand}"
-                                        Clicked="OnBtnClicked"/>
-                            </Grid>
-                        </Border>
-                    </VerticalStackLayout>
-                </Border>
-
-                <Border x:Name="ThemeField"
-                        StrokeShape="RoundRectangle 8"
-                        StrokeThickness="2"
-                        Stroke="{DynamicResource MainBorderColor}"
-                        Padding="10, 5, 10, 5"
-                        BackgroundColor="{DynamicResource SecondaryFieldBGColor}">
-                    
-                    <VerticalStackLayout Spacing="8">
-                        <Label Text="{x:Static lang:AppResources.Settings_theme_pick_label}" 
-                               FontSize="20"
-                               FontFamily="RubikSemi" 
-                               TextColor="{DynamicResource SignsTextColor}" 
-                               Margin="5,0"/>
-
-                        <Border StrokeThickness="0"
-                                x:Name="GoToThemeSelectBtn"
-                                BackgroundColor="{DynamicResource CardBackgroundColor}" 
-                                StrokeShape="RoundRectangle 12"
-                                Padding="0">
-
-                            <Border.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnGoToThemeSelect"/>
-                            </Border.GestureRecognizers>
-
-                            <Grid ColumnDefinitions="Auto, *, Auto" Padding="15" ColumnSpacing="15">
-                                <Grid Grid.Column="0" VerticalOptions="Center"
-                                      ColumnDefinitions="*, *" RowDefinitions="*, *"
-                                      WidthRequest="50" HeightRequest="50">
-                                    <Border Grid.Row="0" Grid.Column="0" BackgroundColor="{DynamicResource PageBackgroundColor}" StrokeShape="RoundRectangle 6,0,0,0" StrokeThickness="0"/>
-                                    <Border Grid.Row="0" Grid.Column="1" BackgroundColor="{DynamicResource Tile8BGColor}" StrokeShape="RoundRectangle 0,6,0,0" StrokeThickness="0"/>
-                                    <Border Grid.Row="1" Grid.Column="0" BackgroundColor="{DynamicResource Tile64BGColor}" StrokeShape="RoundRectangle 0,0,6,0" StrokeThickness="0"/>
-                                    <Border Grid.Row="1" Grid.Column="1" BackgroundColor="{DynamicResource Tile512BGColor}" StrokeShape="RoundRectangle 0,0,0,6" StrokeThickness="0"/>
+                                    <Button Grid.Column="1"
+                                            Text="✓"
+                                            FontSize="20"
+                                            FontAttributes="Bold"
+                                            TextColor="White"
+                                            BackgroundColor="Green"
+                                            CornerRadius="8"
+                                            WidthRequest="40"
+                                            HeightRequest="40"
+                                            Padding="0"
+                                            Command="{Binding SaveNameCommand}"
+                                            Clicked="OnBtnClicked"/>
                                 </Grid>
+                            </Border>
+                        </VerticalStackLayout>
+                    </Border>
 
-                                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
-                                    <Label Text="{x:Static lang:AppResources.Settings_theme_pick_sub_label}" 
-                                        FontSize="18" 
-                                        FontFamily="RubikSemi" 
-                                        TextColor="{DynamicResource MainTextColor}"/>
-                                    <Label Text="{x:Static lang:AppResources.Settings_theme_pick_desc_label}" 
-                                        FontSize="14" 
-                                        FontFamily="RubikSemi" 
-                                        TextColor="{DynamicResource MainTextColor}"/>
-                                </VerticalStackLayout>
-
-                                <Label Grid.Column="2" Text="➔" FontSize="18" TextColor="{DynamicResource SecondaryTextColor}" VerticalOptions="Center"/>
-                            </Grid>
-                        </Border>
-                    </VerticalStackLayout>
-                </Border>
-
-                <Border x:Name="LanguageField"
+                    <Border x:Name="ThemeField"
                             StrokeShape="RoundRectangle 8"
                             StrokeThickness="2"
                             Stroke="{DynamicResource MainBorderColor}"
                             Padding="10, 5, 10, 5"
                             BackgroundColor="{DynamicResource SecondaryFieldBGColor}">
-                    <Border.Triggers>
-                        <DataTrigger TargetType="Border" 
-                                     Binding="{Binding IsNotCurrentLang}" 
-                                     Value="True">
-                            <Setter Property="Stroke" Value="Orange" />
-                        </DataTrigger>
-                    </Border.Triggers>
+                    
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="{x:Static lang:AppResources.Settings_theme_pick_label}" 
+                                   FontSize="20"
+                                   FontFamily="RubikSemi" 
+                                   TextColor="{DynamicResource SignsTextColor}" 
+                                   Margin="5,0"/>
 
-                    <VerticalStackLayout Spacing="8">
-                        <Label Text="{x:Static lang:AppResources.Settings_lang_pick_label}" 
-                               FontSize="20" 
-                               FontFamily="RubikSemi" 
-                               TextColor="{DynamicResource SignsTextColor}" 
-                               Margin="5,0"/>
+                            <Border StrokeThickness="0"
+                                    x:Name="GoToThemeSelectBtn"
+                                    BackgroundColor="{DynamicResource CardBackgroundColor}" 
+                                    StrokeShape="RoundRectangle 12"
+                                    Padding="0">
 
-                        <Border StrokeThickness="0" 
-                                BackgroundColor="{DynamicResource CardBGColor}" 
-                                StrokeShape="RoundRectangle 16" 
-                                Padding="15">
-                            <Grid ColumnDefinitions="*, *, *, *" ColumnSpacing="10">
-                                <Border x:Name="SelectedLangStroke"
-                                            BackgroundColor="Transparent"
-                                            Stroke="Green"
-                                            InputTransparent="True"
-                                            WidthRequest="75"
-                                            HeightRequest="65"
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnGoToThemeSelect"/>
+                                </Border.GestureRecognizers>
+
+                                <Grid ColumnDefinitions="Auto, *, Auto" Padding="15" ColumnSpacing="15">
+                                    <Grid Grid.Column="0" VerticalOptions="Center"
+                                          ColumnDefinitions="*, *" RowDefinitions="*, *"
+                                          WidthRequest="50" HeightRequest="50">
+                                        <Border Grid.Row="0" Grid.Column="0" BackgroundColor="{DynamicResource PageBackgroundColor}" StrokeShape="RoundRectangle 6,0,0,0" StrokeThickness="0"/>
+                                        <Border Grid.Row="0" Grid.Column="1" BackgroundColor="{DynamicResource Tile8BGColor}" StrokeShape="RoundRectangle 0,6,0,0" StrokeThickness="0"/>
+                                        <Border Grid.Row="1" Grid.Column="0" BackgroundColor="{DynamicResource Tile64BGColor}" StrokeShape="RoundRectangle 0,0,6,0" StrokeThickness="0"/>
+                                        <Border Grid.Row="1" Grid.Column="1" BackgroundColor="{DynamicResource Tile512BGColor}" StrokeShape="RoundRectangle 0,0,0,6" StrokeThickness="0"/>
+                                    </Grid>
+
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                                        <Label Text="{x:Static lang:AppResources.Settings_theme_pick_sub_label}" 
+                                            FontSize="18" 
+                                            FontFamily="RubikSemi" 
+                                            TextColor="{DynamicResource MainTextColor}"/>
+                                        <Label Text="{x:Static lang:AppResources.Settings_theme_pick_desc_label}" 
+                                            FontSize="14" 
+                                            FontFamily="RubikSemi" 
+                                            TextColor="{DynamicResource MainTextColor}"/>
+                                    </VerticalStackLayout>
+
+                                    <Label Grid.Column="2" Text="&#xf061;" FontSize="18" FontFamily="FontAwesome" TextColor="{DynamicResource SecondaryTextColor}" VerticalOptions="Center"/>
+                                </Grid>
+                            </Border>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border x:Name="LanguageField"
+                                StrokeShape="RoundRectangle 8"
+                                StrokeThickness="2"
+                                Stroke="{DynamicResource MainBorderColor}"
+                                Padding="10, 5, 10, 5"
+                                BackgroundColor="{DynamicResource SecondaryFieldBGColor}">
+                        <Border.Triggers>
+                            <DataTrigger TargetType="Border" 
+                                         Binding="{Binding IsNotCurrentLang}" 
+                                         Value="True">
+                                <Setter Property="Stroke" Value="Orange" />
+                            </DataTrigger>
+                        </Border.Triggers>
+
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="{x:Static lang:AppResources.Settings_lang_pick_label}" 
+                                   FontSize="20" 
+                                   FontFamily="RubikSemi" 
+                                   TextColor="{DynamicResource SignsTextColor}" 
+                                   Margin="5,0"/>
+
+                            <Border StrokeThickness="0" 
+                                    BackgroundColor="{DynamicResource CardBGColor}" 
+                                    StrokeShape="RoundRectangle 16" 
+                                    Padding="15">
+                                <Grid ColumnDefinitions="*, *, *, *" ColumnSpacing="10">
+                                    <Border x:Name="SelectedLangStroke"
+                                                BackgroundColor="Transparent"
+                                                Stroke="Green"
+                                                InputTransparent="True"
+                                                WidthRequest="75"
+                                                HeightRequest="65"
+                                                HorizontalOptions="Center"
+                                                VerticalOptions="Center"
+                                                StrokeThickness="4"
+                                                StrokeShape="RoundRectangle 8"
+                                                IsVisible="False"
+                                                ZIndex="11" />
+
+                                    <Border ZIndex="10"
+                                            x:Name="Uk_Btn"
+                                            WidthRequest="70"
+                                            HeightRequest="60" 
                                             HorizontalOptions="Center"
                                             VerticalOptions="Center"
-                                            StrokeThickness="4"
-                                            StrokeShape="RoundRectangle 8"
-                                            IsVisible="False"
-                                            ZIndex="11" />
+                                            Grid.Column="0" 
+                                            StrokeShape="RoundRectangle 8" 
+                                            Stroke="Transparent" 
+                                            StrokeThickness="0" 
+                                            BackgroundColor="Transparent">
+                                        <ImageButton     x:Name="UkLangBtn"
+                                                             Source="uk_btn_img.svg" 
+                                                             Command="{Binding SelectLanguageCommand}" 
+                                                             CommandParameter="uk"
+                                                             Clicked="OnImgBtnClicked"
+                                                             Aspect="AspectFill" />
+                                    </Border>
 
-                                <Border ZIndex="10"
-                                        x:Name="Uk_Btn"
-                                        WidthRequest="70"
-                                        HeightRequest="60" 
-                                        HorizontalOptions="Center"
-                                        VerticalOptions="Center"
-                                        Grid.Column="0" 
-                                        StrokeShape="RoundRectangle 8" 
-                                        Stroke="Transparent" 
-                                        StrokeThickness="0" 
-                                        BackgroundColor="Transparent">
-                                    <ImageButton     x:Name="UkLangBtn"
-                                                         Source="uk_btn_img.svg" 
-                                                         Command="{Binding SelectLanguageCommand}" 
-                                                         CommandParameter="uk"
-                                                         Clicked="OnImgBtnClicked"
-                                                         Aspect="AspectFill" />
-                                </Border>
+                                    <Border ZIndex="10"
+                                            x:Name="En_Btn"
+                                            WidthRequest="70"
+                                            HeightRequest="60"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"
+                                            Grid.Column="1" 
+                                            StrokeShape="RoundRectangle 8" 
+                                            Stroke="Transparent" 
+                                            StrokeThickness="0" 
+                                            BackgroundColor="Transparent">
+                                        <ImageButton     x:Name="EnLangBtn"
+                                                             Source="en_btn_img.svg" 
+                                                             Command="{Binding SelectLanguageCommand}" 
+                                                             CommandParameter="en"
+                                                             Clicked="OnImgBtnClicked"
+                                                             Aspect="AspectFill" />
+                                    </Border>
 
-                                <Border ZIndex="10"
-                                        x:Name="En_Btn"
-                                        WidthRequest="70"
-                                        HeightRequest="60"
-                                        HorizontalOptions="Center"
-                                        VerticalOptions="Center"
-                                        Grid.Column="1" 
-                                        StrokeShape="RoundRectangle 8" 
-                                        Stroke="Transparent" 
-                                        StrokeThickness="0" 
-                                        BackgroundColor="Transparent">
-                                    <ImageButton     x:Name="EnLangBtn"
-                                                         Source="en_btn_img.svg" 
-                                                         Command="{Binding SelectLanguageCommand}" 
-                                                         CommandParameter="en"
-                                                         Clicked="OnImgBtnClicked"
-                                                         Aspect="AspectFill" />
-                                </Border>
+                                    <Border ZIndex="10"
+                                            x:Name="Cs_Btn"
+                                            WidthRequest="70"
+                                            HeightRequest="60" 
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"
+                                            Grid.Column="2" 
+                                            StrokeShape="RoundRectangle 8" 
+                                            Stroke="Transparent" 
+                                            StrokeThickness="0" 
+                                            BackgroundColor="Transparent">
+                                        <ImageButton     x:Name="CsLangBtn"
+                                                             Source="cs_btn_img.svg" 
+                                                             Command="{Binding SelectLanguageCommand}" 
+                                                             CommandParameter="cs"
+                                                             Clicked="OnImgBtnClicked"
+                                                             Aspect="AspectFill" />
+                                    </Border>
 
-                                <Border ZIndex="10"
-                                        x:Name="Cs_Btn"
-                                        WidthRequest="70"
-                                        HeightRequest="60" 
-                                        HorizontalOptions="Center"
-                                        VerticalOptions="Center"
-                                        Grid.Column="2" 
-                                        StrokeShape="RoundRectangle 8" 
-                                        Stroke="Transparent" 
-                                        StrokeThickness="0" 
-                                        BackgroundColor="Transparent">
-                                    <ImageButton     x:Name="CsLangBtn"
-                                                         Source="cs_btn_img.svg" 
-                                                         Command="{Binding SelectLanguageCommand}" 
-                                                         CommandParameter="cs"
-                                                         Clicked="OnImgBtnClicked"
-                                                         Aspect="AspectFill" />
-                                </Border>
+                                    <Border ZIndex="10"
+                                            x:Name="De_Btn"
+                                            WidthRequest="70"
+                                            HeightRequest="60" 
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"
+                                            Grid.Column="3" 
+                                            StrokeShape="RoundRectangle 8" 
+                                            Stroke="Transparent" 
+                                            StrokeThickness="0" 
+                                            BackgroundColor="Transparent">
+                                        <ImageButton     x:Name="DeLangBtn"
+                                                             Source="de_btn_img.svg" 
+                                                             Command="{Binding SelectLanguageCommand}" 
+                                                             CommandParameter="de"
+                                                             Clicked="OnImgBtnClicked"
+                                                             Aspect="AspectFill" />
+                                    </Border>
 
-                                <Border ZIndex="10"
-                                        x:Name="De_Btn"
-                                        WidthRequest="70"
-                                        HeightRequest="60" 
-                                        HorizontalOptions="Center"
-                                        VerticalOptions="Center"
-                                        Grid.Column="3" 
-                                        StrokeShape="RoundRectangle 8" 
-                                        Stroke="Transparent" 
-                                        StrokeThickness="0" 
-                                        BackgroundColor="Transparent">
-                                    <ImageButton     x:Name="DeLangBtn"
-                                                         Source="de_btn_img.svg" 
-                                                         Command="{Binding SelectLanguageCommand}" 
-                                                         CommandParameter="de"
-                                                         Clicked="OnImgBtnClicked"
-                                                         Aspect="AspectFill" />
-                                </Border>
+                                </Grid>
 
-                            </Grid>
+                            </Border>
+                            <Button Text="{x:Static lang:AppResources.Settings_apply_btn}" 
+                                    FontSize="16"
+                                    FontAttributes="Bold"
+                                    Style="{StaticResource MainBtnStyle}"
+                                    HorizontalOptions="Center"
+                                    HeightRequest="50"
+                                    Margin="0,10,0,20"
+                                    Clicked="OnLangSelectBtnClicked"
+                                    BorderColor="{DynamicResource MainBorderColor}"
+                                    BorderWidth="1"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
+        <Grid x:Name="PageOverlayContainer"
+              VerticalOptions="Fill"
+              HorizontalOptions="Fill"
+              BackgroundColor="#80000000"
+              InputTransparent="False"
+              CascadeInputTransparent="False"
+              ZIndex="11"
+              IsVisible="False">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer />
+                <PanGestureRecognizer />
+                <SwipeGestureRecognizer Direction="Up,Down,Left,Right" />
+            </Grid.GestureRecognizers>
 
-                        </Border>
-                        <Button Text="{x:Static lang:AppResources.Settings_apply_btn}" 
-                                FontSize="16"
-                                FontAttributes="Bold"
-                                Style="{StaticResource MainBtnStyle}"
-                                HorizontalOptions="Center"
-                                HeightRequest="50"
-                                Margin="0,10,0,20"
-                                Command="{Binding ApplySettingsCommand}" 
-                                Clicked="OnBtnClicked"
-                                BorderColor="{DynamicResource MainBorderColor}"
-                                BorderWidth="1"/>
-                    </VerticalStackLayout>
-                </Border>
-            </VerticalStackLayout>
-        </ScrollView>
+            <ovr:ConfirmationOverlayView x:Name="ConfirmationOverlay" IsVisible="False"/>
+        </Grid>
     </Grid>
 </ContentPage>

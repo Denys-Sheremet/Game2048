@@ -201,6 +201,15 @@
   <data name="Ach_Score5000_title" xml:space="preserve">
     <value>Big numbers</value>
   </data>
+  <data name="ConfirmationOverlay_confirm_btn_text" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="ConfirmationOverlay_desc" xml:space="preserve">
+    <value>Restart is needed to change the language. Please confirm restart.</value>
+  </data>
+  <data name="ConfirmationOverlay_title" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
   <data name="GameModes_title" xml:space="preserve">
     <value>MODE SELECTION</value>
   </data>

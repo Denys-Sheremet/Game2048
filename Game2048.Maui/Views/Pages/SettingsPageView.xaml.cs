@@ -72,6 +72,27 @@ public partial class SettingsPageView : ContentPage
 		} 
 	}
 
+    public async void OnLangSelectBtnClicked(object sender, EventArgs e)
+    {
+        if (sender is Button btn)
+        {
+            await btn.ScaleTo(0.9, 100, Easing.CubicIn);
+            await btn.ScaleTo(1.0, 100, Easing.CubicOut);
+        }
+
+        PageOverlayContainer.IsVisible = true;
+
+        ConfirmationOverlay.IsVisible = true;
+        ConfirmationOverlay.Opacity = 0;
+        ConfirmationOverlay.Scale = 0.5;
+
+        await Task.WhenAll
+            (
+                ConfirmationOverlay.ScaleTo(1.0, 150, Easing.CubicIn),
+                ConfirmationOverlay.FadeTo(1.0, 150, Easing.CubicIn)
+            );
+    }
+
     public async void OnImgBtnClicked(object sender, EventArgs e)
     {
         if (sender is ImageButton btn)

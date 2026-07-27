@@ -6,4 +6,6 @@ public partial class ThemeSelectionView : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    protected override bool OnBackButtonPressed() => true;
 }

@@ -31,6 +31,21 @@ namespace Game2048.Maui
             return new Window(shell);
         }
 
+        public void RestartApp(string initialRoute = "///MainMenuPage")
+        {
+            if (Windows.Count > 0)
+            {
+                var newShell = _serviceProvider.GetRequiredService<AppShell>();
+
+                Windows[0].Page = newShell;
+
+                Dispatcher.Dispatch(async () =>
+                {
+                    await newShell.GoToAsync(initialRoute, false);
+                });
+            }
+        }
+
         protected override void OnSleep()
         {
             if (_profileManager.CurrentProfile is not null)

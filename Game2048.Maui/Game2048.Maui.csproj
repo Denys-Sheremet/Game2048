@@ -133,6 +133,9 @@
 	  <MauiXaml Update="Views\Overlays\AchievementToastView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Overlays\ConfirmationOverlayView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Pages\AchievementsView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
