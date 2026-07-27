@@ -330,7 +330,7 @@ public partial class GameViewModel : BindableObject, IDisposable
         }
 
 
-        if (!transitions.Any()) return;
+        if (!(transitions.Count == 0)) return;
 
         SyncTiles();
 

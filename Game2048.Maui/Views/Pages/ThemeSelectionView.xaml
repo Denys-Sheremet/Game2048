@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
+             xmlns:lang="clr-namespace:Game2048.Maui.Resources.Localization"
+             xmlns:comp="clr-namespace:Game2048.Maui.Views.Components"
              x:Class="Game2048.Maui.Views.Pages.ThemeSelectionView"
-             Title="ThemeSelectionView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Shell.NavBarIsVisible="False">
+    <Grid x:Name="PageContainer"
+          HorizontalOptions="Fill"
+          VerticalOptions="Fill"
+          BackgroundColor="{DynamicResource PageBackgroundColor}">
+        <Grid x:Name="PageContentContainer"
+              HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                ZIndex="10">
+            
+        </Grid>
+        
+        <Grid x:Name="PageOverlayContainer"
+              HorizontalOptions="Fill"
+              VerticalOptions="Fill"
+              ZIndex="11"
+              IsVisible="False">
+
+        </Grid>
+
+    </Grid>
+    
 </ContentPage>
