@@ -25,31 +25,35 @@
                           Padding="0, 20, 0, 5"
                           HorizontalOptions="Fill"
                           VerticalOptions="Fill">
-                        <Button x:Name="BackToMenuBtn"
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                Margin="15, 0, 0, 0"
-                                WidthRequest="55"
-                                HeightRequest="55"
-                                FontFamily="FontAwesome"
-                                Text="&#xf30a;"
-                                FontSize="20"    
-                                Clicked="OnBackToMenu" 
-                                HorizontalOptions="Start"
-                                VerticalOptions="Center"
-                                Style="{StaticResource MainBtnStyle}">
-                        </Button>
+                        <Grid ColumnDefinitions="*, Auto, *" Grid.Row="0" Grid.Column="0">
+                            <Button x:Name="BackToMenuBtn"
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Margin="15, 0, 0, 0"
+                                    WidthRequest="55"
+                                    HeightRequest="55"
+                                    FontFamily="FontAwesome"
+                                    Text="&#xf30a;"
+                                    FontSize="20"    
+                                    Clicked="OnBackToMenu" 
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center"
+                                    Style="{StaticResource MainBtnStyle}">
+                            </Button>
 
-                        <Label Text="{x:Static lang:AppResources.Settings_title}"
-                               Grid.Row="0"
-                               Grid.Column="1"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center"
-                               FontFamily="RubikSemi"
-                               FontSize="40"
-                               TextColor="{DynamicResource MainTitleColor}">
+                            <Label Text="{x:Static lang:AppResources.Settings_title}"
+                                   Grid.Row="0"
+                                   Grid.Column="1"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   FontFamily="RubikSemi"
+                                   FontSize="40"
+                                   LineBreakMode="NoWrap"
+                                   TextColor="{DynamicResource MainTitleColor}">
 
-                        </Label>
+                            </Label>
+                        </Grid>
+                        
                     </Grid>
                     <Border x:Name="NicknameField"
                             StrokeShape="RoundRectangle 8"
@@ -61,7 +65,7 @@
                             <DataTrigger TargetType="Border" 
                                          Binding="{Binding NameIsUnsaved}" 
                                          Value="True">
-                                <Setter Property="Stroke" Value="Orange" />
+                                <Setter Property="Stroke" Value="{DynamicResource AttentionFieldStrokeColor}" />
                             </DataTrigger>
                         </Border.Triggers>
 
@@ -87,7 +91,7 @@
                                            MaxLength="{x:Static vm:SettingsViewModel.MaxNameLength}"
                                            FontSize="16"
                                            FontFamily="RubikSemi"
-                                           TextColor="{DynamicResource MainTextColor}"
+                                           TextColor="{DynamicResource SecondaryTextColor}"
                                            VerticalOptions="Center"/>
 
                                     <Button Grid.Column="1"
@@ -95,7 +99,7 @@
                                             FontSize="20"
                                             FontAttributes="Bold"
                                             TextColor="White"
-                                            BackgroundColor="Green"
+                                            BackgroundColor="{DynamicResource SelectionStrokeColor}"
                                             CornerRadius="8"
                                             WidthRequest="40"
                                             HeightRequest="40"
@@ -135,10 +139,10 @@
                                     <Grid Grid.Column="0" VerticalOptions="Center"
                                           ColumnDefinitions="*, *" RowDefinitions="*, *"
                                           WidthRequest="50" HeightRequest="50">
-                                        <Border Grid.Row="0" Grid.Column="0" BackgroundColor="{DynamicResource PageBackgroundColor}" StrokeShape="RoundRectangle 6,0,0,0" StrokeThickness="0"/>
-                                        <Border Grid.Row="0" Grid.Column="1" BackgroundColor="{DynamicResource Tile8BGColor}" StrokeShape="RoundRectangle 0,6,0,0" StrokeThickness="0"/>
-                                        <Border Grid.Row="1" Grid.Column="0" BackgroundColor="{DynamicResource Tile64BGColor}" StrokeShape="RoundRectangle 0,0,6,0" StrokeThickness="0"/>
-                                        <Border Grid.Row="1" Grid.Column="1" BackgroundColor="{DynamicResource Tile512BGColor}" StrokeShape="RoundRectangle 0,0,0,6" StrokeThickness="0"/>
+                                        <Border Grid.Row="0" Grid.Column="0" BackgroundColor="{DynamicResource PreviewColor1}" StrokeShape="RoundRectangle 6,0,0,0" StrokeThickness="0"/>
+                                        <Border Grid.Row="0" Grid.Column="1" BackgroundColor="{DynamicResource PreviewColor2}" StrokeShape="RoundRectangle 0,6,0,0" StrokeThickness="0"/>
+                                        <Border Grid.Row="1" Grid.Column="0" BackgroundColor="{DynamicResource PreviewColor3}" StrokeShape="RoundRectangle 0,0,6,0" StrokeThickness="0"/>
+                                        <Border Grid.Row="1" Grid.Column="1" BackgroundColor="{DynamicResource PreviewColor4}" StrokeShape="RoundRectangle 0,0,0,6" StrokeThickness="0"/>
                                     </Grid>
 
                                     <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
@@ -168,7 +172,7 @@
                             <DataTrigger TargetType="Border" 
                                          Binding="{Binding IsNotCurrentLang}" 
                                          Value="True">
-                                <Setter Property="Stroke" Value="Orange" />
+                                <Setter Property="Stroke" Value="{DynamicResource AttentionFieldStrokeColor}" />
                             </DataTrigger>
                         </Border.Triggers>
 
@@ -186,7 +190,7 @@
                                 <Grid ColumnDefinitions="*, *, *, *" ColumnSpacing="10">
                                     <Border x:Name="SelectedLangStroke"
                                                 BackgroundColor="Transparent"
-                                                Stroke="Green"
+                                                Stroke="{DynamicResource SelectionStrokeColor}"
                                                 InputTransparent="True"
                                                 WidthRequest="75"
                                                 HeightRequest="65"

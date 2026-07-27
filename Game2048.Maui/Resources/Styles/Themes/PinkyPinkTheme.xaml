@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Game2048.Maui.Resources.Styles.Themes.PinkyPinkTheme">
+
+    <!-- Background -->
+    <Color x:Key="GameBackgroundColor">#FFF0F8</Color>
+    <Color x:Key="GameFieldBackgroundColor">#F8BBD9</Color>
+    <Color x:Key="EmptyCellColor">#E89BC3</Color>
+    <Color x:Key="TileBorderColor">#C94F91</Color>
+
+    <Color x:Key="PageBackgroundColor">#FFF6FB</Color>
+
+    <!-- Buttons -->
+    <Color x:Key="QuickPlayBtnTextColor">#FFFFFF</Color>
+    <Color x:Key="QuickPlayBtnBGColor">#EC4899</Color>
+
+    <Color x:Key="AchBtnTextColor">#FFFFFF</Color>
+    <Color x:Key="AchBtnBGColor">#C2185B</Color>
+
+    <!-- Tiles -->
+    <Color x:Key="Tile2BGColor">#FFEAF5</Color>
+    <Color x:Key="Tile2TextColor">#8E245D</Color>
+    <Color x:Key="Tile2BorderColor">#F7B9D8</Color>
+
+    <Color x:Key="Tile4BGColor">#FFD8EC</Color>
+    <Color x:Key="Tile4TextColor">#8E245D</Color>
+    <Color x:Key="Tile4BorderColor">#F3A5CC</Color>
+
+    <Color x:Key="Tile8BGColor">#FFC6E3</Color>
+    <Color x:Key="Tile8TextColor">#7B1E4E</Color>
+    <Color x:Key="Tile8BorderColor">#EE91C1</Color>
+
+    <Color x:Key="Tile16BGColor">#FFB2D8</Color>
+    <Color x:Key="Tile16TextColor">#6A1743</Color>
+    <Color x:Key="Tile16BorderColor">#EA7BB5</Color>
+
+    <Color x:Key="Tile32BGColor">#FF9ECD</Color>
+    <Color x:Key="Tile32TextColor">#FFFFFF</Color>
+    <Color x:Key="Tile32BorderColor">#E565A8</Color>
+
+    <Color x:Key="Tile64BGColor">#FF89C2</Color>
+    <Color x:Key="Tile64TextColor">#FFFFFF</Color>
+    <Color x:Key="Tile64BorderColor">#E1509B</Color>
+
+    <Color x:Key="Tile128BGColor">#FF74B8</Color>
+    <Color x:Key="Tile128TextColor">#FFFFFF</Color>
+    <Color x:Key="Tile128BorderColor">#DB3C8E</Color>
+
+    <Color x:Key="Tile256BGColor">#FF5FAD</Color>
+    <Color x:Key="Tile256TextColor">#FFFFFF</Color>
+    <Color x:Key="Tile256BorderColor">#D72881</Color>
+
+    <Color x:Key="Tile512BGColor">#F948A0</Color>
+    <Color x:Key="Tile512TextColor">#FFFFFF</Color>
+    <Color x:Key="Tile512BorderColor">#D11374</Color>
+
+    <Color x:Key="Tile1024BGColor">#EC2D91</Color>
+    <Color x:Key="Tile1024TextColor">#FFFFFF</Color>
+    <Color x:Key="Tile1024BorderColor">#C70068</Color>
+
+    <Color x:Key="Tile2048BGColor">#D81B80</Color>
+    <Color x:Key="Tile2048TextColor">#FFFFFF</Color>
+    <Color x:Key="Tile2048BorderColor">#AD1457</Color>
+
+    <Color x:Key="TileExtraBGColor">#B51763</Color>
+    <Color x:Key="TileExtraTextColor">#FFFFFF</Color>
+    <Color x:Key="TileExtraBorderColor">#880E4F</Color>
+
+    <!-- Main Buttons -->
+    <Color x:Key="MainButtonBGColor">#E91E63</Color>
+    <Color x:Key="MainButtonTextColor">#FFFFFF</Color>
+
+    <!-- Score -->
+    <Color x:Key="ScoreBoardBGColor">#F8BBD9</Color>
+    <Color x:Key="ScoreBoardTextColor">#8E245D</Color>
+    <Color x:Key="ScoreBoardNumColor">#5E1038</Color>
+
+    <!-- Logo -->
+    <Color x:Key="LogoNumColor">#C2185B</Color>
+
+    <!-- Achievement -->
+    <Color x:Key="AchievementBackgroundColor">#EC4899</Color>
+    <Color x:Key="ProgressBarColor">#FF5EB5</Color>
+    <Color x:Key="ProgressBarBGColor">#FFD4EA</Color>
+
+    <!-- Text -->
+    <Color x:Key="MainTextColor">#7A214E</Color>
+    <Color x:Key="SecondaryTextColor">#FFFFFF</Color>
+    <Color x:Key="MainTitleColor">#C2185B</Color>
+
+    <!-- Cards -->
+    <Color x:Key="CardBGColor">#FFE7F3</Color>
+    <Color x:Key="Card1BGColor">#FDCFE6</Color>
+    <Color x:Key="Card2BGColor">#F9B8DA</Color>
+    <Color x:Key="Card3BGColor">#F59DCA</Color>
+    <Color x:Key="Card4BGColor">#EC7DB5</Color>
+    <Color x:Key="Card5BGColor">#D94C93</Color>
+
+    <!-- Borders -->
+    <Color x:Key="MainBorderColor">#C2185B</Color>
+    <Color x:Key="ScoreBoardBorderColor">#C2185B</Color>
+    <Color x:Key="SecondaryFieldBGColor">#FAD4E8</Color>
+
+    <Color x:Key="SelectionStrokeColor">#FF1493</Color>
+    <Color x:Key="AttentionFieldStrokeColor">#FF69B4</Color>
+
+    <!-- Misc -->
+    <Color x:Key="SignsTextColor">#A64272</Color>
+    <Color x:Key="VersionTextColor">#D98AB5</Color>
+
+    <!-- Preview -->
+    <Color x:Key="PreviewColor1">#FFEAF5</Color>
+    <Color x:Key="PreviewColor2">#FFC6E3</Color>
+    <Color x:Key="PreviewColor3">#FF89C2</Color>
+    <Color x:Key="PreviewColor4">#D81B80</Color>
+
+</ResourceDictionary>

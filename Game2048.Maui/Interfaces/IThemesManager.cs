@@ -6,4 +6,6 @@ public interface IThemesManager
 {
     GameTheme GetThemeFromString(string str);
     void ApplyTheme(GameTheme theme);
+
+    Color GetThemeColor(string resourceKey);
 }

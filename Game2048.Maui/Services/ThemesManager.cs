@@ -8,13 +8,15 @@ public class ThemesManager : IThemesManager
 {
     private readonly Dictionary<GameTheme, ResourceDictionary> _themes = new()
     //Each theme should implement IThemeResource to be correctly worked with
+    //Each theme should be registered in current dictionary
     {
         { GameTheme.ClassicTheme, new ClassicTheme()},
         { GameTheme.DarkTheme, new DarkTheme()},
         { GameTheme.NatureTheme, new NatureTheme()},
         { GameTheme.NeonColorTheme, new NeonColorTheme()},
         { GameTheme.RainbowTheme, new RainbowTheme()},
-        { GameTheme.BWTheme, new BWTheme()}
+        { GameTheme.BWTheme, new BWTheme()},
+        { GameTheme.PinkyPinkTheme, new PinkyPinkTheme()}
     };
 
     private ResourceDictionary _currentTheme;
@@ -64,6 +66,19 @@ public class ThemesManager : IThemesManager
             return res;
         }
         return _themes[GameTheme.ClassicTheme];
+    }
+
+    public Color GetThemeColor(string resourceKey)
+    {
+        if (Application.Current?.Resources.TryGetValue(resourceKey, out var resource) == true)
+        {
+            if (resource is Color color)
+            {
+                return color;
+            }
+        }
+
+        return Colors.Transparent;
     }
 
 }

@@ -22,33 +22,36 @@
               Padding="0, 25, 0, 10"
               HorizontalOptions="Fill"
               VerticalOptions="Fill">
+            <Grid ColumnDefinitions="60, *, 60" Grid.Row="0" Grid.Column="0">
+                <Button x:Name="BackToMenuBtn"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="15, 0, 0, 0"
+                        WidthRequest="55"
+                        HeightRequest="55"
+                        FontFamily="FontAwesome"
+                        Text="&#xf30a;"
+                        FontSize="20"    
+                        Clicked="OnBackToMenu" 
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Style="{StaticResource MainBtnStyle}">
 
-            <Button x:Name="BackToMenuBtn"
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Margin="15, 0, 0, 0"
-                    WidthRequest="55"
-                    HeightRequest="55"
-                    FontFamily="FontAwesome"
-                    Text="&#xf30a;"
-                    FontSize="20"    
-                    Clicked="OnBackToMenu" 
-                    HorizontalOptions="Start"
-                    VerticalOptions="Center"
-                    Style="{StaticResource MainBtnStyle}">
-            
-            </Button>
-        
-            <Label Text="{x:Static lang:AppResources.GameModes_title}"
-                   Grid.Row="1"
-                   Grid.Column="0"
-                   HorizontalOptions="Center"
-                   VerticalOptions="End"
-                   FontFamily="RubikSemi"
-                   FontSize="40"
-                   TextColor="{DynamicResource MainTitleColor}">
-            
-            </Label>
+                </Button>
+
+                <Label Text="{x:Static lang:AppResources.GameModes_title}"
+                       Grid.Row="0"
+                       Grid.Column="1"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       FontFamily="RubikSemi"
+                       FontSize="40"
+                       LineBreakMode="WordWrap"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       TextColor="{DynamicResource MainTitleColor}">
+                </Label>
+            </Grid>
 
             <CarouselView Grid.Row="2"
                           Grid.Column="0"

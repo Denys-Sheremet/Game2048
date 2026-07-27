@@ -10,6 +10,8 @@
     <Border VerticalOptions="Center"
             HorizontalOptions="Center"
             StrokeShape="RoundRectangle 20"
+            StrokeThickness="2"
+            Stroke="{DynamicResource MainBorderColor}"
             Padding="15"
             BackgroundColor="{DynamicResource GameFieldBackgroundColor}"
             WidthRequest="350">

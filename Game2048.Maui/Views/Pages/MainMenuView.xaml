@@ -44,8 +44,8 @@
                         CornerRadius="50"
                         HorizontalOptions="Fill"
                         HeightRequest="170"
-                        TextColor="{DynamicResource Tile2TextColor}"
-                        BackgroundColor="{DynamicResource Tile16BGColor}"
+                        TextColor="{DynamicResource QuickPlayBtnTextColor}"
+                        BackgroundColor="{DynamicResource QuickPlayBtnBGColor}"
                         Style="{StaticResource MainBtnStyle}">
 
                 </Button>
@@ -60,8 +60,8 @@
                         CornerRadius="50"
                         HorizontalOptions="Fill"
                         HeightRequest="170"
-                        TextColor="{DynamicResource Tile2048BGColor}"
-                        BackgroundColor="{DynamicResource Tile4TextColor}"
+                        TextColor="{DynamicResource AchBtnTextColor}"
+                        BackgroundColor="{DynamicResource AchBtnBGColor}"
                         Style="{StaticResource MainBtnStyle}">
 
                 </Button>
@@ -132,6 +132,7 @@
                        FontFamily="MontSemi"
                        FontSize="14"
                        HorizontalOptions="Center"
+                       TextColor="{DynamicResource VersionTextColor}"
                        Opacity="0.6"/> 
             </VerticalStackLayout>
         

@@ -12,7 +12,8 @@
         
         <Border BackgroundColor="{DynamicResource ScoreBoardBGColor}" 
                 Padding="15,5"
-                StrokeThickness="0"
+                StrokeThickness="3"
+                Stroke="{DynamicResource ScoreBoardBorderColor}"
                 StrokeShape="RoundRectangle 8"
                 Grid.Column="0">
 
@@ -36,7 +37,8 @@
         
         <Border BackgroundColor="{DynamicResource ScoreBoardBGColor}" 
                 Padding="15,5"
-                StrokeThickness="0"
+                StrokeThickness="3"
+                Stroke="{DynamicResource ScoreBoardBorderColor}"
                 StrokeShape="RoundRectangle 8"
                 Grid.Column="1">
 

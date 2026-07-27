@@ -19,5 +19,7 @@ public enum GameTheme
     /// <summary>Rainbow colors 2048 theme</summary>
     RainbowTheme,
     /// <summary>Black and white theme</summary>
-    BWTheme
+    BWTheme,
+    /// <summary>Pink pink and once more pink theme</summary>
+    PinkyPinkTheme
 }

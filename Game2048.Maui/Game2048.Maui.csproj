@@ -121,6 +121,9 @@
 	  <MauiXaml Update="Resources\Styles\Themes\NeonColorTheme.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\Themes\PinkyPinkTheme.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\Themes\RainbowTheme.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

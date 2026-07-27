@@ -3,70 +3,110 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Game2048.Maui.Resources.Styles.Themes.DarkTheme">
 
+    <!-- Background -->
     <Color x:Key="GameBackgroundColor">#121212</Color>
-    <Color x:Key="GameFieldBackgroundColor">#2D2A28</Color>
-    <Color x:Key="EmptyCellColor">#3D3A38</Color>
-    <Color x:Key="TileBorderColor">#2D2A28</Color>
+    <Color x:Key="GameFieldBackgroundColor">#232323</Color>
+    <Color x:Key="EmptyCellColor">#353535</Color>
+    <Color x:Key="TileBorderColor">#505050</Color>
 
     <Color x:Key="PageBackgroundColor">#121212</Color>
 
-    <Color x:Key="Tile2BGColor">#3D3A38</Color>
-    <Color x:Key="Tile2TextColor">#E0E0E0</Color>
+    <!-- Buttons -->
+    <Color x:Key="QuickPlayBtnTextColor">#FFFFFF</Color>
+    <Color x:Key="QuickPlayBtnBGColor">#FF8F3A</Color>
 
-    <Color x:Key="Tile4BGColor">#4A4542</Color>
-    <Color x:Key="Tile4TextColor">#E0E0E0</Color>
+    <Color x:Key="AchBtnTextColor">#FFD54A</Color>
+    <Color x:Key="AchBtnBGColor">#2C2C2C</Color>
 
-    <Color x:Key="Tile8BGColor">#9E6945</Color>
+    <!-- Tiles -->
+    <Color x:Key="Tile2BGColor">#4A4A4A</Color>
+    <Color x:Key="Tile2TextColor">#F5F5F5</Color>
+    <Color x:Key="Tile2BorderColor">#7A7A7A</Color>
+
+    <Color x:Key="Tile4BGColor">#5A5A5A</Color>
+    <Color x:Key="Tile4TextColor">#FFFFFF</Color>
+    <Color x:Key="Tile4BorderColor">#888888</Color>
+
+    <Color x:Key="Tile8BGColor">#F2A45D</Color>
     <Color x:Key="Tile8TextColor">#FFFFFF</Color>
+    <Color x:Key="Tile8BorderColor">#FFD2A8</Color>
 
-    <Color x:Key="Tile16BGColor">#B3633D</Color>
+    <Color x:Key="Tile16BGColor">#F38A49</Color>
     <Color x:Key="Tile16TextColor">#FFFFFF</Color>
+    <Color x:Key="Tile16BorderColor">#FFC08A</Color>
 
-    <Color x:Key="Tile32BGColor">#B84F3D</Color>
+    <Color x:Key="Tile32BGColor">#F26C4F</Color>
     <Color x:Key="Tile32TextColor">#FFFFFF</Color>
+    <Color x:Key="Tile32BorderColor">#FFB199</Color>
 
-    <Color x:Key="Tile64BGColor">#B83A1E</Color>
+    <Color x:Key="Tile64BGColor">#EA5534</Color>
     <Color x:Key="Tile64TextColor">#FFFFFF</Color>
+    <Color x:Key="Tile64BorderColor">#FFAA93</Color>
 
-    <Color x:Key="Tile128BGColor">#A88F44</Color>
+    <Color x:Key="Tile128BGColor">#E7C85C</Color>
     <Color x:Key="Tile128TextColor">#FFFFFF</Color>
+    <Color x:Key="Tile128BorderColor">#FFF0B3</Color>
 
-    <Color x:Key="Tile256BGColor">#A88C3A</Color>
+    <Color x:Key="Tile256BGColor">#E5C147</Color>
     <Color x:Key="Tile256TextColor">#FFFFFF</Color>
+    <Color x:Key="Tile256BorderColor">#FFE88C</Color>
 
-    <Color x:Key="Tile512BGColor">#A8882E</Color>
+    <Color x:Key="Tile512BGColor">#E2BA32</Color>
     <Color x:Key="Tile512TextColor">#FFFFFF</Color>
+    <Color x:Key="Tile512BorderColor">#FFE26D</Color>
 
-    <Color x:Key="Tile1024BGColor">#A88524</Color>
+    <Color x:Key="Tile1024BGColor">#DEB317</Color>
     <Color x:Key="Tile1024TextColor">#FFFFFF</Color>
+    <Color x:Key="Tile1024BorderColor">#FFDB4A</Color>
 
-    <Color x:Key="Tile2048BGColor">#A8821A</Color>
+    <Color x:Key="Tile2048BGColor">#D9AC00</Color>
     <Color x:Key="Tile2048TextColor">#FFFFFF</Color>
+    <Color x:Key="Tile2048BorderColor">#FFD633</Color>
 
-    <Color x:Key="TileExtraBGColor">#B88211</Color>
+    <Color x:Key="TileExtraBGColor">#C79C00</Color>
     <Color x:Key="TileExtraTextColor">#FFFFFF</Color>
+    <Color x:Key="TileExtraBorderColor">#FFD94A</Color>
 
-    <Color x:Key="MainButtonBGColor">#2F6B78</Color>
-    <Color x:Key="MainButtonTextColor">#F2F2F2</Color>
+    <!-- Main Buttons -->
+    <Color x:Key="MainButtonBGColor">#12254D</Color>
+    <Color x:Key="MainButtonTextColor">#FFFFFF</Color>
 
+    <!-- Score -->
     <Color x:Key="ScoreBoardBGColor">#2A2A2A</Color>
-    <Color x:Key="ScoreBoardTextColor">#7FC5D6</Color>
+    <Color x:Key="ScoreBoardTextColor">#D6D6D6</Color>
     <Color x:Key="ScoreBoardNumColor">#FFFFFF</Color>
 
-    <Color x:Key="LogoNumColor">#F2F2F2</Color>
+    <!-- Logo -->
+    <Color x:Key="LogoNumColor">#FFFFFF</Color>
 
-    <Color x:Key="AchievementBackgroundColor">#2E8B74</Color>
-    <Color x:Key="ProgressBarColor">#66D17A</Color>
-    <Color x:Key="ProgressBarBGColor">#335C5C5C</Color>
+    <!-- Achievement -->
+    <Color x:Key="AchievementBackgroundColor">#245F52</Color>
+    <Color x:Key="ProgressBarColor">#6FE35C</Color>
+    <Color x:Key="ProgressBarBGColor">#334F3B</Color>
 
+    <!-- Text -->
     <Color x:Key="MainTextColor">#F2F2F2</Color>
+    <Color x:Key="SecondaryTextColor">#FFFFFF</Color>
     <Color x:Key="MainTitleColor">#FFFFFF</Color>
 
+    <!-- Cards -->
     <Color x:Key="CardBGColor">#242424</Color>
+    <Color x:Key="Card1BGColor">#3B3B46</Color>
+    <Color x:Key="Card2BGColor">#33333D</Color>
+    <Color x:Key="Card3BGColor">#2C2C35</Color>
+    <Color x:Key="Card4BGColor">#25252D</Color>
+    <Color x:Key="Card5BGColor">#1C1C22</Color>
 
-    <Color x:Key="MainBorderColor">#505050</Color>
-    <Color x:Key="SecondaryFieldBGColor">#2A2A2A</Color>
+    <!-- Borders -->
+    <Color x:Key="MainBorderColor">#5C5C5C</Color>
+    <Color x:Key="ScoreBoardBorderColor">#5C5C5C</Color>
+    <Color x:Key="SecondaryFieldBGColor">#232323</Color>
 
-    <Color x:Key="SignsTextColor">#9CBCC5</Color>
+    <Color x:Key="SelectionStrokeColor">#4CAF50</Color>
+    <Color x:Key="AttentionFieldStrokeColor">#FF9800</Color>
+
+    <!-- Misc -->
+    <Color x:Key="SignsTextColor">#C9C9C9</Color>
+    <Color x:Key="VersionTextColor">#6C6C6C</Color>
 
 </ResourceDictionary>

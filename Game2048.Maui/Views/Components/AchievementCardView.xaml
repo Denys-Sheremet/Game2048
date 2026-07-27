@@ -6,7 +6,8 @@
              x:Class="Game2048.Maui.Views.Components.AchievementCardView">
 
     <Border StrokeShape="RoundRectangle 15"
-            StrokeThickness="0"
+            StrokeThickness="2"
+            Stroke="{DynamicResource MainBorderColor}"
             BackgroundColor="{DynamicResource AchievementBackgroundColor}"
             HeightRequest="110"
             WidthRequest="110"
@@ -33,7 +34,7 @@
             <Label Text="{Binding Title}" 
                    FontSize="11" 
                    FontFamily="MontBold" 
-                   TextColor="{DynamicResource MainTextColor}"
+                   TextColor="{DynamicResource SecondaryTextColor}"
                    HorizontalTextAlignment="Center" 
                    MaxLines="2" 
                    LineBreakMode="TailTruncation"/>
