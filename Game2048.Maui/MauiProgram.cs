@@ -41,6 +41,8 @@ namespace Game2048.Maui
             builder.Services.AddSingleton<IAchievementManager, AchievementManager>();
             builder.Services.AddSingleton<ISettingsManager, SettingsManager>();
 
+            builder.Services.AddSingleton<ThemeRegistry>();
+
             builder.Services.AddAchievementCheckers();
 
             builder.Services.AddTransient<LangSelectPage>();
@@ -55,6 +57,8 @@ namespace Game2048.Maui
             builder.Services.AddTransient<AchievementsView>();
             builder.Services.AddTransient<SettingsViewModel>();
             builder.Services.AddTransient<SettingsPageView>();
+            builder.Services.AddTransient<ThemeSelectionViewModel>();
+            builder.Services.AddTransient<ThemeSelectionView>();
 
 #if DEBUG
             builder.Logging.AddDebug();

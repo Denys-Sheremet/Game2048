@@ -6,24 +6,14 @@ namespace Game2048.Maui.Services;
 
 public class ThemesManager : IThemesManager
 {
-    private readonly Dictionary<GameTheme, ResourceDictionary> _themes = new()
-    //Each theme should implement IThemeResource to be correctly worked with
-    //Each theme should be registered in current dictionary
-    {
-        { GameTheme.ClassicTheme, new ClassicTheme()},
-        { GameTheme.DarkTheme, new DarkTheme()},
-        { GameTheme.NatureTheme, new NatureTheme()},
-        { GameTheme.NeonColorTheme, new NeonColorTheme()},
-        { GameTheme.RainbowTheme, new RainbowTheme()},
-        { GameTheme.BWTheme, new BWTheme()},
-        { GameTheme.PinkyPinkTheme, new PinkyPinkTheme()}
-    };
+    private readonly ThemeRegistry _themeRegistry;
 
     private ResourceDictionary _currentTheme;
 
-    public ThemesManager()
+    public ThemesManager(ThemeRegistry registry)
     {
-        _currentTheme = _themes[GameTheme.ClassicTheme];
+        _themeRegistry = registry;
+        _currentTheme = _themeRegistry[GameTheme.ClassicTheme];
     }
 
     public GameTheme GetThemeFromString(string str)
@@ -61,11 +51,16 @@ public class ThemesManager : IThemesManager
 
     private ResourceDictionary GetResource(GameTheme theme)
     {
-        if(_themes.TryGetValue(theme, out var res))
+        if(_themeRegistry.Themes.TryGetValue(theme, out var res))
         {
             return res;
         }
-        return _themes[GameTheme.ClassicTheme];
+        return _themeRegistry[GameTheme.ClassicTheme];
+    }
+
+    public IEnumerable<GameTheme> GetAllThemes()
+    {
+        return _themeRegistry.GetThemes();
     }
 
     public Color GetThemeColor(string resourceKey)
@@ -76,9 +71,39 @@ public class ThemesManager : IThemesManager
             {
                 return color;
             }
+            if (resource is SolidColorBrush brush)
+            {
+                return brush.Color;
+            }
         }
 
         return Colors.Transparent;
     }
 
+    public Color GetThemeColor(string resourceKey, GameTheme theme)
+    {
+        if(GetResource(theme).TryGetValue(resourceKey, out var resource))
+        {
+            if (resource is Color color)
+            {
+                return color;
+            }
+            if (resource is SolidColorBrush brush)
+            {
+                return brush.Color;
+            }
+        }
+        return Colors.Transparent;
+    }
+
+    public List<Color> GetPreviewColors(GameTheme theme, int count = 4)
+    {
+        List<Color> colors = new();
+        for (int i = 1; i <= count; i++)
+        {
+            string key = $"PreviewColor{i}";
+            colors.Add(GetThemeColor(key, theme));
+        }
+        return colors;
+    }
 }
