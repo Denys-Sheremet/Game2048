@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:items="clr-namespace:Game2048.Maui.ViewModels.Items"
+             xmlns:view="clr-namespace:Game2048.Maui.Views.Pages"
+             xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
+             xmlns:lang="clr-namespace:Game2048.Maui.Resources.Localization"
+             x:Class="Game2048.Maui.Views.Components.ThemeItemView"
+             x:DataType="items:ThemeItemViewModel">
+    <Border x:Name="ThemeItemBorder"
+            StrokeShape="RoundRectangle 12"
+            StrokeThickness="2"
+            Stroke="{Binding PreviewColors[7]}"
+            HeightRequest="100"
+            Margin="16,12,16,10"
+            VerticalOptions="Center">
+        <Border.Shadow>
+            <Shadow Brush="Black"
+                    Offset="0,7"
+                    Radius="6"
+                    Opacity="0.5" />
+        </Border.Shadow>
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="{Binding PreviewColors[4]}" Offset="0.0" />
+                <GradientStop Color="{Binding PreviewColors[5]}" Offset="1.0" />
+            </LinearGradientBrush>
+        </Border.Background>
+        <Border.Triggers>
+            <DataTrigger TargetType="Border" 
+                         Binding="{Binding IsSelected}" 
+                         Value="True">
+                <Setter Property="Stroke" Value="{DynamicResource SelectionStrokeColor}"/>
+                <Setter Property="StrokeThickness" Value="4"/>
+            </DataTrigger>
+            <DataTrigger TargetType="Border" 
+                         Binding="{Binding IsLocked}" 
+                         Value="True">
+                <Setter Property="Opacity" Value="0.5"/>
+            </DataTrigger>
+        </Border.Triggers>
+        <Border.GestureRecognizers>
+            <TapGestureRecognizer x:DataType="vm:ThemeSelectionViewModel"
+                                  Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ThemeSelectionViewModel}}, Path=SelectThemeCommand}" 
+                                  CommandParameter="{Binding}" 
+                                  Tapped="OnBtnTapped"/>
+        </Border.GestureRecognizers>
+        <Grid ColumnDefinitions="Auto, *, Auto, Auto" 
+              Padding="15" 
+              ColumnSpacing="15"
+              HorizontalOptions="Fill"
+              VerticalOptions="Center">
+            <Grid Grid.Column="0" VerticalOptions="Center"
+                  ColumnDefinitions="*, *" RowDefinitions="*, *"
+                  WidthRequest="50" HeightRequest="50">
+                <Border Grid.Row="0" Grid.Column="0" BackgroundColor="{Binding PreviewColors[0]}" StrokeShape="RoundRectangle 6,0,0,0" StrokeThickness="0"/>
+                <Border Grid.Row="0" Grid.Column="1" BackgroundColor="{Binding PreviewColors[1]}" StrokeShape="RoundRectangle 0,6,0,0" StrokeThickness="0"/>
+                <Border Grid.Row="1" Grid.Column="0" BackgroundColor="{Binding PreviewColors[2]}" StrokeShape="RoundRectangle 0,0,6,0" StrokeThickness="0"/>
+                <Border Grid.Row="1" Grid.Column="1" BackgroundColor="{Binding PreviewColors[3]}" StrokeShape="RoundRectangle 0,0,0,6" StrokeThickness="0"/>
+            </Grid>
+            <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Start"
+                                 Grid.Column="1"
+                                 Spacing="2">
+                <Label FontFamily="RubikBold"
+                       FontSize="16"
+                       MaxLines="1"
+                       TextColor="{Binding PreviewTextColor}"
+                       Text="{Binding ThemeTitle}"/>
+
+                <Label FontFamily="RubikSemi"
+                       FontSize="12"
+                       MaxLines="2"
+                       TextColor="{Binding PreviewTextColor}"
+                       Text="{Binding ThemeDesc}"/>
+            </VerticalStackLayout>
+            <Grid Grid.Column="2"
+                  ColumnDefinitions="Auto, Auto"
+                  ColumnSpacing="3"
+                  IsVisible="{Binding IsLocked}">
+                <Image Source="coin.svg"
+                       Grid.Column="0"
+                       WidthRequest="16"
+                       HeightRequest="16"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+                <Label FontFamily="RubikSemi"
+                       Grid.Column="1"
+                       FontSize="16"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       TextColor="{DynamicResource ButtonTextColor}"
+                       Text="{Binding Price}"/>
+            </Grid>
+            <ImageButton Source="eye.svg"
+                         Grid.Column="3"
+                         x:DataType="vm:ThemeSelectionViewModel"
+                         Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ThemeSelectionViewModel}}, Path=PreviewThemeCommand}"
+                         CommandParameter="{Binding}"
+                         WidthRequest="36"
+                         HeightRequest="36"
+                         CornerRadius="30"
+                         Padding="5"
+                         HorizontalOptions="End"
+                         VerticalOptions="Center"
+                         BackgroundColor="Transparent"/>
+
+        </Grid>
+
+    </Border>
+</ContentView>

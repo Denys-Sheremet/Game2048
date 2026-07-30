@@ -21,7 +21,7 @@ public interface IProfileManager
     void UnlockAchievement(AchievementType achievement);
     HashSet<AchievementType> GetUnlockedAchievements();
     void UnlockTheme(GameTheme theme);
-    List<GameTheme> GetUnlockedThemes();
+    HashSet<GameTheme> GetUnlockedThemes();
     void EarnCoins(int amount);
     bool SpendCoins(int amount);
     void SetPlayerName(string name);

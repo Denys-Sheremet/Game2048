@@ -4,6 +4,7 @@ namespace Game2048.Maui.Interfaces;
 
 public interface IThemesManager
 {
+    GameTheme CurrentTheme { get;}
     GameTheme GetThemeFromString(string str);
 
     void ApplyTheme(GameTheme theme);

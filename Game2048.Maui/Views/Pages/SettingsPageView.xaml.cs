@@ -60,7 +60,14 @@ public partial class SettingsPageView : ContentPage
     {
         await GoToThemeSelectBtn.ScaleTo(0.95, 100, Easing.CubicIn);
         await GoToThemeSelectBtn.ScaleTo(1.0, 100, Easing.CubicOut);
-        await Shell.Current.GoToAsync("///ThemeSelectionPage", false);
+
+        await Task.WhenAll
+            (
+                PageContainer.TranslateTo(Width, 0, 250, Easing.CubicIn),
+                PageContainer.FadeTo(0, 250, Easing.Linear)
+            );
+
+        await Shell.Current.GoToAsync(nameof(ThemeSelectionView), false);
     }
 
     public async void OnBtnClicked(object sender, EventArgs e)

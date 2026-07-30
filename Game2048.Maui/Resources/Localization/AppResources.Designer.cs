@@ -313,6 +313,42 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Two colors, nothing else.
+        /// </summary>
+        public static string BWTheme_desc {
+            get {
+                return ResourceManager.GetString("BWTheme_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Black &amp; White.
+        /// </summary>
+        public static string BWTheme_title {
+            get {
+                return ResourceManager.GetString("BWTheme_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Classic 2048 theme.
+        /// </summary>
+        public static string ClassicTheme_desc {
+            get {
+                return ResourceManager.GetString("ClassicTheme_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Classic theme.
+        /// </summary>
+        public static string ClassicTheme_title {
+            get {
+                return ResourceManager.GetString("ClassicTheme_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Confirm.
         /// </summary>
         public static string ConfirmationOverlay_confirm_btn_text {
@@ -336,6 +372,24 @@ namespace Game2048.Maui.Resources.Localization {
         public static string ConfirmationOverlay_title {
             get {
                 return ResourceManager.GetString("ConfirmationOverlay_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Classic dark 2048 theme.
+        /// </summary>
+        public static string DarkTheme_desc {
+            get {
+                return ResourceManager.GetString("DarkTheme_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Dark theme.
+        /// </summary>
+        public static string DarkTheme_title {
+            get {
+                return ResourceManager.GetString("DarkTheme_title", resourceCulture);
             }
         }
         
@@ -466,6 +520,78 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Green and blue based nature theme.
+        /// </summary>
+        public static string NatureTheme_desc {
+            get {
+                return ResourceManager.GetString("NatureTheme_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Nature.
+        /// </summary>
+        public static string NatureTheme_title {
+            get {
+                return ResourceManager.GetString("NatureTheme_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Bright colors and dark background.
+        /// </summary>
+        public static string NeonColorTheme_desc {
+            get {
+                return ResourceManager.GetString("NeonColorTheme_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Neon.
+        /// </summary>
+        public static string NeonColorTheme_title {
+            get {
+                return ResourceManager.GetString("NeonColorTheme_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на 21 shades of pink.
+        /// </summary>
+        public static string PinkyPinkTheme_desc {
+            get {
+                return ResourceManager.GetString("PinkyPinkTheme_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Man&apos;s choise.
+        /// </summary>
+        public static string PinkyPinkTheme_title {
+            get {
+                return ResourceManager.GetString("PinkyPinkTheme_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Color BOOM.
+        /// </summary>
+        public static string RainbowTheme_desc {
+            get {
+                return ResourceManager.GetString("RainbowTheme_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Rainbow.
+        /// </summary>
+        public static string RainbowTheme_title {
+            get {
+                return ResourceManager.GetString("RainbowTheme_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Apply.
         /// </summary>
         public static string Settings_apply_btn {
@@ -561,6 +687,15 @@ namespace Game2048.Maui.Resources.Localization {
         public static string Settings_title {
             get {
                 return ResourceManager.GetString("Settings_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Themes.
+        /// </summary>
+        public static string Themes_title {
+            get {
+                return ResourceManager.GetString("Themes_title", resourceCulture);
             }
         }
         

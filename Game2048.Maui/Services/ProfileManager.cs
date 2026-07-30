@@ -127,7 +127,7 @@ public class ProfileManager : IProfileManager
         }
     }
 
-    public List<GameTheme> GetUnlockedThemes()
+    public HashSet<GameTheme> GetUnlockedThemes()
     {
         var profile = GetValidProfile();
         return profile.UnlockedThemes;

@@ -3,9 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
              xmlns:lang="clr-namespace:Game2048.Maui.Resources.Localization"
+             xmlns:items="clr-namespace:Game2048.Maui.ViewModels.Items"
              xmlns:comp="clr-namespace:Game2048.Maui.Views.Components"
              x:Class="Game2048.Maui.Views.Pages.ThemeSelectionView"
-             Shell.NavBarIsVisible="False">
+             x:DataType="vm:ThemeSelectionViewModel"
+             Shell.NavBarIsVisible="False"
+             x:Name="ThemeSelectionPage" 
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     <Grid x:Name="PageContainer"
           HorizontalOptions="Fill"
           VerticalOptions="Fill"
@@ -13,8 +17,66 @@
         <Grid x:Name="PageContentContainer"
               HorizontalOptions="Fill"
                 VerticalOptions="Fill"
+                RowDefinitions="Auto, *"
                 ZIndex="10">
+
+            <BoxView Grid.Row="1"
+                     HeightRequest="24"
+                     VerticalOptions="Start"
+                     ZIndex="10"
+                     InputTransparent="True">   
+                <BoxView.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="{DynamicResource PageBackgroundColor}" Offset="0.0"/>
+                        <GradientStop Color="Transparent" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
             
+            <Grid ColumnDefinitions="*, Auto, *" Grid.Row="0" Grid.Column="0" Margin="0, 25, 0, 25">
+                <Button x:Name="BackToMenuBtn"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="15, 0, 0, 0"
+                        WidthRequest="55"
+                        HeightRequest="55"
+                        FontFamily="FontAwesome"
+                        Text="&#xf30a;"
+                        FontSize="20"    
+                        Clicked="OnBack" 
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Style="{StaticResource MainBtnStyle}">
+                </Button>
+
+                <Label Text="{x:Static lang:AppResources.Themes_title}"
+                       Grid.Row="0"
+                       Grid.Column="1"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       FontFamily="RubikSemi"
+                       FontSize="40"
+                       LineBreakMode="NoWrap"
+                       TextColor="{DynamicResource MainTitleColor}">
+
+                </Label>
+            </Grid>
+            <CollectionView Grid.Row="1"
+                            ItemsSource="{Binding ThemeItems}"
+                            SelectionMode="None"
+                            ZIndex="9">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="5" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="items:ThemeItemViewModel">
+                        <comp:ThemeItemView/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
         </Grid>
         
         <Grid x:Name="PageOverlayContainer"

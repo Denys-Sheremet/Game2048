@@ -88,6 +88,7 @@
     <Color x:Key="MainTextColor">#F5FFF9</Color>
     <Color x:Key="SecondaryTextColor">#FFFFFF</Color>
     <Color x:Key="MainTitleColor">#D8FFF5</Color>
+    <Color x:Key="PreviewTextColor">#EAF6F3</Color>
 
     <!-- Cards -->
     <Color x:Key="CardBGColor">#174545</Color>
@@ -114,5 +115,11 @@
     <Color x:Key="PreviewColor2">#1ABC9C</Color>
     <Color x:Key="PreviewColor3">#2ECC71</Color>
     <Color x:Key="PreviewColor4">#34495E</Color>
+
+    <!-- Preview Extra -->
+    <Color x:Key="PreviewColor5">#0B1A1A</Color>
+    <Color x:Key="PreviewColor6">#264D4D</Color>
+    <Color x:Key="PreviewColor7">#21504F</Color>
+    <Color x:Key="PreviewColor8">#1F7A68</Color>
 
 </ResourceDictionary>

@@ -15,11 +15,13 @@ public sealed partial class ThemeItemViewModel : ObservableObject
 
     public required IReadOnlyList<Color> PreviewColors { get; init; }
 
+    public required Color PreviewTextColor {  get; init; }
+
     private bool _isUnlocked = false;
     public bool IsUnlocked
     {
         get { return _isUnlocked; }
-        set { _isUnlocked = value; OnPropertyChanged(); }
+        set { _isUnlocked = value; OnPropertyChanged(); OnPropertyChanged(nameof(IsLocked)); }
     }
 
     private bool _isSelected = false;
@@ -28,5 +30,7 @@ public sealed partial class ThemeItemViewModel : ObservableObject
         get { return _isSelected; } 
         set { _isSelected = value; OnPropertyChanged(); } 
     }
+
+    public bool IsLocked => !IsUnlocked;
 
 }

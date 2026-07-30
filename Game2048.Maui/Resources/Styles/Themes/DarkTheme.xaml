@@ -88,6 +88,7 @@
     <Color x:Key="MainTextColor">#F2F2F2</Color>
     <Color x:Key="SecondaryTextColor">#FFFFFF</Color>
     <Color x:Key="MainTitleColor">#FFFFFF</Color>
+    <Color x:Key="PreviewTextColor">#FFFFFF</Color>
 
     <!-- Cards -->
     <Color x:Key="CardBGColor">#242424</Color>
@@ -108,5 +109,17 @@
     <!-- Misc -->
     <Color x:Key="SignsTextColor">#C9C9C9</Color>
     <Color x:Key="VersionTextColor">#6C6C6C</Color>
+
+    <!-- Preview -->
+    <Color x:Key="PreviewColor1">#121212</Color>
+    <Color x:Key="PreviewColor2">#F2A45D</Color>
+    <Color x:Key="PreviewColor3">#FF8F3A</Color>
+    <Color x:Key="PreviewColor4">#FFD54A</Color>
+
+    <!-- Preview Extra -->
+    <Color x:Key="PreviewColor5">#121212</Color>
+    <Color x:Key="PreviewColor6">#353535</Color>
+    <Color x:Key="PreviewColor7">#2A2A2A</Color>
+    <Color x:Key="PreviewColor8">#12254D</Color>
 
 </ResourceDictionary>

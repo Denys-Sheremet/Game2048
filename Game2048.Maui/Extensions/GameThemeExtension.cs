@@ -17,10 +17,6 @@ public static class GameThemeExtension
         return AppResources.ResourceManager.GetString(key, AppResources.Culture) ?? theme.ToString();
     }
 
-    public static string GetImg(this GameTheme theme) 
-    {
-        return $"th_{theme}.svg";
-    }
 
     public static int GetPrice(this GameTheme theme) => theme switch
     {

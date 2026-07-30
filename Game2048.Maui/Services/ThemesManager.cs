@@ -10,9 +10,12 @@ public class ThemesManager : IThemesManager
 
     private ResourceDictionary _currentTheme;
 
+    public GameTheme CurrentTheme { get; private set; }
+
     public ThemesManager(ThemeRegistry registry)
     {
         _themeRegistry = registry;
+        CurrentTheme = GameTheme.ClassicTheme;
         _currentTheme = _themeRegistry[GameTheme.ClassicTheme];
     }
 
@@ -46,6 +49,7 @@ public class ThemesManager : IThemesManager
         //
 
         mergedDictionaries.Add(themeToApply);
+        CurrentTheme = theme;
         _currentTheme = themeToApply;
     }
 

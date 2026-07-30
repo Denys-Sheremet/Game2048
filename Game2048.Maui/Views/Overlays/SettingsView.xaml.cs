@@ -1,3 +1,5 @@
+using Game2048.Maui.Views.Pages;
+
 namespace Game2048.Maui.Views.Overlays;
 
 public partial class SettingsView : ContentView
@@ -7,9 +9,12 @@ public partial class SettingsView : ContentView
 		InitializeComponent();
 	}
 
-    private void OnThemesClicked(object sender, EventArgs e)
+    private async void OnThemesClicked(object sender, EventArgs e)
     {
-        // TODO
+        if (Shell.Current.CurrentPage is GameView gamePage)
+        {
+            await gamePage.AnimateAndNavigateToThemesAsync();
+        }
     }
 
     private void OnHowToClicked(object sender, EventArgs e)

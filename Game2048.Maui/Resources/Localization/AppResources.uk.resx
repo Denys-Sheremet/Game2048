@@ -198,8 +198,17 @@
   <data name="Ach_Score5000_desc" xml:space="preserve">
     <value>Набрати 5000 очок в одній грі</value>
   </data>
-  <data name="Ach_Score5000_title" xml:space="preserve">
-    <value>Великих чисел майстер</value>
+  <data name="BWTheme_desc" xml:space="preserve">
+    <value>Два кольори, нічого зайвого</value>
+  </data>
+  <data name="BWTheme_title" xml:space="preserve">
+    <value>Друк</value>
+  </data>
+  <data name="ClassicTheme_desc" xml:space="preserve">
+    <value>Класична тема 2048</value>
+  </data>
+  <data name="ClassicTheme_title" xml:space="preserve">
+    <value>Класична тема</value>
   </data>
   <data name="ConfirmationOverlay_confirm_btn_text" xml:space="preserve">
     <value>Підтвердити</value>
@@ -209,6 +218,12 @@
   </data>
   <data name="ConfirmationOverlay_title" xml:space="preserve">
     <value>Підтвердження</value>
+  </data>
+  <data name="DarkTheme_desc" xml:space="preserve">
+    <value>Класична темна тема 2048</value>
+  </data>
+  <data name="DarkTheme_title" xml:space="preserve">
+    <value>Темна тема</value>
   </data>
   <data name="GameModes_title" xml:space="preserve">
     <value>ВИБІР РЕЖИМУ</value>
@@ -252,6 +267,24 @@
   <data name="Menu_version_text" xml:space="preserve">
     <value>вер. 1.0</value>
   </data>
+  <data name="NatureTheme_desc" xml:space="preserve">
+    <value>Синьо-зелена тема, природні кольори</value>
+  </data>
+  <data name="NatureTheme_title" xml:space="preserve">
+    <value>Природа</value>
+  </data>
+  <data name="NeonColorTheme_desc" xml:space="preserve">
+    <value>Яскраві кольори на темному фоні</value>
+  </data>
+  <data name="NeonColorTheme_title" xml:space="preserve">
+    <value>Неон</value>
+  </data>
+  <data name="RainbowTheme_desc" xml:space="preserve">
+    <value>Кольоровий БУМ</value>
+  </data>
+  <data name="RainbowTheme_title" xml:space="preserve">
+    <value>Веселка</value>
+  </data>
   <data name="Settings_apply_btn" xml:space="preserve">
     <value>Підтвердити</value>
   </data>
@@ -285,6 +318,9 @@
   <data name="Settings_title" xml:space="preserve">
     <value>Опції</value>
   </data>
+  <data name="Themes_title" xml:space="preserve">
+    <value>Стилізація</value>
+  </data>
   <data name="VictoryOverlay_continue_btn_text" xml:space="preserve">
     <value>Продовжити</value>
   </data>
@@ -296,5 +332,14 @@
   </data>
   <data name="VictoryOverlay_title" xml:space="preserve">
     <value>ПЕРЕМОГА</value>
+  </data>
+  <data name="Ach_Score5000_title" xml:space="preserve">
+    <value>Великих чисел майстер</value>
+  </data>
+  <data name="PinkyPinkTheme_title" xml:space="preserve">
+    <value>Чоловічий вибір</value>
+  </data>
+  <data name="PinkyPinkTheme_desc" xml:space="preserve">
+    <value>21 відтінок рожевого</value>
   </data>
 </root>

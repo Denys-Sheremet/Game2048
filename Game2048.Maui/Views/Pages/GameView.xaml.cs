@@ -409,4 +409,14 @@ public partial class GameView : ContentPage
         }
         return true;
     }
+
+    public async Task AnimateAndNavigateToThemesAsync()
+    {
+        await Task.WhenAll(
+            GamePageContainer.TranslateTo(Width, 0, 250, Easing.CubicIn),
+            GamePageContainer.FadeTo(0, 250, Easing.Linear)
+        );
+
+        await Shell.Current.GoToAsync(nameof(ThemeSelectionView), false);
+    }
 }

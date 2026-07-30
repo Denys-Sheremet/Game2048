@@ -198,8 +198,17 @@
   <data name="Ach_Score5000_desc" xml:space="preserve">
     <value>Score 5000 points in one game</value>
   </data>
-  <data name="Ach_Score5000_title" xml:space="preserve">
-    <value>Big numbers</value>
+  <data name="BWTheme_desc" xml:space="preserve">
+    <value>Two colors, nothing else</value>
+  </data>
+  <data name="BWTheme_title" xml:space="preserve">
+    <value>Black &amp; White</value>
+  </data>
+  <data name="ClassicTheme_desc" xml:space="preserve">
+    <value>Classic 2048 theme</value>
+  </data>
+  <data name="ClassicTheme_title" xml:space="preserve">
+    <value>Classic theme</value>
   </data>
   <data name="ConfirmationOverlay_confirm_btn_text" xml:space="preserve">
     <value>Confirm</value>
@@ -209,6 +218,12 @@
   </data>
   <data name="ConfirmationOverlay_title" xml:space="preserve">
     <value>Confirmation</value>
+  </data>
+  <data name="DarkTheme_desc" xml:space="preserve">
+    <value>Classic dark 2048 theme</value>
+  </data>
+  <data name="DarkTheme_title" xml:space="preserve">
+    <value>Dark theme</value>
   </data>
   <data name="GameModes_title" xml:space="preserve">
     <value>MODE SELECTION</value>
@@ -252,6 +267,24 @@
   <data name="Menu_version_text" xml:space="preserve">
     <value>ver. 1.0</value>
   </data>
+  <data name="NatureTheme_desc" xml:space="preserve">
+    <value>Green and blue based nature theme</value>
+  </data>
+  <data name="NatureTheme_title" xml:space="preserve">
+    <value>Nature</value>
+  </data>
+  <data name="NeonColorTheme_desc" xml:space="preserve">
+    <value>Bright colors and dark background</value>
+  </data>
+  <data name="NeonColorTheme_title" xml:space="preserve">
+    <value>Neon</value>
+  </data>
+  <data name="RainbowTheme_desc" xml:space="preserve">
+    <value>Color BOOM</value>
+  </data>
+  <data name="RainbowTheme_title" xml:space="preserve">
+    <value>Rainbow</value>
+  </data>
   <data name="Settings_apply_btn" xml:space="preserve">
     <value>Apply</value>
   </data>
@@ -285,6 +318,9 @@
   <data name="Settings_title" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="Themes_title" xml:space="preserve">
+    <value>Themes</value>
+  </data>
   <data name="VictoryOverlay_continue_btn_text" xml:space="preserve">
     <value>Continue</value>
   </data>
@@ -296,5 +332,14 @@
   </data>
   <data name="VictoryOverlay_title" xml:space="preserve">
     <value>VICTORY</value>
+  </data>
+  <data name="Ach_Score5000_title" xml:space="preserve">
+    <value>Big numbers</value>
+  </data>
+  <data name="PinkyPinkTheme_title" xml:space="preserve">
+    <value>Man's choise</value>
+  </data>
+  <data name="PinkyPinkTheme_desc" xml:space="preserve">
+    <value>21 shades of pink</value>
   </data>
 </root>

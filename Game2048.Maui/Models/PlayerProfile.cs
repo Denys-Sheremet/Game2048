@@ -9,7 +9,7 @@ public class PlayerProfile
     public string Name { get; set; }
     public int Coins { get; set; }
     public PlayerStatistics GlobalPlayerStatistics { get; set; }
-    public List<GameTheme> UnlockedThemes { get; set; }
+    public HashSet<GameTheme> UnlockedThemes { get; set; }
     public HashSet<AchievementType> Achievements { get; set; }
     public Dictionary<GameModeType, int> BestScores { get; set; }
     public Dictionary<GameModeType, GameSessionSave> Saves { get; set; }
@@ -19,7 +19,7 @@ public class PlayerProfile
         Name = "Player";
         Coins = 0;
         GlobalPlayerStatistics = new PlayerStatistics();
-        UnlockedThemes = new List<GameTheme> { GameTheme.ClassicTheme };
+        UnlockedThemes = new HashSet<GameTheme> { GameTheme.ClassicTheme };
         Achievements = new HashSet<AchievementType>();
         BestScores = new Dictionary<GameModeType, int>();
         Saves = new Dictionary<GameModeType, GameSessionSave>();
