@@ -62,6 +62,7 @@
                 </Label>
             </Grid>
             <CollectionView Grid.Row="1"
+                            x:Name="ThemeCollectionView"
                             ItemsSource="{Binding ThemeItems}"
                             SelectionMode="None"
                             ZIndex="9">

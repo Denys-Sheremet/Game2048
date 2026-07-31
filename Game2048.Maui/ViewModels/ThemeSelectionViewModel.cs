@@ -20,14 +20,18 @@ public partial class ThemeSelectionViewModel : ObservableObject
     public event Action<GameTheme>? OnSelectedThemePreview; //
     public event Action<GameTheme>? OnSelectedThemeLocked; //
 
+    public ThemeItemViewModel? SelectedThemeItem => ThemeItems.FirstOrDefault(th => th.IsSelected);
+
     public ThemeSelectionViewModel(IThemesManager themesManager, IProfileManager profileManager)
     {
         _themesManager = themesManager;
         _profileManager = profileManager;
         SelectedTheme = _themesManager.CurrentTheme;
-        InitializeThemes();
+
         SelectThemeCommand = new AsyncRelayCommand<ThemeItemViewModel>(OnSelectTheme);
         PreviewThemeCommand = new AsyncRelayCommand<ThemeItemViewModel>(OnOpenPreview);
+
+        InitializeThemes();
     }
 
     private void InitializeThemes()
@@ -50,10 +54,14 @@ public partial class ThemeSelectionViewModel : ObservableObject
                 PreviewColors = previewColors,
                 PreviewTextColor = previewTextColor,
                 IsUnlocked = isUnlocked,
-                IsSelected = theme == SelectedTheme
+                IsSelected = theme == SelectedTheme,
+                SelectCommand = SelectThemeCommand,
+                PreviewCommand = PreviewThemeCommand
             });
         }
     }
+
+    
 
     private async Task OnSelectTheme(ThemeItemViewModel? theme)
     {

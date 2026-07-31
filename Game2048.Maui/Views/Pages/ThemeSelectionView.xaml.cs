@@ -1,4 +1,5 @@
 using Game2048.Maui.ViewModels;
+using Game2048.Maui.ViewModels.Items;
 
 namespace Game2048.Maui.Views.Pages;
 
@@ -25,20 +26,30 @@ public partial class ThemeSelectionView : ContentPage
             );
     }
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
 
-        Dispatcher.Dispatch(async () =>
-        {
-            PageContainer.TranslationX = -Width;
-            PageContainer.Opacity = 0;
+        PageContainer.Opacity = 0;
+        ThemeCollectionView.Opacity = 0;
 
-            await Task.WhenAll(
-                PageContainer.TranslateTo(0, 0, 300, Easing.CubicOut),
-                PageContainer.FadeTo(1, 300, Easing.CubicOut)
-            );
+        var selectedItem = _viewModel.SelectedThemeItem;
+        ScrollThemeCollectionViewTo(selectedItem);
+
+        await PageContainer.FadeTo(1, 600, Easing.CubicIn);
+        await ThemeCollectionView.FadeTo(1.0, 400, Easing.CubicIn);
+    }
+
+    private void ScrollThemeCollectionViewTo(ThemeItemViewModel? item)
+    {
+        Dispatcher.Dispatch(() =>
+        {
+            if (item is not null)
+            {
+                ThemeCollectionView.ScrollTo(item, position: ScrollToPosition.Center, animate: false);
+            }
         });
     }
+
     protected override bool OnBackButtonPressed() => true;
 }

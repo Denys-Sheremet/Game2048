@@ -5,9 +5,9 @@
              xmlns:view="clr-namespace:Game2048.Maui.Views.Pages"
              xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
              xmlns:lang="clr-namespace:Game2048.Maui.Resources.Localization"
-             x:Class="Game2048.Maui.Views.Components.ThemeItemView"
-             x:DataType="items:ThemeItemViewModel">
+             x:Class="Game2048.Maui.Views.Components.ThemeItemView">
     <Border x:Name="ThemeItemBorder"
+            x:DataType="items:ThemeItemViewModel"
             StrokeShape="RoundRectangle 12"
             StrokeThickness="2"
             Stroke="{Binding PreviewColors[7]}"
@@ -40,9 +40,8 @@
             </DataTrigger>
         </Border.Triggers>
         <Border.GestureRecognizers>
-            <TapGestureRecognizer x:DataType="vm:ThemeSelectionViewModel"
-                                  Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ThemeSelectionViewModel}}, Path=SelectThemeCommand}" 
-                                  CommandParameter="{Binding}" 
+            <TapGestureRecognizer Command="{Binding SelectCommand}" 
+                                  CommandParameter="{Binding .}" 
                                   Tapped="OnBtnTapped"/>
         </Border.GestureRecognizers>
         <Grid ColumnDefinitions="Auto, *, Auto, Auto" 
@@ -93,9 +92,8 @@
             </Grid>
             <ImageButton Source="eye.svg"
                          Grid.Column="3"
-                         x:DataType="vm:ThemeSelectionViewModel"
-                         Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ThemeSelectionViewModel}}, Path=PreviewThemeCommand}"
-                         CommandParameter="{Binding}"
+                         Command="{Binding PreviewCommand}"
+                         CommandParameter="{Binding .}"
                          WidthRequest="36"
                          HeightRequest="36"
                          CornerRadius="30"

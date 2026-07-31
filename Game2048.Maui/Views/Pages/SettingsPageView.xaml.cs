@@ -16,28 +16,22 @@ public partial class SettingsPageView : ContentPage
         _settingsManager = settingsManager;
 	}
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
 
-        Dispatcher.Dispatch(async () =>
-        {
-            PageContainer.TranslationX = -Width;
-            PageContainer.Opacity = 0;
+        PageContainer.TranslationX = -Width;
+        PageContainer.Opacity = 0;
 
-            await Task.WhenAll(
-                PageContainer.TranslateTo(0, 0, 300, Easing.CubicOut),
-                PageContainer.FadeTo(1, 300, Easing.CubicOut)
-            );
+        int currentColumn = GetCurrentSelectedLangColumn();
 
-            int currentColumn = GetCurrentSelectedLangColumn();
+        SelectedLangStroke.IsVisible = true;
+        Grid.SetColumn(SelectedLangStroke, currentColumn);
 
-            SelectedLangStroke.IsVisible = true;
-            SelectedLangStroke.Opacity = 0.0;
-            Grid.SetColumn(SelectedLangStroke, currentColumn);
-
-            await SelectedLangStroke.FadeTo(1.0, 100, Easing.CubicOut);
-        });
+        await Task.WhenAll(
+            PageContainer.TranslateTo(0, 0, 300, Easing.CubicOut),
+            PageContainer.FadeTo(1, 300, Easing.CubicOut)
+        );
     }
 
     private int GetCurrentSelectedLangColumn()
@@ -86,6 +80,8 @@ public partial class SettingsPageView : ContentPage
             await btn.ScaleTo(0.9, 100, Easing.CubicIn);
             await btn.ScaleTo(1.0, 100, Easing.CubicOut);
         }
+
+        if (!_viewModel.IsNotCurrentLang) return;
 
         PageOverlayContainer.IsVisible = true;
 

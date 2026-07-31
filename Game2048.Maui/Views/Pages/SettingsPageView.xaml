@@ -189,17 +189,17 @@
                                     Padding="15">
                                 <Grid ColumnDefinitions="*, *, *, *" ColumnSpacing="10">
                                     <Border x:Name="SelectedLangStroke"
-                                                BackgroundColor="Transparent"
-                                                Stroke="{DynamicResource SelectionStrokeColor}"
-                                                InputTransparent="True"
-                                                WidthRequest="75"
-                                                HeightRequest="65"
-                                                HorizontalOptions="Center"
-                                                VerticalOptions="Center"
-                                                StrokeThickness="4"
-                                                StrokeShape="RoundRectangle 8"
-                                                IsVisible="False"
-                                                ZIndex="11" />
+                                            BackgroundColor="Transparent"
+                                            Stroke="{DynamicResource SelectionStrokeColor}"
+                                            InputTransparent="True"
+                                            WidthRequest="75"
+                                            HeightRequest="65"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"
+                                            StrokeThickness="4"
+                                            StrokeShape="RoundRectangle 8"
+                                            IsVisible="False"
+                                            ZIndex="11" />
 
                                     <Border ZIndex="10"
                                             x:Name="Uk_Btn"

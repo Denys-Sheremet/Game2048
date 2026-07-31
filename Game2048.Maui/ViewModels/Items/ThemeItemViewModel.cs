@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Game2048.Maui.Enums;
 
 namespace Game2048.Maui.ViewModels.Items;
@@ -6,6 +7,9 @@ namespace Game2048.Maui.ViewModels.Items;
 public sealed partial class ThemeItemViewModel : ObservableObject
 {
     public required GameTheme Theme { get; init; }
+
+    public required IAsyncRelayCommand SelectCommand { get; init; }
+    public required IAsyncRelayCommand PreviewCommand { get; init; }
 
     public required string ThemeTitle { get; init; }
 
