@@ -295,13 +295,16 @@ public partial class GameViewModel : BindableObject, IDisposable
         await InvokeTransition(TilesMoved, transitions.Where(x => x.Type == TileTransitionType.Move ||
                                                                     x.Type == TileTransitionType.Merge));
 
-        await InvokeTransition(TilesRemoved, transitions.Where(x => x.Type == TileTransitionType.Disappear ||
-                                                                    x.Type == TileTransitionType.Merge || 
-                                                                    x.Type == TileTransitionType.Split));
+        var removeTask = InvokeTransition(TilesRemoved, transitions.Where(x => x.Type == TileTransitionType.Disappear ||
+                                                                               x.Type == TileTransitionType.Merge ||
+                                                                               x.Type == TileTransitionType.Split));
 
-        await InvokeTransition(TilesCreated, transitions.Where(x => x.Type == TileTransitionType.Spawn ||
-                                                                    x.Type == TileTransitionType.Result ||
-                                                                    x.Type == TileTransitionType.Respawn));
+        var createTask = InvokeTransition(TilesCreated, transitions.Where(x => x.Type == TileTransitionType.Spawn ||
+                                                                               x.Type == TileTransitionType.Result ||
+                                                                               x.Type == TileTransitionType.Respawn));
+
+        await Task.WhenAll(removeTask, createTask);
+
         UpdateScores();
 
         _statisticsManager.Moved();
@@ -338,9 +341,11 @@ public partial class GameViewModel : BindableObject, IDisposable
 
         await InvokeTransition(TilesMoved, transitions.Where(x => x.Type == TileTransitionType.Move));
 
-        await InvokeTransition(TilesRemoved, transitions.Where(x => x.Type == TileTransitionType.Disappear || 
-                                                                    x.Type == TileTransitionType.Split));
-        await InvokeTransition(TilesCreated, transitions.Where(x => x.Type == TileTransitionType.Respawn));
+        var removeTask = InvokeTransition(TilesRemoved, transitions.Where(x => x.Type == TileTransitionType.Disappear ||
+                                                                               x.Type == TileTransitionType.Split));
+        var createTask = InvokeTransition(TilesCreated, transitions.Where(x => x.Type == TileTransitionType.Respawn));
+
+        await Task.WhenAll(removeTask, createTask);
 
         UpdateScores();
 

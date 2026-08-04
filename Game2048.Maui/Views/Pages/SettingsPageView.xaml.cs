@@ -16,22 +16,25 @@ public partial class SettingsPageView : ContentPage
         _settingsManager = settingsManager;
 	}
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
         base.OnAppearing();
 
-        PageContainer.TranslationX = -Width;
-        PageContainer.Opacity = 0;
+        Dispatcher.Dispatch(async () =>
+        {
+            int currentColumn = GetCurrentSelectedLangColumn();
 
-        int currentColumn = GetCurrentSelectedLangColumn();
+            SelectedLangStroke.IsVisible = true;
+            Grid.SetColumn(SelectedLangStroke, currentColumn);
 
-        SelectedLangStroke.IsVisible = true;
-        Grid.SetColumn(SelectedLangStroke, currentColumn);
+            PageContainer.TranslationX = -Width;
+            PageContainer.Opacity = 0;
 
-        await Task.WhenAll(
-            PageContainer.TranslateTo(0, 0, 300, Easing.CubicOut),
-            PageContainer.FadeTo(1, 300, Easing.CubicOut)
-        );
+            await Task.WhenAll(
+                PageContainer.TranslateTo(0, 0, 300, Easing.CubicOut),
+                PageContainer.FadeTo(1, 300, Easing.CubicOut)
+            );
+        });
     }
 
     private int GetCurrentSelectedLangColumn()
