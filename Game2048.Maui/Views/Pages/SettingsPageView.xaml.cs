@@ -20,6 +20,8 @@ public partial class SettingsPageView : ContentPage
     {
         base.OnAppearing();
 
+        _viewModel.ResetToCurrentSettings();
+
         Dispatcher.Dispatch(async () =>
         {
             int currentColumn = GetCurrentSelectedLangColumn();
