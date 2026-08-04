@@ -1,6 +1,7 @@
 ﻿using Game2048.Maui.Enums;
 using Game2048.Maui.Interfaces;
 using Game2048.Maui.Resources.Styles.Themes;
+using Game2048.Maui.Models;
 
 namespace Game2048.Maui.Services;
 
@@ -21,7 +22,7 @@ public class ThemesManager : IThemesManager
 
     public GameTheme GetThemeFromString(string str)
     {
-        if(Enum.TryParse<GameTheme>(str, out var theme)){
+        if (Enum.TryParse<GameTheme>(str, out var theme)) {
             return theme;
         }
         return GameTheme.ClassicTheme;
@@ -55,7 +56,7 @@ public class ThemesManager : IThemesManager
 
     private ResourceDictionary GetResource(GameTheme theme)
     {
-        if(_themeRegistry.Themes.TryGetValue(theme, out var res))
+        if (_themeRegistry.Themes.TryGetValue(theme, out var res))
         {
             return res;
         }
@@ -86,7 +87,7 @@ public class ThemesManager : IThemesManager
 
     public Color GetThemeColor(string resourceKey, GameTheme theme)
     {
-        if(GetResource(theme).TryGetValue(resourceKey, out var resource))
+        if (GetResource(theme).TryGetValue(resourceKey, out var resource))
         {
             if (resource is Color color)
             {
@@ -110,4 +111,25 @@ public class ThemesManager : IThemesManager
         }
         return colors;
     }
+
+    public ThemePreviewColors GetThemePreviewColors(GameTheme theme)
+    {
+        var resourceDict = GetResource(theme);
+        var colors = new Dictionary<string, Color>();
+
+        foreach (var key in resourceDict.Keys)
+        {
+            if (key is string stringKey)
+            {
+                var color = GetThemeColor(stringKey, theme);
+                if (color != Colors.Transparent)
+                {
+                    colors[stringKey] = color;
+                }
+            }
+        }
+
+        return new ThemePreviewColors(colors);
+    }
+
 }

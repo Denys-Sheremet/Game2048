@@ -1,4 +1,5 @@
 ﻿using Game2048.Maui.Enums;
+using Game2048.Maui.Models;
 
 namespace Game2048.Maui.Interfaces;
 
@@ -16,4 +17,6 @@ public interface IThemesManager
     IEnumerable<GameTheme> GetAllThemes();
 
     List<Color> GetPreviewColors(GameTheme theme, int count = 4);
+
+    ThemePreviewColors GetThemePreviewColors(GameTheme theme);
 }

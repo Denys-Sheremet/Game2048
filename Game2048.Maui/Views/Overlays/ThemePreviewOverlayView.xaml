@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Game2048.Maui.Views.Overlays.ThemePreviewOverlayView"
+             xmlns:vm="clr-namespace:Game2048.Maui.ViewModels.Items"
+             xmlns:comp="clr-namespace:Game2048.Maui.Views.Components"
+             xmlns:keys="clr-namespace:Game2048.Maui.Resources.Styles.Themes"
+             x:DataType="vm:ThemePreviewViewModel">
+
+    <Border StrokeShape="RoundRectangle 20"
+            BackgroundColor="{Binding GameBackgroundColor}"
+            Stroke="{DynamicResource MainBorderColor}"
+            StrokeThickness="2"
+            WidthRequest="280"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Padding="20">
+
+        <VerticalStackLayout Spacing="16">
+
+            
+            <Grid ColumnDefinitions="40, *, 40" Margin="0, 0, 0, 10">
+                <Label Grid.Column="1"
+                       Text="{Binding ThemeTitle}" 
+                       FontSize="22" 
+                       FontFamily="RubikBold" 
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       TextColor="{Binding TitleColor}" />
+                <Button Grid.Column="2"
+                        Text="&#xf00d;" 
+                        FontFamily="FontAwesome"
+                        FontSize="24"
+                        TextColor="{DynamicResource ScoreBoardTextColor}"
+                        BackgroundColor="Transparent"
+                        Padding="0"
+                        HeightRequest="40"
+                        WidthRequest="40"
+                        HorizontalOptions="End"
+                        VerticalOptions="Start"
+                        Clicked="OnHideThemePreview" />
+            </Grid>
+
+            <Border BackgroundColor="{Binding GameFieldBackgroundColor}"
+                    StrokeShape="RoundRectangle 16"
+                    Padding="8"
+                    WidthRequest="200"
+                    HeightRequest="200"
+                    HorizontalOptions="Center">
+
+                <Grid RowDefinitions="*,*" ColumnDefinitions="*,*" RowSpacing="8" ColumnSpacing="8">
+
+                    <Border Grid.Row="0" Grid.Column="0" BackgroundColor="{Binding EmptyCellColor}" StrokeShape="RoundRectangle 8" />
+                    <Border Grid.Row="0" Grid.Column="1" BackgroundColor="{Binding EmptyCellColor}" StrokeShape="RoundRectangle 8" />
+                    <Border Grid.Row="1" Grid.Column="0" BackgroundColor="{Binding EmptyCellColor}" StrokeShape="RoundRectangle 8" />
+                    <Border Grid.Row="1" Grid.Column="1" BackgroundColor="{Binding EmptyCellColor}" StrokeShape="RoundRectangle 8" />
+
+                    <CollectionView Grid.Row="0" Grid.RowSpan="2" 
+                                    Grid.Column="0" Grid.ColumnSpan="2"
+                                    ItemsSource="{Binding PreviewTiles}"
+                                    SelectionMode="None"
+                                    InputTransparent="True">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical" Span="2" HorizontalItemSpacing="8" VerticalItemSpacing="8" />
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="vm:ThemePreviewTileViewModel">
+                                <comp:ThemePreviewTileView />
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </Grid>
+            </Border>
+
+        </VerticalStackLayout>
+    </Border>
+</ContentView>

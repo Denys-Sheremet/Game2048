@@ -2,6 +2,7 @@
 using Game2048.Maui.Interfaces;
 using Game2048.Maui.Services;
 using Game2048.Maui.ViewModels;
+using Game2048.Maui.ViewModels.Items;
 using Game2048.Maui.Views.Pages;
 using Microsoft.Extensions.Logging;
 using Game2048.Maui.Extensions;
@@ -59,6 +60,8 @@ namespace Game2048.Maui
             builder.Services.AddTransient<SettingsPageView>();
             builder.Services.AddTransient<ThemeSelectionViewModel>();
             builder.Services.AddTransient<ThemeSelectionView>();
+            builder.Services.AddTransient<ThemePreviewViewModel>();
+            builder.Services.AddTransient<ThemePreviewTileViewModel>();
 
 #if DEBUG
             builder.Logging.AddDebug();

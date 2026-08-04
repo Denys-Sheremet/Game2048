@@ -7,7 +7,6 @@
     <Color x:Key="GameBackgroundColor">#141218</Color>
     <Color x:Key="GameFieldBackgroundColor">#2A2533</Color>
     <Color x:Key="EmptyCellColor">#433D50</Color>
-    <Color x:Key="TileBorderColor">#2A2533</Color>
 
     <Color x:Key="PageBackgroundColor">#141218</Color>
 

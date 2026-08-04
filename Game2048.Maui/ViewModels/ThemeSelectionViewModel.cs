@@ -8,19 +8,24 @@ using System.Collections.ObjectModel;
 
 namespace Game2048.Maui.ViewModels;
 
-public partial class ThemeSelectionViewModel : ObservableObject
+public partial class ThemeSelectionViewModel : ObservableObject, IDisposable
 {
     private readonly IThemesManager _themesManager;
     private readonly IProfileManager _profileManager;
     public ObservableCollection<ThemeItemViewModel> ThemeItems { get; private set; } = new();
+    public ThemePreviewViewModel PreviewViewModel { get; } = new();
     public GameTheme SelectedTheme { get; private set; }
-    public IAsyncRelayCommand SelectThemeCommand { get; private set; }
-    public IAsyncRelayCommand PreviewThemeCommand { get; private set; }
-    public event Action<GameTheme>? OnSelectedThemeChanged; //
-    public event Action<GameTheme>? OnSelectedThemePreview; //
-    public event Action<GameTheme>? OnSelectedThemeLocked; //
+    public IRelayCommand SelectThemeCommand { get; private set; }
+    public IRelayCommand PreviewThemeCommand { get; private set; }
+
+    public event Action? ThemePreviewRequested; //
+    public event Action<GameTheme>? ThemePurchaseRequested; //
+    public event Action<GameTheme>? ThemeChanged; //
+
+    private readonly Action<int> _onCoinsChangedHandler;//save the subscription handler to unsub in Dispose()
 
     public ThemeItemViewModel? SelectedThemeItem => ThemeItems.FirstOrDefault(th => th.IsSelected);
+    public int CurrentCoins => _profileManager.CurrentCoins;
 
     public ThemeSelectionViewModel(IThemesManager themesManager, IProfileManager profileManager)
     {
@@ -28,8 +33,11 @@ public partial class ThemeSelectionViewModel : ObservableObject
         _profileManager = profileManager;
         SelectedTheme = _themesManager.CurrentTheme;
 
-        SelectThemeCommand = new AsyncRelayCommand<ThemeItemViewModel>(OnSelectTheme);
-        PreviewThemeCommand = new AsyncRelayCommand<ThemeItemViewModel>(OnOpenPreview);
+        _onCoinsChangedHandler = _ => OnPropertyChanged(nameof(CurrentCoins));
+        _profileManager.OnCoinsChanged += _onCoinsChangedHandler;
+
+        SelectThemeCommand = new RelayCommand<ThemeItemViewModel>(OnSelectTheme);
+        PreviewThemeCommand = new RelayCommand<ThemeItemViewModel>(OnOpenPreview);
 
         InitializeThemes();
     }
@@ -63,14 +71,23 @@ public partial class ThemeSelectionViewModel : ObservableObject
 
     
 
-    private async Task OnSelectTheme(ThemeItemViewModel? theme)
+    private void OnSelectTheme(ThemeItemViewModel? theme)
     {
 
     }
 
-    private async Task OnOpenPreview(ThemeItemViewModel? theme)
+    private void OnOpenPreview(ThemeItemViewModel? item)
     {
+        if (item is null) return;
 
+        var colors = _themesManager.GetThemePreviewColors(item.Theme);
+        PreviewViewModel.SetTheme(item.ThemeTitle, colors);
+
+        ThemePreviewRequested?.Invoke();
     }
 
+    public void Dispose()
+    {
+        _profileManager.OnCoinsChanged -= _onCoinsChangedHandler;
+    }
 }

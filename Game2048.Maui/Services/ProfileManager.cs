@@ -134,11 +134,14 @@ public class ProfileManager : IProfileManager
     }
 
     //Coins
+    public event Action<int>? OnCoinsChanged;
+    public int CurrentCoins => CurrentProfile?.Coins ?? 0;
     public void EarnCoins(int amount)
     {
         var profile = GetValidProfile();
         if (amount <= 0) throw new InvalidOperationException("Amount of coins to add should be more than 0");
         profile.Coins += amount;
+        OnCoinsChanged?.Invoke(profile.Coins);
     }
 
     public bool SpendCoins(int amount)
@@ -147,6 +150,7 @@ public class ProfileManager : IProfileManager
         if (profile.Coins >= amount)
         {
             profile.Coins -= amount;
+            OnCoinsChanged?.Invoke(profile.Coins);
             return true;
         }
         return false;

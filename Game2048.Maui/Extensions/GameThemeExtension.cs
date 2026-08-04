@@ -17,7 +17,6 @@ public static class GameThemeExtension
         return AppResources.ResourceManager.GetString(key, AppResources.Culture) ?? theme.ToString();
     }
 
-
     public static int GetPrice(this GameTheme theme) => theme switch
     {
         GameTheme.ClassicTheme => 0,

@@ -5,6 +5,7 @@
              xmlns:lang="clr-namespace:Game2048.Maui.Resources.Localization"
              xmlns:items="clr-namespace:Game2048.Maui.ViewModels.Items"
              xmlns:comp="clr-namespace:Game2048.Maui.Views.Components"
+             xmlns:ovr="clr-namespace:Game2048.Maui.Views.Overlays"
              x:Class="Game2048.Maui.Views.Pages.ThemeSelectionView"
              x:DataType="vm:ThemeSelectionViewModel"
              Shell.NavBarIsVisible="False"
@@ -76,15 +77,55 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
 
-            </CollectionView>
+                <CollectionView.Footer>
+                    <BoxView HeightRequest="60" Color="{DynamicResource PageBackgroundColor}" />
+                </CollectionView.Footer>
 
+            </CollectionView>
+            <Grid Grid.Row="1"
+                  x:Name="CoinsShowContainer"
+                  VerticalOptions="End"
+                  HorizontalOptions="Fill"
+                  Margin="50, 10"
+                  ZIndex="10">
+                <Border StrokeThickness="2"
+                        StrokeShape="RoundRectangle 30"
+                        Stroke="{DynamicResource MainBorderColor}"
+                        BackgroundColor="{DynamicResource ProgressBarBGColor}"
+                        Padding="25, 10"
+                        HorizontalOptions="Fill">
+                    <Grid ColumnDefinitions="Auto, Auto"
+                          HorizontalOptions="Center">
+                        <Image Source="coin.svg"
+                               Grid.Column="0"
+                               WidthRequest="20"
+                               HeightRequest="20"
+                               VerticalOptions="Center"/>
+                        <Label FontFamily="RubikSemi"
+                               Grid.Column="1"
+                               FontSize="20"
+                               VerticalOptions="Center"
+                               TextColor="{DynamicResource ButtonTextColor}"
+                               Text="{Binding CurrentCoins}"/>
+                    </Grid>
+                </Border>
+            </Grid>
         </Grid>
         
         <Grid x:Name="PageOverlayContainer"
               HorizontalOptions="Fill"
               VerticalOptions="Fill"
+              BackgroundColor="#80000000"
+              InputTransparent="False"
+              CascadeInputTransparent="False"
               ZIndex="11"
               IsVisible="False">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer/>
+                <SwipeGestureRecognizer Direction="Down, Left, Right, Up"/>
+            </Grid.GestureRecognizers>
+            <ovr:ThemePreviewOverlayView x:Name="PreviewOverlay"
+                                         IsVisible="False"/>
 
         </Grid>
 

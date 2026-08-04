@@ -8,8 +8,8 @@ public sealed partial class ThemeItemViewModel : ObservableObject
 {
     public required GameTheme Theme { get; init; }
 
-    public required IAsyncRelayCommand SelectCommand { get; init; }
-    public required IAsyncRelayCommand PreviewCommand { get; init; }
+    public required IRelayCommand SelectCommand { get; init; }
+    public required IRelayCommand PreviewCommand { get; init; }
 
     public required string ThemeTitle { get; init; }
 

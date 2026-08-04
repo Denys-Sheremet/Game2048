@@ -5,9 +5,9 @@
              xmlns:view="clr-namespace:Game2048.Maui.Views.Pages"
              xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
              xmlns:lang="clr-namespace:Game2048.Maui.Resources.Localization"
-             x:Class="Game2048.Maui.Views.Components.ThemeItemView">
+             x:Class="Game2048.Maui.Views.Components.ThemeItemView"
+             x:DataType="items:ThemeItemViewModel">
     <Border x:Name="ThemeItemBorder"
-            x:DataType="items:ThemeItemViewModel"
             StrokeShape="RoundRectangle 12"
             StrokeThickness="2"
             Stroke="{Binding PreviewColors[7]}"

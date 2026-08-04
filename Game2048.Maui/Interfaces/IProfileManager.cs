@@ -9,6 +9,7 @@ namespace Game2048.Maui.Interfaces;
 public interface IProfileManager
 {
     PlayerProfile? CurrentProfile { get; }
+    int CurrentCoins { get; }
     void NewProfile();
     Task<bool> TryLoadProfileFromSave();
     Task SaveCurrentProfileAsync();
@@ -26,4 +27,6 @@ public interface IProfileManager
     bool SpendCoins(int amount);
     void SetPlayerName(string name);
     string GetPlayerName();
+
+    event Action<int>? OnCoinsChanged;
 }
