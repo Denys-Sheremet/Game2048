@@ -26,7 +26,8 @@
                        FontSize="26"
                        TextColor="{DynamicResource ScoreBoardTextColor}"
                        HorizontalOptions="Center"
-                       VerticalOptions="Center" />
+                       VerticalOptions="Center"
+                       HorizontalTextAlignment="Center"/>
 
                 <Button Grid.Column="2"
                         Text="&#xf00d;" 

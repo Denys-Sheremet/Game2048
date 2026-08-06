@@ -25,6 +25,7 @@
                        FontSize="26"
                        TextColor="{DynamicResource ScoreBoardTextColor}"
                        HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
                        VerticalOptions="Center"
                        LineBreakMode="NoWrap">
 

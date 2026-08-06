@@ -22,6 +22,7 @@
                    FontSize="30"
                    TextColor="{DynamicResource ScoreBoardTextColor}"
                    HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
                    Margin="0, 0, 0, 10">
             </Label>
 
