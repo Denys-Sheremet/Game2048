@@ -13,8 +13,8 @@ public partial class ConfirmationOverlayView : ContentView
 	{
         await Task.WhenAll
             (
-                ConfirmationOverlay.ScaleTo(0.5, 150, Easing.CubicIn),
-                ConfirmationOverlay.FadeTo(0.0, 150, Easing.CubicIn)
+                ConfirmationOverlay.ScaleToAsync(0.5, 150, Easing.CubicIn),
+                ConfirmationOverlay.FadeToAsync(0.0, 150, Easing.CubicIn)
             );
         ConfirmationOverlay.IsVisible = false;
         if (ConfirmationOverlay.Parent is Microsoft.Maui.Controls.Grid ovrContainer)

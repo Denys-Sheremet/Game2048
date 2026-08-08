@@ -24,13 +24,13 @@ public partial class IntroPage : ContentPage
         var initProfileTask = Task.Run(async () => await InitializeProfileAsync());
 
         await Task.WhenAll(
-            IntroLogoImage.FadeTo(1, 900, Easing.CubicOut),
-            IntroLogoImage.ScaleTo(1, 900, Easing.CubicOut)
+            IntroLogoImage.FadeToAsync(1, 900, Easing.CubicOut),
+            IntroLogoImage.ScaleToAsync(1, 900, Easing.CubicOut)
         );
 
         await initProfileTask;
 
-        await IntroLogoImage.FadeTo(0, 400, Easing.CubicOut);
+        await IntroLogoImage.FadeToAsync(0, 400, Easing.CubicOut);
         
 
         await Shell.Current.GoToAsync("///MainMenuPage");

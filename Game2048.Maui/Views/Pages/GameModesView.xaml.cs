@@ -23,8 +23,8 @@ public partial class GameModesView : ContentPage
             GameModesPageContainer.Opacity = 0;
 
             await Task.WhenAll(
-                GameModesPageContainer.TranslateTo(0, 0, 300, Easing.CubicOut),
-                GameModesPageContainer.FadeTo(1, 300, Easing.CubicOut)
+                GameModesPageContainer.TranslateToAsync(0, 0, 300, Easing.CubicOut),
+                GameModesPageContainer.FadeToAsync(1, 300, Easing.CubicOut)
             );
         });
     }
@@ -33,8 +33,8 @@ public partial class GameModesView : ContentPage
 	{
 		await Task.WhenAll
 			(
-                GameModesPageContainer.TranslateTo(Width, 0, 250, Easing.CubicIn),
-                GameModesPageContainer.FadeTo(0, 250, Easing.Linear)
+                GameModesPageContainer.TranslateToAsync(Width, 0, 250, Easing.CubicIn),
+                GameModesPageContainer.FadeToAsync(0, 250, Easing.Linear)
             );
 		await Task.WhenAll
 			(
@@ -46,8 +46,8 @@ public partial class GameModesView : ContentPage
     {
         await Task.WhenAll
             (
-                GameModesPageContainer.TranslateTo(-Width, 0, 250, Easing.CubicIn),
-                GameModesPageContainer.FadeTo(0, 250, Easing.Linear)
+                GameModesPageContainer.TranslateToAsync(-Width, 0, 250, Easing.CubicIn),
+                GameModesPageContainer.FadeToAsync(0, 250, Easing.Linear)
             );
         await Task.WhenAll
             (

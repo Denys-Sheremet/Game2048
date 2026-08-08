@@ -30,8 +30,8 @@ public partial class AchievementsView : ContentPage
             AchievementsPageGrid.Opacity = 0;
 
             await Task.WhenAll(
-                AchievementsPageGrid.TranslateTo(0, 0, 300, Easing.CubicOut),
-                AchievementsPageGrid.FadeTo(1, 300, Easing.CubicOut)
+                AchievementsPageGrid.TranslateToAsync(0, 0, 300, Easing.CubicOut),
+                AchievementsPageGrid.FadeToAsync(1, 300, Easing.CubicOut)
             );
         });
 
@@ -68,8 +68,8 @@ public partial class AchievementsView : ContentPage
             }
 
             await Task.WhenAll(
-                tile.FadeTo(1, 350, Easing.CubicOut),
-                tile.ScaleTo(1, 350, Easing.SpringOut)
+                tile.FadeToAsync(1, 350, Easing.CubicOut),
+                tile.ScaleToAsync(1, 350, Easing.SpringOut)
             );
         }
     }
@@ -90,8 +90,8 @@ public partial class AchievementsView : ContentPage
         {
             Microsoft.Maui.Controls.ViewExtensions.CancelAnimations(clickedView);
 
-            await clickedView.ScaleTo(0.92, 100, Easing.CubicOut);
-            await clickedView.ScaleTo(1.0, 200, Easing.SpringOut);
+            await clickedView.ScaleToAsync(0.92, 100, Easing.CubicOut);
+            await clickedView.ScaleToAsync(1.0, 200, Easing.SpringOut);
 
             if (clickedView.BindingContext is AchievementData tappedAchievement)
             {
@@ -103,8 +103,8 @@ public partial class AchievementsView : ContentPage
     private async void OnBackToMenu(object sender, EventArgs e)
     {
         await Task.WhenAll(
-            AchievementsPageGrid.TranslateTo(Width, 0, 250, Easing.CubicIn),
-            AchievementsPageGrid.FadeTo(0, 250, Easing.Linear)
+            AchievementsPageGrid.TranslateToAsync(Width, 0, 250, Easing.CubicIn),
+            AchievementsPageGrid.FadeToAsync(0, 250, Easing.Linear)
         );
 
         await Shell.Current.GoToAsync("///MainMenuPage", false);

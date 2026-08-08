@@ -13,9 +13,9 @@ public partial class ThemeItemView : ContentView
 	{
 		if (sender is Border br)
 		{
-			await br.ScaleTo(0.95, 100, Easing.CubicIn);
-			await br.ScaleTo(1.03, 150, Easing.CubicIn);
-			await br.ScaleTo(1.0, 50, Easing.CubicIn);
+			await br.ScaleToAsync(0.95, 100, Easing.CubicIn);
+			await br.ScaleToAsync(1.03, 150, Easing.CubicIn);
+			await br.ScaleToAsync(1.0, 50, Easing.CubicIn);
 		}
 	}
 }

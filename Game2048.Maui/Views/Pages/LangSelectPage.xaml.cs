@@ -21,7 +21,7 @@ public partial class LangSelectPage : ContentPage
         base.OnAppearing();
 
         PageContainer.Opacity = 0;
-        await PageContainer.FadeTo(1.0, 200, Easing.CubicIn);
+        await PageContainer.FadeToAsync(1.0, 200, Easing.CubicIn);
         
     }
 
@@ -35,7 +35,7 @@ public partial class LangSelectPage : ContentPage
     private async void ContinueToIntroAsync()
     {
         PageContainer.Opacity = 1;
-        await PageContainer.FadeTo(0.0, 200, Easing.CubicIn);
+        await PageContainer.FadeToAsync(0.0, 200, Easing.CubicIn);
 
         await Task.WhenAll(
             Shell.Current.GoToAsync("///IntroPage", false)
@@ -46,8 +46,8 @@ public partial class LangSelectPage : ContentPage
     {
 		if (sender is ImageButton btn) 
 		{
-			await btn.ScaleTo(0.9, 100, Easing.CubicIn);
-			await btn.ScaleTo(1.0, 100, Easing.CubicOut);
+			await btn.ScaleToAsync(0.9, 100, Easing.CubicIn);
+			await btn.ScaleToAsync(1.0, 100, Easing.CubicOut);
 		}
     }
 }

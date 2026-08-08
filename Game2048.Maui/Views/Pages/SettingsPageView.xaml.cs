@@ -33,8 +33,8 @@ public partial class SettingsPageView : ContentPage
             PageContainer.Opacity = 0;
 
             await Task.WhenAll(
-                PageContainer.TranslateTo(0, 0, 300, Easing.CubicOut),
-                PageContainer.FadeTo(1, 300, Easing.CubicOut)
+                PageContainer.TranslateToAsync(0, 0, 300, Easing.CubicOut),
+                PageContainer.FadeToAsync(1, 300, Easing.CubicOut)
             );
         });
     }
@@ -57,13 +57,13 @@ public partial class SettingsPageView : ContentPage
 
     public async void OnGoToThemeSelect(object sender, EventArgs e)
     {
-        await GoToThemeSelectBtn.ScaleTo(0.95, 100, Easing.CubicIn);
-        await GoToThemeSelectBtn.ScaleTo(1.0, 100, Easing.CubicOut);
+        await GoToThemeSelectBtn.ScaleToAsync(0.95, 100, Easing.CubicIn);
+        await GoToThemeSelectBtn.ScaleToAsync(1.0, 100, Easing.CubicOut);
 
         await Task.WhenAll
             (
-                PageContainer.TranslateTo(Width, 0, 250, Easing.CubicIn),
-                PageContainer.FadeTo(0, 250, Easing.Linear)
+                PageContainer.TranslateToAsync(Width, 0, 250, Easing.CubicIn),
+                PageContainer.FadeToAsync(0, 250, Easing.Linear)
             );
 
         await Shell.Current.GoToAsync(nameof(ThemeSelectionView), false);
@@ -73,8 +73,8 @@ public partial class SettingsPageView : ContentPage
 	{
 		if (sender is Button btn)
 		{
-			await btn.ScaleTo(0.9, 100, Easing.CubicIn);
-			await btn.ScaleTo(1.0, 100, Easing.CubicOut);
+			await btn.ScaleToAsync(0.9, 100, Easing.CubicIn);
+			await btn.ScaleToAsync(1.0, 100, Easing.CubicOut);
 		} 
 	}
 
@@ -82,8 +82,8 @@ public partial class SettingsPageView : ContentPage
     {
         if (sender is Button btn)
         {
-            await btn.ScaleTo(0.9, 100, Easing.CubicIn);
-            await btn.ScaleTo(1.0, 100, Easing.CubicOut);
+            await btn.ScaleToAsync(0.9, 100, Easing.CubicIn);
+            await btn.ScaleToAsync(1.0, 100, Easing.CubicOut);
         }
 
         if (!_viewModel.IsNotCurrentLang) return;
@@ -96,8 +96,8 @@ public partial class SettingsPageView : ContentPage
 
         await Task.WhenAll
             (
-                ConfirmationOverlay.ScaleTo(1.0, 150, Easing.CubicIn),
-                ConfirmationOverlay.FadeTo(1.0, 150, Easing.CubicIn)
+                ConfirmationOverlay.ScaleToAsync(1.0, 150, Easing.CubicIn),
+                ConfirmationOverlay.FadeToAsync(1.0, 150, Easing.CubicIn)
             );
     }
 
@@ -105,10 +105,10 @@ public partial class SettingsPageView : ContentPage
     {
         if (sender is ImageButton btn)
         {
-            await btn.FadeTo(0.6, 200, Easing.CubicIn);
+            await btn.FadeToAsync(0.6, 200, Easing.CubicIn);
 
 			await Task.WhenAll(
-                btn.FadeTo(1.0, 100, Easing.CubicOut),
+                btn.FadeToAsync(1.0, 100, Easing.CubicOut),
                 TranslateStrokeToSelected(btn)
             );
         }
@@ -118,9 +118,9 @@ public partial class SettingsPageView : ContentPage
 	{
 		if (btn.Parent is Border parentBorder)
 		{
-            await SelectedLangStroke.FadeTo(0.0, 100, Easing.CubicIn);
+            await SelectedLangStroke.FadeToAsync(0.0, 100, Easing.CubicIn);
             Grid.SetColumn(SelectedLangStroke, Grid.GetColumn(parentBorder));
-            await SelectedLangStroke.FadeTo(1.0, 100, Easing.CubicIn);
+            await SelectedLangStroke.FadeToAsync(1.0, 100, Easing.CubicIn);
         }   
     }
 
@@ -128,8 +128,8 @@ public partial class SettingsPageView : ContentPage
 	{
         await Task.WhenAll
             (
-                PageContainer.TranslateTo(Width, 0, 250, Easing.CubicIn),
-                PageContainer.FadeTo(0, 250, Easing.Linear)
+                PageContainer.TranslateToAsync(Width, 0, 250, Easing.CubicIn),
+                PageContainer.FadeToAsync(0, 250, Easing.Linear)
             );
         await Task.WhenAll
             (

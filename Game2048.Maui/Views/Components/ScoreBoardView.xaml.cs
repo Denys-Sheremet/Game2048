@@ -38,8 +38,8 @@ public partial class ScoreBoardView : ContentView
 
         Dispatcher.Dispatch(async () =>
         {
-            await ActualScoreLabel.ScaleTo(1.2, 100, Easing.CubicOut);
-            await ActualScoreLabel.ScaleTo(1.0, 100, Easing.CubicIn);
+            await ActualScoreLabel.ScaleToAsync(1.2, 100, Easing.CubicOut);
+            await ActualScoreLabel.ScaleToAsync(1.0, 100, Easing.CubicIn);
         });
     }
     
@@ -49,8 +49,8 @@ public partial class ScoreBoardView : ContentView
 
         Dispatcher.Dispatch(async () =>
         {
-            await BestScoreLabel.ScaleTo(1.2, 100, Easing.CubicOut);
-            await BestScoreLabel.ScaleTo(1.0, 100, Easing.CubicIn);
+            await BestScoreLabel.ScaleToAsync(1.2, 100, Easing.CubicOut);
+            await BestScoreLabel.ScaleToAsync(1.0, 100, Easing.CubicIn);
         });
     }
 

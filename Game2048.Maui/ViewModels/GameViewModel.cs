@@ -206,6 +206,8 @@ public partial class GameViewModel : BindableObject, IDisposable
                              config.GameMode != GameModeType.Extended &&
                              config.GameMode != GameModeType.ChillZone;
 
+        StartGame();
+
         _gameCore.OnVictory += HandleOnVictory;
         _gameCore.OnGameOver += HandleOnGameOver;
         _gameCore.OnStateChanged += HandleOnStateChanged;

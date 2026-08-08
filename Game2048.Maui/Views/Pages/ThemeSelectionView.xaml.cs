@@ -23,8 +23,8 @@ public partial class ThemeSelectionView : ContentPage
 	{
         await Task.WhenAll
             (
-                PageContainer.TranslateTo(Width, 0, 250, Easing.CubicIn),
-                PageContainer.FadeTo(0, 250, Easing.Linear)
+                PageContainer.TranslateToAsync(Width, 0, 250, Easing.CubicIn),
+                PageContainer.FadeToAsync(0, 250, Easing.Linear)
             );
         await Task.WhenAll
             (
@@ -47,9 +47,9 @@ public partial class ThemeSelectionView : ContentPage
 
         await Task.WhenAll
             (
-                PageOverlayContainer.FadeTo(1.0, 180, Easing.CubicOut),
-                PreviewOverlay.FadeTo(1.0, 180, Easing.CubicOut),
-                PreviewOverlay.ScaleTo(1.0, 180, Easing.CubicOut)
+                PageOverlayContainer.FadeToAsync(1.0, 180, Easing.CubicOut),
+                PreviewOverlay.FadeToAsync(1.0, 180, Easing.CubicOut),
+                PreviewOverlay.ScaleToAsync(1.0, 180, Easing.CubicOut)
             );
     }
 
@@ -63,9 +63,9 @@ public partial class ThemeSelectionView : ContentPage
         if (!PreviewOverlay.IsVisible) return;
 
         await Task.WhenAll(
-            PageOverlayContainer.FadeTo(0, 140, Easing.CubicIn),
-            PreviewOverlay.FadeTo(0, 140, Easing.CubicIn),
-            PreviewOverlay.ScaleTo(0.85, 140, Easing.CubicIn)
+            PageOverlayContainer.FadeToAsync(0, 140, Easing.CubicIn),
+            PreviewOverlay.FadeToAsync(0, 140, Easing.CubicIn),
+            PreviewOverlay.ScaleToAsync(0.85, 140, Easing.CubicIn)
         );
 
         PreviewOverlay.IsVisible = false;
@@ -82,8 +82,8 @@ public partial class ThemeSelectionView : ContentPage
         var selectedItem = _viewModel.SelectedThemeItem;
         ScrollThemeCollectionViewTo(selectedItem);
 
-        await PageContainer.FadeTo(1, 600, Easing.CubicOut);
-        await ThemeCollectionView.FadeTo(1.0, 400, Easing.CubicOut);
+        await PageContainer.FadeToAsync(1, 600, Easing.CubicOut);
+        await ThemeCollectionView.FadeToAsync(1.0, 400, Easing.CubicOut);
     }
 
     protected override void OnDisappearing()

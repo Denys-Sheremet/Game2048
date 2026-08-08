@@ -1,14 +1,15 @@
 using Game2048.Core.DTOs;
-using Game2048.Maui.ViewModels;
-using Microsoft.Maui.Controls.Shapes;
-using Game2048.Maui.Services;
 using Game2048.Core.Enums;
-using Game2048.Maui.Interfaces;
-using Game2048.Maui.Enums;
-using Game2048.Maui.Views.Components;
-using Game2048.Maui.Resources.Localization;
-using Game2048.Maui.Views.Overlays;
 using Game2048.Maui.Achievements.Services;
+using Game2048.Maui.Enums;
+using Game2048.Maui.Extensions;
+using Game2048.Maui.Interfaces;
+using Game2048.Maui.Resources.Localization;
+using Game2048.Maui.Services;
+using Game2048.Maui.ViewModels;
+using Game2048.Maui.Views.Components;
+using Game2048.Maui.Views.Overlays;
+using Microsoft.Maui.Controls.Shapes;
 using System.Diagnostics;
 
 namespace Game2048.Maui.Views.Pages;
@@ -265,19 +266,18 @@ public partial class GameView : ContentPage
         base.OnAppearing();
 
         BuildTheBoard(_viewModel.Rows, _viewModel.Columns);
-        _viewModel.StartGame();
         FullRedraw();
 
         _achievementManager.OnAchievementUnlocked += OnNewAchievementUnlocked;
 
         Dispatcher.Dispatch(async () => 
         {
-            GamePageContainer.TranslationX = Width;
+            GamePageContainer.TranslationX = GamePageContainer.Width;
             GamePageContainer.Opacity = 0;
 
             await Task.WhenAll(
-                GamePageContainer.TranslateTo(0, 0, 300, Easing.CubicOut),
-                GamePageContainer.FadeTo(1, 300, Easing.CubicOut)
+                GamePageContainer.TranslateToAsync(0, 0, 300, Easing.CubicOut),
+                GamePageContainer.FadeToAsync(1, 300, Easing.CubicOut)
             );
         });
     }
@@ -319,8 +319,8 @@ public partial class GameView : ContentPage
         await _viewModel.OnGoToMenu();
 
         await Task.WhenAll(
-            GamePageContainer.TranslateTo(Width, 0, 250, Easing.CubicIn),
-            GamePageContainer.FadeTo(0, 250, Easing.Linear)
+            GamePageContainer.TranslateToAsync(Width, 0, 250, Easing.CubicIn),
+            GamePageContainer.FadeToAsync(0, 250, Easing.Linear)
         );
 
         await Task.WhenAll(
@@ -333,8 +333,8 @@ public partial class GameView : ContentPage
         await _viewModel.OnBackToMenu();
 
         await Task.WhenAll(
-            GamePageContainer.TranslateTo(Width, 0, 250, Easing.CubicIn),
-            GamePageContainer.FadeTo(0, 250, Easing.Linear)
+            GamePageContainer.TranslateToAsync(Width, 0, 250, Easing.CubicIn),
+            GamePageContainer.FadeToAsync(0, 250, Easing.Linear)
         );
 
         await Task.WhenAll(
@@ -350,8 +350,8 @@ public partial class GameView : ContentPage
         VictoryOverlay.IsVisible = true;
 
         await Task.WhenAll(
-            VictoryOverlay.FadeTo(1, 400),
-            VictoryOverlay.TranslateTo(0, 0, 800, Easing.BounceOut)
+            VictoryOverlay.FadeToAsync(1, 400),
+            VictoryOverlay.TranslateToAsync(0, 0, 800, Easing.BounceOut)
         );
     }
 
@@ -360,21 +360,21 @@ public partial class GameView : ContentPage
         GameOverOverlay.Scale = 0.0;
         GameOverOverlay.IsVisible = true;
 
-        await GameOverOverlay.ScaleTo(1.1, 250, Easing.CubicIn);
-        await GameOverOverlay.ScaleTo(1.0, 100, Easing.CubicOut);
+        await GameOverOverlay.ScaleToAsync(1.1, 250, Easing.CubicIn);
+        await GameOverOverlay.ScaleToAsync(1.0, 100, Easing.CubicOut);
     }
 
     private async void HandleRestart()
     {
 
         await Task.WhenAll(
-            GameGridLayout.FadeTo(0.0, 150)
+            GameGridLayout.FadeToAsync(0.0, 150)
         );
 
         FullRedraw();
 
         await Task.WhenAll(
-            GameGridLayout.FadeTo(1.0, 150)
+            GameGridLayout.FadeToAsync(1.0, 150)
         );
     }
 
@@ -385,10 +385,10 @@ public partial class GameView : ContentPage
         Settings.IsVisible = true;
 
         await Task.WhenAll(
-            Settings.FadeTo(1, 200),
-            Settings.ScaleTo(1.1, 300, Easing.CubicIn)
+            Settings.FadeToAsync(1, 200),
+            Settings.ScaleToAsync(1.1, 300, Easing.CubicIn)
         );
-        await Settings.ScaleTo(1.0, 100, Easing.CubicOut);
+        await Settings.ScaleToAsync(1.0, 100, Easing.CubicOut);
     }
 
     protected override bool OnBackButtonPressed()
@@ -413,8 +413,8 @@ public partial class GameView : ContentPage
     public async Task AnimateAndNavigateToThemesAsync()
     {
         await Task.WhenAll(
-            GamePageContainer.TranslateTo(Width, 0, 250, Easing.CubicIn),
-            GamePageContainer.FadeTo(0, 250, Easing.Linear)
+            GamePageContainer.TranslateToAsync(Width, 0, 250, Easing.CubicIn),
+            GamePageContainer.FadeToAsync(0, 250, Easing.Linear)
         );
 
         await Shell.Current.GoToAsync(nameof(ThemeSelectionView), false);

@@ -26,16 +26,16 @@ public partial class AchievementToastView : ContentView
 
             await Task.WhenAll
                 (
-                    ToastContainer.FadeTo(1.0, 300, Easing.CubicIn),
-                    ToastContainer.TranslateTo(0, 0, 600, Easing.BounceOut)
+                    ToastContainer.FadeToAsync(1.0, 300, Easing.CubicIn),
+                    ToastContainer.TranslateToAsync(0, 0, 600, Easing.BounceOut)
                 );
 
             await Task.Delay(3000);
 
             await Task.WhenAll
                 (
-                    ToastContainer.FadeTo(0.5, 200, Easing.CubicIn),
-                    ToastContainer.TranslateTo(0, -300, 400, Easing.CubicIn)
+                    ToastContainer.FadeToAsync(0.5, 200, Easing.CubicIn),
+                    ToastContainer.TranslateToAsync(0, -300, 400, Easing.CubicIn)
                 );
             ToastContainer.IsVisible = false;
         }

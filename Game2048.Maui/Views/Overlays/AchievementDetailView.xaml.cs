@@ -18,10 +18,10 @@ public partial class AchievementDetailView : ContentView
 		{
             await Dispatcher.DispatchAsync(async () =>
             {
-                await this.ScaleTo(1.1, 150, Easing.CubicIn);
+                await this.ScaleToAsync(1.1, 150, Easing.CubicIn);
                 await Task.WhenAll(
-                    this.FadeTo(0, 250, Easing.CubicIn),
-                    this.ScaleTo(0.7, 250, Easing.CubicIn)
+                    this.FadeToAsync(0, 250, Easing.CubicIn),
+                    this.ScaleToAsync(0.7, 250, Easing.CubicIn)
                 );
                 this.IsVisible = false;
             });
@@ -42,10 +42,10 @@ public partial class AchievementDetailView : ContentView
 			this.Scale = 0.0;
 			this.Opacity = 0.0;
             await Task.WhenAll(
-                this.FadeTo(1, 250, Easing.CubicIn),
-                this.ScaleTo(1.1, 250, Easing.CubicIn)
+                this.FadeToAsync(1, 250, Easing.CubicIn),
+                this.ScaleToAsync(1.1, 250, Easing.CubicIn)
             );
-            await this.ScaleTo(1.0, 150, Easing.CubicIn);
+            await this.ScaleToAsync(1.0, 150, Easing.CubicIn);
         });
     }
 }
