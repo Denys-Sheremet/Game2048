@@ -126,6 +126,8 @@
             </Grid.GestureRecognizers>
             <ovr:ThemePreviewOverlayView x:Name="PreviewOverlay"
                                          IsVisible="False"/>
+            <ovr:PurchaseThemeOverlayView x:Name="PurchaseOverlay"
+                                         IsVisible="False"/>
 
         </Grid>
 

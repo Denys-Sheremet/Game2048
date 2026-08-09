@@ -342,4 +342,13 @@
   <data name="PinkyPinkTheme_desc" xml:space="preserve">
     <value>21 відтінок рожевого</value>
   </data>
+  <data name="PurchaseThemeOverlay_title" xml:space="preserve">
+    <value>Придбати тему</value>
+  </data>
+  <data name="PurchaseThemeOverlay_message" xml:space="preserve">
+    <value>Чи бажаєте придбати цю тему?</value>
+  </data>
+  <data name="PurchaseThemeOverlay_buy_btn_text" xml:space="preserve">
+    <value>Придбати</value>
+  </data>
 </root>

@@ -574,6 +574,33 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Buy.
+        /// </summary>
+        public static string PurchaseThemeOverlay_buy_btn_text {
+            get {
+                return ResourceManager.GetString("PurchaseThemeOverlay_buy_btn_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Do you want to buy the following theme?.
+        /// </summary>
+        public static string PurchaseThemeOverlay_message {
+            get {
+                return ResourceManager.GetString("PurchaseThemeOverlay_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Purchase theme.
+        /// </summary>
+        public static string PurchaseThemeOverlay_title {
+            get {
+                return ResourceManager.GetString("PurchaseThemeOverlay_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Color BOOM.
         /// </summary>
         public static string RainbowTheme_desc {

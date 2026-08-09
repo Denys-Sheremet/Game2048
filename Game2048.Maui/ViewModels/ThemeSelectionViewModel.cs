@@ -14,13 +14,15 @@ public partial class ThemeSelectionViewModel : ObservableObject, IDisposable
     private readonly IProfileManager _profileManager;
     public ObservableCollection<ThemeItemViewModel> ThemeItems { get; private set; } = new();
     public ThemePreviewViewModel PreviewViewModel { get; } = new();
+    public PurchaseThemeOverlayViewModel PurchaseOverlayViewModel { get; } = new();
     public GameTheme SelectedTheme { get; private set; }
     public IRelayCommand SelectThemeCommand { get; private set; }
     public IRelayCommand PreviewThemeCommand { get; private set; }
 
     public event Action? ThemePreviewRequested; //
-    public event Action<GameTheme>? ThemePurchaseRequested; //
+    public event Action? ThemePurchaseRequested; //
     public event Action<GameTheme>? ThemeChanged; //
+    public event Action? InsufficientCoinsOccurred; //
 
     private readonly Action<int> _onCoinsChangedHandler;//save the subscription handler to unsub in Dispose()
 
@@ -38,6 +40,7 @@ public partial class ThemeSelectionViewModel : ObservableObject, IDisposable
 
         SelectThemeCommand = new RelayCommand<ThemeItemViewModel>(OnSelectTheme);
         PreviewThemeCommand = new RelayCommand<ThemeItemViewModel>(OnOpenPreview);
+        PurchaseOverlayViewModel.BuyCommand = new RelayCommand(OnTryBuyAndApplyTheme);
 
         InitializeThemes();
     }
@@ -84,8 +87,14 @@ public partial class ThemeSelectionViewModel : ObservableObject, IDisposable
         }
         else
         {
-            ThemePurchaseRequested?.Invoke(theme.Theme);
+            PurchaseOverlayViewModel.ThemeItem = theme;
+            ThemePurchaseRequested?.Invoke();
         }
+    }
+
+    private void OnTryBuyAndApplyTheme()
+    {
+        //further checks from special manager
     }
 
     private void OnOpenPreview(ThemeItemViewModel? item)

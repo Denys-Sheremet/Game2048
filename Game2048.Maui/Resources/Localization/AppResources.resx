@@ -342,4 +342,13 @@
   <data name="PinkyPinkTheme_desc" xml:space="preserve">
     <value>21 shades of pink</value>
   </data>
+  <data name="PurchaseThemeOverlay_title" xml:space="preserve">
+    <value>Purchase theme</value>
+  </data>
+  <data name="PurchaseThemeOverlay_message" xml:space="preserve">
+    <value>Do you want to buy the following theme?</value>
+  </data>
+  <data name="PurchaseThemeOverlay_buy_btn_text" xml:space="preserve">
+    <value>Buy</value>
+  </data>
 </root>

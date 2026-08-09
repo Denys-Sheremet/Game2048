@@ -46,6 +46,22 @@ public partial class ThemeSelectionView : ContentPage
         await ShowThemePreviewAsync();
     }
 
+    public async void OnShowPurchaseOverlay()
+    {
+        PageOverlayContainer.IsVisible = true;
+        PageOverlayContainer.Opacity = 0.0;
+        PurchaseOverlay.IsVisible = true;
+        PurchaseOverlay.Opacity = 0.0;
+        PurchaseOverlay.Scale = 0.8;
+
+        await Task.WhenAll
+            (
+                PageOverlayContainer.FadeToAsync(1.0, 180, Easing.CubicOut),
+                PurchaseOverlay.FadeToAsync(1.0, 180, Easing.CubicOut),
+                PurchaseOverlay.ScaleToAsync(1.0, 180, Easing.CubicOut)
+            );
+    }
+
     public async Task ShowThemePreviewAsync()
     {
         PageOverlayContainer.IsVisible = true;
@@ -86,6 +102,7 @@ public partial class ThemeSelectionView : ContentPage
         base.OnAppearing();
 
         _viewModel.ThemePreviewRequested += OnShowThemePreviewAsync;
+        _viewModel.ThemePurchaseRequested += OnShowPurchaseOverlay;
         PreviewOverlay.HideThemePreviewRequested += OnHideThemePreview;
         _themesManager.ThemeChangeRequested += OnThemeChangeRequested;
         _themesManager.ThemeChanged += OnThemeChanged;

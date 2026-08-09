@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:item="clr-namespace:Game2048.Maui.ViewModels.Items"
+             xmlns:lang="clr-namespace:Game2048.Maui.Resources.Localization"
+             x:Class="Game2048.Maui.Views.Overlays.PurchaseThemeOverlayView"
+             x:DataType="item:PurchaseThemeOverlayViewModel">
+    
+    <Border VerticalOptions="Center"
+        HorizontalOptions="Center"
+        StrokeShape="RoundRectangle 20"
+        StrokeThickness="2"
+        Stroke="{DynamicResource MainBorderColor}"
+        Padding="15"
+        BackgroundColor="{DynamicResource GameFieldBackgroundColor}"
+        WidthRequest="350">
+
+
+        <VerticalStackLayout Spacing="15" HorizontalOptions="Center" VerticalOptions="Center">
+            <Grid ColumnDefinitions="40, *, 40" Margin="0, 0, 0, 10">
+                <Label Text="{x:Static lang:AppResources.PurchaseThemeOverlay_title}"
+                   Grid.Column="1"
+                   FontFamily="RubikBold"
+                   FontSize="26"
+                   TextColor="{DynamicResource ScoreBoardTextColor}"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="Center"
+                   LineBreakMode="WordWrap">
+
+                </Label>
+                <Button Grid.Column="2"
+                    Text="&#xf00d;" 
+                    FontFamily="FontAwesome"
+                    FontSize="24"
+                    TextColor="{DynamicResource ScoreBoardTextColor}"
+                    BackgroundColor="Transparent"
+                    Padding="0"
+                    HeightRequest="40"
+                    WidthRequest="40"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"
+                    Clicked="OnClosePurchaseThemeOverlay" />
+            </Grid>
+
+            <Label Text="{x:Static lang:AppResources.PurchaseThemeOverlay_message}"
+                   FontFamily="RubikSemi"
+                   FontSize="16"
+                   TextColor="{DynamicResource ScoreBoardTextColor}"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="Center"
+                   Margin="0, 0, 0, 10">
+
+            </Label>
+            <Grid RowDefinitions="*"
+                  ColumnDefinitions="Auto, *"
+                  HorizontalOptions="Center">
+                <Grid Grid.Column="0" VerticalOptions="Center"
+                      ColumnDefinitions="*, *" RowDefinitions="*, *"
+                      WidthRequest="50" HeightRequest="50">
+                    <Border Grid.Row="0" Grid.Column="0" BackgroundColor="{Binding ThemeItem.PreviewColors[0]}" StrokeShape="RoundRectangle 6,0,0,0" StrokeThickness="0"/>
+                    <Border Grid.Row="0" Grid.Column="1" BackgroundColor="{Binding ThemeItem.PreviewColors[1]}" StrokeShape="RoundRectangle 0,6,0,0" StrokeThickness="0"/>
+                    <Border Grid.Row="1" Grid.Column="0" BackgroundColor="{Binding ThemeItem.PreviewColors[2]}" StrokeShape="RoundRectangle 0,0,6,0" StrokeThickness="0"/>
+                    <Border Grid.Row="1" Grid.Column="1" BackgroundColor="{Binding ThemeItem.PreviewColors[3]}" StrokeShape="RoundRectangle 0,0,0,6" StrokeThickness="0"/>
+                </Grid>
+                <Label Text="{Binding ThemeItem.ThemeTitle}"
+                       Grid.Column="1"
+                       FontFamily="RubikSemi"
+                       FontSize="18"
+                       TextColor="{DynamicResource ScoreBoardTextColor}"
+                       VerticalTextAlignment="Center"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Margin="0, 0, 0, 10">
+
+                </Label>
+
+            </Grid>
+            
+
+            <Button x:Name="ConfirmBtn"
+                Style="{StaticResource MainBtnStyle}"
+                Text="{x:Static lang:AppResources.PurchaseThemeOverlay_buy_btn_text}"
+                FontFamily="MontBold"
+                FontSize="20"
+                Command="{Binding BuyCommand}">
+
+            </Button>
+
+
+
+        </VerticalStackLayout>
+
+
+
+    </Border>
+</ContentView>
