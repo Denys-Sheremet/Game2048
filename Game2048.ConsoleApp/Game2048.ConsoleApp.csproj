@@ -10,7 +10,7 @@
 	<InternalsVisibleTo Include="Game2048.Core.Test" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Spectre.Console" Version="0.54.0" />
+    <PackageReference Include="Spectre.Console" Version="0.57.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Game2048.Core\Game2048.Core.csproj" />
