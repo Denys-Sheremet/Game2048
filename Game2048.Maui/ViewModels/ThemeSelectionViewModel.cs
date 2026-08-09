@@ -73,7 +73,19 @@ public partial class ThemeSelectionViewModel : ObservableObject, IDisposable
 
     private void OnSelectTheme(ThemeItemViewModel? theme)
     {
+        if (theme is null) return;
 
+        var unlockedThemes = _profileManager.GetUnlockedThemes();
+        bool isUnlocked = unlockedThemes.Contains(theme.Theme);
+
+        if (isUnlocked)
+        {
+            _ = _themesManager.ApplyThemeAsync(theme.Theme);
+        }
+        else
+        {
+            ThemePurchaseRequested?.Invoke(theme.Theme);
+        }
     }
 
     private void OnOpenPreview(ThemeItemViewModel? item)

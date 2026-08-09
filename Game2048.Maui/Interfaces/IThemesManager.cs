@@ -8,7 +8,10 @@ public interface IThemesManager
     GameTheme CurrentTheme { get;}
     GameTheme GetThemeFromString(string str);
 
-    void ApplyTheme(GameTheme theme);
+    public event Func<Task>? ThemeChangeRequested; //event to notify subscribers that theme change is requested
+    public event Action? ThemeChanged; //event to notify subscribers that theme has been changed
+
+    Task ApplyThemeAsync(GameTheme theme);
 
     Color GetThemeColor(string resourceKey);
 

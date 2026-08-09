@@ -10,7 +10,7 @@ public partial class GameModesView : ContentPage
         InitializeComponent();
         _viewModel = viewModel;
         BindingContext = _viewModel;
-        viewModel.OnReadyToPlay += OnStartGame;
+        _viewModel.OnReadyToPlay += OnStartGame;
 	}
 
     protected override void OnAppearing()

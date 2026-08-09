@@ -323,9 +323,7 @@ public partial class GameView : ContentPage
             GamePageContainer.FadeToAsync(0, 250, Easing.Linear)
         );
 
-        await Task.WhenAll(
-            Shell.Current.GoToAsync("///MainMenuPage", false)
-        );
+        await Shell.Current.GoToAsync("///MainMenuPage", false);
     }
 
     private async void OnBackToMenu(object? sender, EventArgs e)
@@ -337,9 +335,7 @@ public partial class GameView : ContentPage
             GamePageContainer.FadeToAsync(0, 250, Easing.Linear)
         );
 
-        await Task.WhenAll(
-            Shell.Current.GoToAsync("///MainMenuPage", false)
-        );
+        await Shell.Current.GoToAsync("///MainMenuPage", false);
     }
 
 
@@ -366,16 +362,11 @@ public partial class GameView : ContentPage
 
     private async void HandleRestart()
     {
-
-        await Task.WhenAll(
-            GameGridLayout.FadeToAsync(0.0, 150)
-        );
+        await GameGridLayout.FadeToAsync(0.0, 150);
 
         FullRedraw();
 
-        await Task.WhenAll(
-            GameGridLayout.FadeToAsync(1.0, 150)
-        );
+        await GameGridLayout.FadeToAsync(1.0, 150);
     }
 
     private async void HandleOnSettings()

@@ -11,6 +11,9 @@ public class ThemesManager : IThemesManager
 
     private ResourceDictionary _currentTheme;
 
+    public event Func<Task>? ThemeChangeRequested; //event to notify subscribers that theme change is requested
+    public event Action? ThemeChanged; //event to notify subscribers that theme has been changed
+
     public GameTheme CurrentTheme { get; private set; }
 
     public ThemesManager(ThemeRegistry registry)
@@ -28,12 +31,17 @@ public class ThemesManager : IThemesManager
         return GameTheme.ClassicTheme;
     }
 
-    public void ApplyTheme(GameTheme theme)
+    public async Task ApplyThemeAsync(GameTheme theme)
     //Each theme should implement IThemeResource to be correctly worked with
     {
         var themeToApply = GetResource(theme);
 
         if (ReferenceEquals(themeToApply, _currentTheme)) return;
+
+        if (ThemeChangeRequested is not null)
+        {
+            await ThemeChangeRequested.Invoke();
+        }
 
         ICollection<ResourceDictionary> mergedDictionaries = Application.Current!.Resources.MergedDictionaries;
 
@@ -45,13 +53,12 @@ public class ThemesManager : IThemesManager
                 mergedDictionaries.Remove(existingTheme);
             }
         }
-        //
-        //maybe some animation coming soon
-        //
 
         mergedDictionaries.Add(themeToApply);
         CurrentTheme = theme;
         _currentTheme = themeToApply;
+
+        ThemeChanged?.Invoke();
     }
 
     private ResourceDictionary GetResource(GameTheme theme)

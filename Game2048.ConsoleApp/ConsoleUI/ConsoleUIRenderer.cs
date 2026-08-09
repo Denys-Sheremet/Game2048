@@ -37,10 +37,9 @@ public static class ConsoleUIRenderer
 
         //Table for field renderring
         Table table = new Table()
-            .Border(TableBorder.Rounded)
-            .BorderColor(Color.Black)
-            .Centered()
-            .HideHeaders();
+                            .Border(TableBorder.Rounded)
+                            .BorderColor(Color.Black)
+                            .HideHeaders();
 
         for (int i = 0; i < game.Grid.Width; i++)
         {
@@ -49,16 +48,18 @@ public static class ConsoleUIRenderer
 
         for (int y = 0; y < game.Grid.Height; y++)
         {
-            List<Panel> rowTiles = new List<Panel>();
+            List<Panel> rowTiles = new();
+
             for (int x = 0; x < game.Grid.Width; x++)
             {
                 Tile? tile = game.Grid[x, y];
                 rowTiles.Add(CreateTilePanel(tile?.Value ?? 0));
             }
+
             table.AddRow(rowTiles.ToArray());
         }
 
-        AnsiConsole.Write(table);
+        AnsiConsole.Write(Align.Center(table));
 
 
         AnsiConsole.Write(new Markup("[grey]WASD:[/] Move | [grey]Z:[/] Undo | [grey]ESC:[/] Exit").Centered());

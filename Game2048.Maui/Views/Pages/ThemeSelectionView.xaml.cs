@@ -1,3 +1,4 @@
+using Game2048.Maui.Interfaces;
 using Game2048.Maui.ViewModels;
 using Game2048.Maui.ViewModels.Items;
 
@@ -6,30 +7,38 @@ namespace Game2048.Maui.Views.Pages;
 public partial class ThemeSelectionView : ContentPage
 {
     private readonly ThemeSelectionViewModel _viewModel;
-	public ThemeSelectionView(ThemeSelectionViewModel viewModel)
+    private readonly IThemesManager _themesManager;
+	public ThemeSelectionView(ThemeSelectionViewModel viewModel, IThemesManager themesManager)
 	{
 		InitializeComponent();
         _viewModel = viewModel;
+        _themesManager = themesManager;
         BindingContext = _viewModel;
 
         PreviewOverlay.BindingContext = _viewModel.PreviewViewModel;
-
-        _viewModel.ThemePreviewRequested += OnShowThemePreviewAsync;
-        PreviewOverlay.HideThemePreviewRequested += OnHideThemePreview;
-
     }
 
-	public async void OnBack(object sender, EventArgs e)
+    private async Task OnThemeChangeRequested()
+    {
+        PageContainer.IsEnabled = false;
+        await PageContainer.FadeToAsync(0.5, 200, Easing.CubicOut);
+    }
+
+    private async void OnThemeChanged()
+    {
+        PageContainer.IsEnabled = true;
+        await PageContainer.FadeToAsync(1.0, 250, Easing.CubicOut);
+    }
+
+
+    public async void OnBack(object sender, EventArgs e)
 	{
         await Task.WhenAll
             (
                 PageContainer.TranslateToAsync(Width, 0, 250, Easing.CubicIn),
                 PageContainer.FadeToAsync(0, 250, Easing.Linear)
             );
-        await Task.WhenAll
-            (
-                Shell.Current.GoToAsync("..", false)
-            );
+        await Shell.Current.GoToAsync("..", false);
     }
 
     public async void OnShowThemePreviewAsync()
@@ -76,6 +85,11 @@ public partial class ThemeSelectionView : ContentPage
     {
         base.OnAppearing();
 
+        _viewModel.ThemePreviewRequested += OnShowThemePreviewAsync;
+        PreviewOverlay.HideThemePreviewRequested += OnHideThemePreview;
+        _themesManager.ThemeChangeRequested += OnThemeChangeRequested;
+        _themesManager.ThemeChanged += OnThemeChanged;
+
         PageContainer.Opacity = 0;
         ThemeCollectionView.Opacity = 0;
 
@@ -89,7 +103,10 @@ public partial class ThemeSelectionView : ContentPage
     protected override void OnDisappearing()
     {
         base.OnDisappearing();
+
         _viewModel.ThemePreviewRequested -= OnShowThemePreviewAsync;
+        _themesManager.ThemeChangeRequested -= OnThemeChangeRequested;
+        _themesManager.ThemeChanged -= OnThemeChanged;
         PreviewOverlay.HideThemePreviewRequested -= OnHideThemePreview;
 
         PreviewOverlay.IsVisible = false;

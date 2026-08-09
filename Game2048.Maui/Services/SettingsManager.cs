@@ -43,7 +43,7 @@ public class SettingsManager : ISettingsManager
 
         if (CurrentTheme != GameTheme.ClassicTheme)
         {
-            _themesManager.ApplyTheme(CurrentTheme);
+            _ = _themesManager.ApplyThemeAsync(CurrentTheme);
         }
 
         if (Preferences.Default.ContainsKey(KeyLanguage))
@@ -72,7 +72,7 @@ public class SettingsManager : ISettingsManager
         if (CurrentTheme == theme) return;
         CurrentTheme = theme;
 
-        _themesManager.ApplyTheme(CurrentTheme);
+        _ = _themesManager.ApplyThemeAsync(CurrentTheme);
     }
 
     public void SaveLastTheme(GameTheme theme)
