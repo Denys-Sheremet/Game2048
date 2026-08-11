@@ -736,6 +736,24 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на You can&apos;t purchase this theme as you have insufficient coins amount.
+        /// </summary>
+        public static string UnsuccessfulPurchaseOverlay_desc {
+            get {
+                return ResourceManager.GetString("UnsuccessfulPurchaseOverlay_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Failed.
+        /// </summary>
+        public static string UnsuccessfulPurchaseOverlay_title {
+            get {
+                return ResourceManager.GetString("UnsuccessfulPurchaseOverlay_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Continue.
         /// </summary>
         public static string VictoryOverlay_continue_btn_text {

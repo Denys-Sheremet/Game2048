@@ -50,10 +50,14 @@ namespace Game2048.Maui
         {
             if (_profileManager.CurrentProfile is not null)
             {
-                Task.Run(async () =>
+                try
                 {
-                    await _profileManager.SaveCurrentProfileAsync();
-                });
+                    _profileManager.SaveCurrentProfileAsync().Wait(1500);
+                }
+                catch (Exception ex)
+                {
+                    // Log the exception or handle it as needed
+                }
             }
         }
     }

@@ -18,11 +18,15 @@ public class SettingsManager : ISettingsManager
     private const string KeyTheme = "app_theme";
 
     public string GetCurrentLang() => Preferences.Default.Get(KeyLanguage, "en");
+    public string GetCurrentGameMode() => Preferences.Default.Get(KeyGameMode, nameof(GameModeType.Classic));
+    public string GetCurrentTheme() => Preferences.Default.Get(KeyTheme, nameof(GameTheme.ClassicTheme));
 
     public SettingsManager(GameConfig config, IThemesManager themesManager)
     {
         _config = config;
         _themesManager = themesManager;
+
+        _themesManager.ThemeChanged += OnThemeChanged;
 
         string themeStr = Preferences.Default.Get(KeyTheme, nameof(GameTheme.ClassicTheme));
 
@@ -41,10 +45,7 @@ public class SettingsManager : ISettingsManager
             _config.SetConfig(GameModeType.Classic);
         }
 
-        if (CurrentTheme != GameTheme.ClassicTheme)
-        {
-            _ = _themesManager.ApplyThemeAsync(CurrentTheme);
-        }
+        _ = _themesManager.ApplyThemeAsync(CurrentTheme);
 
         if (Preferences.Default.ContainsKey(KeyLanguage))
         {
@@ -57,6 +58,12 @@ public class SettingsManager : ISettingsManager
         }
 
         return false;
+    }
+
+    private void OnThemeChanged()
+    {
+        CurrentTheme = _themesManager.CurrentTheme;
+        SaveLastTheme(CurrentTheme);
     }
 
     public void SetGameMode(GameModeType mode)

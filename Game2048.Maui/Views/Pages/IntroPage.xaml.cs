@@ -21,7 +21,7 @@ public partial class IntroPage : ContentPage
         IntroLogoImage.Scale = 0.5;
         IntroLogoImage.WidthRequest = LayoutConstants.GetLogoWidth(400);
 
-        var initProfileTask = Task.Run(async () => await InitializeProfileAsync());
+        Task initProfileTask = InitializeProfileAsync();
 
         await Task.WhenAll(
             IntroLogoImage.FadeToAsync(1, 900, Easing.CubicOut),
@@ -42,6 +42,7 @@ public partial class IntroPage : ContentPage
         if (!isLoaded)
         {
             _profileManager.NewProfile();
+            await _profileManager.SaveCurrentProfileAsync();
         }
     }
 

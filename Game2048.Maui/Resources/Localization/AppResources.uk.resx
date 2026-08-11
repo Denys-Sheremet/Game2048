@@ -354,4 +354,10 @@
   <data name="PurchaseThemeOverlay_for_label" xml:space="preserve">
     <value>за</value>
   </data>
+  <data name="UnsuccessfulPurchaseOverlay_title" xml:space="preserve">
+    <value>Неуспішно</value>
+  </data>
+  <data name="UnsuccessfulPurchaseOverlay_desc" xml:space="preserve">
+    <value>Нажаль, ви маєте недостатньо монет для придбання даної теми</value>
+  </data>
 </root>

@@ -81,7 +81,7 @@
     <!-- Achievement -->
     <Color x:Key="AchievementBackgroundColor">#00C853</Color>
     <Color x:Key="ProgressBarColor">#76FF03</Color>
-    <Color x:Key="ProgressBarBGColor">#33FFFFFF</Color>
+    <Color x:Key="ProgressBarBGColor">#B3FFFFFF</Color>
 
     <!-- Text -->
     <Color x:Key="MainTextColor">#FFFFFF</Color>

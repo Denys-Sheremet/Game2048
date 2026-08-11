@@ -19,6 +19,24 @@ public partial class ThemeSelectionView : ContentPage
         PurchaseOverlay.BindingContext = _viewModel.PurchaseOverlayViewModel;
     }
 
+    private void SetOverlayVisibility(bool isVisible) 
+    {
+        PreviewOverlay.IsVisible = isVisible;
+        PurchaseOverlay.IsVisible = isVisible;
+        UnsuccessfulPurchaseOverlay.IsVisible = isVisible;
+        PageOverlayContainer.IsVisible = isVisible;
+
+        if (!isVisible)
+        {
+            PreviewOverlay.Opacity = 1.0;
+            PreviewOverlay.Scale = 1.0;
+            PurchaseOverlay.Opacity = 1.0;
+            PurchaseOverlay.Scale = 1.0;
+            UnsuccessfulPurchaseOverlay.Opacity = 1.0;
+            UnsuccessfulPurchaseOverlay.Scale = 1.0;
+        }
+    }
+
     private async Task OnThemeChangeRequested()
     {
         PageContainer.IsEnabled = false;
@@ -92,8 +110,7 @@ public partial class ThemeSelectionView : ContentPage
             PreviewOverlay.ScaleToAsync(0.85, 140, Easing.CubicIn)
         );
 
-        PreviewOverlay.IsVisible = false;
-        PageOverlayContainer.IsVisible = false;
+        SetOverlayVisibility(false);
     }
 
     public async void OnHidePurchaseOverlay()
@@ -103,9 +120,39 @@ public partial class ThemeSelectionView : ContentPage
             PurchaseOverlay.FadeToAsync(0, 140, Easing.CubicIn),
             PurchaseOverlay.ScaleToAsync(0.85, 140, Easing.CubicIn)
         );
+        SetOverlayVisibility(false);
+    }
 
+    public async void OnHideUnsuccessfulPurchaseOverlay()
+    {
+        await Task.WhenAll(
+            PageOverlayContainer.FadeToAsync(0, 140, Easing.CubicIn),
+            UnsuccessfulPurchaseOverlay.FadeToAsync(0, 140, Easing.CubicIn),
+            UnsuccessfulPurchaseOverlay.ScaleToAsync(0.85, 140, Easing.CubicIn)
+        );
+        SetOverlayVisibility(false);
+    }
+
+    public async void OnInsufficientCoinsOccurred()
+    {
+        PageOverlayContainer.IsVisible = true;
+        UnsuccessfulPurchaseOverlay.IsVisible = true;
+        UnsuccessfulPurchaseOverlay.Opacity = 0.0;
+        UnsuccessfulPurchaseOverlay.Scale = 0.85;
+
+        await Task.WhenAll
+            (
+                PurchaseOverlay.FadeToAsync(0, 140, Easing.CubicIn),
+                PurchaseOverlay.ScaleToAsync(0.85, 140, Easing.CubicIn)
+            );
         PurchaseOverlay.IsVisible = false;
-        PageOverlayContainer.IsVisible = false;
+
+        await Task.WhenAll
+            (
+                PageOverlayContainer.FadeToAsync(1.0, 180, Easing.CubicOut),
+                UnsuccessfulPurchaseOverlay.FadeToAsync(1.0, 180, Easing.CubicOut),
+                UnsuccessfulPurchaseOverlay.ScaleToAsync(1.0, 180, Easing.CubicOut)
+            );
     }
 
     protected override async void OnAppearing()
@@ -115,8 +162,10 @@ public partial class ThemeSelectionView : ContentPage
         _viewModel.ThemePreviewRequested += OnShowThemePreviewAsync;
         _viewModel.ThemePurchaseRequested += OnShowPurchaseOverlay;
         _viewModel.ThemePurchaseSucceeded += OnHidePurchaseOverlay;
+        _viewModel.InsufficientCoinsOccurred += OnInsufficientCoinsOccurred;
         PreviewOverlay.HideThemePreviewRequested += OnHideThemePreview;
         PurchaseOverlay.HidePurchaseOverlayRequested += OnHidePurchaseOverlay;
+        UnsuccessfulPurchaseOverlay.HideUnsuccessfulPurchaseOverlayRequested += OnHideUnsuccessfulPurchaseOverlay;
         _themesManager.ThemeChangeRequested += OnThemeChangeRequested;
         _themesManager.ThemeChanged += OnThemeChanged;
 
@@ -137,14 +186,14 @@ public partial class ThemeSelectionView : ContentPage
         _viewModel.ThemePreviewRequested -= OnShowThemePreviewAsync;
         _viewModel.ThemePurchaseRequested -= OnShowPurchaseOverlay;
         _viewModel.ThemePurchaseSucceeded -= OnHidePurchaseOverlay;
+        _viewModel.InsufficientCoinsOccurred -= OnInsufficientCoinsOccurred;
         _themesManager.ThemeChangeRequested -= OnThemeChangeRequested;
         _themesManager.ThemeChanged -= OnThemeChanged;
         PreviewOverlay.HideThemePreviewRequested -= OnHideThemePreview;
         PurchaseOverlay.HidePurchaseOverlayRequested -= OnHidePurchaseOverlay;
+        UnsuccessfulPurchaseOverlay.HideUnsuccessfulPurchaseOverlayRequested -= OnHideUnsuccessfulPurchaseOverlay;
 
-        PreviewOverlay.IsVisible = false;
-        PurchaseOverlay.IsVisible = false;
-        PageOverlayContainer.IsVisible = false;
+        SetOverlayVisibility(false);
     }
 
     private void ScrollThemeCollectionViewTo(ThemeItemViewModel? item)

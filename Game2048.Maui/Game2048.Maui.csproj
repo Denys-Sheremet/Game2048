@@ -151,6 +151,9 @@
 	  <MauiXaml Update="Views\Overlays\ThemePreviewOverlayView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Overlays\UnsuccessfulPurchaseOverlay.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Pages\AchievementsView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
