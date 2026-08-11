@@ -96,7 +96,7 @@
                          CommandParameter="{Binding .}"
                          WidthRequest="36"
                          HeightRequest="36"
-                         CornerRadius="30"
+                         CornerRadius="20"
                          Padding="5"
                          HorizontalOptions="End"
                          VerticalOptions="Center"

@@ -351,4 +351,7 @@
   <data name="PurchaseThemeOverlay_buy_btn_text" xml:space="preserve">
     <value>Придбати</value>
   </data>
+  <data name="PurchaseThemeOverlay_for_label" xml:space="preserve">
+    <value>за</value>
+  </data>
 </root>

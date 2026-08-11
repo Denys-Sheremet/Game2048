@@ -583,6 +583,15 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на for.
+        /// </summary>
+        public static string PurchaseThemeOverlay_for_label {
+            get {
+                return ResourceManager.GetString("PurchaseThemeOverlay_for_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Do you want to buy the following theme?.
         /// </summary>
         public static string PurchaseThemeOverlay_message {

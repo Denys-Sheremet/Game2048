@@ -4,6 +4,7 @@ namespace Game2048.Maui.Views.Overlays;
 
 public partial class PurchaseThemeOverlayView : ContentView
 {
+    public event Action? HidePurchaseOverlayRequested;
     public PurchaseThemeOverlayView()
 	{
 		InitializeComponent();
@@ -11,6 +12,6 @@ public partial class PurchaseThemeOverlayView : ContentView
 
 	public async void OnClosePurchaseThemeOverlay(object sender, EventArgs e)
     {
-        //invoke the close overlay event in main view 
+        HidePurchaseOverlayRequested?.Invoke();
     }
 }

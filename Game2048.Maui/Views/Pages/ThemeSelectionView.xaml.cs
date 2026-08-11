@@ -16,6 +16,7 @@ public partial class ThemeSelectionView : ContentPage
         BindingContext = _viewModel;
 
         PreviewOverlay.BindingContext = _viewModel.PreviewViewModel;
+        PurchaseOverlay.BindingContext = _viewModel.PurchaseOverlayViewModel;
     }
 
     private async Task OnThemeChangeRequested()
@@ -73,8 +74,8 @@ public partial class ThemeSelectionView : ContentPage
         await Task.WhenAll
             (
                 PageOverlayContainer.FadeToAsync(1.0, 180, Easing.CubicOut),
-                PreviewOverlay.FadeToAsync(1.0, 180, Easing.CubicOut),
-                PreviewOverlay.ScaleToAsync(1.0, 180, Easing.CubicOut)
+                PreviewOverlay.FadeToAsync(1.0, 300, Easing.CubicOut),
+                PreviewOverlay.ScaleToAsync(1.0, 300, Easing.CubicOut)
             );
     }
 
@@ -85,8 +86,6 @@ public partial class ThemeSelectionView : ContentPage
 
     public async Task HideThemePreviewAsync()
     {
-        if (!PreviewOverlay.IsVisible) return;
-
         await Task.WhenAll(
             PageOverlayContainer.FadeToAsync(0, 140, Easing.CubicIn),
             PreviewOverlay.FadeToAsync(0, 140, Easing.CubicIn),
@@ -97,6 +96,18 @@ public partial class ThemeSelectionView : ContentPage
         PageOverlayContainer.IsVisible = false;
     }
 
+    public async void OnHidePurchaseOverlay()
+    {
+        await Task.WhenAll(
+            PageOverlayContainer.FadeToAsync(0, 140, Easing.CubicIn),
+            PurchaseOverlay.FadeToAsync(0, 140, Easing.CubicIn),
+            PurchaseOverlay.ScaleToAsync(0.85, 140, Easing.CubicIn)
+        );
+
+        PurchaseOverlay.IsVisible = false;
+        PageOverlayContainer.IsVisible = false;
+    }
+
     protected override async void OnAppearing()
     {
         base.OnAppearing();
@@ -104,6 +115,7 @@ public partial class ThemeSelectionView : ContentPage
         _viewModel.ThemePreviewRequested += OnShowThemePreviewAsync;
         _viewModel.ThemePurchaseRequested += OnShowPurchaseOverlay;
         PreviewOverlay.HideThemePreviewRequested += OnHideThemePreview;
+        PurchaseOverlay.HidePurchaseOverlayRequested += OnHidePurchaseOverlay;
         _themesManager.ThemeChangeRequested += OnThemeChangeRequested;
         _themesManager.ThemeChanged += OnThemeChanged;
 
@@ -122,11 +134,14 @@ public partial class ThemeSelectionView : ContentPage
         base.OnDisappearing();
 
         _viewModel.ThemePreviewRequested -= OnShowThemePreviewAsync;
+        _viewModel.ThemePurchaseRequested -= OnShowPurchaseOverlay;
         _themesManager.ThemeChangeRequested -= OnThemeChangeRequested;
         _themesManager.ThemeChanged -= OnThemeChanged;
         PreviewOverlay.HideThemePreviewRequested -= OnHideThemePreview;
+        PurchaseOverlay.HidePurchaseOverlayRequested -= OnHidePurchaseOverlay;
 
         PreviewOverlay.IsVisible = false;
+        PurchaseOverlay.IsVisible = false;
         PageOverlayContainer.IsVisible = false;
     }
 

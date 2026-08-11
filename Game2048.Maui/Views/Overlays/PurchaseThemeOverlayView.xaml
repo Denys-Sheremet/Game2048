@@ -11,7 +11,7 @@
         StrokeShape="RoundRectangle 20"
         StrokeThickness="2"
         Stroke="{DynamicResource MainBorderColor}"
-        Padding="15"
+        Padding="0, 15"
         BackgroundColor="{DynamicResource GameFieldBackgroundColor}"
         WidthRequest="350">
 
@@ -55,8 +55,10 @@
             </Label>
             <Grid RowDefinitions="*"
                   ColumnDefinitions="Auto, *"
-                  HorizontalOptions="Center">
-                <Grid Grid.Column="0" VerticalOptions="Center"
+                  HorizontalOptions="Center"
+                  VerticalOptions="Center"
+                  ColumnSpacing="10">
+                <Grid Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center"
                       ColumnDefinitions="*, *" RowDefinitions="*, *"
                       WidthRequest="50" HeightRequest="50">
                     <Border Grid.Row="0" Grid.Column="0" BackgroundColor="{Binding ThemeItem.PreviewColors[0]}" StrokeShape="RoundRectangle 6,0,0,0" StrokeThickness="0"/>
@@ -70,11 +72,42 @@
                        FontSize="18"
                        TextColor="{DynamicResource ScoreBoardTextColor}"
                        VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
                        HorizontalOptions="Center"
-                       VerticalOptions="Center"
-                       Margin="0, 0, 0, 10">
+                       VerticalOptions="Center">
 
                 </Label>
+
+            </Grid>
+            <Grid ColumnDefinitions="Auto, Auto, Auto"
+                  HorizontalOptions="Center"
+                  ColumnSpacing="5">
+                <Label Text="{x:Static lang:AppResources.PurchaseThemeOverlay_for_label}"
+                       Grid.Column="0"
+                       FontFamily="RubikSemi"
+                       FontSize="18"
+                       TextColor="{DynamicResource ScoreBoardTextColor}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+
+                <Label Text="{Binding ThemeItem.Price}"
+                       Grid.Column="1"
+                       FontFamily="RubikSemi"
+                       FontSize="18"
+                       TextColor="{DynamicResource MainTextColor}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+
+                <Image Source="coin.svg"
+                       Grid.Column="2"
+                       WidthRequest="18"
+                       HeightRequest="18"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
 
             </Grid>
             
@@ -84,7 +117,8 @@
                 Text="{x:Static lang:AppResources.PurchaseThemeOverlay_buy_btn_text}"
                 FontFamily="MontBold"
                 FontSize="20"
-                Command="{Binding BuyCommand}">
+                Command="{Binding BuyCommand}"
+                Margin="0, 0, 0, 15">
 
             </Button>
 
