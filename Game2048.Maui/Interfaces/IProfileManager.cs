@@ -9,6 +9,7 @@ namespace Game2048.Maui.Interfaces;
 public interface IProfileManager
 {
     PlayerProfile? CurrentProfile { get; }
+    event Action<GameTheme>? ThemeUnlocked;
     int CurrentCoins { get; }
     void NewProfile();
     Task<bool> TryLoadProfileFromSave();
@@ -23,10 +24,11 @@ public interface IProfileManager
     HashSet<AchievementType> GetUnlockedAchievements();
     void UnlockTheme(GameTheme theme);
     HashSet<GameTheme> GetUnlockedThemes();
+    bool IsThemeUnlocked(GameTheme theme);
     void EarnCoins(int amount);
     bool SpendCoins(int amount);
     void SetPlayerName(string name);
     string GetPlayerName();
 
-    event Action<int>? OnCoinsChanged;
+    event Action<int>? CoinsChanged;
 }

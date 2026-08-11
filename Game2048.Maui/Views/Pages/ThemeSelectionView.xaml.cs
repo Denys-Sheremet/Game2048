@@ -114,6 +114,7 @@ public partial class ThemeSelectionView : ContentPage
 
         _viewModel.ThemePreviewRequested += OnShowThemePreviewAsync;
         _viewModel.ThemePurchaseRequested += OnShowPurchaseOverlay;
+        _viewModel.ThemePurchaseSucceeded += OnHidePurchaseOverlay;
         PreviewOverlay.HideThemePreviewRequested += OnHideThemePreview;
         PurchaseOverlay.HidePurchaseOverlayRequested += OnHidePurchaseOverlay;
         _themesManager.ThemeChangeRequested += OnThemeChangeRequested;
@@ -135,6 +136,7 @@ public partial class ThemeSelectionView : ContentPage
 
         _viewModel.ThemePreviewRequested -= OnShowThemePreviewAsync;
         _viewModel.ThemePurchaseRequested -= OnShowPurchaseOverlay;
+        _viewModel.ThemePurchaseSucceeded -= OnHidePurchaseOverlay;
         _themesManager.ThemeChangeRequested -= OnThemeChangeRequested;
         _themesManager.ThemeChanged -= OnThemeChanged;
         PreviewOverlay.HideThemePreviewRequested -= OnHideThemePreview;

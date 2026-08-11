@@ -12,6 +12,7 @@ public partial class ThemeSelectionViewModel : ObservableObject, IDisposable
 {
     private readonly IThemesManager _themesManager;
     private readonly IProfileManager _profileManager;
+    private readonly IStoreManager _storeManager;
     public ObservableCollection<ThemeItemViewModel> ThemeItems { get; private set; } = new();
     public ThemePreviewViewModel PreviewViewModel { get; } = new();
     public PurchaseThemeOverlayViewModel PurchaseOverlayViewModel { get; } = new();
@@ -21,7 +22,7 @@ public partial class ThemeSelectionViewModel : ObservableObject, IDisposable
 
     public event Action? ThemePreviewRequested; //
     public event Action? ThemePurchaseRequested; //
-    public event Action<GameTheme>? ThemeChanged; //
+    public event Action? ThemePurchaseSucceeded; //
     public event Action? InsufficientCoinsOccurred; //
 
     private readonly Action<int> _onCoinsChangedHandler;//save the subscription handler to unsub in Dispose()
@@ -29,14 +30,16 @@ public partial class ThemeSelectionViewModel : ObservableObject, IDisposable
     public ThemeItemViewModel? SelectedThemeItem => ThemeItems.FirstOrDefault(th => th.IsSelected);
     public int CurrentCoins => _profileManager.CurrentCoins;
 
-    public ThemeSelectionViewModel(IThemesManager themesManager, IProfileManager profileManager)
+    public ThemeSelectionViewModel(IThemesManager themesManager, IProfileManager profileManager, IStoreManager storeManager)
     {
         _themesManager = themesManager;
         _profileManager = profileManager;
+        _storeManager = storeManager;
         SelectedTheme = _themesManager.CurrentTheme;
 
         _onCoinsChangedHandler = _ => OnPropertyChanged(nameof(CurrentCoins));
-        _profileManager.OnCoinsChanged += _onCoinsChangedHandler;
+        _profileManager.CoinsChanged += _onCoinsChangedHandler;
+        _profileManager.ThemeUnlocked += OnThemeUnlocked;//
 
         SelectThemeCommand = new RelayCommand<ThemeItemViewModel>(OnSelectTheme);
         PreviewThemeCommand = new RelayCommand<ThemeItemViewModel>(OnOpenPreview);
@@ -72,18 +75,37 @@ public partial class ThemeSelectionViewModel : ObservableObject, IDisposable
         }
     }
 
-    
+    private void SetSelectedThemeItem(GameTheme theme)
+    {
+        SelectedTheme = theme;
+
+        foreach (var item in ThemeItems)
+        {
+            item.IsSelected = (item.Theme == theme);
+        }
+
+        OnPropertyChanged(nameof(SelectedThemeItem));
+    }
+
+    private void OnThemeUnlocked(GameTheme theme)
+    {
+        var themeItem = ThemeItems.FirstOrDefault(th => th.Theme == theme);
+        if (themeItem is not null)
+        {
+            themeItem.IsUnlocked = true;
+        }
+    }
 
     private void OnSelectTheme(ThemeItemViewModel? theme)
     {
         if (theme is null) return;
 
-        var unlockedThemes = _profileManager.GetUnlockedThemes();
-        bool isUnlocked = unlockedThemes.Contains(theme.Theme);
+        bool isUnlocked = _profileManager.IsThemeUnlocked(theme.Theme);
 
         if (isUnlocked)
         {
             _ = _themesManager.ApplyThemeAsync(theme.Theme);
+            SetSelectedThemeItem(theme.Theme);
         }
         else
         {
@@ -92,9 +114,32 @@ public partial class ThemeSelectionViewModel : ObservableObject, IDisposable
         }
     }
 
-    private void OnTryBuyAndApplyTheme()
+    private async void OnTryBuyAndApplyTheme()
     {
-        //further checks from special manager
+        if (PurchaseOverlayViewModel.ThemeItem is null) return;
+
+        var themeToBuy = PurchaseOverlayViewModel.ThemeItem.Theme;
+
+        bool isPurchased = _storeManager.TryBuyTheme(themeToBuy);
+        
+        if (isPurchased)
+        {
+            try
+            {
+                await _profileManager.SaveCurrentProfileAsync();
+                await _themesManager.ApplyThemeAsync(themeToBuy);
+                SetSelectedThemeItem(themeToBuy);
+                ThemePurchaseSucceeded?.Invoke();
+            }
+            catch (Exception ex)
+            {
+                // ILogger coming soon i guess
+            }
+        }
+        else
+        {
+            InsufficientCoinsOccurred?.Invoke();
+        }
     }
 
     private void OnOpenPreview(ThemeItemViewModel? item)
@@ -109,6 +154,7 @@ public partial class ThemeSelectionViewModel : ObservableObject, IDisposable
 
     public void Dispose()
     {
-        _profileManager.OnCoinsChanged -= _onCoinsChangedHandler;
+        _profileManager.CoinsChanged -= _onCoinsChangedHandler;
+        _profileManager.ThemeUnlocked -= OnThemeUnlocked;
     }
 }

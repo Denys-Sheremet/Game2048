@@ -104,6 +104,7 @@ public class ProfileManager : IProfileManager
     }
 
     //Achievements
+    public event Action<GameTheme>? ThemeUnlocked;
     public void UnlockAchievement(AchievementType achievement)
     {
         var profile = GetValidProfile();
@@ -121,9 +122,9 @@ public class ProfileManager : IProfileManager
     public void UnlockTheme(GameTheme theme)
     {
         var profile = GetValidProfile();
-        if (!profile.UnlockedThemes.Contains(theme))
+        if (profile.UnlockedThemes.Add(theme))
         {
-            profile.UnlockedThemes.Add(theme);
+            ThemeUnlocked?.Invoke(theme);
         }
     }
 
@@ -133,15 +134,21 @@ public class ProfileManager : IProfileManager
         return profile.UnlockedThemes;
     }
 
+    public bool IsThemeUnlocked(GameTheme theme)
+    {
+        var profile = GetValidProfile();
+        return profile.UnlockedThemes.Contains(theme);
+    }
+
     //Coins
-    public event Action<int>? OnCoinsChanged;
+    public event Action<int>? CoinsChanged;
     public int CurrentCoins => CurrentProfile?.Coins ?? 0;
     public void EarnCoins(int amount)
     {
         var profile = GetValidProfile();
         if (amount <= 0) throw new InvalidOperationException("Amount of coins to add should be more than 0");
         profile.Coins += amount;
-        OnCoinsChanged?.Invoke(profile.Coins);
+        CoinsChanged?.Invoke(profile.Coins);
     }
 
     public bool SpendCoins(int amount)
@@ -150,7 +157,7 @@ public class ProfileManager : IProfileManager
         if (profile.Coins >= amount)
         {
             profile.Coins -= amount;
-            OnCoinsChanged?.Invoke(profile.Coins);
+            CoinsChanged?.Invoke(profile.Coins);
             return true;
         }
         return false;

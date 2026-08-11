@@ -41,6 +41,7 @@ namespace Game2048.Maui
             builder.Services.AddSingleton<IStatisticsManager, StatisticsManager>();
             builder.Services.AddSingleton<IAchievementManager, AchievementManager>();
             builder.Services.AddSingleton<ISettingsManager, SettingsManager>();
+            builder.Services.AddSingleton<IStoreManager, StoreManager>();
 
             builder.Services.AddSingleton<ThemeRegistry>();
 
