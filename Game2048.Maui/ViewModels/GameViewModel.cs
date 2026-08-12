@@ -212,7 +212,7 @@ public partial class GameViewModel : BindableObject, IDisposable
         _gameCore.OnGameOver += HandleOnGameOver;
         _gameCore.OnStateChanged += HandleOnStateChanged;
 
-        _achievementManager.OnAchievementUnlocked += HandleAchievementUnlocked;
+        _achievementManager.AchievementUnlocked += HandleAchievementUnlocked;
     }
 
     private void HandleAchievementUnlocked(AchievementType achievementType)
@@ -229,7 +229,7 @@ public partial class GameViewModel : BindableObject, IDisposable
         _gameCore.OnVictory -= HandleOnVictory;
         _gameCore.OnGameOver -= HandleOnGameOver;
         _gameCore.OnStateChanged -= HandleOnStateChanged;
-        _achievementManager.OnAchievementUnlocked -= HandleAchievementUnlocked;
+        _achievementManager.AchievementUnlocked -= HandleAchievementUnlocked;
     }
 
     public bool TryLoadSave()

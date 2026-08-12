@@ -268,7 +268,7 @@ public partial class GameView : ContentPage
         BuildTheBoard(_viewModel.Rows, _viewModel.Columns);
         FullRedraw();
 
-        _achievementManager.OnAchievementUnlocked += OnNewAchievementUnlocked;
+        _achievementManager.AchievementUnlocked += OnNewAchievementUnlocked;
 
         Dispatcher.Dispatch(async () => 
         {
@@ -285,7 +285,7 @@ public partial class GameView : ContentPage
     protected override void OnDisappearing()
     {
         base.OnDisappearing();
-        _achievementManager.OnAchievementUnlocked -= OnNewAchievementUnlocked;
+        _achievementManager.AchievementUnlocked -= OnNewAchievementUnlocked;
 
         if (BindingContext is IDisposable disposableViewModel)
         {

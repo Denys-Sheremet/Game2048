@@ -10,11 +10,13 @@ public interface IProfileManager
 {
     PlayerProfile? CurrentProfile { get; }
     event Action<GameTheme>? ThemeUnlocked;
+    event Action? StatisticsUpdated;
     int CurrentCoins { get; }
     void NewProfile();
     Task<bool> TryLoadProfileFromSave();
     Task SaveCurrentProfileAsync();
     void UpdateStatistics(bool gameEnded, bool hasWon, int movesMade, int undosMade);
+    PlayerStatistics GetGlobalStatistics();
     void SetCurrentProfile(PlayerProfile profile);
     void SaveCurrentGame(GameModeType gameMode, StateSnapshot currentState, IReadOnlyList<StateSnapshot>? history);
     GameSessionSave? LoadCurrentGame(GameModeType gameMode);

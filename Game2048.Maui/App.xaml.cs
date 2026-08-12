@@ -7,14 +7,19 @@ namespace Game2048.Maui
         private readonly IProfileManager _profileManager;
         private readonly ISettingsManager _settingsManager;
         private readonly IServiceProvider _serviceProvider;
+        private readonly IRewardManager _rewardManager;
 
-        public App(IProfileManager profileManager, ISettingsManager settingsManager, IServiceProvider serviceProvider)
+        public App(IProfileManager profileManager, 
+                   ISettingsManager settingsManager, 
+                   IServiceProvider serviceProvider,
+                   IRewardManager rewardManager)
         {
             InitializeComponent();
 
             _profileManager = profileManager;
             _settingsManager = settingsManager;
             _serviceProvider = serviceProvider;
+            _rewardManager = rewardManager;
         }
 
         protected override Window CreateWindow(IActivationState? activationState)

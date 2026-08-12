@@ -55,6 +55,7 @@ public class ProfileManager : IProfileManager
     }
 
     //Statistics
+    public event Action? StatisticsUpdated;
     public void UpdateStatistics(bool gameEnded, bool hasWon, int movesMade, int undosMade)
     {
         var profile = GetValidProfile();
@@ -63,7 +64,15 @@ public class ProfileManager : IProfileManager
         stats.TotalGamesWon = hasWon ? stats.TotalGamesWon + 1 : stats.TotalGamesWon;
         stats.TotalMovesMade += movesMade;
         stats.TotalUndosUsed += undosMade;
+        StatisticsUpdated?.Invoke();
     } 
+
+    public PlayerStatistics GetGlobalStatistics()
+    {
+        var profile = GetValidProfile();
+        var stats = profile.GlobalPlayerStatistics;
+        return stats;
+    }
 
     //Local save & load
     public void SaveCurrentGame(GameModeType gameMode, StateSnapshot currentState, IReadOnlyList<StateSnapshot>? history)

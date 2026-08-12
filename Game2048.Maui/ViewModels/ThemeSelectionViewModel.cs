@@ -73,6 +73,24 @@ public partial class ThemeSelectionViewModel : ObservableObject, IDisposable
                 PreviewCommand = PreviewThemeCommand
             });
         }
+
+        SortAndSetThemes();
+    }
+
+    private void SortAndSetThemes()
+    {
+        var sorted = ThemeItems
+            .OrderByDescending(t => t.IsUnlocked)
+            .ThenBy(t => t.Price)
+            .ToList();
+
+        ThemeItems.Clear();
+        foreach (var item in sorted)
+        {
+            ThemeItems.Add(item);
+        }
+
+        OnPropertyChanged(nameof(SelectedThemeItem));
     }
 
     private void SetSelectedThemeItem(GameTheme theme)
@@ -94,6 +112,8 @@ public partial class ThemeSelectionViewModel : ObservableObject, IDisposable
         {
             themeItem.IsUnlocked = true;
         }
+
+        SortAndSetThemes();
     }
 
     private void OnSelectTheme(ThemeItemViewModel? theme)
@@ -129,6 +149,7 @@ public partial class ThemeSelectionViewModel : ObservableObject, IDisposable
                 await _profileManager.SaveCurrentProfileAsync();
                 await _themesManager.ApplyThemeAsync(themeToBuy);
                 SetSelectedThemeItem(themeToBuy);
+                SortAndSetThemes();
                 ThemePurchaseSucceeded?.Invoke();
             }
             catch (Exception ex)

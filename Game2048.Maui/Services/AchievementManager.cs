@@ -15,7 +15,7 @@ public class AchievementManager : IAchievementManager
     private readonly List<ISessionAchievementChecker> _sessionAchievements;
     private readonly List<ISpecialAchievementChecker> _specialAchievements;
 
-    public event Action<AchievementType>? OnAchievementUnlocked;
+    public event Action<AchievementType>? AchievementUnlocked;
 
     public AchievementManager(IProfileManager profileManager, 
         IEnumerable<IGlobalAchievementChecker> globalAchievements,
@@ -47,7 +47,7 @@ public class AchievementManager : IAchievementManager
             if (unlockedAchievements.Contains(ga.Type)) continue;
             if (ga.Check(stats))
             {
-                OnAchievementUnlocked?.Invoke(ga.Type);
+                AchievementUnlocked?.Invoke(ga.Type);
             }
         }
     }
@@ -63,7 +63,7 @@ public class AchievementManager : IAchievementManager
             if (unlockedAchievements.Contains(sa.Type)) continue;
             if (sa.Check(afterState, transitions))
             {
-                OnAchievementUnlocked?.Invoke(sa.Type);
+                AchievementUnlocked?.Invoke(sa.Type);
             }
         }
     }
@@ -80,7 +80,7 @@ public class AchievementManager : IAchievementManager
             if (unlockedAchievements.Contains(sa.Type)) continue;
             if (sa.Check(stats.GameOver, stats.HasWon, stats.MovesMade, stats.UndosMade, stats.TilesMerged))
             {
-                OnAchievementUnlocked?.Invoke(sa.Type);
+                AchievementUnlocked?.Invoke(sa.Type);
             }
         }
     }
