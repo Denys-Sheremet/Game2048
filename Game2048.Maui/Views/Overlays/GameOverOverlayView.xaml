@@ -11,7 +11,7 @@
         HorizontalOptions="Center"
         StrokeShape="RoundRectangle 20"
         Padding="30"
-        BackgroundColor="{DynamicResource GameFieldBackgroundColor}"
+        Background="{DynamicResource GameFieldBackgroundColor}"
         WidthRequest="300">
 
         <VerticalStackLayout Spacing="15"

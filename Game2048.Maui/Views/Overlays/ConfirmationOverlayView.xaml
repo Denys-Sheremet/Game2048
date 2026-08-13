@@ -13,7 +13,7 @@
             StrokeThickness="2"
             Stroke="{DynamicResource MainBorderColor}"
             Padding="15"
-            BackgroundColor="{DynamicResource GameFieldBackgroundColor}"
+            Background="{DynamicResource GameFieldBackgroundColor}"
             WidthRequest="350">
 
         

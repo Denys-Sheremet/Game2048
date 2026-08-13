@@ -10,31 +10,21 @@
              x:DataType="vm:ThemeSelectionViewModel"
              Shell.NavBarIsVisible="False"
              x:Name="ThemeSelectionPage" 
-             BackgroundColor="{DynamicResource PageBackgroundColor}">
+             Background="{DynamicResource PageBackgroundColor}">
     <Grid x:Name="PageContainer"
           HorizontalOptions="Fill"
           VerticalOptions="Fill"
-          BackgroundColor="{DynamicResource PageBackgroundColor}">
+          Background="{DynamicResource PageBackgroundColor}"
+          IsVisible="False">
         <Grid x:Name="PageContentContainer"
               HorizontalOptions="Fill"
                 VerticalOptions="Fill"
                 RowDefinitions="Auto, *"
                 ZIndex="10">
 
-            <BoxView Grid.Row="1"
-                     HeightRequest="24"
-                     VerticalOptions="Start"
-                     ZIndex="10"
-                     InputTransparent="True">   
-                <BoxView.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="{DynamicResource PageBackgroundColor}" Offset="0.0"/>
-                        <GradientStop Color="Transparent" Offset="1.0"/>
-                    </LinearGradientBrush>
-                </BoxView.Background>
-            </BoxView>
             
-            <Grid ColumnDefinitions="*, Auto, *" Grid.Row="0" Grid.Column="0" Margin="0, 25, 0, 25">
+            
+            <Grid ColumnDefinitions="*, Auto, *" Grid.Row="0" Grid.Column="0" Margin="0, 25, 0, 10">
                 <Button x:Name="BackToMenuBtn"
                         Grid.Row="0"
                         Grid.Column="0"
@@ -78,7 +68,7 @@
                 </CollectionView.ItemTemplate>
 
                 <CollectionView.Footer>
-                    <BoxView HeightRequest="60" Color="{DynamicResource PageBackgroundColor}" />
+                    <Grid HeightRequest="60" Background="Transparent" />
                 </CollectionView.Footer>
 
             </CollectionView>
@@ -91,7 +81,7 @@
                 <Border StrokeThickness="2"
                         StrokeShape="RoundRectangle 30"
                         Stroke="{DynamicResource MainBorderColor}"
-                        BackgroundColor="{DynamicResource ProgressBarBGColor}"
+                        Background="{DynamicResource ProgressBarBGColor}"
                         Padding="25, 10"
                         HorizontalOptions="Fill">
                     <Grid ColumnDefinitions="Auto, Auto"
@@ -109,6 +99,9 @@
                                Text="{Binding CurrentCoins}"/>
                     </Grid>
                 </Border>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnCoinsTapped"/>
+                </Grid.GestureRecognizers>
             </Grid>
         </Grid>
         

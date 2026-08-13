@@ -8,7 +8,7 @@
     <Border StrokeShape="RoundRectangle 15"
             StrokeThickness="2"
             Stroke="{DynamicResource MainBorderColor}"
-            BackgroundColor="{DynamicResource AchievementBackgroundColor}"
+            Background="{DynamicResource AchievementBackgroundColor}"
             HeightRequest="110"
             WidthRequest="110"
             Padding="10">

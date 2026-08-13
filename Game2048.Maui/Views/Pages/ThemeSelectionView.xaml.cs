@@ -1,6 +1,7 @@
 using Game2048.Maui.Interfaces;
 using Game2048.Maui.ViewModels;
 using Game2048.Maui.ViewModels.Items;
+using System.Diagnostics;
 
 namespace Game2048.Maui.Views.Pages;
 
@@ -17,6 +18,8 @@ public partial class ThemeSelectionView : ContentPage
 
         PreviewOverlay.BindingContext = _viewModel.PreviewViewModel;
         PurchaseOverlay.BindingContext = _viewModel.PurchaseOverlayViewModel;
+
+        Loaded += OnPageLoaded;
     }
 
     private void SetOverlayVisibility(bool isVisible) 
@@ -40,13 +43,13 @@ public partial class ThemeSelectionView : ContentPage
     private async Task OnThemeChangeRequested()
     {
         PageContainer.IsEnabled = false;
-        await PageContainer.FadeToAsync(0.5, 200, Easing.CubicOut);
+        await PageContainer.FadeToAsync(0.5, 250, Easing.CubicOut);
     }
 
     private async void OnThemeChanged()
     {
         PageContainer.IsEnabled = true;
-        await PageContainer.FadeToAsync(1.0, 250, Easing.CubicOut);
+        await PageContainer.FadeToAsync(1.0, 250, Easing.CubicIn);
     }
 
 
@@ -54,8 +57,8 @@ public partial class ThemeSelectionView : ContentPage
 	{
         await Task.WhenAll
             (
-                PageContainer.TranslateToAsync(Width, 0, 250, Easing.CubicIn),
-                PageContainer.FadeToAsync(0, 250, Easing.Linear)
+                PageContainer.TranslateToAsync(200, 0, 300, Easing.CubicIn),
+                PageContainer.FadeToAsync(0, 300, Easing.CubicIn)
             );
         await Shell.Current.GoToAsync("..", false);
     }
@@ -113,6 +116,13 @@ public partial class ThemeSelectionView : ContentPage
         SetOverlayVisibility(false);
     }
 
+    private async void OnCoinsTapped(object? sender, EventArgs e)
+    {
+        await CoinsShowContainer.ScaleToAsync(0.95, 100, Easing.CubicOut);
+        await CoinsShowContainer.ScaleToAsync(1.05, 100, Easing.CubicOut);
+        await CoinsShowContainer.ScaleToAsync(1.0, 100, Easing.CubicOut);
+    }
+
     public async void OnHidePurchaseOverlay()
     {
         await Task.WhenAll(
@@ -155,6 +165,29 @@ public partial class ThemeSelectionView : ContentPage
             );
     }
 
+    private async void OnPageLoaded(object? sender, EventArgs e)
+    {
+        PageContainer.Opacity = 0;
+        PageContainer.IsVisible = true;
+        PageContainer.TranslationX = 200;
+        ThemeCollectionView.Opacity = 0;
+
+        int selectedIndex = _viewModel.GetSelectedThemeIndex();
+        if (selectedIndex >= 0)
+        {
+            ThemeCollectionView.ScrollTo(selectedIndex, position: ScrollToPosition.Center, animate: false);
+        }
+
+        await Task.Yield();
+
+        await Task.WhenAll
+            (
+                PageContainer.FadeToAsync(1, 300, Easing.CubicOut),
+                PageContainer.TranslateToAsync(0, 0, 300, Easing.CubicOut)
+            );
+        await ThemeCollectionView.FadeToAsync(1.0, 300, Easing.CubicOut);
+    }
+
     protected override async void OnAppearing()
     {
         base.OnAppearing();
@@ -168,15 +201,6 @@ public partial class ThemeSelectionView : ContentPage
         UnsuccessfulPurchaseOverlay.HideUnsuccessfulPurchaseOverlayRequested += OnHideUnsuccessfulPurchaseOverlay;
         _themesManager.ThemeChangeRequested += OnThemeChangeRequested;
         _themesManager.ThemeChanged += OnThemeChanged;
-
-        PageContainer.Opacity = 0;
-        ThemeCollectionView.Opacity = 0;
-
-        var selectedItem = _viewModel.SelectedThemeItem;
-        ScrollThemeCollectionViewTo(selectedItem);
-
-        await PageContainer.FadeToAsync(1, 600, Easing.CubicOut);
-        await ThemeCollectionView.FadeToAsync(1.0, 400, Easing.CubicOut);
     }
 
     protected override void OnDisappearing()
@@ -194,17 +218,6 @@ public partial class ThemeSelectionView : ContentPage
         UnsuccessfulPurchaseOverlay.HideUnsuccessfulPurchaseOverlayRequested -= OnHideUnsuccessfulPurchaseOverlay;
 
         SetOverlayVisibility(false);
-    }
-
-    private void ScrollThemeCollectionViewTo(ThemeItemViewModel? item)
-    {
-        Dispatcher.Dispatch(() =>
-        {
-            if (item is not null)
-            {
-                ThemeCollectionView.ScrollTo(item, position: ScrollToPosition.Center, animate: false);
-            }
-        });
     }
 
     protected override bool OnBackButtonPressed() => true;

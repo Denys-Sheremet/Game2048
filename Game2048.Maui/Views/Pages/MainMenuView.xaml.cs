@@ -10,30 +10,44 @@ public partial class MainMenuView : ContentPage
 		InitializeComponent();
         _mainMenuViewModel = viewModel;
 		BindingContext = _mainMenuViewModel;
+
+        Loaded += OnPageLoaded;
     }
 
-    protected override void OnAppearing()
+    private async void OnPageLoaded(object? sender, EventArgs e)
     {
-        base.OnAppearing();
-
-        Dispatcher.Dispatch(async () =>
-        {
-            MenuPageContainer.TranslationX = -Width;
-            MenuPageContainer.Opacity = 0;
-
-            await Task.WhenAll(
-                MenuPageContainer.TranslateToAsync(0, 0, 300, Easing.CubicOut),
-                MenuPageContainer.FadeToAsync(1, 300, Easing.CubicOut)
-            );
-        });
+        await AnimatePageAppearing();
     }
 
-	private async void OnStartClassicGame(object sender, EventArgs e)
-	{
+    private async Task AnimatePageAppearing()
+    {
+        MenuPageContainer.TranslationX = -200;
+        MenuPageContainer.Opacity = 0;
+        MenuPageContainer.IsVisible = true;
+
+        await Task.Yield();
+
+        await AnimatePageAppearTo();
+    }
+
+    private async Task AnimatePageDissapearTo(int transitionX)
+    {
         await Task.WhenAll(
-            MenuPageContainer.TranslateToAsync(-Width, 0, 250, Easing.CubicIn),
-            MenuPageContainer.FadeToAsync(0, 250, Easing.Linear)
+            MenuPageContainer.TranslateToAsync(transitionX, 0, 300, Easing.CubicIn),
+            MenuPageContainer.FadeToAsync(0.0, 300, Easing.CubicIn)
         );
+    }
+    private async Task AnimatePageAppearTo()
+    {
+        await Task.WhenAll(
+            MenuPageContainer.TranslateToAsync(0, 0, 300, Easing.CubicOut),
+            MenuPageContainer.FadeToAsync(1.0, 300, Easing.CubicOut)
+        );
+    }
+
+    private async void OnStartClassicGame(object sender, EventArgs e)
+	{
+        await AnimatePageDissapearTo(200);
 
         await Task.WhenAll(
             Shell.Current.GoToAsync("///GamePage", false)
@@ -42,10 +56,7 @@ public partial class MainMenuView : ContentPage
 
     private async void OnGoToAchievements(object sender, EventArgs e)
     {
-        await Task.WhenAll(
-            MenuPageContainer.TranslateToAsync(0, Height, 250, Easing.CubicIn),
-            MenuPageContainer.FadeToAsync(0, 250, Easing.Linear)
-        );
+        await AnimatePageDissapearTo(-200);
 
         await Task.WhenAll(
             Shell.Current.GoToAsync("///AchievementsPage", false)
@@ -54,10 +65,7 @@ public partial class MainMenuView : ContentPage
 
     private async void OnGoToGameModes(object sender, EventArgs e)
     {
-        await Task.WhenAll(
-            MenuPageContainer.TranslateToAsync(-Width, 0, 250, Easing.CubicIn),
-            MenuPageContainer.FadeToAsync(0, 250, Easing.Linear)
-        );
+        await AnimatePageDissapearTo(200);
 
         await Task.WhenAll(
             Shell.Current.GoToAsync("///GameModesPage", false)
@@ -66,10 +74,7 @@ public partial class MainMenuView : ContentPage
 
     private async void OnGoToSettings(object sender, EventArgs e)
     {
-        await Task.WhenAll(
-            MenuPageContainer.TranslateToAsync(Width, 0, 250, Easing.CubicIn),
-            MenuPageContainer.FadeToAsync(0, 250, Easing.Linear)
-        );
+        await AnimatePageDissapearTo(-200);
 
         await Task.WhenAll(
             Shell.Current.GoToAsync("///SettingsPage", false)
@@ -78,10 +83,7 @@ public partial class MainMenuView : ContentPage
 
     private async void OnGoToHowTo(object sender, EventArgs e)
     {
-        await Task.WhenAll(
-            MenuPageContainer.TranslateToAsync(0, -Height, 250, Easing.CubicIn),
-            MenuPageContainer.FadeToAsync(0, 250, Easing.Linear)
-        );
+        await AnimatePageDissapearTo(-200);
 
         await Task.WhenAll(
             Shell.Current.GoToAsync("///HowToPage", false)

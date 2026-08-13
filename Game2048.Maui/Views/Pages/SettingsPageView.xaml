@@ -7,11 +7,12 @@
              x:DataType="vm:SettingsViewModel"
              x:Class="Game2048.Maui.Views.Pages.SettingsPageView"
              Shell.NavBarIsVisible="False"
-             BackgroundColor="{DynamicResource GameBackgroundColor}">
+             Background="{DynamicResource GameBackgroundColor}">
     <Grid x:Name="PageContainer"
-          BackgroundColor="{DynamicResource GameBackgroundColor}"
+          Background="{DynamicResource GameBackgroundColor}"
           VerticalOptions="Fill"
-          HorizontalOptions="Fill">
+          HorizontalOptions="Fill"
+          IsVisible="False">
         <Grid x:Name="PageContentContainer"
               VerticalOptions="Fill"
               HorizontalOptions="Fill"
@@ -60,7 +61,7 @@
                             StrokeThickness="2"
                             Stroke="{DynamicResource MainBorderColor}"
                             Padding="10, 5, 10, 10"
-                            BackgroundColor="{DynamicResource SecondaryFieldBGColor}">
+                            Background="{DynamicResource SecondaryFieldBGColor}">
                         <Border.Triggers>
                             <DataTrigger TargetType="Border" 
                                          Binding="{Binding NameIsUnsaved}" 
@@ -79,7 +80,7 @@
 
                             <Border StrokeThickness="1" 
                                     Stroke="{DynamicResource MainBorderColor}"
-                                    BackgroundColor="{DynamicResource MainBorderColor}" 
+                                    Background="{DynamicResource MainBorderColor}" 
                                     StrokeShape="RoundRectangle 8" 
                                     Padding="10,5,10,5">
                             
@@ -99,7 +100,7 @@
                                             FontSize="20"
                                             FontAttributes="Bold"
                                             TextColor="White"
-                                            BackgroundColor="{DynamicResource SelectionStrokeColor}"
+                                            Background="{DynamicResource SelectionStrokeColor}"
                                             CornerRadius="8"
                                             WidthRequest="40"
                                             HeightRequest="40"
@@ -116,7 +117,7 @@
                             StrokeThickness="2"
                             Stroke="{DynamicResource MainBorderColor}"
                             Padding="10, 5, 10, 5"
-                            BackgroundColor="{DynamicResource SecondaryFieldBGColor}">
+                            Background="{DynamicResource SecondaryFieldBGColor}">
                     
                         <VerticalStackLayout Spacing="8">
                             <Label Text="{x:Static lang:AppResources.Settings_theme_pick_label}" 
@@ -127,7 +128,7 @@
 
                             <Border StrokeThickness="0"
                                     x:Name="GoToThemeSelectBtn"
-                                    BackgroundColor="{DynamicResource CardBackgroundColor}" 
+                                    Background="{DynamicResource CardBackgroundColor}" 
                                     StrokeShape="RoundRectangle 12"
                                     Padding="0">
 
@@ -139,10 +140,10 @@
                                     <Grid Grid.Column="0" VerticalOptions="Center"
                                           ColumnDefinitions="*, *" RowDefinitions="*, *"
                                           WidthRequest="50" HeightRequest="50">
-                                        <Border Grid.Row="0" Grid.Column="0" BackgroundColor="{DynamicResource PreviewColor1}" StrokeShape="RoundRectangle 6,0,0,0" StrokeThickness="0"/>
-                                        <Border Grid.Row="0" Grid.Column="1" BackgroundColor="{DynamicResource PreviewColor2}" StrokeShape="RoundRectangle 0,6,0,0" StrokeThickness="0"/>
-                                        <Border Grid.Row="1" Grid.Column="0" BackgroundColor="{DynamicResource PreviewColor3}" StrokeShape="RoundRectangle 0,0,6,0" StrokeThickness="0"/>
-                                        <Border Grid.Row="1" Grid.Column="1" BackgroundColor="{DynamicResource PreviewColor4}" StrokeShape="RoundRectangle 0,0,0,6" StrokeThickness="0"/>
+                                        <Border Grid.Row="0" Grid.Column="0" Background="{DynamicResource PreviewColor1}" StrokeShape="RoundRectangle 6,0,0,0" StrokeThickness="0"/>
+                                        <Border Grid.Row="0" Grid.Column="1" Background="{DynamicResource PreviewColor2}" StrokeShape="RoundRectangle 0,6,0,0" StrokeThickness="0"/>
+                                        <Border Grid.Row="1" Grid.Column="0" Background="{DynamicResource PreviewColor3}" StrokeShape="RoundRectangle 0,0,6,0" StrokeThickness="0"/>
+                                        <Border Grid.Row="1" Grid.Column="1" Background="{DynamicResource PreviewColor4}" StrokeShape="RoundRectangle 0,0,0,6" StrokeThickness="0"/>
                                     </Grid>
 
                                     <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
@@ -167,7 +168,7 @@
                                 StrokeThickness="2"
                                 Stroke="{DynamicResource MainBorderColor}"
                                 Padding="10, 5, 10, 5"
-                                BackgroundColor="{DynamicResource SecondaryFieldBGColor}">
+                                Background="{DynamicResource SecondaryFieldBGColor}">
                         <Border.Triggers>
                             <DataTrigger TargetType="Border" 
                                          Binding="{Binding IsNotCurrentLang}" 
@@ -184,7 +185,7 @@
                                    Margin="5,0"/>
 
                             <Border StrokeThickness="0" 
-                                    BackgroundColor="{DynamicResource CardBGColor}" 
+                                    Background="{DynamicResource CardBGColor}" 
                                     StrokeShape="RoundRectangle 16" 
                                     Padding="15">
                                 <Grid ColumnDefinitions="*, *, *, *" ColumnSpacing="10">

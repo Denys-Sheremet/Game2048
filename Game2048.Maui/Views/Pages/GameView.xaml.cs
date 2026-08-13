@@ -19,6 +19,8 @@ public partial class GameView : ContentPage
     private double _targetWidth;
     private double _targetHeight;
 
+    private bool _isPageLoaded = false;
+
     private readonly GameViewModel _viewModel;
     private readonly IAchievementManager _achievementManager;
 
@@ -54,6 +56,8 @@ public partial class GameView : ContentPage
         _viewModel.OnSettings += HandleOnSettings;
         GameOverOverlay.GoToMenuRequested += OnGoToMenu;
         VictoryOverlay.GoToMenuRequested += OnGoToMenu;
+
+        Loaded += OnPageLoaded;
     }
 
     private async Task ApplyMoveTransitionsAsync(IEnumerable<TileTransition> transitions)
@@ -261,25 +265,39 @@ public partial class GameView : ContentPage
         }
     }
 
-    protected override void OnAppearing()
+    private async void OnPageLoaded(object? sender, EventArgs e)
+    {
+        await AnimatePageAppearing();
+
+        _isPageLoaded = true;
+    }
+
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
 
         BuildTheBoard(_viewModel.Rows, _viewModel.Columns);
         FullRedraw();
 
-        _achievementManager.AchievementUnlocked += OnNewAchievementUnlocked;
-
-        Dispatcher.Dispatch(async () => 
+        if (_isPageLoaded)
         {
-            GamePageContainer.TranslationX = GamePageContainer.Width;
-            GamePageContainer.Opacity = 0;
+            await AnimatePageAppearing();
+        }
 
-            await Task.WhenAll(
-                GamePageContainer.TranslateToAsync(0, 0, 300, Easing.CubicOut),
-                GamePageContainer.FadeToAsync(1, 300, Easing.CubicOut)
-            );
-        });
+        _achievementManager.AchievementUnlocked += OnNewAchievementUnlocked;
+    }
+
+    private async Task AnimatePageAppearing()
+    {
+        GamePageContainer.TranslationX = -200;
+        GamePageContainer.Opacity = 0;
+        GamePageContainer.IsVisible = true;
+        await Task.Yield();
+
+        await Task.WhenAll(
+            GamePageContainer.TranslateToAsync(0, 0, 300, Easing.CubicOut),
+            GamePageContainer.FadeToAsync(1, 300, Easing.CubicOut)
+        );
     }
 
     protected override void OnDisappearing()
@@ -307,21 +325,24 @@ public partial class GameView : ContentPage
             }
             catch (Exception ex) 
             {
-#if DEBUG
-                Debug.WriteLine($"Error showing achievement toast: {ex.Message}");
-#endif
+                //ILogger
             }
         });
+    }
+
+    private async Task PageDisappearToAsync(double translationX)
+    {
+        await Task.WhenAll(
+            GamePageContainer.TranslateToAsync(translationX, 0, 300, Easing.CubicIn),
+            GamePageContainer.FadeToAsync(0, 300, Easing.CubicIn)
+        );
     }
 
     private async void OnGoToMenu(object? sender, EventArgs e)
     {
         await _viewModel.OnGoToMenu();
 
-        await Task.WhenAll(
-            GamePageContainer.TranslateToAsync(Width, 0, 250, Easing.CubicIn),
-            GamePageContainer.FadeToAsync(0, 250, Easing.Linear)
-        );
+        await PageDisappearToAsync(200);
 
         await Shell.Current.GoToAsync("///MainMenuPage", false);
     }
@@ -330,10 +351,7 @@ public partial class GameView : ContentPage
     {
         await _viewModel.OnBackToMenu();
 
-        await Task.WhenAll(
-            GamePageContainer.TranslateToAsync(Width, 0, 250, Easing.CubicIn),
-            GamePageContainer.FadeToAsync(0, 250, Easing.Linear)
-        );
+        await PageDisappearToAsync(200);
 
         await Shell.Current.GoToAsync("///MainMenuPage", false);
     }
@@ -403,10 +421,15 @@ public partial class GameView : ContentPage
 
     public async Task AnimateAndNavigateToThemesAsync()
     {
-        await Task.WhenAll(
-            GamePageContainer.TranslateToAsync(Width, 0, 250, Easing.CubicIn),
-            GamePageContainer.FadeToAsync(0, 250, Easing.Linear)
-        );
+        await PageDisappearToAsync(-200);
+
+        if (BindingContext is GameViewModel vm)
+        {
+            if (vm.IsSettings)
+            {
+                vm.CloseSettingsCommand.Execute(null);
+            }
+        }
 
         await Shell.Current.GoToAsync(nameof(ThemeSelectionView), false);
     }

@@ -13,7 +13,7 @@
             StrokeThickness="2"
             Stroke="{DynamicResource MainBorderColor}"
             Padding="25, 20, 25, 30"
-            BackgroundColor="{DynamicResource GameFieldBackgroundColor}"
+            Background="{DynamicResource GameFieldBackgroundColor}"
             WidthRequest="300">
 
         <VerticalStackLayout Spacing="15">

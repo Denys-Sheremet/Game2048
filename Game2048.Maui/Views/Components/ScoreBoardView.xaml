@@ -10,7 +10,7 @@
           ColumnSpacing="15"
           HorizontalOptions="Fill">
         
-        <Border BackgroundColor="{DynamicResource ScoreBoardBGColor}" 
+        <Border Background="{DynamicResource ScoreBoardBGColor}" 
                 Padding="15,5"
                 StrokeThickness="3"
                 Stroke="{DynamicResource ScoreBoardBorderColor}"
@@ -35,7 +35,7 @@
             </VerticalStackLayout>
         </Border>
         
-        <Border BackgroundColor="{DynamicResource ScoreBoardBGColor}" 
+        <Border Background="{DynamicResource ScoreBoardBGColor}" 
                 Padding="15,5"
                 StrokeThickness="3"
                 Stroke="{DynamicResource ScoreBoardBorderColor}"

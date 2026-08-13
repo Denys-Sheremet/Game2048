@@ -17,7 +17,7 @@
 
     <Border.Style>
         <Style TargetType="Border">
-            <Setter Property="BackgroundColor" Value="{DynamicResource TileExtraBGColor}" />
+            <Setter Property="Background" Value="{DynamicResource TileExtraBGColor}" />
             <Setter TargetName="ValueLabel" Property="Label.TextColor" Value="{DynamicResource TileExtraTextColor}"/>
 
             <Style.Triggers>

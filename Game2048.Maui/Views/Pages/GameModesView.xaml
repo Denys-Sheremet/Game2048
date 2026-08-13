@@ -9,10 +9,10 @@
              x:Class="Game2048.Maui.Views.Pages.GameModesView"
              x:DataType="vm:GameModesViewModel"
              Shell.NavBarIsVisible="False"
-             BackgroundColor="{DynamicResource GameBackgroundColor}">
+             Background="{DynamicResource GameBackgroundColor}">
 
     <Grid x:Name="GameModesPageContainer"
-          BackgroundColor="{DynamicResource GameBackgroundColor}"
+          Background="{DynamicResource GameBackgroundColor}"
           VerticalOptions="Fill"
           HorizontalOptions="Fill">
 

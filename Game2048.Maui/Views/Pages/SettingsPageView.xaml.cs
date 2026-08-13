@@ -8,35 +8,54 @@ public partial class SettingsPageView : ContentPage
 {
     private readonly ISettingsManager _settingsManager;
     private readonly SettingsViewModel _viewModel;
+
+    private bool _isPageLoaded = false;
+
     public SettingsPageView(ISettingsManager settingsManager, SettingsViewModel viewModel)
 	{
 		InitializeComponent();
         _viewModel = viewModel;
         BindingContext = _viewModel;
         _settingsManager = settingsManager;
-	}
 
-    protected override void OnAppearing()
+        Loaded += OnPageLoaded;
+    }
+
+    private async void OnPageLoaded(object? sender, EventArgs e)
+    {
+        _isPageLoaded = true;
+
+        await AnimatePageAppearing();
+    }
+
+    private async Task AnimatePageAppearing()
+    {
+        await Task.Yield();
+        int currentColumn = GetCurrentSelectedLangColumn();
+
+        SelectedLangStroke.IsVisible = true;
+        Grid.SetColumn(SelectedLangStroke, currentColumn);
+
+        PageContainer.TranslationX = 200;
+        PageContainer.Opacity = 0;
+        PageContainer.IsVisible = true;
+
+        await Task.WhenAll(
+            PageContainer.TranslateToAsync(0, 0, 300, Easing.CubicOut),
+            PageContainer.FadeToAsync(1, 300, Easing.CubicOut)
+        );
+    }
+
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
 
         _viewModel.ResetToCurrentSettings();
 
-        Dispatcher.Dispatch(async () =>
+        if (_isPageLoaded)
         {
-            int currentColumn = GetCurrentSelectedLangColumn();
-
-            SelectedLangStroke.IsVisible = true;
-            Grid.SetColumn(SelectedLangStroke, currentColumn);
-
-            PageContainer.TranslationX = -Width;
-            PageContainer.Opacity = 0;
-
-            await Task.WhenAll(
-                PageContainer.TranslateToAsync(0, 0, 300, Easing.CubicOut),
-                PageContainer.FadeToAsync(1, 300, Easing.CubicOut)
-            );
-        });
+            await AnimatePageAppearing();
+        }
     }
 
     private int GetCurrentSelectedLangColumn()
@@ -57,13 +76,13 @@ public partial class SettingsPageView : ContentPage
 
     public async void OnGoToThemeSelect(object sender, EventArgs e)
     {
-        await GoToThemeSelectBtn.ScaleToAsync(0.95, 100, Easing.CubicIn);
-        await GoToThemeSelectBtn.ScaleToAsync(1.0, 100, Easing.CubicOut);
+        await GoToThemeSelectBtn.ScaleToAsync(0.95, 100, Easing.CubicOut);
+        await GoToThemeSelectBtn.ScaleToAsync(1.0, 100, Easing.CubicIn);
 
         await Task.WhenAll
             (
-                PageContainer.TranslateToAsync(Width, 0, 250, Easing.CubicIn),
-                PageContainer.FadeToAsync(0, 250, Easing.Linear)
+                PageContainer.TranslateToAsync(-200, 0, 300, Easing.CubicIn),
+                PageContainer.FadeToAsync(0, 300, Easing.CubicIn)
             );
 
         await Shell.Current.GoToAsync(nameof(ThemeSelectionView), false);
@@ -128,8 +147,8 @@ public partial class SettingsPageView : ContentPage
 	{
         await Task.WhenAll
             (
-                PageContainer.TranslateToAsync(Width, 0, 250, Easing.CubicIn),
-                PageContainer.FadeToAsync(0, 250, Easing.Linear)
+                PageContainer.TranslateToAsync(200, 0, 300, Easing.CubicIn),
+                PageContainer.FadeToAsync(0, 300, Easing.CubicIn)
             );
         await Task.WhenAll
             (

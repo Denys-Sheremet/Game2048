@@ -6,12 +6,13 @@
              xmlns:lang="clr-namespace:Game2048.Maui.Resources.Localization"
              x:DataType="vm:MainMenuViewModel"
              Shell.NavBarIsVisible="False"
-             BackgroundColor="{DynamicResource GameBackgroundColor}">
+             Background="{DynamicResource GameBackgroundColor}">
 
     <Grid x:Name="MenuPageContainer" 
-          BackgroundColor="{DynamicResource GameBackgroundColor}"
+          Background="{DynamicResource GameBackgroundColor}"
           VerticalOptions="Fill"
-          HorizontalOptions="Fill">
+          HorizontalOptions="Fill"
+          IsVisible="False">
         
     
         <Grid RowDefinitions="Auto, *, Auto" 
@@ -45,7 +46,7 @@
                         HorizontalOptions="Fill"
                         HeightRequest="170"
                         TextColor="{DynamicResource QuickPlayBtnTextColor}"
-                        BackgroundColor="{DynamicResource QuickPlayBtnBGColor}"
+                        Background="{DynamicResource QuickPlayBtnBGColor}"
                         Style="{StaticResource MainBtnStyle}">
 
                 </Button>
@@ -61,7 +62,7 @@
                         HorizontalOptions="Fill"
                         HeightRequest="170"
                         TextColor="{DynamicResource AchBtnTextColor}"
-                        BackgroundColor="{DynamicResource AchBtnBGColor}"
+                        Background="{DynamicResource AchBtnBGColor}"
                         Style="{StaticResource MainBtnStyle}">
 
                 </Button>
@@ -77,7 +78,7 @@
                         Padding="20, 0"
                         Text="{x:Static lang:AppResources.Menu_game_modes_btn_text}"
                         CornerRadius="15"
-                        BackgroundColor="{DynamicResource MainButtonBGColor}"
+                        Background="{DynamicResource MainButtonBGColor}"
                         TextColor="{DynamicResource MainButtonTextColor}"
                         Style="{StaticResource MainBtnStyle}">
 
@@ -94,7 +95,7 @@
                         Padding="20, 0"
                         Text="{x:Static lang:AppResources.Menu_settings_btn_text}"
                         CornerRadius="15"
-                        BackgroundColor="{DynamicResource MainButtonBGColor}"
+                        Background="{DynamicResource MainButtonBGColor}"
                         TextColor="{DynamicResource MainButtonTextColor}"
                         Style="{StaticResource MainBtnStyle}">
 
@@ -111,7 +112,7 @@
                         Padding="20, 0"
                         Text="{x:Static lang:AppResources.Menu_how_to_btn_text}"
                         CornerRadius="15"
-                        BackgroundColor="{DynamicResource MainButtonBGColor}"
+                        Background="{DynamicResource MainButtonBGColor}"
                         TextColor="{DynamicResource MainButtonTextColor}"
                         Style="{StaticResource MainBtnStyle}">
 

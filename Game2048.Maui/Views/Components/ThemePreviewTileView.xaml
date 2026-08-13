@@ -4,7 +4,7 @@
              xmlns:vm="clr-namespace:Game2048.Maui.ViewModels.Items"
              x:Class="Game2048.Maui.Views.Components.ThemePreviewTileView"
              x:DataType="vm:ThemePreviewTileViewModel">
-    <Border BackgroundColor="{Binding BackgroundColor}"
+    <Border Background="{Binding BackgroundColor}"
             Stroke="{Binding BorderColor}"
             StrokeThickness="2"
             StrokeShape="RoundRectangle 8"

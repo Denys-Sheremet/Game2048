@@ -6,7 +6,7 @@
 
     <Style x:Key="MainBtnStyle" TargetType="Button">
         <Setter Property="CornerRadius" Value="15" />
-        <Setter Property="BackgroundColor" Value="{DynamicResource MainButtonBGColor}" />
+        <Setter Property="Background" Value="{DynamicResource MainButtonBGColor}" />
         <Setter Property="TextColor" Value="{DynamicResource MainButtonTextColor}" />
 
         <Setter Property="Shadow">

@@ -20,12 +20,10 @@ public partial class ThemeSelectionViewModel : ObservableObject, IDisposable
     public IRelayCommand SelectThemeCommand { get; private set; }
     public IRelayCommand PreviewThemeCommand { get; private set; }
 
-    public event Action? ThemePreviewRequested; //
-    public event Action? ThemePurchaseRequested; //
-    public event Action? ThemePurchaseSucceeded; //
-    public event Action? InsufficientCoinsOccurred; //
-
-    private readonly Action<int> _onCoinsChangedHandler;//save the subscription handler to unsub in Dispose()
+    public event Action? ThemePreviewRequested;
+    public event Action? ThemePurchaseRequested;
+    public event Action? ThemePurchaseSucceeded;
+    public event Action? InsufficientCoinsOccurred;
 
     public ThemeItemViewModel? SelectedThemeItem => ThemeItems.FirstOrDefault(th => th.IsSelected);
     public int CurrentCoins => _profileManager.CurrentCoins;
@@ -37,9 +35,8 @@ public partial class ThemeSelectionViewModel : ObservableObject, IDisposable
         _storeManager = storeManager;
         SelectedTheme = _themesManager.CurrentTheme;
 
-        _onCoinsChangedHandler = _ => OnPropertyChanged(nameof(CurrentCoins));
-        _profileManager.CoinsChanged += _onCoinsChangedHandler;
-        _profileManager.ThemeUnlocked += OnThemeUnlocked;//
+        _profileManager.CoinsChanged += OnCoinsChanged;
+        _profileManager.ThemeUnlocked += OnThemeUnlocked;
 
         SelectThemeCommand = new RelayCommand<ThemeItemViewModel>(OnSelectTheme);
         PreviewThemeCommand = new RelayCommand<ThemeItemViewModel>(OnOpenPreview);
@@ -91,6 +88,17 @@ public partial class ThemeSelectionViewModel : ObservableObject, IDisposable
         }
 
         OnPropertyChanged(nameof(SelectedThemeItem));
+    }
+
+    public int GetSelectedThemeIndex()
+    {
+        var selectedItem = SelectedThemeItem;
+        return selectedItem is not null ? ThemeItems.IndexOf(selectedItem) : -1;
+    }
+
+    private void OnCoinsChanged(int coins)
+    {
+        OnPropertyChanged(nameof(CurrentCoins));
     }
 
     private void SetSelectedThemeItem(GameTheme theme)
@@ -175,7 +183,7 @@ public partial class ThemeSelectionViewModel : ObservableObject, IDisposable
 
     public void Dispose()
     {
-        _profileManager.CoinsChanged -= _onCoinsChangedHandler;
+        _profileManager.CoinsChanged -= OnCoinsChanged;
         _profileManager.ThemeUnlocked -= OnThemeUnlocked;
     }
 }

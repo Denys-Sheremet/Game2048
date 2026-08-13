@@ -18,22 +18,13 @@ public partial class AchievementsView : ContentPage
         {
             await ShowDetails(title, desc, imgName);
         };
+
+        Loaded += OnPageLoaded;
     }
 
-    protected override async void OnAppearing()
+    private async void OnPageLoaded(object? sender, EventArgs e)
     {
-        base.OnAppearing();
-
-        await Dispatcher.DispatchAsync(async () =>
-        {
-            AchievementsPageGrid.TranslationY = -Height;
-            AchievementsPageGrid.Opacity = 0;
-
-            await Task.WhenAll(
-                AchievementsPageGrid.TranslateToAsync(0, 0, 300, Easing.CubicOut),
-                AchievementsPageGrid.FadeToAsync(1, 300, Easing.CubicOut)
-            );
-        });
+        await AnimatePageAppearingAsync();
 
         _isInitialLoad = true;
 
@@ -41,6 +32,38 @@ public partial class AchievementsView : ContentPage
         await Task.Delay(800);
 
         _isInitialLoad = false;
+    }
+
+    private async void OnProgressBarTapped(object? sender, EventArgs e)
+    {
+        await ProgressBarContainer.ScaleToAsync(0.95, 100, Easing.CubicOut);
+        await ProgressBarContainer.ScaleToAsync(1.05, 100, Easing.CubicOut);
+        await ProgressBarContainer.ScaleToAsync(1.0, 100, Easing.CubicOut);
+    }
+
+    private async Task AnimatePageAppearingAsync()
+    {
+        AchievementsPageContainer.TranslationX = 200;
+        AchievementsPageContainer.Opacity = 0;
+        AchievementsPageContainer.IsVisible = true;
+
+        await Task.WhenAll(
+            AchievementsPageContainer.TranslateToAsync(0, 0, 300, Easing.CubicOut),
+            AchievementsPageContainer.FadeToAsync(1, 300, Easing.CubicOut)
+        );
+    }
+
+    private async Task AnimatePageDisappearingAsync(double translationX)
+    {
+        await Task.WhenAll(
+            AchievementsPageContainer.TranslateToAsync(translationX, 0, 300, Easing.CubicIn),
+            AchievementsPageContainer.FadeToAsync(0, 300, Easing.CubicIn)
+        );
+    }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
     }
 
     private async void OnAchievementTileLoaded(object sender, EventArgs e)
@@ -102,10 +125,7 @@ public partial class AchievementsView : ContentPage
 
     private async void OnBackToMenu(object sender, EventArgs e)
     {
-        await Task.WhenAll(
-            AchievementsPageGrid.TranslateToAsync(Width, 0, 250, Easing.CubicIn),
-            AchievementsPageGrid.FadeToAsync(0, 250, Easing.Linear)
-        );
+        await AnimatePageDisappearingAsync(200);
 
         await Shell.Current.GoToAsync("///MainMenuPage", false);
     }

@@ -8,12 +8,13 @@
              x:Class="Game2048.Maui.Views.Pages.GameView"
              x:DataType="vm:GameViewModel"
              Shell.NavBarIsVisible="False"
-             BackgroundColor="{DynamicResource GameBackgroundColor}">
+             Background="{DynamicResource GameBackgroundColor}">
 
     <Grid x:Name="GamePageContainer"
-          BackgroundColor="{DynamicResource GameBackgroundColor}"
+          Background="{DynamicResource GameBackgroundColor}"
           VerticalOptions="Fill"
-          HorizontalOptions="Fill">
+          HorizontalOptions="Fill"
+          IsVisible="False">
         
     
         <Grid x:Name="PageGrid" 
@@ -71,7 +72,7 @@
                         Padding="0" 
                         StrokeThickness="0"
                         StrokeShape="RoundRectangle 8" 
-                        BackgroundColor="{DynamicResource GameFieldBackgroundColor}">
+                        Background="{DynamicResource GameFieldBackgroundColor}">
 
                     <Grid>
 

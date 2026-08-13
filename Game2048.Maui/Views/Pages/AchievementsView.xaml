@@ -9,16 +9,19 @@
              x:DataType="vm:AchievementsViewModel"
              Shell.NavBarIsVisible="False"
              SizeChanged="OnPageSizeChanged"
-             BackgroundColor="{DynamicResource PageBackgroundColor}">
+             Background="{DynamicResource PageBackgroundColor}">
 
-    <Grid x:Name="AchievementsPageGrid"
+    <Grid x:Name="AchievementsPageContainer"
           HorizontalOptions="Fill"
-          VerticalOptions="Fill">
+          VerticalOptions="Fill"
+          IsVisible="False"
+          Background="{DynamicResource PageBackgroundColor}"
+          Padding="0, 15, 0, 0">
         
         <Grid RowDefinitions="Auto, *"
               VerticalOptions="Fill"
               HorizontalOptions="Fill"
-              Padding="15, 0, 15, 0">
+              Padding="10, 0, 10, 0">
 
             <Grid Grid.Row="0"
                   ColumnDefinitions="*, Auto, Auto, *" 
@@ -57,8 +60,8 @@
                         <GridItemsLayout x:Name="AchievementsLayout"
                                          Orientation="Vertical"
                                          Span="3"
-                                         VerticalItemSpacing="15"
-                                         HorizontalItemSpacing="15" />
+                                         VerticalItemSpacing="10"
+                                         HorizontalItemSpacing="10" />
                     </CollectionView.ItemsLayout>
 
                     <CollectionView.ItemTemplate>
@@ -79,15 +82,19 @@
                 </CollectionView>
 
                 <Border VerticalOptions="End"
+                        x:Name="ProgressBarContainer"
                         Margin="15, 0, 15, 20"
                         Grid.Row="0"
                         Padding="20, 15, 20, 18"
                         StrokeThickness="0"
                         StrokeShape="RoundRectangle 20"
-                        BackgroundColor="{DynamicResource ProgressBarBGColor}">
+                        Background="{DynamicResource ProgressBarBGColor}">
                     <Border.Shadow>
                         <Shadow Brush="Black" Offset="0, 8" Radius="15" Opacity="0.15" />
                     </Border.Shadow>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnProgressBarTapped" />
+                    </Border.GestureRecognizers>
 
                     <VerticalStackLayout Spacing="8"
                                          VerticalOptions="Center">
@@ -108,11 +115,17 @@
                                    TextColor="{DynamicResource MainTextColor}"/>
                         </Grid>
 
-                        <ProgressBar Progress="{Binding TotalProgressFraction}" 
-                                     ProgressColor="{DynamicResource ProgressBarColor}" 
-                                     BackgroundColor="{DynamicResource PageBackgroundColor}"
-                                     HeightRequest="8"
-                                     VerticalOptions="Center"/>
+                        <Border StrokeShape="RoundRectangle 3"
+                                StrokeThickness="0"
+                                HeightRequest="8"
+                                HorizontalOptions="Fill">
+                            <ProgressBar Progress="{Binding TotalProgressFraction}" 
+                                         ProgressColor="{DynamicResource ProgressBarColor}" 
+                                         Background="Grey"
+                                         HeightRequest="8"
+                                         VerticalOptions="Center"/>
+                        </Border>
+                        
                     </VerticalStackLayout>
                 </Border>
 

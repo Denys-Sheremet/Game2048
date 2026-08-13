@@ -11,32 +11,47 @@ public partial class GameModesView : ContentPage
         _viewModel = viewModel;
         BindingContext = _viewModel;
         _viewModel.OnReadyToPlay += OnStartGame;
+
+        Loaded += OnPageLoaded;
 	}
+
+    private async void OnPageLoaded(object? sender, EventArgs e)
+    {
+        await AnimatePageAppearingAsync(-200);
+    }
+
+    private async Task AnimatePageAppearingAsync(double translationX)
+    {
+        await Task.Yield();
+
+        GameModesPageContainer.TranslationX = translationX;
+        GameModesPageContainer.Opacity = 0;
+        GameModesPageContainer.IsVisible = true;
+
+        await Task.WhenAll(
+            GameModesPageContainer.TranslateToAsync(0, 0, 300, Easing.CubicOut),
+            GameModesPageContainer.FadeToAsync(1, 300, Easing.CubicOut)
+        );
+    }
+
+    private async Task AnimatePageDisappearingAsync(double translationX)
+    {
+        await Task.WhenAll(
+            GameModesPageContainer.TranslateToAsync(translationX, 0, 300, Easing.CubicIn),
+            GameModesPageContainer.FadeToAsync(0, 300, Easing.CubicIn)
+        );
+    }
 
     protected override void OnAppearing()
     {
         base.OnAppearing();
-
-        Dispatcher.Dispatch(async () =>
-        {
-            GameModesPageContainer.TranslationX = Width;
-            GameModesPageContainer.Opacity = 0;
-
-            await Task.WhenAll(
-                GameModesPageContainer.TranslateToAsync(0, 0, 300, Easing.CubicOut),
-                GameModesPageContainer.FadeToAsync(1, 300, Easing.CubicOut)
-            );
-        });
     }
 
     private async void OnBackToMenu(object sender, EventArgs e)
 	{
-		await Task.WhenAll
-			(
-                GameModesPageContainer.TranslateToAsync(Width, 0, 250, Easing.CubicIn),
-                GameModesPageContainer.FadeToAsync(0, 250, Easing.Linear)
-            );
-		await Task.WhenAll
+        await AnimatePageDisappearingAsync(-200);
+
+        await Task.WhenAll
 			(
                 Shell.Current.GoToAsync("///MainMenuPage", false)
             );
@@ -44,11 +59,8 @@ public partial class GameModesView : ContentPage
 
     private async void OnStartGame()
     {
-        await Task.WhenAll
-            (
-                GameModesPageContainer.TranslateToAsync(-Width, 0, 250, Easing.CubicIn),
-                GameModesPageContainer.FadeToAsync(0, 250, Easing.Linear)
-            );
+        await AnimatePageDisappearingAsync(-200);
+
         await Task.WhenAll
             (
                 Shell.Current.GoToAsync("///GamePage", false)
