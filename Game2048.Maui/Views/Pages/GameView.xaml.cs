@@ -50,10 +50,6 @@ public partial class GameView : ContentPage
             await ApplyCreateTransitionsAsync(transitions);
         };
 
-        _viewModel.OnVictory += HandleOnVictory;
-        _viewModel.OnGameOver += HandleOnGameOver;
-        _viewModel.OnRestart += HandleRestart;
-        _viewModel.OnSettings += HandleOnSettings;
         GameOverOverlay.GoToMenuRequested += OnGoToMenu;
         VictoryOverlay.GoToMenuRequested += OnGoToMenu;
 
@@ -284,6 +280,10 @@ public partial class GameView : ContentPage
             await AnimatePageAppearing();
         }
 
+        _viewModel.OnVictory += HandleOnVictory;
+        _viewModel.OnGameOver += HandleOnGameOver;
+        _viewModel.OnRestart += HandleRestart;
+        _viewModel.OnSettings += HandleOnSettings;
         _achievementManager.AchievementUnlocked += OnNewAchievementUnlocked;
     }
 
@@ -303,12 +303,12 @@ public partial class GameView : ContentPage
     protected override void OnDisappearing()
     {
         base.OnDisappearing();
-        _achievementManager.AchievementUnlocked -= OnNewAchievementUnlocked;
 
-        if (BindingContext is IDisposable disposableViewModel)
-        {
-            disposableViewModel.Dispose();
-        }
+        _viewModel.OnVictory -= HandleOnVictory;
+        _viewModel.OnGameOver -= HandleOnGameOver;
+        _viewModel.OnRestart -= HandleRestart;
+        _viewModel.OnSettings -= HandleOnSettings;
+        _achievementManager.AchievementUnlocked -= OnNewAchievementUnlocked;
     }
 
     private void OnNewAchievementUnlocked(AchievementType type)
@@ -333,8 +333,8 @@ public partial class GameView : ContentPage
     private async Task PageDisappearToAsync(double translationX)
     {
         await Task.WhenAll(
-            GamePageContainer.TranslateToAsync(translationX, 0, 300, Easing.CubicIn),
-            GamePageContainer.FadeToAsync(0, 300, Easing.CubicIn)
+            PageGrid.TranslateToAsync(translationX, 0, 300, Easing.CubicIn),
+            PageGrid.FadeToAsync(0, 300, Easing.CubicIn)
         );
     }
 

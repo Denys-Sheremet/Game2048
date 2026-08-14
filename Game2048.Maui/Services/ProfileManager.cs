@@ -114,17 +114,23 @@ public class ProfileManager : IProfileManager
 
     //Achievements
     public event Action<GameTheme>? ThemeUnlocked;
-    public void UnlockAchievement(AchievementType achievement)
+    public bool UnlockAchievement(AchievementType achievement)
     {
         var profile = GetValidProfile();
 
-        profile.Achievements.Add(achievement);
+        return profile.Achievements.Add(achievement);
     }
 
     public HashSet<AchievementType> GetUnlockedAchievements()
     {
         var profile = GetValidProfile();
         return profile.Achievements;
+    }
+
+    public bool IsAchievementUnlocked(AchievementType achievement)
+    {
+        var profile = GetValidProfile();
+        return profile.Achievements.Contains(achievement);
     }
 
     //Themes

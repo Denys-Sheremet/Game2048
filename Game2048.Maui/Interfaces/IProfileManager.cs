@@ -22,11 +22,12 @@ public interface IProfileManager
     GameSessionSave? LoadCurrentGame(GameModeType gameMode);
     void SaveBestScore(GameModeType gameMode, int bestScore);
     int? GetBestScore(GameModeType gameMode);
-    void UnlockAchievement(AchievementType achievement);
+    bool UnlockAchievement(AchievementType achievement);
     HashSet<AchievementType> GetUnlockedAchievements();
     void UnlockTheme(GameTheme theme);
     HashSet<GameTheme> GetUnlockedThemes();
     bool IsThemeUnlocked(GameTheme theme);
+    bool IsAchievementUnlocked(AchievementType achievement);
     void EarnCoins(int amount);
     bool SpendCoins(int amount);
     void SetPlayerName(string name);

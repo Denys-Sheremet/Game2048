@@ -182,10 +182,18 @@ public partial class GameViewModel : BindableObject, IDisposable
 
     private void SetActiveState()
     {
-        IsActiveGame = true;
-
         IsSettings = false;
-        IsBoardBlocked = false;
+
+        if (IsGameOver || IsVictory)
+        {
+            IsActiveGame = false;
+            IsBoardBlocked = true;
+        }
+        else
+        {
+            IsActiveGame = true;
+            IsBoardBlocked = false;
+        }
     }
     // end 
 
@@ -227,7 +235,6 @@ public partial class GameViewModel : BindableObject, IDisposable
 
     private void HandleAchievementUnlocked(AchievementType achievementType)
     {
-        _profileManager.UnlockAchievement(achievementType);
         _actionQueue.Enqueue(async () =>
         {
             await _profileManager.SaveCurrentProfileAsync();
@@ -259,6 +266,8 @@ public partial class GameViewModel : BindableObject, IDisposable
 
     public void StartGame()
     {
+        SetNewGameState();
+
         if (!TryLoadSave())
         {
             _gameCore.Clear();
@@ -308,15 +317,14 @@ public partial class GameViewModel : BindableObject, IDisposable
         await InvokeTransition(TilesMoved, transitions.Where(x => x.Type == TileTransitionType.Move ||
                                                                     x.Type == TileTransitionType.Merge));
 
-        var removeTask = InvokeTransition(TilesRemoved, transitions.Where(x => x.Type == TileTransitionType.Disappear ||
+        await InvokeTransition(TilesRemoved, transitions.Where(x => x.Type == TileTransitionType.Disappear ||
                                                                                x.Type == TileTransitionType.Merge ||
                                                                                x.Type == TileTransitionType.Split));
 
-        var createTask = InvokeTransition(TilesCreated, transitions.Where(x => x.Type == TileTransitionType.Spawn ||
+        await InvokeTransition(TilesCreated, transitions.Where(x => x.Type == TileTransitionType.Spawn ||
                                                                                x.Type == TileTransitionType.Result ||
                                                                                x.Type == TileTransitionType.Respawn));
 
-        await Task.WhenAll(removeTask, createTask);
 
         UpdateScores();
 
@@ -354,11 +362,10 @@ public partial class GameViewModel : BindableObject, IDisposable
 
         await InvokeTransition(TilesMoved, transitions.Where(x => x.Type == TileTransitionType.Move));
 
-        var removeTask = InvokeTransition(TilesRemoved, transitions.Where(x => x.Type == TileTransitionType.Disappear ||
+        await InvokeTransition(TilesRemoved, transitions.Where(x => x.Type == TileTransitionType.Disappear ||
                                                                                x.Type == TileTransitionType.Split));
-        var createTask = InvokeTransition(TilesCreated, transitions.Where(x => x.Type == TileTransitionType.Respawn));
+        await InvokeTransition(TilesCreated, transitions.Where(x => x.Type == TileTransitionType.Respawn));
 
-        await Task.WhenAll(removeTask, createTask);
 
         UpdateScores();
 

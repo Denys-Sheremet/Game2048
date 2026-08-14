@@ -17,6 +17,14 @@ public class AchievementManager : IAchievementManager
 
     public event Action<AchievementType>? AchievementUnlocked;
 
+    private void TryUnlock(AchievementType type)
+    {
+        if (_profileManager.UnlockAchievement(type))
+        {
+            AchievementUnlocked?.Invoke(type);
+        }
+    }
+
     public AchievementManager(IProfileManager profileManager, 
         IEnumerable<IGlobalAchievementChecker> globalAchievements,
         IEnumerable<ISessionAchievementChecker> sessionAchievements,
@@ -37,50 +45,46 @@ public class AchievementManager : IAchievementManager
 
     public void CheckGlobalAchievements()
     {
-        ArgumentNullException.ThrowIfNull(_profileManager.CurrentProfile);
+        if (_profileManager.CurrentProfile is null) return;
 
         var stats = _profileManager.CurrentProfile.GlobalPlayerStatistics;
-        var unlockedAchievements = _profileManager.GetUnlockedAchievements();
 
         foreach (var ga in _globalAchievements)
         {
-            if (unlockedAchievements.Contains(ga.Type)) continue;
+            if (_profileManager.IsAchievementUnlocked(ga.Type)) continue;
             if (ga.Check(stats))
             {
-                AchievementUnlocked?.Invoke(ga.Type);
+                TryUnlock(ga.Type);
             }
         }
     }
 
     public void CheckSessionAchievements(StateSnapshot afterState, List<TileTransition> transitions)
     {
-        ArgumentNullException.ThrowIfNull(_profileManager.CurrentProfile);
-
-        var unlockedAchievements = _profileManager.GetUnlockedAchievements();
+        if (_profileManager.CurrentProfile is null) return;
 
         foreach (var sa in _sessionAchievements)
         {
-            if (unlockedAchievements.Contains(sa.Type)) continue;
+            if (_profileManager.IsAchievementUnlocked(sa.Type)) continue;
             if (sa.Check(afterState, transitions))
             {
-                AchievementUnlocked?.Invoke(sa.Type);
+                TryUnlock(sa.Type);
             }
         }
     }
 
     public void CheckSpecialAchievements(IStatisticsManager statisticsManager)
     {
-        ArgumentNullException.ThrowIfNull(_profileManager.CurrentProfile);
+        if (_profileManager.CurrentProfile is null) return;
 
         var stats = statisticsManager.GetStatisticsManager();
-        var unlockedAchievements = _profileManager.GetUnlockedAchievements();
 
         foreach (var sa in _specialAchievements)
         {
-            if (unlockedAchievements.Contains(sa.Type)) continue;
+            if (_profileManager.IsAchievementUnlocked(sa.Type)) continue;
             if (sa.Check(stats.GameOver, stats.HasWon, stats.MovesMade, stats.UndosMade, stats.TilesMerged))
             {
-                AchievementUnlocked?.Invoke(sa.Type);
+                TryUnlock(sa.Type);
             }
         }
     }
