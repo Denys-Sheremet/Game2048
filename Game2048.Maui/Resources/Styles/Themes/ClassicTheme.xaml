@@ -215,7 +215,6 @@
 
     <Color x:Key="SelectionStrokeColor">#3CB371</Color>
     <Color x:Key="AttentionFieldStrokeColor">#F59563</Color>
-    <Color x:Key="AttentionBGColor">#F59563</Color>
 
     <!-- Misc -->
     <Color x:Key="SignsTextColor">#3E555C</Color>

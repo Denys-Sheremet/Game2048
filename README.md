@@ -1,6 +1,6 @@
 # Game 2048 Engine & Application :iphone:
 ![C#](https://img.shields.io/badge/Language-C%23-darkblue)
-![.NET 9.0](https://img.shields.io/badge/.NET-9.0-purple?logo=dotnet&logoColor=purple)
+![.NET 10.0](https://img.shields.io/badge/.NET-10.0-purple?logo=dotnet&logoColor=purple)
 ![MAUI](https://img.shields.io/badge/Platform-MAUI-lightblue?logo=dotnet&logoColor=purple)
 
 ### **Description :bulb:**
