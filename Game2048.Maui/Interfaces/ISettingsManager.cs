@@ -10,7 +10,9 @@ namespace Game2048.Maui.Interfaces;
 
 public interface ISettingsManager
 {
-    public string GetCurrentLang();
+    string GetCurrentLang();
+    string GetCurrentGameMode();
+    string GetCurrentTheme();
     bool LoadInitialSettings();
     void SetGameMode(GameModeType mode);
     void SetTheme(GameTheme theme);

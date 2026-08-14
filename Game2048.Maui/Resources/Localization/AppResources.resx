@@ -360,4 +360,34 @@
   <data name="UnsuccessfulPurchaseOverlay_desc" xml:space="preserve">
     <value>You can't purchase this theme as you have insufficient coins amount</value>
   </data>
+  <data name="GameMode_Classic_title" xml:space="preserve">
+    <value>Classic 2048</value>
+  </data>
+  <data name="GameMode_Classic_desc" xml:space="preserve">
+    <value>4x4</value>
+  </data>
+  <data name="GameMode_ClassicPlus_title" xml:space="preserve">
+    <value>Classic+</value>
+  </data>
+  <data name="GameMode_ClassicPlus_desc" xml:space="preserve">
+    <value>4x4 + Undo</value>
+  </data>
+  <data name="GameMode_Compact_title" xml:space="preserve">
+    <value>Compact</value>
+  </data>
+  <data name="GameMode_Compact_desc" xml:space="preserve">
+    <value>3x3 + Undo (tile to win - 1024)</value>
+  </data>
+  <data name="GameMode_Extended_title" xml:space="preserve">
+    <value>Extended 2048</value>
+  </data>
+  <data name="GameMode_Extended_desc" xml:space="preserve">
+    <value>5x5 hardcore mode with doubled spawn</value>
+  </data>
+  <data name="GameMode_ChillZone_title" xml:space="preserve">
+    <value>Chill Zone</value>
+  </data>
+  <data name="GameMode_ChillZone_desc" xml:space="preserve">
+    <value>Extended 5x5 mode with more undo count</value>
+  </data>
 </root>

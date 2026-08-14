@@ -13,7 +13,7 @@ public interface IThemesManager
 
     Task ApplyThemeAsync(GameTheme theme);
 
-    Color GetThemeColor(string resourceKey);
+    Brush GetCurrentThemeBrush(string resourceKey);
 
     Color GetThemeColor(string resourceKey, GameTheme theme);
 

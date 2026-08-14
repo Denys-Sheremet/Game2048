@@ -11,9 +11,9 @@ namespace Game2048.Maui.Models;
 public partial class GameMode : ObservableObject
 {
     public string Title { get; set; }
-    public string GridSize { get; set; }
+    public string Desc { get; set; }
     public string GifSource { get; set; }
-    public Color CardColor { get; set; }
+    public Brush CardColor { get; set; }
     public GameModeType ModeType { get; set; }
 
     private bool _isActive;
@@ -23,11 +23,11 @@ public partial class GameMode : ObservableObject
         set => SetProperty(ref _isActive, value);
     }
 
-    public GameMode(GameModeType modeType, string title, string gridSize, string gifSource, Color cardColor, bool isActive) 
+    public GameMode(GameModeType modeType, string title, string desc, string gifSource, Brush cardColor, bool isActive) 
     {
         ModeType = modeType;
         Title = title;
-        GridSize = gridSize;
+        Desc = desc;
         GifSource = gifSource;
         CardColor = cardColor;
         IsActive = isActive;

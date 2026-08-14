@@ -360,4 +360,34 @@
   <data name="UnsuccessfulPurchaseOverlay_desc" xml:space="preserve">
     <value>Нажаль, ви маєте недостатньо монет для придбання даної теми</value>
   </data>
+  <data name="GameMode_Classic_title" xml:space="preserve">
+    <value>Класичний 2048</value>
+  </data>
+  <data name="GameMode_Classic_desc" xml:space="preserve">
+    <value>4x4</value>
+  </data>
+  <data name="GameMode_ClassicPlus_title" xml:space="preserve">
+    <value>Класика+</value>
+  </data>
+  <data name="GameMode_ClassicPlus_desc" xml:space="preserve">
+    <value>4x4 з відміною ходів</value>
+  </data>
+  <data name="GameMode_Compact_title" xml:space="preserve">
+    <value>Міні режим</value>
+  </data>
+  <data name="GameMode_Compact_desc" xml:space="preserve">
+    <value>3x3 поле, з можливістю відміни та максимальною плиткою 1024</value>
+  </data>
+  <data name="GameMode_Extended_title" xml:space="preserve">
+    <value>Розширений 2048</value>
+  </data>
+  <data name="GameMode_Extended_desc" xml:space="preserve">
+    <value>5x5 хардкор з подвійним спавном плиток</value>
+  </data>
+  <data name="GameMode_ChillZone_title" xml:space="preserve">
+    <value>Зона відпочинку</value>
+  </data>
+  <data name="GameMode_ChillZone_desc" xml:space="preserve">
+    <value>Розширений режим 5x5 з більшою кількістю скасувань</value>
+  </data>
 </root>

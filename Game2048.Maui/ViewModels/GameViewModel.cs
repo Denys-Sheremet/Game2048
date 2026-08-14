@@ -142,6 +142,16 @@ public partial class GameViewModel : BindableObject, IDisposable
         set { _isSettings = value; OnPropertyChanged(); }
     }
     //methods
+    private void SetNewGameState()
+    {
+        IsGameOver = false;
+        IsBoardBlocked = false;
+        IsSettings = false;
+        IsVictory = false;
+
+        IsActiveGame = true;
+    }
+
     private void SetGameOverState() 
     {
         IsGameOver = true;
@@ -262,6 +272,7 @@ public partial class GameViewModel : BindableObject, IDisposable
     public void StartNewGame()
     {
         _gameCore.Clear();
+        SetNewGameState();
         Tiles.Clear();
         _gameCore.SpawnMultipleTiles(2);
         SyncState();

@@ -9,10 +9,11 @@
 
     <Border x:Name="CardContainer"
             StrokeShape="RoundRectangle 32"
-            StrokeThickness="0"
+            StrokeThickness="2"
+            Stroke="{DynamicResource MainBorderColor}"
             VerticalOptions="Center"
             HorizontalOptions="Center"
-            BackgroundColor="{Binding CardColor}"
+            Background="{Binding CardColor}"
             Margin="10,20"
             HeightRequest="500"
             WidthRequest="300">
@@ -39,19 +40,24 @@
             </Grid>
 
             <VerticalStackLayout Padding="20" Spacing="5" HorizontalOptions="Center">
-                <Label Text="{Binding GridSize}" 
-                       FontSize="56" 
-                       FontAttributes="Bold" 
-                       TextColor="White"
-                       FontFamily="RubikSemi"
-                       HorizontalOptions="Center"/>
-
                 <Label Text="{Binding Title}" 
-                       FontSize="26" 
+                       FontSize="30" 
                        TextColor="White" 
                        FontFamily="RubikSemi"
                        Opacity="0.8"
-                       HorizontalOptions="Center"/>
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       LineBreakMode="NoWrap"/>
+
+                <Label Text="{Binding Desc}" 
+                       FontSize="20" 
+                       FontAttributes="Bold" 
+                       TextColor="White"
+                       FontFamily="RubikSemi"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       LineBreakMode="WordWrap"/>   
+
             </VerticalStackLayout>
         </VerticalStackLayout>
     </Border>

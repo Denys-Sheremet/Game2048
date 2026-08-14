@@ -75,20 +75,15 @@ public class ThemesManager : IThemesManager
         return _themeRegistry.GetThemes();
     }
 
-    public Color GetThemeColor(string resourceKey)
+    public Brush GetCurrentThemeBrush(string resourceKey)
     {
         if (Application.Current?.Resources.TryGetValue(resourceKey, out var resource) == true)
         {
+            if (resource is Brush brush)
+                return brush;
             if (resource is Color color)
-            {
-                return color;
-            }
-            if (resource is SolidColorBrush brush)
-            {
-                return brush.Color;
-            }
+                return new SolidColorBrush(color);
         }
-
         return Colors.Transparent;
     }
 

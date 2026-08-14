@@ -439,6 +439,96 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Extended 5x5 mode with more undo count.
+        /// </summary>
+        public static string GameMode_ChillZone_desc {
+            get {
+                return ResourceManager.GetString("GameMode_ChillZone_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Chill Zone.
+        /// </summary>
+        public static string GameMode_ChillZone_title {
+            get {
+                return ResourceManager.GetString("GameMode_ChillZone_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на 4x4.
+        /// </summary>
+        public static string GameMode_Classic_desc {
+            get {
+                return ResourceManager.GetString("GameMode_Classic_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Classic 2048.
+        /// </summary>
+        public static string GameMode_Classic_title {
+            get {
+                return ResourceManager.GetString("GameMode_Classic_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на 4x4 + Undo.
+        /// </summary>
+        public static string GameMode_ClassicPlus_desc {
+            get {
+                return ResourceManager.GetString("GameMode_ClassicPlus_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Classic+.
+        /// </summary>
+        public static string GameMode_ClassicPlus_title {
+            get {
+                return ResourceManager.GetString("GameMode_ClassicPlus_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на 3x3 + Undo (tile to win - 1024).
+        /// </summary>
+        public static string GameMode_Compact_desc {
+            get {
+                return ResourceManager.GetString("GameMode_Compact_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Compact.
+        /// </summary>
+        public static string GameMode_Compact_title {
+            get {
+                return ResourceManager.GetString("GameMode_Compact_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на 5x5 hardcore mode with doubled spawn.
+        /// </summary>
+        public static string GameMode_Extended_desc {
+            get {
+                return ResourceManager.GetString("GameMode_Extended_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Extended 2048.
+        /// </summary>
+        public static string GameMode_Extended_title {
+            get {
+                return ResourceManager.GetString("GameMode_Extended_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на MODE SELECTION.
         /// </summary>
         public static string GameModes_title {

@@ -13,6 +13,7 @@ public partial class GameModesViewModel : ObservableObject
     public ObservableCollection<GameMode> Modes { get; }
 
     private readonly GameConfig _gameConfig;
+    private readonly ISettingsManager _settingsManager;
     public IRelayCommand StartGameCommand { get; private set; }
 
     public event Action? OnReadyToPlay;
@@ -25,14 +26,16 @@ public partial class GameModesViewModel : ObservableObject
         {
             if(SetProperty(ref _selectedMode, value))
             {
+                _settingsManager.SetGameMode(value!.ModeType);
                 UpdateActiveCardState(value!);
             }
         }
     }
 
-    public GameModesViewModel(IGameModeService gameModeService, GameConfig gameConfig) 
+    public GameModesViewModel(IGameModeService gameModeService, GameConfig gameConfig, ISettingsManager settingsManager) 
     {
         _gameConfig = gameConfig;
+        _settingsManager = settingsManager;
         var gameModes = gameModeService.GetAvailableGameModes();
         Modes = new ObservableCollection<GameMode>(gameModes);
 

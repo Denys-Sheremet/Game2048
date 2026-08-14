@@ -13,12 +13,12 @@
     <Grid x:Name="GamePageContainer"
           Background="{DynamicResource GameBackgroundColor}"
           VerticalOptions="Fill"
-          HorizontalOptions="Fill"
-          IsVisible="False">
+          HorizontalOptions="Fill">
         
     
         <Grid x:Name="PageGrid" 
-              RowDefinitions="Auto, *, Auto">
+              RowDefinitions="Auto, *, Auto"
+              IsVisible="False">
 
             <!-- Info block with score -->
             <Grid x:Name="InfoBlockWrapper" 

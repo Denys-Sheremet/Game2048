@@ -289,14 +289,14 @@ public partial class GameView : ContentPage
 
     private async Task AnimatePageAppearing()
     {
-        GamePageContainer.TranslationX = -200;
-        GamePageContainer.Opacity = 0;
-        GamePageContainer.IsVisible = true;
+        PageGrid.TranslationX = -200;
+        PageGrid.Opacity = 0;
+        PageGrid.IsVisible = true;
         await Task.Yield();
 
         await Task.WhenAll(
-            GamePageContainer.TranslateToAsync(0, 0, 300, Easing.CubicOut),
-            GamePageContainer.FadeToAsync(1, 300, Easing.CubicOut)
+            PageGrid.TranslateToAsync(0, 0, 300, Easing.CubicOut),
+            PageGrid.FadeToAsync(1, 300, Easing.CubicOut)
         );
     }
 
@@ -361,7 +361,6 @@ public partial class GameView : ContentPage
     {
         VictoryOverlay.TranslationY = 800;
         VictoryOverlay.Opacity = 0;
-        VictoryOverlay.IsVisible = true;
 
         await Task.WhenAll(
             VictoryOverlay.FadeToAsync(1, 400),
@@ -372,10 +371,14 @@ public partial class GameView : ContentPage
     private async void HandleOnGameOver()
     {
         GameOverOverlay.Scale = 0.0;
-        GameOverOverlay.IsVisible = true;
+        GameOverOverlay.Opacity = 0.0;
 
-        await GameOverOverlay.ScaleToAsync(1.1, 250, Easing.CubicIn);
-        await GameOverOverlay.ScaleToAsync(1.0, 100, Easing.CubicOut);
+        await Task.WhenAll(
+            GameOverOverlay.FadeToAsync(1, 200),
+            GameOverOverlay.ScaleToAsync(1.1, 300, Easing.CubicOut)
+        );
+
+        await GameOverOverlay.ScaleToAsync(1.0, 100, Easing.CubicIn);
     }
 
     private async void HandleRestart()
@@ -391,7 +394,6 @@ public partial class GameView : ContentPage
     {
         Settings.Opacity = 0;
         Settings.Scale = 0.0;
-        Settings.IsVisible = true;
 
         await Task.WhenAll(
             Settings.FadeToAsync(1, 200),
