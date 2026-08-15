@@ -16,7 +16,12 @@ public sealed class ThemeRegistry
         { GameTheme.NeonColorTheme, new NeonColorTheme()},
         { GameTheme.RainbowTheme, new RainbowTheme()},
         { GameTheme.BWTheme, new BWTheme()},
-        { GameTheme.PinkyPinkTheme, new PinkyPinkTheme()}
+        { GameTheme.PinkyPinkTheme, new PinkyPinkTheme()},
+        { GameTheme.RoyalRedTheme, new RoyalRedTheme()},
+        { GameTheme.RoyalBlueTheme, new RoyalBlueTheme()},
+        { GameTheme.HazardTheme, new HazardTheme()},
+        { GameTheme.SolarTheme, new SolarTheme()},
+        { GameTheme.TokyoTheme, new TokyoTheme()}
     };
 
     public ResourceDictionary this[GameTheme theme] => Themes[theme];

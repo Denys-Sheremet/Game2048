@@ -574,6 +574,24 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Toxic yellow and lime theme. Careful!.
+        /// </summary>
+        public static string HazardTheme_desc {
+            get {
+                return ResourceManager.GetString("HazardTheme_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Hazard.
+        /// </summary>
+        public static string HazardTheme_title {
+            get {
+                return ResourceManager.GetString("HazardTheme_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на GAME MODES.
         /// </summary>
         public static string Menu_game_modes_btn_text {
@@ -718,6 +736,42 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Deep colors, royal vibe.
+        /// </summary>
+        public static string RoyalBlueTheme_desc {
+            get {
+                return ResourceManager.GetString("RoyalBlueTheme_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Royal Blue.
+        /// </summary>
+        public static string RoyalBlueTheme_title {
+            get {
+                return ResourceManager.GetString("RoyalBlueTheme_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Red and gold. Royal experience.
+        /// </summary>
+        public static string RoyalRedTheme_desc {
+            get {
+                return ResourceManager.GetString("RoyalRedTheme_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Royal Red.
+        /// </summary>
+        public static string RoyalRedTheme_title {
+            get {
+                return ResourceManager.GetString("RoyalRedTheme_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Apply.
         /// </summary>
         public static string Settings_apply_btn {
@@ -817,11 +871,47 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Warm colors and comfort.
+        /// </summary>
+        public static string SolarTheme_desc {
+            get {
+                return ResourceManager.GetString("SolarTheme_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Solar.
+        /// </summary>
+        public static string SolarTheme_title {
+            get {
+                return ResourceManager.GetString("SolarTheme_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Themes.
         /// </summary>
         public static string Themes_title {
             get {
                 return ResourceManager.GetString("Themes_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на If you are 太陽, be my 日の出.
+        /// </summary>
+        public static string TokyoTheme_desc {
+            get {
+                return ResourceManager.GetString("TokyoTheme_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Tokyo.
+        /// </summary>
+        public static string TokyoTheme_title {
+            get {
+                return ResourceManager.GetString("TokyoTheme_title", resourceCulture);
             }
         }
         

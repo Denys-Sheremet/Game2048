@@ -26,6 +26,11 @@ public static class GameThemeExtension
         GameTheme.RainbowTheme => 0, //300
         GameTheme.BWTheme => 0, //350
         GameTheme.PinkyPinkTheme => 0, //400
+        GameTheme.RoyalRedTheme => 0, //500
+        GameTheme.RoyalBlueTheme => 0, //500
+        GameTheme.HazardTheme => 0, //350
+        GameTheme.SolarTheme => 0, //200
+        GameTheme.TokyoTheme => 0, //150
         _ => 100
     };
 }

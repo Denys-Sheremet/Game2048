@@ -21,5 +21,15 @@ public enum GameTheme
     /// <summary>Black and white theme</summary>
     BWTheme,
     /// <summary>Pink pink and once more pink theme</summary>
-    PinkyPinkTheme
+    PinkyPinkTheme,
+    /// <summary>Royal red theme with golden accents</summary>
+    RoyalRedTheme,
+    /// <summary>Royal blue theme with purple accents</summary>
+    RoyalBlueTheme,
+    /// <summary>Toxic yellow and lime colors</summary>
+    HazardTheme,
+    /// <summary>Solar theme with warm colors</summary>
+    SolarTheme,
+    /// <summary>Do you really need an explanation?</summary>
+    TokyoTheme
 }

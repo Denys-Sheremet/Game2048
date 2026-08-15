@@ -390,4 +390,34 @@
   <data name="GameMode_ChillZone_desc" xml:space="preserve">
     <value>Extended 5x5 mode with more undo count</value>
   </data>
+  <data name="RoyalRedTheme_title" xml:space="preserve">
+    <value>Royal Red</value>
+  </data>
+  <data name="RoyalRedTheme_desc" xml:space="preserve">
+    <value>Red and gold. Royal experience</value>
+  </data>
+  <data name="RoyalBlueTheme_title" xml:space="preserve">
+    <value>Royal Blue</value>
+  </data>
+  <data name="RoyalBlueTheme_desc" xml:space="preserve">
+    <value>Deep colors, royal vibe</value>
+  </data>
+  <data name="HazardTheme_title" xml:space="preserve">
+    <value>Hazard</value>
+  </data>
+  <data name="HazardTheme_desc" xml:space="preserve">
+    <value>Toxic yellow and lime theme. Careful!</value>
+  </data>
+  <data name="SolarTheme_title" xml:space="preserve">
+    <value>Solar</value>
+  </data>
+  <data name="SolarTheme_desc" xml:space="preserve">
+    <value>Warm colors and comfort</value>
+  </data>
+  <data name="TokyoTheme_title" xml:space="preserve">
+    <value>Tokyo</value>
+  </data>
+  <data name="TokyoTheme_desc" xml:space="preserve">
+    <value>If you are 太陽, be my 日の出</value>
+  </data>
 </root>

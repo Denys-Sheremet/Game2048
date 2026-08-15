@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Game2048.Maui.Resources.Styles.Themes.HazardTheme">
+
+    <!-- Background -->
+    <LinearGradientBrush x:Key="GameBackgroundColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#12161A" Offset="0.0"/>
+        <GradientStop Color="#0B0E11" Offset="0.5"/>
+        <GradientStop Color="#050608" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="GameFieldBackgroundColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#1B2228" Offset="0.0"/>
+        <GradientStop Color="#12171C" Offset="0.5"/>
+        <GradientStop Color="#0A0D10" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="EmptyCellColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#263038" Offset="0.0"/>
+        <GradientStop Color="#1A2228" Offset="0.5"/>
+        <GradientStop Color="#101519" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="PageBackgroundColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#12161A" Offset="0.0"/>
+        <GradientStop Color="#0B0E11" Offset="0.5"/>
+        <GradientStop Color="#050608" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <!-- Buttons -->
+    <Color x:Key="QuickPlayBtnTextColor">#050608</Color>
+    <LinearGradientBrush x:Key="QuickPlayBtnBGColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#EBFF00" Offset="0.0"/>
+        <GradientStop Color="#D4FF00" Offset="0.5"/>
+        <GradientStop Color="#9DDF00" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <Color x:Key="AchBtnTextColor">#FAFF00</Color>
+    <LinearGradientBrush x:Key="AchBtnBGColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#263038" Offset="0.0"/>
+        <GradientStop Color="#1A2228" Offset="0.5"/>
+        <GradientStop Color="#101519" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <!-- Tiles -->
+    <LinearGradientBrush x:Key="Tile2BGColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#B339FF14" Offset="0.0"/>
+        <GradientStop Color="#8039FF14" Offset="0.5"/>
+        <GradientStop Color="#4D39FF14" Offset="1.0"/>
+    </LinearGradientBrush>
+    <Color x:Key="Tile2TextColor">#080C0E</Color>
+    <Color x:Key="Tile2BorderColor">#39FF14</Color>
+
+    <LinearGradientBrush x:Key="Tile4BGColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#B3FAFF00" Offset="0.0"/>
+        <GradientStop Color="#80FAFF00" Offset="0.5"/>
+        <GradientStop Color="#4DFAFF00" Offset="1.0"/>
+    </LinearGradientBrush>
+    <Color x:Key="Tile4TextColor">#080C0E</Color>
+    <Color x:Key="Tile4BorderColor">#FAFF00</Color>
+
+    <LinearGradientBrush x:Key="Tile8BGColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#B3FF6B00" Offset="0.0"/>
+        <GradientStop Color="#80FF6B00" Offset="0.5"/>
+        <GradientStop Color="#4DFF6B00" Offset="1.0"/>
+    </LinearGradientBrush>
+    <Color x:Key="Tile8TextColor">#080C0E</Color>
+    <Color x:Key="Tile8BorderColor">#FF6B00</Color>
+
+    <LinearGradientBrush x:Key="Tile16BGColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#B3FFB800" Offset="0.0"/>
+        <GradientStop Color="#80FFB800" Offset="0.5"/>
+        <GradientStop Color="#4DFFB800" Offset="1.0"/>
+    </LinearGradientBrush>
+    <Color x:Key="Tile16TextColor">#080C0E</Color>
+    <Color x:Key="Tile16BorderColor">#FFB800</Color>
+
+    <LinearGradientBrush x:Key="Tile32BGColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#B3FF1E27" Offset="0.0"/>
+        <GradientStop Color="#80FF1E27" Offset="0.5"/>
+        <GradientStop Color="#4DFF1E27" Offset="1.0"/>
+    </LinearGradientBrush>
+    <Color x:Key="Tile32TextColor">#FFFFFF</Color>
+    <Color x:Key="Tile32BorderColor">#FF1E27</Color>
+
+    <LinearGradientBrush x:Key="Tile64BGColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#B3B000FF" Offset="0.0"/>
+        <GradientStop Color="#80B000FF" Offset="0.5"/>
+        <GradientStop Color="#4DB000FF" Offset="1.0"/>
+    </LinearGradientBrush>
+    <Color x:Key="Tile64TextColor">#FFFFFF</Color>
+    <Color x:Key="Tile64BorderColor">#B000FF</Color>
+
+    <LinearGradientBrush x:Key="Tile128BGColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#B300E5FF" Offset="0.0"/>
+        <GradientStop Color="#8000E5FF" Offset="0.5"/>
+        <GradientStop Color="#4D00E5FF" Offset="1.0"/>
+    </LinearGradientBrush>
+    <Color x:Key="Tile128TextColor">#080C0E</Color>
+    <Color x:Key="Tile128BorderColor">#00E5FF</Color>
+
+    <LinearGradientBrush x:Key="Tile256BGColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#B300FFA3" Offset="0.0"/>
+        <GradientStop Color="#8000FFA3" Offset="0.5"/>
+        <GradientStop Color="#4D00FFA3" Offset="1.0"/>
+    </LinearGradientBrush>
+    <Color x:Key="Tile256TextColor">#080C0E</Color>
+    <Color x:Key="Tile256BorderColor">#00FFA3</Color>
+
+    <LinearGradientBrush x:Key="Tile512BGColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#B376FF03" Offset="0.0"/>
+        <GradientStop Color="#8076FF03" Offset="0.5"/>
+        <GradientStop Color="#4D76FF03" Offset="1.0"/>
+    </LinearGradientBrush>
+    <Color x:Key="Tile512TextColor">#080C0E</Color>
+    <Color x:Key="Tile512BorderColor">#76FF03</Color>
+
+    <LinearGradientBrush x:Key="Tile1024BGColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#B3FF3D00" Offset="0.0"/>
+        <GradientStop Color="#80FF3D00" Offset="0.5"/>
+        <GradientStop Color="#4DFF3D00" Offset="1.0"/>
+    </LinearGradientBrush>
+    <Color x:Key="Tile1024TextColor">#FFFFFF</Color>
+    <Color x:Key="Tile1024BorderColor">#FF3D00</Color>
+
+    <LinearGradientBrush x:Key="Tile2048BGColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#E639FF14" Offset="0.0"/>
+        <GradientStop Color="#B339FF14" Offset="0.5"/>
+        <GradientStop Color="#8039FF14" Offset="1.0"/>
+    </LinearGradientBrush>
+    <Color x:Key="Tile2048TextColor">#080C0E</Color>
+    <Color x:Key="Tile2048BorderColor">#39FF14</Color>
+
+    <LinearGradientBrush x:Key="TileExtraBGColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#E6FFFFFF" Offset="0.0"/>
+        <GradientStop Color="#B3FFFFFF" Offset="0.5"/>
+        <GradientStop Color="#80FFFFFF" Offset="1.0"/>
+    </LinearGradientBrush>
+    <Color x:Key="TileExtraTextColor">#080C0E</Color>
+    <Color x:Key="TileExtraBorderColor">#FFFFFF</Color>
+
+    <!-- Main Buttons -->
+    <LinearGradientBrush x:Key="MainButtonBGColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#363820" Offset="0.0"/>
+        <GradientStop Color="#222414" Offset="0.5"/>
+        <GradientStop Color="#12140A" Offset="1.0"/>
+    </LinearGradientBrush>
+    <Color x:Key="MainButtonTextColor">#FAFF00</Color>
+
+    <!-- Score -->
+    <LinearGradientBrush x:Key="ScoreBoardBGColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#263038" Offset="0.0"/>
+        <GradientStop Color="#1A2228" Offset="0.5"/>
+        <GradientStop Color="#101519" Offset="1.0"/>
+    </LinearGradientBrush>
+    <Color x:Key="ScoreBoardTextColor">#39FF14</Color>
+    <Color x:Key="ScoreBoardNumColor">#FFFFFF</Color>
+
+    <!-- Logo -->
+    <Color x:Key="LogoNumColor">#FAFF00</Color>
+
+    <!-- Achievement -->
+    <LinearGradientBrush x:Key="AchievementBackgroundColor" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#28323B" Offset="0.0"/>
+        <GradientStop Color="#1B232A" Offset="0.5"/>
+        <GradientStop Color="#0F1418" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <Color x:Key="ProgressBarColor">#39FF14</Color>
+    <Color x:Key="ProgressBarBGColor">#991A2329</Color>
+
+    <!-- Text -->
+    <Color x:Key="MainTextColor">#FFFFFF</Color>
+    <Color x:Key="SecondaryTextColor">#FFFFFF</Color>
+    <Color x:Key="MainTitleColor">#FAFF00</Color>
+    <Color x:Key="PreviewTextColor">#EDFF8A</Color>
+    <Color x:Key="InputTextColor">#0F1418</Color>
+
+    <!-- Cards -->
+    <LinearGradientBrush x:Key="CardBGColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#222B33" Offset="0.0"/>
+        <GradientStop Color="#0F1418" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="Card1BGColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#364450" Offset="0.0"/>
+        <GradientStop Color="#1D252C" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="Card2BGColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#2F3C47" Offset="0.0"/>
+        <GradientStop Color="#182026" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="Card3BGColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#28333D" Offset="0.0"/>
+        <GradientStop Color="#141A20" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="Card4BGColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#222C34" Offset="0.0"/>
+        <GradientStop Color="#101519" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="Card5BGColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#1C242C" Offset="0.0"/>
+        <GradientStop Color="#0C1014" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <!-- Borders -->
+    <Color x:Key="MainBorderColor">#FAFF00</Color>
+    <Color x:Key="ScoreBoardBorderColor">#39FF14</Color>
+    <Color x:Key="SecondaryFieldBGColor">#141A1F</Color>
+
+    <Color x:Key="SelectionStrokeColor">#39FF14</Color>
+    <Color x:Key="AttentionFieldStrokeColor">#FF6B00</Color>
+
+    <!-- Misc -->
+    <Color x:Key="SignsTextColor">#9AA8B4</Color>
+    <Color x:Key="VersionTextColor">#5C6B75</Color>
+
+    <!-- Preview -->
+    <Color x:Key="PreviewColor1">#39FF14</Color>
+    <Color x:Key="PreviewColor2">#FAFF00</Color>
+    <Color x:Key="PreviewColor3">#FF6B00</Color>
+    <Color x:Key="PreviewColor4">#00E5FF</Color>
+
+    <!-- Preview Extra -->
+    <Color x:Key="PreviewColor5">#0B0E11</Color>
+    <Color x:Key="PreviewColor6">#1A2228</Color>
+    <Color x:Key="PreviewColor7">#141A1F</Color>
+    <Color x:Key="PreviewColor8">#39FF14</Color>
+
+</ResourceDictionary>

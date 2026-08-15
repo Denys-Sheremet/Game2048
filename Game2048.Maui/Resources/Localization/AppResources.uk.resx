@@ -390,4 +390,34 @@
   <data name="GameMode_ChillZone_desc" xml:space="preserve">
     <value>Розширений режим 5x5 з більшою кількістю скасувань</value>
   </data>
+  <data name="RoyalRedTheme_title" xml:space="preserve">
+    <value>Королівський червоний</value>
+  </data>
+  <data name="RoyalRedTheme_desc" xml:space="preserve">
+    <value>Відчуй себе королем</value>
+  </data>
+  <data name="RoyalBlueTheme_title" xml:space="preserve">
+    <value>Королівський синій</value>
+  </data>
+  <data name="RoyalBlueTheme_desc" xml:space="preserve">
+    <value>Глибокі кольори, королівський вайб</value>
+  </data>
+  <data name="HazardTheme_title" xml:space="preserve">
+    <value>Загроза</value>
+  </data>
+  <data name="HazardTheme_desc" xml:space="preserve">
+    <value>Токсична тема. Обережно!</value>
+  </data>
+  <data name="SolarTheme_title" xml:space="preserve">
+    <value>Сонячна тема</value>
+  </data>
+  <data name="SolarTheme_desc" xml:space="preserve">
+    <value>Теплі кольори та комфорт</value>
+  </data>
+  <data name="TokyoTheme_title" xml:space="preserve">
+    <value>Токіо</value>
+  </data>
+  <data name="TokyoTheme_desc" xml:space="preserve">
+    <value>Якщо ти 太陽, стань моїм 日の出</value>
+  </data>
 </root>

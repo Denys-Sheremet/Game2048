@@ -34,7 +34,7 @@
             <Label Text="{Binding Title}" 
                    FontSize="11" 
                    FontFamily="MontBold" 
-                   TextColor="{DynamicResource SecondaryTextColor}"
+                   TextColor="{DynamicResource MainTextColor}"
                    HorizontalTextAlignment="Center" 
                    MaxLines="2" 
                    LineBreakMode="TailTruncation"/>

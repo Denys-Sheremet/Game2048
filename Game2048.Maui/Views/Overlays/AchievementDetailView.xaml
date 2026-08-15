@@ -48,7 +48,7 @@
                    Text=""
                    FontFamily="RubikBold"
                    FontSize="26"
-                   TextColor="{DynamicResource SecondaryTextColor}"
+                   TextColor="{DynamicResource MainTextColor}"
                    HorizontalOptions="Center"
                    VerticalOptions="Center" 
                    HorizontalTextAlignment="Center"/>
@@ -57,7 +57,7 @@
                    Text=""
                    FontFamily="RubikSemi"
                    FontSize="22"
-                   TextColor="{DynamicResource SecondaryTextColor}"
+                   TextColor="{DynamicResource MainTextColor}"
                    HorizontalOptions="Center"
                    VerticalOptions="Center"
                    HorizontalTextAlignment="Center"/>  
