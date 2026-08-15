@@ -117,17 +117,13 @@ public class ThemesManager : IThemesManager
     public ThemePreviewColors GetThemePreviewColors(GameTheme theme)
     {
         var resourceDict = GetResource(theme);
-        var colors = new Dictionary<string, Color>();
+        var colors = new Dictionary<string, object>();
 
         foreach (var key in resourceDict.Keys)
         {
             if (key is string stringKey)
             {
-                var color = GetThemeColor(stringKey, theme);
-                if (color != Colors.Transparent)
-                {
-                    colors[stringKey] = color;
-                }
+                colors[stringKey] = resourceDict[stringKey];
             }
         }
 

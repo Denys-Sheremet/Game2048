@@ -92,7 +92,7 @@
                                            MaxLength="{x:Static vm:SettingsViewModel.MaxNameLength}"
                                            FontSize="16"
                                            FontFamily="RubikSemi"
-                                           TextColor="{DynamicResource MainTextColor}"
+                                           TextColor="{DynamicResource InputTextColor}"
                                            VerticalOptions="Center"/>
 
                                     <Button Grid.Column="1"

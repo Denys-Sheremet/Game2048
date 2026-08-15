@@ -32,10 +32,10 @@ public partial class ThemePreviewViewModel : ObservableObject
         }
     }
     
-    public Color TitleColor => PreviewColors?[ThemeResourceKeys.MainTitleColor] ?? Colors.Transparent;
-    public Color GameBackgroundColor => PreviewColors?[ThemeResourceKeys.GameBackgroundColor] ?? Colors.Transparent;
-    public Color GameFieldBackgroundColor => PreviewColors?[ThemeResourceKeys.GameFieldBackgroundColor] ?? Colors.Transparent;
-    public Color EmptyCellColor => PreviewColors?[ThemeResourceKeys.EmptyCellColor] ?? Colors.Transparent;
+    public Color TitleColor => PreviewColors?.GetColor(ThemeResourceKeys.MainTitleColor) ?? Colors.Transparent;
+    public Brush GameBackgroundColor => PreviewColors?.GetBrush(ThemeResourceKeys.GameBackgroundColor) ?? Colors.Transparent;
+    public Brush GameFieldBackgroundColor => PreviewColors?.GetBrush(ThemeResourceKeys.GameFieldBackgroundColor) ?? Colors.Transparent;
+    public Brush EmptyCellColor => PreviewColors?.GetBrush(ThemeResourceKeys.EmptyCellColor) ?? Colors.Transparent;
 
     private IReadOnlyList<ThemePreviewTileViewModel> _previewTiles = [];
     public IReadOnlyList<ThemePreviewTileViewModel> PreviewTiles
@@ -64,9 +64,9 @@ public partial class ThemePreviewViewModel : ObservableObject
 
         foreach (var val in PreviewTileValues)
         {
-            var bg = colors[ThemeResourceKeys.TileBackgroundColor(val)];
-            var text = colors[ThemeResourceKeys.TileTextColor(val)];
-            var border = colors[ThemeResourceKeys.TileBorderColor(val)];
+            var bg = colors.GetBrush(ThemeResourceKeys.TileBackgroundColor(val));
+            var text = colors.GetColor(ThemeResourceKeys.TileTextColor(val));
+            var border = colors.GetColor(ThemeResourceKeys.TileBorderColor(val));
 
             tiles.Add(new ThemePreviewTileViewModel(val, bg, text, border));
         }

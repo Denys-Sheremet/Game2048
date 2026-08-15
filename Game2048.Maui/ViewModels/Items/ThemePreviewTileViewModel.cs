@@ -11,8 +11,8 @@ public partial class ThemePreviewTileViewModel : ObservableObject
 {
     public int Value { get; }
 
-    private Color _backgroundColor;
-    public Color BackgroundColor
+    private Brush _backgroundColor;
+    public Brush BackgroundColor
     {
         get => _backgroundColor;
         set => SetProperty(ref _backgroundColor, value);
@@ -34,7 +34,7 @@ public partial class ThemePreviewTileViewModel : ObservableObject
 
     public ThemePreviewTileViewModel(
         int value,
-        Color backgroundColor,
+        Brush backgroundColor,
         Color textColor,
         Color borderColor)
     {

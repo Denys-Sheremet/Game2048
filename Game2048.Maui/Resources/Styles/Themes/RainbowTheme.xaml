@@ -175,6 +175,7 @@
     <Color x:Key="SecondaryTextColor">#FFFFFF</Color>
     <Color x:Key="MainTitleColor">#F3E5F5</Color>
     <Color x:Key="PreviewTextColor">#F3EEFF</Color>
+    <Color x:Key="InputTextColor">#FFFFFF</Color>
 
     <!-- Cards -->
     <LinearGradientBrush x:Key="CardBGColor" StartPoint="0,0" EndPoint="0,1">

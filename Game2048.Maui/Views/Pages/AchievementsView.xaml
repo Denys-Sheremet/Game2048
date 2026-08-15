@@ -115,17 +115,11 @@
                                    TextColor="{DynamicResource MainTextColor}"/>
                         </Grid>
 
-                        <Border StrokeShape="RoundRectangle 3"
-                                StrokeThickness="0"
-                                HeightRequest="8"
-                                HorizontalOptions="Fill">
-                            <ProgressBar Progress="{Binding TotalProgressFraction}" 
-                                         ProgressColor="{DynamicResource ProgressBarColor}" 
-                                         Background="Grey"
+                        <ProgressBar Progress="{Binding TotalProgressFraction}" 
+                                         ProgressColor="{DynamicResource ProgressBarColor}"
                                          HeightRequest="8"
-                                         VerticalOptions="Center"/>
-                        </Border>
-                        
+                                         VerticalOptions="Center"
+                                         ZIndex="11"/>
                     </VerticalStackLayout>
                 </Border>
 

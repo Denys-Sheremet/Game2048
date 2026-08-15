@@ -8,7 +8,7 @@
              x:DataType="vm:ThemePreviewViewModel">
 
     <Border StrokeShape="RoundRectangle 20"
-            BackgroundColor="{Binding GameBackgroundColor}"
+            Background="{Binding GameBackgroundColor}"
             Stroke="{DynamicResource MainBorderColor}"
             StrokeThickness="2"
             WidthRequest="280"
@@ -25,6 +25,7 @@
                        FontSize="22" 
                        FontFamily="RubikBold" 
                        HorizontalOptions="Center"
+                       VerticalOptions="Center"
                        HorizontalTextAlignment="Center"
                        TextColor="{Binding TitleColor}" />
                 <Button Grid.Column="2"
@@ -41,7 +42,7 @@
                         Clicked="OnHideThemePreview" />
             </Grid>
 
-            <Border BackgroundColor="{Binding GameFieldBackgroundColor}"
+            <Border Background="{Binding GameFieldBackgroundColor}"
                     StrokeShape="RoundRectangle 16"
                     Padding="8"
                     WidthRequest="200"
@@ -50,26 +51,15 @@
 
                 <Grid RowDefinitions="*,*" ColumnDefinitions="*,*" RowSpacing="8" ColumnSpacing="8">
 
-                    <Border Grid.Row="0" Grid.Column="0" BackgroundColor="{Binding EmptyCellColor}" StrokeShape="RoundRectangle 8" />
-                    <Border Grid.Row="0" Grid.Column="1" BackgroundColor="{Binding EmptyCellColor}" StrokeShape="RoundRectangle 8" />
-                    <Border Grid.Row="1" Grid.Column="0" BackgroundColor="{Binding EmptyCellColor}" StrokeShape="RoundRectangle 8" />
-                    <Border Grid.Row="1" Grid.Column="1" BackgroundColor="{Binding EmptyCellColor}" StrokeShape="RoundRectangle 8" />
+                    <Border Grid.Row="0" Grid.Column="0" Background="{Binding EmptyCellColor}" StrokeShape="RoundRectangle 8" />
+                    <Border Grid.Row="0" Grid.Column="1" Background="{Binding EmptyCellColor}" StrokeShape="RoundRectangle 8" />
+                    <Border Grid.Row="1" Grid.Column="0" Background="{Binding EmptyCellColor}" StrokeShape="RoundRectangle 8" />
+                    <Border Grid.Row="1" Grid.Column="1" Background="{Binding EmptyCellColor}" StrokeShape="RoundRectangle 8" />
 
-                    <CollectionView Grid.Row="0" Grid.RowSpan="2" 
-                                    Grid.Column="0" Grid.ColumnSpan="2"
-                                    ItemsSource="{Binding PreviewTiles}"
-                                    SelectionMode="None"
-                                    InputTransparent="True">
-                        <CollectionView.ItemsLayout>
-                            <GridItemsLayout Orientation="Vertical" Span="2" HorizontalItemSpacing="8" VerticalItemSpacing="8" />
-                        </CollectionView.ItemsLayout>
-
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="vm:ThemePreviewTileViewModel">
-                                <comp:ThemePreviewTileView />
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
+                    <comp:ThemePreviewTileView Grid.Row="0" Grid.Column="0" BindingContext="{Binding PreviewTiles[0]}" />
+                    <comp:ThemePreviewTileView Grid.Row="0" Grid.Column="1" BindingContext="{Binding PreviewTiles[1]}" />
+                    <comp:ThemePreviewTileView Grid.Row="1" Grid.Column="0" BindingContext="{Binding PreviewTiles[2]}" />
+                    <comp:ThemePreviewTileView Grid.Row="1" Grid.Column="1" BindingContext="{Binding PreviewTiles[3]}" />
 
                 </Grid>
             </Border>
