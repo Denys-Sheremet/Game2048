@@ -57,7 +57,8 @@
                           Grid.Column="0"
                           ItemsSource="{Binding Modes}"
                           CurrentItem="{Binding SelectedMode}"
-                          PeekAreaInsets="40">
+                          PeekAreaInsets="40"
+                          Loop="False">
                 <CarouselView.ItemTemplate>
                     <DataTemplate x:DataType="models:GameMode">
                         <comp:GameModeCardView

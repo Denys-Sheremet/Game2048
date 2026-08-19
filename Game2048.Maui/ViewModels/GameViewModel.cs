@@ -516,6 +516,9 @@ public partial class GameViewModel : BindableObject, IDisposable
 
             OnRestart?.Invoke();
 
+            IsGameOver = false;
+            IsVictory = false;
+
             SetActiveState();
         });
     }
