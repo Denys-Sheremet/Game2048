@@ -400,6 +400,10 @@ public partial class GameView : ContentPage
             Settings.ScaleToAsync(1.1, 300, Easing.CubicIn)
         );
         await Settings.ScaleToAsync(1.0, 100, Easing.CubicOut);
+
+        //
+        DumpFullBoardState();
+        //
     }
 
     protected override bool OnBackButtonPressed()
@@ -434,5 +438,46 @@ public partial class GameView : ContentPage
         }
 
         await Shell.Current.GoToAsync(nameof(ThemeSelectionView), false);
+    }
+
+    //
+    public void DumpFullBoardState()
+    {
+        System.Diagnostics.Debug.WriteLine("\n================ BOARD DUMP START ================");
+
+        // 1. Смотрим, что думает мозг игры (ViewModel)
+        System.Diagnostics.Debug.WriteLine($"[VIEWMODEL] Total Tiles: {_viewModel.Tiles.Count}");
+        foreach (var vm in _viewModel.Tiles)
+        {
+            // Используем dynamic для простоты, или явно скастуй к твоему классу TileVM
+            var dynVm = vm as dynamic;
+            System.Diagnostics.Debug.WriteLine($"   -> VM_ID: {dynVm.Id} | Value: {dynVm.Value} | Pos: R{dynVm.Row} C{dynVm.Column}");
+        }
+
+        // 2. Смотрим, что физически лежит в визуальном дереве MAUI
+        var visualTiles = GameGridLayout.Children.OfType<TileView>().ToList();
+        System.Diagnostics.Debug.WriteLine($"\n[VISUAL TREE] Total TileViews: {visualTiles.Count}");
+
+        foreach (var view in visualTiles)
+        {
+            var bounds = AbsoluteLayout.GetLayoutBounds(view);
+
+            string idStr = "NULL";
+            string valStr = "NULL";
+
+            if (view.BindingContext != null)
+            {
+                var dynVm = view.BindingContext as dynamic;
+                idStr = dynVm.Id.ToString();
+                valStr = dynVm.Value.ToString();
+            }
+
+            System.Diagnostics.Debug.WriteLine(
+                $"   -> VIEW_ID: {idStr} | Value: {valStr} | " +
+                $"Bounds: ({bounds.X:F0}, {bounds.Y:F0}) | " +
+                $"Opacity: {view.Opacity} | Visible: {view.IsVisible}");
+        }
+
+        System.Diagnostics.Debug.WriteLine("================ BOARD DUMP END ================\n");
     }
 }

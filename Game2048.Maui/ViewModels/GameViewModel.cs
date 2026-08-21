@@ -353,8 +353,11 @@ public partial class GameViewModel : BindableObject, IDisposable
             transitions = givenTransitions;
         }
 
-
         if ((transitions.Count == 0)) return;
+
+        //
+        DumpTransitions(transitions);
+        //
 
         SyncTiles();
 
@@ -566,5 +569,22 @@ public partial class GameViewModel : BindableObject, IDisposable
                               .Select(func => func(transitions));
 
         await Task.WhenAll(tasks);
+    }
+
+    //
+    public static void DumpTransitions(IEnumerable<TileTransition> transitions, string phase = "UNDO")
+    {
+        var list = transitions.ToList();
+        System.Diagnostics.Debug.WriteLine($"\n[🔍 TRANSITION DUMP | {phase}] Total: {list.Count}");
+
+        foreach (var t in list)
+        {
+            string parents = (t.ParentId1.HasValue || t.ParentId2.HasValue)
+                ? $" | Parents: [{t.ParentId1}, {t.ParentId2}]"
+                : "";
+
+            System.Diagnostics.Debug.WriteLine($"   -> ID: {t.TileId,-4} | Type: {t.Type,-10} | From: ({t.FromX},{t.FromY}) -> To: ({t.ToX},{t.ToY}){parents}");
+        }
+        System.Diagnostics.Debug.WriteLine("==================================================\n");
     }
 }

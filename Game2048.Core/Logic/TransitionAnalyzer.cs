@@ -7,6 +7,11 @@ public static class TransitionAnalyzer
         if (isUndo)
         {
             List<TileTransition> invertedTransitions = Analyze(after, before, isUndo: false);
+
+            //
+            DumpTransitions(invertedTransitions, "INVERTED(BEFORE INVERSION FOR UNDO)");
+            //
+
             return InvertTransitions(invertedTransitions);
         }
 
@@ -68,7 +73,7 @@ public static class TransitionAnalyzer
                 ));
         }
 
-        //for identifying Merge
+        //for identifying Merge and illegal Disappear
         foreach (TileSnapshot ts in beforeDict.Values)
         {
             if (afterDict.ContainsKey(ts.Id)) continue;
@@ -83,6 +88,20 @@ public static class TransitionAnalyzer
                     ts.PosY,
                     child.PosX,
                     child.PosY,
+                    null,
+                    null
+                ));
+            }
+            else
+            {
+                transitions.Add(new TileTransition
+                (
+                    ts.Id,
+                    TileTransitionType.Disappear,
+                    ts.PosX,
+                    ts.PosY,
+                    ts.PosX,
+                    ts.PosY,
                     null,
                     null
                 ));
@@ -102,6 +121,7 @@ public static class TransitionAnalyzer
                 TileTransitionType.Spawn => TileTransitionType.Disappear,
                 TileTransitionType.Result => TileTransitionType.Split,
                 TileTransitionType.Merge => TileTransitionType.Respawn,
+                TileTransitionType.Disappear => TileTransitionType.Respawn,
                 TileTransitionType.Move => TileTransitionType.Move,
                 TileTransitionType.Stay => TileTransitionType.Stay,
                 _ => default
@@ -120,5 +140,22 @@ public static class TransitionAnalyzer
                 ));
         }
         return inverted;
+    }
+
+    //
+    public static void DumpTransitions(IEnumerable<TileTransition> transitions, string phase = "UNDO")
+    {
+        var list = transitions.ToList();
+        System.Diagnostics.Debug.WriteLine($"\n[🔍 TRANSITION DUMP | {phase}] Total: {list.Count}");
+
+        foreach (var t in list)
+        {
+            string parents = (t.ParentId1.HasValue || t.ParentId2.HasValue)
+                ? $" | Parents: [{t.ParentId1}, {t.ParentId2}]"
+                : "";
+
+            System.Diagnostics.Debug.WriteLine($"   -> ID: {t.TileId,-4} | Type: {t.Type,-10} | From: ({t.FromX},{t.FromY}) -> To: ({t.ToX},{t.ToY}){parents}");
+        }
+        System.Diagnostics.Debug.WriteLine("==================================================\n");
     }
 }
