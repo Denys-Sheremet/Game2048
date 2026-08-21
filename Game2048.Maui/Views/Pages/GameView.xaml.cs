@@ -1,4 +1,4 @@
-using Game2048.Core.DTOs;
+﻿using Game2048.Core.DTOs;
 using Game2048.Core.Enums;
 using Game2048.Maui.Achievements.Services;
 using Game2048.Maui.Enums;
@@ -72,6 +72,9 @@ public partial class GameView : ContentPage
             }
         }
         await Task.WhenAll(moveTasks);
+        
+        //
+        VerifyVisualState("MovePhase");
     }
 
     private async Task ApplyRemoveTransitionsAsync(IEnumerable<TileTransition> transitions)
@@ -94,6 +97,9 @@ public partial class GameView : ContentPage
                 _tileViews.Remove(item.Id);
             }
         }
+
+        //
+        VerifyVisualState("RemovePhase");
     }
 
     private async Task ApplyCreateTransitionsAsync(IEnumerable<TileTransition> transitions)
@@ -103,6 +109,13 @@ public partial class GameView : ContentPage
         foreach (var ct in trList)
         {
             var newVM = _viewModel.Tiles.FirstOrDefault(t => t.Id == ct.TileId);
+
+            //
+            if (newVM is null)
+            {
+                Debug.WriteLine($"[DEBUG] Missing VM for ID: {ct.TileId}");
+                continue;
+            }
 
             if (newVM is not null)
             {
@@ -140,6 +153,9 @@ public partial class GameView : ContentPage
             }
         }
         await Task.WhenAll(createTasks);
+
+        //
+        VerifyVisualState("CreatePhase");
     }
 
     private TileView? FindTileView(int id)
@@ -434,5 +450,21 @@ public partial class GameView : ContentPage
         }
 
         await Shell.Current.GoToAsync(nameof(ThemeSelectionView), false);
+    }
+
+    //
+    private void VerifyVisualState(string phase)
+    {
+        // 🔴 ВОТ СЮДА СТАВЬ БРЕЙКПОИНТ:
+        if (_viewModel.Tiles.Count != _tileViews.Count)
+        {
+            var missingIds = _viewModel.Tiles.Select(t => t.Id).Except(_tileViews.Keys).ToList();
+            Debug.WriteLine($"[РАССИНХРОН] В логике {_viewModel.Tiles.Count} плиток, а на экране {_tileViews.Count}. Не созданы ID: {string.Join(", ", missingIds)}");
+        }
+
+        if (_tileViews.Count != GameGridLayout.Children.Count)
+        {
+            Debug.WriteLine($"[МУСОР В СЕТКЕ] В словаре {_tileViews.Count}, а физических элементов в Children: {GameGridLayout.Children.Count}");
+        }
     }
 }

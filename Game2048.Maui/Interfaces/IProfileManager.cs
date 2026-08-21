@@ -14,6 +14,7 @@ public interface IProfileManager
     int CurrentCoins { get; }
     void NewProfile();
     Task<bool> TryLoadProfileFromSave();
+    void SaveCurrentProfileSync();
     Task SaveCurrentProfileAsync();
     void UpdateStatistics(bool gameEnded, bool hasWon, int movesMade, int undosMade);
     PlayerStatistics GetGlobalStatistics();

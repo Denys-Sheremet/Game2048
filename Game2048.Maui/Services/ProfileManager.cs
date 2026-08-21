@@ -34,7 +34,14 @@ public class ProfileManager : IProfileManager
         return false;
     }
 
-    
+    public void SaveCurrentProfileSync()
+    {
+        if (CurrentProfile is not null)
+        {
+            _saveService.SaveProfileSync(CurrentProfile);
+        }
+    }
+
     public async Task SaveCurrentProfileAsync()
     {
         if (CurrentProfile is not null)

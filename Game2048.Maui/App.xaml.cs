@@ -1,5 +1,7 @@
 ﻿using Game2048.Maui.Interfaces;
 using Game2048.Maui.Views.Pages;
+using System.Diagnostics;
+
 namespace Game2048.Maui
 {
     public partial class App : Application
@@ -53,16 +55,19 @@ namespace Game2048.Maui
 
         protected override void OnSleep()
         {
-            if (_profileManager.CurrentProfile is not null)
+            base.OnSleep();
+
+            if (_profileManager.CurrentProfile is null)
             {
-                try
-                {
-                    _profileManager.SaveCurrentProfileAsync().Wait(1500);
-                }
-                catch (Exception ex)
-                {
-                    // Log the exception or handle it as needed
-                }
+                return;
+            }
+            try
+            {
+                _profileManager.SaveCurrentProfileSync();
+            }
+            catch (Exception ex)
+            {
+                //logger
             }
         }
     }

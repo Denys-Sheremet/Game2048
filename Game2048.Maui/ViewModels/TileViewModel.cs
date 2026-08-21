@@ -20,8 +20,8 @@ public class TileViewModel : BindableObject
     public int FontSize => Value switch
     {
         < 100 => 48,
-        < 1000 => 40,
-        < 10000 => 36,
+        < 1000 => 38,
+        < 10000 => 28,
         _ => 32
     };
 

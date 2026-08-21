@@ -13,4 +13,5 @@ public interface ISaveService
 {
     Task SaveProfileAsync(PlayerProfile profile);
     Task<PlayerProfile?> LoadProfileAsync();
+    void SaveProfileSync(PlayerProfile profile);
 }

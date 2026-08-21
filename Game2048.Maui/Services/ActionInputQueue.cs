@@ -14,7 +14,7 @@ public class ActionInputQueue
 
     public void Enqueue(Func<Task> task)
     {
-        if (_queue.Count > 2) return;
+        if (_queue.Count > 3) return;
 
         _queue.Enqueue(task);
 

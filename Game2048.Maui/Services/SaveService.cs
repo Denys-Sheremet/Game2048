@@ -33,6 +33,46 @@ public class SaveService : ISaveService
         };
     }
 
+    public void SaveProfileSync(PlayerProfile profile)
+    {
+        ArgumentNullException.ThrowIfNull(profile);
+
+        if (!_semaphore.Wait(TimeSpan.FromMilliseconds(500)))
+        {
+            return;
+        }
+
+        string tempPath = _savePath + ".tmp";
+
+        try
+        {
+            string jsonString = JsonSerializer.Serialize(profile, _jsonOptions);
+
+            File.WriteAllText(tempPath, jsonString);
+            CreateBackup();
+            File.Move(tempPath, _savePath, overwrite: true);
+            CleanupOldBackups(maxBackups: 5);
+        }
+        finally
+        {
+            if (File.Exists(tempPath))
+            {
+                try
+                {
+                    File.Delete(tempPath);
+                }
+                catch (Exception cleanupEx)
+                {
+#if DEBUG
+                Debug.WriteLine($"Error while deleting temporary file: {cleanupEx}");
+#endif
+                }
+            }
+
+            _semaphore.Release();
+        }
+    }
+
     public async Task SaveProfileAsync(PlayerProfile profile)
     {
         await _semaphore.WaitAsync();
