@@ -29,7 +29,14 @@ public class ActionInputQueue
         {
             while (_queue.TryDequeue(out var task))
             {
-                await task();
+                try
+                {
+                    await task();
+                }
+                catch (Exception ex)
+                {
+                    //logger
+                }
             }
         }
         finally
