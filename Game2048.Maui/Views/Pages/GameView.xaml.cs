@@ -8,6 +8,7 @@ using Game2048.Maui.ViewModels;
 using Game2048.Maui.Views.Components;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Controls.Shapes;
+using System.ComponentModel;
 
 namespace Game2048.Maui.Views.Pages;
 
@@ -261,6 +262,23 @@ public partial class GameView : ContentPage
         }
     }
 
+    private void OnViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(GameViewModel.HistoryCount))
+        {
+            AnimateUndoBadge();
+        }
+    }
+
+    private void AnimateUndoBadge()
+    {
+        Dispatcher.Dispatch(async () =>
+        {
+                await UndoCountBadge.ScaleToAsync(0.85, 90, Easing.CubicOut);
+                await UndoCountBadge.ScaleToAsync(1.0, 120, Easing.CubicIn);
+        });
+    }
+
     private async void OnPageLoaded(object? sender, EventArgs e)
     {
         await AnimatePageAppearing();
@@ -284,6 +302,7 @@ public partial class GameView : ContentPage
         _viewModel.OnGameOver += HandleOnGameOver;
         _viewModel.OnRestart += HandleRestart;
         _viewModel.OnSettings += HandleOnSettings;
+        _viewModel.PropertyChanged += OnViewModelPropertyChanged;
         _achievementManager.AchievementUnlocked += OnNewAchievementUnlocked;
     }
 
@@ -308,6 +327,7 @@ public partial class GameView : ContentPage
         _viewModel.OnGameOver -= HandleOnGameOver;
         _viewModel.OnRestart -= HandleRestart;
         _viewModel.OnSettings -= HandleOnSettings;
+        _viewModel.PropertyChanged -= OnViewModelPropertyChanged;
         _achievementManager.AchievementUnlocked -= OnNewAchievementUnlocked;
     }
 
@@ -349,6 +369,8 @@ public partial class GameView : ContentPage
 
     private async void OnBackToMenu(object? sender, EventArgs e)
     {
+        await AnimateButtonClickedAsync(BackBtn);
+
         await _viewModel.OnBackToMenu();
 
         await PageDisappearToAsync(200);
@@ -431,5 +453,33 @@ public partial class GameView : ContentPage
         }
 
         await Shell.Current.GoToAsync(nameof(ThemeSelectionView), false);
+    }
+
+    private async void OnButtonClicked(object? sender, EventArgs e)
+    {
+        if (sender is VisualElement view)
+        {
+            await AnimateButtonClickedAsync(view);
+        }
+    }
+
+    private async Task AnimateButtonClickedAsync(VisualElement view) 
+    {
+        await view.ScaleToAsync(0.95, 60, Easing.CubicOut);
+        await view.ScaleToAsync(1.0, 80, Easing.CubicIn);
+    }
+
+    private async void OnUndoButtonClicked(object? sender, EventArgs e)
+    {
+        await Task.WhenAll
+            (
+                UndoBtn.ScaleToAsync(0.95, 60, Easing.CubicOut),
+                UndoCountBadge.ScaleToAsync(0.95, 60, Easing.CubicOut)
+            );
+        await Task.WhenAll
+            (
+                UndoBtn.ScaleToAsync(1.0, 80, Easing.CubicIn),
+                UndoCountBadge.ScaleToAsync(1.0, 80, Easing.CubicIn)
+            );
     }
 }

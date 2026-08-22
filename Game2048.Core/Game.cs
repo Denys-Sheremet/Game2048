@@ -179,6 +179,8 @@ public class Game
 
         IsGameOver = false;
 
+        OnStateChanged?.Invoke();
+
         StateSnapshot after = this.Grid.CreateSnapshot(GetNextTileId(false));
 
         return TransitionAnalyzer.Analyze(before, after, isUndo : true);

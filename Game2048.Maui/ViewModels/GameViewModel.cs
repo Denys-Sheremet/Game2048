@@ -26,7 +26,7 @@ public partial class GameViewModel : BindableObject, IDisposable
     public event Func<IEnumerable<TileTransition>, Task>? TilesRemoved;
     public event Func<IEnumerable<TileTransition>, Task>? TilesCreated;
 
-    private ActionInputQueue _actionQueue;
+    private readonly ActionInputQueue _actionQueue;
     public IAsyncRelayCommand MoveCommand { get; private set; }
     public IAsyncRelayCommand UndoCommand { get; private set; }
     public IRelayCommand RestartCommand { get; private set; }

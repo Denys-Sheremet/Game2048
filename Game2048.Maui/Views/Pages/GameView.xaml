@@ -90,7 +90,7 @@
             
             </ContentView>
 
-            <!-- Control buttons blok (Undo, settings) -->
+            <!-- Control buttons block (Undo, settings) -->
             <Grid x:Name="ButtonsBlockWrapper" 
                   Grid.Row="2" 
                   ColumnDefinitions="*, *" 
@@ -98,35 +98,63 @@
                   Padding="15, 40" 
                   VerticalOptions="End"
                   IsEnabled="{Binding IsActiveGame}">
-            
-                <Button Grid.Column="0" 
-                        Text="{x:Static lang:AppResources.Game_undo_btn_text}" 
-                        Command="{Binding UndoCommand}"
-                        IsVisible="{Binding IsUndoEnabled}"
-                        FontSize="24" 
-                        Style="{StaticResource MainBtnStyle}"
-                        FontFamily="MontBold"/>
 
-                <Button Grid.Column="1" 
+                <!-- Settings button -->
+                <Button Grid.Column="0" 
                         Text="{x:Static lang:AppResources.Game_settings_btn_text}" 
                         Command="{Binding OpenSettingsCommand}"
+                        Clicked="OnButtonClicked"
                         FontSize="24" 
                         Style="{StaticResource MainBtnStyle}" 
                         FontFamily="MontBold">
                     <Button.Triggers>
                         <DataTrigger TargetType="Button"
                                      Binding="{Binding IsUndoEnabled}"
-                                     Value="False">
-                            <Setter Property="Grid.Column" Value="0"></Setter>
-                            <Setter Property="Grid.ColumnSpan" Value="2"></Setter>
+                                     Value="False"> 
+                            <Setter Property="Grid.ColumnSpan" Value="2"/>
                         </DataTrigger>
                     </Button.Triggers>
-                
-                
                 </Button>
 
+                <!-- Undo button and badge container -->
+                <Grid Grid.Column="1"
+                      IsVisible="{Binding IsUndoEnabled}">
+
+                    <Button Text="{x:Static lang:AppResources.Game_undo_btn_text}" 
+                            Command="{Binding UndoCommand}"
+                            x:Name="UndoBtn"
+                            Clicked="OnUndoButtonClicked"
+                            FontSize="24" 
+                            Style="{StaticResource MainBtnStyle}"
+                            FontFamily="MontBold"/>
+
+                    <!-- Undo count badge -->
+                    <Border x:Name="UndoCountBadge"
+                            HorizontalOptions="End"
+                            VerticalOptions="Start"
+                            TranslationX="10"
+                            TranslationY="-10"
+                            WidthRequest="35"
+                            HeightRequest="35"
+                            StrokeShape="RoundRectangle 14"
+                            StrokeThickness="2"
+                            Stroke="{DynamicResource GameBackgroundColor}"
+                            Background="{DynamicResource LogoNumColor}"
+                            InputTransparent="True"
+                            ZIndex="2">
+
+                        <Label Text="{Binding HistoryCount}"
+                               FontSize="16"
+                               FontFamily="RubikBold"
+                               TextColor="{DynamicResource GameBackgroundColor}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"
+                               InputTransparent="True"/>
+                    </Border>
+                </Grid>
+
             </Grid>
-        
+
         </Grid>
 
         <Grid x:Name="EndOfGameOverlay"
