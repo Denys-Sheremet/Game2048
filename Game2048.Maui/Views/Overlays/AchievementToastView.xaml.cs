@@ -1,13 +1,26 @@
+using Game2048.Maui.Services;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+
 namespace Game2048.Maui.Views.Overlays;
 
 public partial class AchievementToastView : ContentView
 {
     private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
 
+    private readonly ILogger<AchievementToastView> _logger;
+
     public AchievementToastView()
+    {
+        InitializeComponent();
+        _logger = IPlatformApplication.Current?.Services.GetService<ILogger<AchievementToastView>>()
+                  ?? NullLogger<AchievementToastView>.Instance;
+    }
+    public AchievementToastView(ILogger<AchievementToastView>? logger = null)
 	{
 		InitializeComponent();
-	}
+        _logger = logger ?? NullLogger<AchievementToastView>.Instance;
+    }
 
     public async Task ShowAsync(string title, string description, string imageName)
     {
@@ -39,14 +52,16 @@ public partial class AchievementToastView : ContentView
                 );
             ToastContainer.IsVisible = false;
         }
+        catch (OperationCanceledException) 
+        {
+        }
         catch (Exception ex)
         {
-#if DEBUG
-            System.Diagnostics.Debug.WriteLine($"Error in AchievementToast: {ex.Message}");
-#endif
+            _logger.LogError(ex, "Failed to display achievement toast view");
         }
         finally
         {
+            ToastContainer.IsVisible = false;
             _semaphore.Release();
         }
     }

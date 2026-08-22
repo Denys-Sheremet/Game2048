@@ -68,7 +68,7 @@ public static class TransitionAnalyzer
                 ));
         }
 
-        //for identifying Merge
+        //for identifying Merge and illegal Disappear
         foreach (TileSnapshot ts in beforeDict.Values)
         {
             if (afterDict.ContainsKey(ts.Id)) continue;
@@ -83,6 +83,20 @@ public static class TransitionAnalyzer
                     ts.PosY,
                     child.PosX,
                     child.PosY,
+                    null,
+                    null
+                ));
+            }
+            else
+            {
+                transitions.Add(new TileTransition
+                (
+                    ts.Id,
+                    TileTransitionType.Disappear,
+                    ts.PosX,
+                    ts.PosY,
+                    ts.PosX,
+                    ts.PosY,
                     null,
                     null
                 ));
@@ -102,6 +116,7 @@ public static class TransitionAnalyzer
                 TileTransitionType.Spawn => TileTransitionType.Disappear,
                 TileTransitionType.Result => TileTransitionType.Split,
                 TileTransitionType.Merge => TileTransitionType.Respawn,
+                TileTransitionType.Disappear => TileTransitionType.Respawn,
                 TileTransitionType.Move => TileTransitionType.Move,
                 TileTransitionType.Stay => TileTransitionType.Stay,
                 _ => default

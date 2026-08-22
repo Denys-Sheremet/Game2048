@@ -1,9 +1,7 @@
-﻿using Game2048.Core.Enums;
-using Game2048.Core.Models;
+﻿using Game2048.Core.Models;
 using Game2048.Core.Serialization;
 using Game2048.Maui.Interfaces;
-using Game2048.Maui.Models;
-using System.Diagnostics;
+using Microsoft.Extensions.Logging;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -14,14 +12,24 @@ public class SaveService : ISaveService
     private readonly string _savePath;
     private readonly string _backupPath;
     private readonly JsonSerializerOptions _jsonOptions;
-
     private readonly SemaphoreSlim _semaphore = new(1, 1);
+    private readonly ILogger<SaveService> _logger;
 
-    public SaveService()
+    public SaveService(ILogger<SaveService> logger)
     {
+        _logger = logger;
         _savePath = Path.Combine(FileSystem.AppDataDirectory, "player_profile.json");
         _backupPath = Path.Combine(FileSystem.AppDataDirectory, "Backups");
-        Directory.CreateDirectory(_backupPath);
+
+        try
+        {
+            Directory.CreateDirectory(_backupPath);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to create backup directory at {Path}", _backupPath);
+        }
+        
 
         _jsonOptions = new JsonSerializerOptions
         {
@@ -39,6 +47,7 @@ public class SaveService : ISaveService
 
         if (!_semaphore.Wait(TimeSpan.FromMilliseconds(500)))
         {
+            _logger.LogWarning("SaveProfileSync timed out waiting for semaphore lock");
             return;
         }
 
@@ -53,28 +62,22 @@ public class SaveService : ISaveService
             File.Move(tempPath, _savePath, overwrite: true);
             CleanupOldBackups(maxBackups: 5);
         }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to execute synchronous profile save");
+        }
         finally
         {
-            if (File.Exists(tempPath))
-            {
-                try
-                {
-                    File.Delete(tempPath);
-                }
-                catch (Exception cleanupEx)
-                {
-#if DEBUG
-                Debug.WriteLine($"Error while deleting temporary file: {cleanupEx}");
-#endif
-                }
-            }
-
+            TryDeleteTempFile(tempPath);
             _semaphore.Release();
         }
     }
 
+
     public async Task SaveProfileAsync(PlayerProfile profile)
     {
+        ArgumentNullException.ThrowIfNull(profile);
+
         await _semaphore.WaitAsync();
 
         string tempPath = _savePath + ".tmp";
@@ -92,31 +95,19 @@ public class SaveService : ISaveService
         }
         catch (Exception ex)
         {
-#if DEBUG
-            Debug.WriteLine($"Error while saving profile: {ex.Message}");
-#endif
+            _logger.LogError(ex, "Failed to execute asynchronous profile save");
         }
         finally
         {
-            if (File.Exists(tempPath))
-            {
-                try
-                {
-                    File.Delete(tempPath);
-                }
-                catch (Exception cleanupEx)
-                {
-#if DEBUG
-                    Debug.WriteLine($"Error while deleting temporary file: {cleanupEx.Message}");
-#endif
-                }
-            }
+            TryDeleteTempFile(tempPath);
             _semaphore.Release();
         }
     }
 
     public async Task<PlayerProfile?> LoadProfileAsync()
     {
+        await _semaphore.WaitAsync();
+
         try
         {
             if (!File.Exists(_savePath))
@@ -129,57 +120,67 @@ public class SaveService : ISaveService
         }
         catch (JsonException ex)
         {
-#if DEBUG
-            Debug.WriteLine($"Corrupted save file: {ex.Message}");
-#endif
-            try { File.Delete(_savePath); } catch { }
+            _logger.LogWarning(ex, "Save file corrupted. Attempting restoration from backup");
+
+            TryDeleteFile(_savePath);
             return await RestoreFromBackupAsync();
         }
         catch (Exception ex)
         {
-#if DEBUG
-            Debug.WriteLine(ex.ToString());
-            Debug.WriteLine($"Error while loading profile: {ex.Message}");
-#endif
-            try { File.Delete(_savePath); } catch { }
+            _logger.LogError(ex, "Unexpected error reading profile file");
             return await RestoreFromBackupAsync();
+        }
+        finally
+        {
+            _semaphore.Release();
         }
     }
 
     private void CleanupOldBackups(int maxBackups = 5)
     {
-        DirectoryInfo directory = new DirectoryInfo(_backupPath);
-
-        FileInfo[] allBackups = directory.GetFiles("*.bak");
-
-        var sortedBackups = allBackups.OrderByDescending(f => f.Name).ToList();
-
-        if (sortedBackups.Count > maxBackups)
+        try
         {
-            var filesToDelete = sortedBackups.Skip(maxBackups);
+            DirectoryInfo directory = new DirectoryInfo(_backupPath);
+            if (!directory.Exists) return;
 
-            foreach (var file in filesToDelete)
+            FileInfo[] allBackups = directory.GetFiles("*.bak");
+
+            var sortedBackups = allBackups.OrderByDescending(f => f.Name).ToList();
+
+            if (sortedBackups.Count > maxBackups)
             {
-                try
+                var filesToDelete = sortedBackups.Skip(maxBackups);
+
+                foreach (var file in filesToDelete)
                 {
-                    file.Delete();
-                }
-                catch
-                {
-                    //if deletion fails, continue
+                    TryDeleteFile(file.FullName);
                 }
             }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Failed during old backups cleanup");
         }
     }
 
     private void CreateBackup() 
     {
-        if (File.Exists(_savePath))
+        if (!File.Exists(_savePath))
         {
-            string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+            return;
+        }
+        try
+        {
+            Directory.CreateDirectory(_backupPath);
+
+            string timestamp = DateTime.UtcNow.ToString("yyyyMMdd_HHmmss_fff");
             string backupFile = Path.Combine(_backupPath, $"profile_{timestamp}.bak");
-            string oldSaveContent = File.ReadAllText(_savePath);
-            File.WriteAllText(backupFile, oldSaveContent);
+
+            File.Copy(_savePath, backupFile, overwrite: true);
+        }
+        catch (Exception ex) 
+        {
+            _logger.LogWarning(ex, "Failed to create profile backup");
         }
     }
 
@@ -200,19 +201,39 @@ public class SaveService : ISaveService
                 if (profile is not null)
                 {
                     await File.WriteAllTextAsync(_savePath, jsonString);
-#if DEBUG
-                    Debug.WriteLine($"Successfully restored from {backup.Name}");
-#endif
                     return profile;
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                //just continue to the next backup if this one fails
+                _logger.LogWarning(ex, "Backup file {BackupName} is invalid, skipping", backup.Name);
             }
         }
 
-        //if all backups fail, return null
+        _logger.LogError("All backup restoration attempts failed");
         return null;
+    }
+
+    private bool TryDeleteTempFile(string path)
+    {
+        if (File.Exists(path))
+        {
+            return TryDeleteFile(path);
+        }
+        return false;
+    }
+
+    private bool TryDeleteFile(string path)
+    {
+        try
+        {
+            File.Delete(path);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Could not delete file at path: {Path}", path);
+            return false;
+        }
     }
 }

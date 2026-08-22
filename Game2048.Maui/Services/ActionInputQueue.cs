@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Game2048.Maui.Services;
 
@@ -11,6 +9,12 @@ public class ActionInputQueue
 {
     private readonly ConcurrentQueue<Func<Task>> _queue = new();
     private readonly SemaphoreSlim _semaphore = new(1, 1);
+    private readonly ILogger<ActionInputQueue> _logger;
+
+    public ActionInputQueue(ILogger<ActionInputQueue>? logger = null)
+    {
+        _logger = logger ?? NullLogger<ActionInputQueue>.Instance;
+    }
 
     public void Enqueue(Func<Task> task)
     {
@@ -35,7 +39,7 @@ public class ActionInputQueue
                 }
                 catch (Exception ex)
                 {
-                    //logger
+                    _logger.LogError(ex, "Exception occurred while executing queued action");
                 }
             }
         }

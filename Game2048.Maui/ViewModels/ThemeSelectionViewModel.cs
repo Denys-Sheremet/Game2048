@@ -4,6 +4,7 @@ using Game2048.Maui.Enums;
 using Game2048.Maui.Extensions;
 using Game2048.Maui.Interfaces;
 using Game2048.Maui.ViewModels.Items;
+using Microsoft.Extensions.Logging;
 using System.Collections.ObjectModel;
 
 namespace Game2048.Maui.ViewModels;
@@ -13,6 +14,7 @@ public partial class ThemeSelectionViewModel : ObservableObject, IDisposable
     private readonly IThemesManager _themesManager;
     private readonly IProfileManager _profileManager;
     private readonly IStoreManager _storeManager;
+    private readonly ILogger<ThemeSelectionViewModel> _logger;
     public ObservableCollection<ThemeItemViewModel> ThemeItems { get; private set; } = new();
     public ThemePreviewViewModel PreviewViewModel { get; } = new();
     public PurchaseThemeOverlayViewModel PurchaseOverlayViewModel { get; } = new();
@@ -28,11 +30,15 @@ public partial class ThemeSelectionViewModel : ObservableObject, IDisposable
     public ThemeItemViewModel? SelectedThemeItem => ThemeItems.FirstOrDefault(th => th.IsSelected);
     public int CurrentCoins => _profileManager.CurrentCoins;
 
-    public ThemeSelectionViewModel(IThemesManager themesManager, IProfileManager profileManager, IStoreManager storeManager)
+    public ThemeSelectionViewModel(IThemesManager themesManager, 
+                                   IProfileManager profileManager, 
+                                   IStoreManager storeManager,
+                                   ILogger<ThemeSelectionViewModel> logger)
     {
         _themesManager = themesManager;
         _profileManager = profileManager;
         _storeManager = storeManager;
+        _logger = logger;
         SelectedTheme = _themesManager.CurrentTheme;
 
         _profileManager.CoinsChanged += OnCoinsChanged;
@@ -162,7 +168,7 @@ public partial class ThemeSelectionViewModel : ObservableObject, IDisposable
             }
             catch (Exception ex)
             {
-                // ILogger coming soon i guess
+                _logger.LogError(ex, "Failed to save profile asynchronously during purchase");
             }
         }
         else

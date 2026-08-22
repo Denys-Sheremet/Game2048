@@ -2,15 +2,12 @@
 using Game2048.Core.Enums;
 using Game2048.Maui.Achievements.Services;
 using Game2048.Maui.Enums;
-using Game2048.Maui.Extensions;
 using Game2048.Maui.Interfaces;
-using Game2048.Maui.Resources.Localization;
 using Game2048.Maui.Services;
 using Game2048.Maui.ViewModels;
 using Game2048.Maui.Views.Components;
-using Game2048.Maui.Views.Overlays;
+using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Controls.Shapes;
-using System.Diagnostics;
 
 namespace Game2048.Maui.Views.Pages;
 
@@ -23,10 +20,12 @@ public partial class GameView : ContentPage
 
     private readonly GameViewModel _viewModel;
     private readonly IAchievementManager _achievementManager;
-
     private readonly Dictionary<int, TileView> _tileViews = new();
+    private readonly ILogger<GameView> _logger;
 
-    public GameView(GameViewModel viewModel, IAchievementManager achievementManager)
+    public GameView(GameViewModel viewModel, 
+                    IAchievementManager achievementManager,
+                    ILogger<GameView> logger)
     {
         InitializeComponent();
 
@@ -34,6 +33,7 @@ public partial class GameView : ContentPage
         BindingContext = _viewModel;
 
         _achievementManager = achievementManager;
+        _logger = logger;
 
         _viewModel.TilesMoved += async (transitions) =>
         {
@@ -325,7 +325,7 @@ public partial class GameView : ContentPage
             }
             catch (Exception ex) 
             {
-                //ILogger
+                _logger.LogError(ex, "Error occurred during AchievementToast show");
             }
         });
     }
