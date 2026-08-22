@@ -447,8 +447,20 @@ public partial class GameView : ContentPage
 
     public async Task AnimateAndNavigateToThemesAsync()
     {
+        if (BindingContext is GameViewModel vm)
+        {
+            if (vm.IsSettings)
+            {
+                vm.CloseSettingsCommand.Execute(null);
+            }
+        }
         await PageDisappearToAsync(-200);
 
+        await Shell.Current.GoToAsync(nameof(ThemeSelectionView), false);
+    }
+
+    public async Task AnimateAndNavigateToHowToAsync()
+    {
         if (BindingContext is GameViewModel vm)
         {
             if (vm.IsSettings)
@@ -457,7 +469,9 @@ public partial class GameView : ContentPage
             }
         }
 
-        await Shell.Current.GoToAsync(nameof(ThemeSelectionView), false);
+        await PageDisappearToAsync(-200);
+
+        await Shell.Current.GoToAsync(nameof(HowToView), false);
     }
 
     private void OnUndoButtonClicked(object? sender, EventArgs e)

@@ -5,7 +5,9 @@ namespace Game2048.Maui.Views.Pages;
 public partial class MainMenuView : ContentPage
 {
 	private readonly MainMenuViewModel _mainMenuViewModel;
-	public MainMenuView(MainMenuViewModel viewModel)
+
+    private bool _isPageLoaded = false;
+    public MainMenuView(MainMenuViewModel viewModel)
 	{
 		InitializeComponent();
         _mainMenuViewModel = viewModel;
@@ -16,6 +18,8 @@ public partial class MainMenuView : ContentPage
 
     private async void OnPageLoaded(object? sender, EventArgs e)
     {
+        _isPageLoaded = true;
+
         await AnimatePageAppearing();
     }
 
@@ -28,6 +32,16 @@ public partial class MainMenuView : ContentPage
         await Task.Yield();
 
         await AnimatePageAppearTo();
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        Dispatcher.Dispatch(async () =>
+        {
+            await AnimatePageAppearing();
+        });
     }
 
     private async Task AnimatePageDissapearTo(int transitionX)
@@ -85,9 +99,10 @@ public partial class MainMenuView : ContentPage
     {
         await AnimatePageDissapearTo(-200);
 
-        await Task.WhenAll(
-            Shell.Current.GoToAsync("///HowToPage", false)
-        );
+        if (Shell.Current.CurrentPage is MainMenuView mainMenu)
+        {
+            await Shell.Current.GoToAsync(nameof(HowToView), false); 
+        }
     }
 
     protected override bool OnBackButtonPressed() => true; //maybe quit overlay

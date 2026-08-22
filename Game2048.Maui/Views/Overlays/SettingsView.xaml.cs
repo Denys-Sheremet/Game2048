@@ -17,8 +17,11 @@ public partial class SettingsView : ContentView
         }
     }
 
-    private void OnHowToClicked(object sender, EventArgs e)
+    private async void OnHowToClicked(object sender, EventArgs e)
     {
-        // TODO
+        if (Shell.Current.CurrentPage is GameView gamePage)
+        {
+            await gamePage.AnimateAndNavigateToHowToAsync();
+        }
     }
 }

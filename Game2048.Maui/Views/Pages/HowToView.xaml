@@ -4,7 +4,8 @@
              xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
              x:Class="Game2048.Maui.Views.Pages.HowToView"
              x:DataType="vm:HowToViewModel"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="False"
+             Background="{DynamicResource GameBackgroundColor}">
 
     
 </ContentPage>

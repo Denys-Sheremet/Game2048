@@ -7,7 +7,18 @@ public partial class HowToView : ContentPage
 		InitializeComponent();
 	}
 
+	private async Task GoBackAsync()
+	{
+        //animate
+        await Shell.Current.GoToAsync("..", false);
+    }
 
-
-    protected override bool OnBackButtonPressed() => true;
+    protected override bool OnBackButtonPressed() 
+	{
+		Dispatcher.Dispatch(async () =>
+		{
+			await GoBackAsync();
+		});
+		return true;
+	}
 }
