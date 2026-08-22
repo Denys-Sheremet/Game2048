@@ -52,15 +52,25 @@ public partial class ThemeSelectionView : ContentPage
         await PageContainer.FadeToAsync(1.0, 250, Easing.CubicIn);
     }
 
+    private async Task AnimatePageDisappearingAsync(double translationX)
+    {
+        await Task.WhenAll
+            (
+                PageContainer.TranslateToAsync(translationX, 0, 300, Easing.CubicIn),
+                PageContainer.FadeToAsync(0, 300, Easing.CubicIn)
+            );
+    }
+
+    private async Task GoBackAsync()
+    {
+        await AnimatePageDisappearingAsync(200);
+
+        await Shell.Current.GoToAsync("..", false);
+    }
 
     public async void OnBack(object sender, EventArgs e)
 	{
-        await Task.WhenAll
-            (
-                PageContainer.TranslateToAsync(200, 0, 300, Easing.CubicIn),
-                PageContainer.FadeToAsync(0, 300, Easing.CubicIn)
-            );
-        await Shell.Current.GoToAsync("..", false);
+        await GoBackAsync();
     }
 
     public async void OnShowThemePreviewAsync()
@@ -220,5 +230,14 @@ public partial class ThemeSelectionView : ContentPage
         SetOverlayVisibility(false);
     }
 
-    protected override bool OnBackButtonPressed() => true;
+    protected override bool OnBackButtonPressed() 
+    {
+        SetOverlayVisibility(false);
+
+        Dispatcher.Dispatch(async () => 
+        {
+            await GoBackAsync();
+        });
+        return true;
+    }
 }

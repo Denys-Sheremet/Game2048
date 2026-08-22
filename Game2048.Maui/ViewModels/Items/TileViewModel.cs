@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Game2048.Core.Models;
 
-namespace Game2048.Maui.ViewModels;
+namespace Game2048.Maui.ViewModels.Items;
 
-public class TileViewModel : BindableObject
+public partial class TileViewModel : BindableObject
 {
     private readonly Tile _model;
     

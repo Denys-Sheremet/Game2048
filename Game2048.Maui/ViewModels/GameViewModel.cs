@@ -8,6 +8,7 @@ using Game2048.Core.Models;
 using Game2048.Maui.Interfaces;
 using Game2048.Maui.Services;
 using System.Collections.ObjectModel;
+using Game2048.Maui.ViewModels.Items;
 
 namespace Game2048.Maui.ViewModels;
 

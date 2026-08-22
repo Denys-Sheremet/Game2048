@@ -123,11 +123,16 @@ public partial class AchievementsView : ContentPage
         }
     }
 
-    private async void OnBackToMenu(object sender, EventArgs e)
+    private async Task GoBackToMenuAsync()
     {
         await AnimatePageDisappearingAsync(200);
 
         await Shell.Current.GoToAsync("///MainMenuPage", false);
+    }
+
+    private async void OnBackToMenu(object sender, EventArgs e)
+    {
+        await GoBackToMenuAsync();
     }
 
     public async Task ShowDetails(string title, string desc, string imageName)
@@ -135,5 +140,12 @@ public partial class AchievementsView : ContentPage
         await DetailOverlay.ShowAsync(title, desc, imageName);
     }
 
-    protected override bool OnBackButtonPressed() => true;
+    protected override bool OnBackButtonPressed()
+    {
+        Dispatcher.Dispatch(async () => 
+        {
+            await GoBackToMenuAsync();
+        });
+        return true;
+    }
 }

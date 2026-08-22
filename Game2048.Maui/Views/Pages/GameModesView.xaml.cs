@@ -42,20 +42,20 @@ public partial class GameModesView : ContentPage
         );
     }
 
-    protected override void OnAppearing()
+    private async Task GoBackToMenuAsync()
     {
-        base.OnAppearing();
+        await AnimatePageDisappearingAsync(-200);
+
+        await Task.WhenAll
+            (
+                Shell.Current.GoToAsync("///MainMenuPage", false)
+            );
     }
 
     private async void OnBackToMenu(object sender, EventArgs e)
 	{
-        await AnimatePageDisappearingAsync(-200);
-
-        await Task.WhenAll
-			(
-                Shell.Current.GoToAsync("///MainMenuPage", false)
-            );
-	}
+        await GoBackToMenuAsync();
+    }
 
     private async void OnStartGame()
     {
@@ -67,5 +67,12 @@ public partial class GameModesView : ContentPage
             );
     }
 
-    protected override bool OnBackButtonPressed() => true;
+    protected override bool OnBackButtonPressed()
+    {
+        Dispatcher.Dispatch(async () =>
+        {
+            await GoBackToMenuAsync();
+        });
+        return true;
+    }
 }

@@ -89,4 +89,6 @@ public partial class MainMenuView : ContentPage
             Shell.Current.GoToAsync("///HowToPage", false)
         );
     }
+
+    protected override bool OnBackButtonPressed() => true; //maybe quit overlay
 }

@@ -2,8 +2,9 @@
 <Border xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
         xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
+        xmlns:item="clr-namespace:Game2048.Maui.ViewModels.Items"
         x:Class="Game2048.Maui.Views.Components.TileView"
-        x:DataType="vm:TileViewModel"
+        x:DataType="item:TileViewModel"
         StrokeShape="RoundRectangle 8"
         StrokeThickness="2"
         x:Name="Tile">

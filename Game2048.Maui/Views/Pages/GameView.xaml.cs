@@ -409,13 +409,10 @@ public partial class GameView : ContentPage
             if (vm.IsActiveGame)
             {
                 vm.OpenSettingsCommand.Execute(null);
-                return true;
             }
-
-            if (vm.IsSettings)
+            else if (vm.IsSettings)
             {
                 vm.CloseSettingsCommand.Execute(null);
-                return true;
             }
         }
         return true;

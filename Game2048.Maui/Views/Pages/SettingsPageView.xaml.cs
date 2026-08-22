@@ -25,10 +25,10 @@ public partial class SettingsPageView : ContentPage
     {
         _isPageLoaded = true;
 
-        await AnimatePageAppearing();
+        await AnimatePageAppearingAsync();
     }
 
-    private async Task AnimatePageAppearing()
+    private async Task AnimatePageAppearingAsync()
     {
         await Task.Yield();
         int currentColumn = GetCurrentSelectedLangColumn();
@@ -54,7 +54,7 @@ public partial class SettingsPageView : ContentPage
 
         if (_isPageLoaded)
         {
-            await AnimatePageAppearing();
+            await AnimatePageAppearingAsync();
         }
     }
 
@@ -143,18 +143,36 @@ public partial class SettingsPageView : ContentPage
         }   
     }
 
-    public async void OnBackToMenu(object sender, EventArgs e)
-	{
+    private async Task AnimatePageDisappearingAsync(double translationX)
+    {
         await Task.WhenAll
             (
-                PageContainer.TranslateToAsync(200, 0, 300, Easing.CubicIn),
+                PageContainer.TranslateToAsync(translationX, 0, 300, Easing.CubicIn),
                 PageContainer.FadeToAsync(0, 300, Easing.CubicIn)
             );
+    }
+
+    private async Task GoBackToMenuAsync()
+    {
+        await AnimatePageDisappearingAsync(200);
+
         await Task.WhenAll
             (
                 Shell.Current.GoToAsync("///MainMenuPage", false)
             );
     }
 
-    protected override bool OnBackButtonPressed() => true;
+    public async void OnBackToMenu(object sender, EventArgs e)
+	{
+        await GoBackToMenuAsync();
+    }
+
+    protected override bool OnBackButtonPressed()
+    {
+        Dispatcher.Dispatch(async () => 
+        {
+            await GoBackToMenuAsync();
+        });
+        return true;
+    }
 }

@@ -50,4 +50,6 @@ public partial class LangSelectPage : ContentPage
 			await btn.ScaleToAsync(1.0, 100, Easing.CubicOut);
 		}
     }
+
+    protected override bool OnBackButtonPressed() => true;
 }
