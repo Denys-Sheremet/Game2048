@@ -103,7 +103,6 @@
                 <Button Grid.Column="0" 
                         Text="{x:Static lang:AppResources.Game_settings_btn_text}" 
                         Command="{Binding OpenSettingsCommand}"
-                        Clicked="OnButtonClicked"
                         FontSize="24" 
                         Style="{StaticResource MainBtnStyle}" 
                         FontFamily="MontBold">

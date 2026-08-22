@@ -16,6 +16,7 @@ public partial class GameView : ContentPage
 {
     private double _targetWidth;
     private double _targetHeight;
+    private int _lastHistoryCount = -1;
 
     private bool _isPageLoaded = false;
 
@@ -55,6 +56,8 @@ public partial class GameView : ContentPage
         VictoryOverlay.GoToMenuRequested += OnGoToMenu;
 
         Loaded += OnPageLoaded;
+
+        _lastHistoryCount = _viewModel.HistoryCount;
     }
 
     private async Task ApplyMoveTransitionsAsync(IEnumerable<TileTransition> transitions)
@@ -266,7 +269,11 @@ public partial class GameView : ContentPage
     {
         if (e.PropertyName == nameof(GameViewModel.HistoryCount))
         {
-            AnimateUndoBadge();
+            if (_viewModel.HistoryCount != _lastHistoryCount)
+            {
+                _lastHistoryCount = _viewModel.HistoryCount;
+                AnimateUndoBadge();
+            }
         }
     }
 
@@ -369,8 +376,6 @@ public partial class GameView : ContentPage
 
     private async void OnBackToMenu(object? sender, EventArgs e)
     {
-        await AnimateButtonClickedAsync(BackBtn);
-
         await _viewModel.OnBackToMenu();
 
         await PageDisappearToAsync(200);
@@ -455,31 +460,8 @@ public partial class GameView : ContentPage
         await Shell.Current.GoToAsync(nameof(ThemeSelectionView), false);
     }
 
-    private async void OnButtonClicked(object? sender, EventArgs e)
+    private void OnUndoButtonClicked(object? sender, EventArgs e)
     {
-        if (sender is VisualElement view)
-        {
-            await AnimateButtonClickedAsync(view);
-        }
-    }
-
-    private async Task AnimateButtonClickedAsync(VisualElement view) 
-    {
-        await view.ScaleToAsync(0.95, 60, Easing.CubicOut);
-        await view.ScaleToAsync(1.0, 80, Easing.CubicIn);
-    }
-
-    private async void OnUndoButtonClicked(object? sender, EventArgs e)
-    {
-        await Task.WhenAll
-            (
-                UndoBtn.ScaleToAsync(0.95, 60, Easing.CubicOut),
-                UndoCountBadge.ScaleToAsync(0.95, 60, Easing.CubicOut)
-            );
-        await Task.WhenAll
-            (
-                UndoBtn.ScaleToAsync(1.0, 80, Easing.CubicIn),
-                UndoCountBadge.ScaleToAsync(1.0, 80, Easing.CubicIn)
-            );
+        AnimateUndoBadge();
     }
 }

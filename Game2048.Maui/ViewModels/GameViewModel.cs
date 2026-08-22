@@ -47,7 +47,6 @@ public partial class GameViewModel : BindableObject, IDisposable
         set { _score = value; OnPropertyChanged(); }
     }
 
-    //TODO
     private int _bestScore;
     public int BestScore
     {
@@ -73,8 +72,6 @@ public partial class GameViewModel : BindableObject, IDisposable
             _profileManager.SaveBestScore(_gameConfig.GameMode, BestScore);
         }
     }
-
-    //TODO
 
     private int _historyCount;
     public int HistoryCount
