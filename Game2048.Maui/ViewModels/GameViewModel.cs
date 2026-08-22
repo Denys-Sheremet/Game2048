@@ -219,7 +219,8 @@ public partial class GameViewModel : BindableObject, IDisposable
         OpenSettingsCommand = new RelayCommand(OnOpenSettingsRequested);
         CloseSettingsCommand = new RelayCommand(OnCloseSettingsRequested);
         
-        _isUndoEnabled = config.GameMode != GameModeType.Classic;
+        _isUndoEnabled = config.GameMode != GameModeType.Classic &&
+                         config.GameMode != GameModeType.Extended;
 
         _isExtendedAllowed = config.GameMode != GameModeType.Compact && 
                              config.GameMode != GameModeType.Extended &&

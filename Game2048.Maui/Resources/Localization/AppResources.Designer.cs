@@ -439,7 +439,7 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Extended 5x5 mode with more undo count.
+        ///   Ищет локализованную строку, похожую на Extended 5x5 mode with undo ability.
         /// </summary>
         public static string GameMode_ChillZone_desc {
             get {

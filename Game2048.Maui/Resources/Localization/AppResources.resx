@@ -388,7 +388,7 @@
     <value>Chill Zone</value>
   </data>
   <data name="GameMode_ChillZone_desc" xml:space="preserve">
-    <value>Extended 5x5 mode with more undo count</value>
+    <value>Extended 5x5 mode with undo ability</value>
   </data>
   <data name="RoyalRedTheme_title" xml:space="preserve">
     <value>Royal Red</value>

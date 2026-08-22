@@ -388,7 +388,7 @@
     <value>Зона відпочинку</value>
   </data>
   <data name="GameMode_ChillZone_desc" xml:space="preserve">
-    <value>Розширений режим 5x5 з більшою кількістю скасувань</value>
+    <value>Розширений режим 5x5 з можливістю скасувань</value>
   </data>
   <data name="RoyalRedTheme_title" xml:space="preserve">
     <value>Королівський червоний</value>

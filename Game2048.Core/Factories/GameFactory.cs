@@ -60,7 +60,7 @@ public static class GameFactory
             (
                 grid,
                 new MultipleTileSpawner(2),
-                new LimitedHistoryManager(5),
+                new DisabledHistoryManager(),
                 new TileRegistry(),
                 random ?? new DefaultRandomProvider()
             );
@@ -75,7 +75,7 @@ public static class GameFactory
             (
                 grid,
                 new MultipleTileSpawner(2),
-                new LimitedHistoryManager(20),
+                new LimitedHistoryManager(5),
                 new TileRegistry(),
                 random ?? new DefaultRandomProvider()
             );
