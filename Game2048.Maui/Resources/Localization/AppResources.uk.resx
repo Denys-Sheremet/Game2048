@@ -420,4 +420,7 @@
   <data name="TokyoTheme_desc" xml:space="preserve">
     <value>Якщо ти 太陽, стань моїм 日の出</value>
   </data>
+  <data name="Settings_back_to_menu_btn_text" xml:space="preserve">
+    <value>Меню</value>
+  </data>
 </root>

@@ -6,6 +6,7 @@ using Game2048.Maui.Interfaces;
 using Game2048.Maui.Services;
 using Game2048.Maui.ViewModels;
 using Game2048.Maui.Views.Components;
+using Game2048.Maui.Views.Overlays;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Controls.Shapes;
 using System.ComponentModel;
@@ -54,6 +55,7 @@ public partial class GameView : ContentPage
 
         GameOverOverlay.GoToMenuRequested += OnGoToMenu;
         VictoryOverlay.GoToMenuRequested += OnGoToMenu;
+        Settings.GoToMenuRequested += GoBackToMenuSync;
 
         Loaded += OnPageLoaded;
 
@@ -376,11 +378,24 @@ public partial class GameView : ContentPage
 
     private async void OnBackToMenu(object? sender, EventArgs e)
     {
+        await GoBackToMenuAsync();
+    }
+
+    private async Task GoBackToMenuAsync()
+    {
         await _viewModel.OnBackToMenu();
 
         await PageDisappearToAsync(200);
 
         await Shell.Current.GoToAsync("///MainMenuPage", false);
+    }
+
+    private void GoBackToMenuSync()
+    {
+        Dispatcher.Dispatch(async () => 
+        {
+            await GoBackToMenuAsync();
+        });
     }
 
 
@@ -447,6 +462,8 @@ public partial class GameView : ContentPage
 
     public async Task AnimateAndNavigateToThemesAsync()
     {
+        await PageDisappearToAsync(-200);
+
         if (BindingContext is GameViewModel vm)
         {
             if (vm.IsSettings)
@@ -454,13 +471,13 @@ public partial class GameView : ContentPage
                 vm.CloseSettingsCommand.Execute(null);
             }
         }
-        await PageDisappearToAsync(-200);
-
         await Shell.Current.GoToAsync(nameof(ThemeSelectionView), false);
     }
 
     public async Task AnimateAndNavigateToHowToAsync()
     {
+        await PageDisappearToAsync(-200);
+
         if (BindingContext is GameViewModel vm)
         {
             if (vm.IsSettings)
@@ -468,8 +485,6 @@ public partial class GameView : ContentPage
                 vm.CloseSettingsCommand.Execute(null);
             }
         }
-
-        await PageDisappearToAsync(-200);
 
         await Shell.Current.GoToAsync(nameof(HowToView), false);
     }

@@ -67,6 +67,14 @@
                     Clicked="OnHowToClicked">
             </Button>
 
+            <Button x:Name="BackToMenuBtn"
+                    Style="{StaticResource MainBtnStyle}"
+                    Text="{x:Static lang:AppResources.Settings_back_to_menu_btn_text}"
+                    FontFamily="MontBold"
+                    FontSize="20"
+                    Clicked="OnMenuClicked">
+            </Button>
+
         </VerticalStackLayout>
     </Border>
 </ContentView>

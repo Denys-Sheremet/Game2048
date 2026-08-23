@@ -781,6 +781,15 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Menu.
+        /// </summary>
+        public static string Settings_back_to_menu_btn_text {
+            get {
+                return ResourceManager.GetString("Settings_back_to_menu_btn_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на How to.
         /// </summary>
         public static string Settings_how_to_btn_text {
