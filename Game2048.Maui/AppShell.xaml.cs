@@ -9,6 +9,7 @@ namespace Game2048.Maui
             InitializeComponent();
             Routing.RegisterRoute(nameof(ThemeSelectionView), typeof(ThemeSelectionView));
             Routing.RegisterRoute(nameof(HowToView), typeof(HowToView));
+            Routing.RegisterRoute(nameof(ProfilePageView), typeof(ProfilePageView));
         }
 
         public void SetCurrentToLangSelect()

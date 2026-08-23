@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Game2048.Maui.Views.Pages.MainMenuView"
              xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
+             xmlns:comp="clr-namespace:Game2048.Maui.Views.Components"
              xmlns:lang="clr-namespace:Game2048.Maui.Resources.Localization"
              x:DataType="vm:MainMenuViewModel"
              Shell.NavBarIsVisible="False"
@@ -12,7 +13,8 @@
           Background="{DynamicResource GameBackgroundColor}"
           VerticalOptions="Fill"
           HorizontalOptions="Fill"
-          IsVisible="False">
+          IsVisible="False"
+          SizeChanged="OnPageContainerSizeChanged">
         
     
         <Grid RowDefinitions="Auto, *, Auto" 
@@ -23,101 +25,100 @@
                    Source="game2048_logo"
                    x:Name="GameLogoImage"
                    HeightRequest="120"
-                   Margin="0, 40, 0, 10"
+                   Margin="0, 40, 0, 40"
                    Aspect="AspectFit"
                    HorizontalOptions="Center"
                    VerticalOptions="Start"/>
 
-            <Grid Grid.Row="1"
+            <Grid x:Name="DiamondCluster"
+                  Grid.Row="1"
+                  WidthRequest="290"
+                  HeightRequest="460"
+                  HorizontalOptions="Center"
+                  VerticalOptions="Center"
+                  RowDefinitions="Auto, Auto, Auto, Auto, Auto"
                   ColumnDefinitions="*, *"
-                  RowDefinitions="Auto, Auto, Auto, Auto"
-                  RowSpacing="15"
-                  ColumnSpacing="15" 
-                  VerticalOptions="Center">
+                  RowSpacing="-26"
+                  ColumnSpacing="18">
 
-                <Button x:Name="FastGameBtn"
-                        Clicked="OnStartClassicGame"
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        Text="&#xf04b;"
-                        FontFamily="FontAwesome"
-                        FontSize="80"
-                        CornerRadius="50"
-                        HorizontalOptions="Fill"
-                        HeightRequest="170"
-                        TextColor="{DynamicResource QuickPlayBtnTextColor}"
-                        Background="{DynamicResource QuickPlayBtnBGColor}"
-                        Style="{StaticResource MainBtnStyle}">
+                <!-- THEMES -->
+                <comp:DiamondButtonView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                        ButtonSize="100"
+                                        IconSize="50"
+                                        CornerRadius="18"
+                                        ButtonColor="{DynamicResource ThemesButtonBG}"
+                                        StrokeColor="{DynamicResource MainMenuBtnStrokeColor}"
+                                        StrokeThickness="3"
+                                        IconSource="btn_icon_themes.svg"
+                                        Command="{Binding GoToThemesCommand}"
+                                        ZIndex="5"/>
 
-                </Button>
+                <!-- GAME MODES -->
+                <comp:DiamondButtonView Grid.Row="1" Grid.Column="0"
+                                        ButtonSize="100"
+                                        IconSize="50"
+                                        CornerRadius="18"
+                                        ButtonColor="{DynamicResource GameModesButtonBG}"
+                                        StrokeColor="{DynamicResource MainMenuBtnStrokeColor}"
+                                        StrokeThickness="3"
+                                        IconSource="btn_icon_game_modes.svg"
+                                        Command="{Binding GoToGameModesCommand}"/>
 
-                <Button x:Name="AchievementsBtn"
-                        Clicked="OnGoToAchievements"
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        Text="&#xf091;"
-                        FontFamily="FontAwesome"
-                        FontSize="80"
-                        CornerRadius="50"
-                        HorizontalOptions="Fill"
-                        HeightRequest="170"
-                        TextColor="{DynamicResource AchBtnTextColor}"
-                        Background="{DynamicResource AchBtnBGColor}"
-                        Style="{StaticResource MainBtnStyle}">
+                <!-- ACHIEVEMENTS -->
+                <comp:DiamondButtonView Grid.Row="1" Grid.Column="1"
+                                        ButtonSize="100"
+                                        IconSize="50"
+                                        CornerRadius="18"
+                                        ButtonColor="{DynamicResource AchievementsButtonBG}"
+                                        StrokeColor="{DynamicResource MainMenuBtnStrokeColor}"
+                                        StrokeThickness="3"
+                                        IconSource="btn_icon_achievements.svg"
+                                        Command="{Binding GoToAchievementsCommand}"/>
 
-                </Button>
+                <!-- PLAY -->
+                <comp:DiamondButtonView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                                        ButtonSize="100"
+                                        IconSize="50"
+                                        CornerRadius="18"
+                                        ButtonColor="{DynamicResource PlayButtonBG}"
+                                        StrokeColor="{DynamicResource MainMenuBtnStrokeColor}"
+                                        StrokeThickness="3"
+                                        IconSource="btn_icon_play.svg"
+                                        Command="{Binding PlayCommand}"
+                                        ZIndex="10"/>   
 
-                <Button x:Name="GameModesBtn"
-                        Clicked="OnGoToGameModes"
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="2"
-                        HeightRequest="60"
-                        FontFamily="MontBold"
-                        FontSize="22"
-                        Padding="20, 0"
-                        Text="{x:Static lang:AppResources.Menu_game_modes_btn_text}"
-                        CornerRadius="15"
-                        Background="{DynamicResource MainButtonBGColor}"
-                        TextColor="{DynamicResource MainButtonTextColor}"
-                        Style="{StaticResource MainBtnStyle}">
+                <!-- PROFILE -->
+                <comp:DiamondButtonView Grid.Row="3" Grid.Column="0"
+                                        ButtonSize="100"
+                                        IconSize="50"
+                                        CornerRadius="18"
+                                        ButtonColor="{DynamicResource ProfileButtonBG}"
+                                        StrokeColor="{DynamicResource MainMenuBtnStrokeColor}"
+                                        StrokeThickness="3"
+                                        IconSource="btn_icon_profile.svg"
+                                        Command="{Binding GoToProfileCommand}"/>
 
-                </Button>
+                <!-- HOW TO -->
+                <comp:DiamondButtonView Grid.Row="3" Grid.Column="1"
+                                        ButtonSize="100"
+                                        IconSize="50"
+                                        CornerRadius="18"
+                                        ButtonColor="{DynamicResource HowToButtonBG}"
+                                        StrokeColor="{DynamicResource MainMenuBtnStrokeColor}"
+                                        StrokeThickness="3"
+                                        IconSource="btn_icon_how_to.svg"
+                                        Command="{Binding GoToHowToCommand}"/>
 
-                <Button x:Name="SettingsBtn"
-                        Clicked="OnGoToSettings"
-                        Grid.Row="2"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="2"
-                        HeightRequest="60"
-                        FontFamily="MontBold"
-                        FontSize="22"
-                        Padding="20, 0"
-                        Text="{x:Static lang:AppResources.Menu_settings_btn_text}"
-                        CornerRadius="15"
-                        Background="{DynamicResource MainButtonBGColor}"
-                        TextColor="{DynamicResource MainButtonTextColor}"
-                        Style="{StaticResource MainBtnStyle}">
-
-                </Button>
-
-                <Button x:Name="HowToPlayBtn"
-                        Clicked="OnGoToHowTo"
-                        Grid.Row="3"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="2"
-                        HeightRequest="60"
-                        FontFamily="MontBold"
-                        FontSize="22"
-                        Padding="20, 0"
-                        Text="{x:Static lang:AppResources.Menu_how_to_btn_text}"
-                        CornerRadius="15"
-                        Background="{DynamicResource MainButtonBGColor}"
-                        TextColor="{DynamicResource MainButtonTextColor}"
-                        Style="{StaticResource MainBtnStyle}">
-
-                </Button>
-
+                <!-- SETTINGS -->
+                <comp:DiamondButtonView Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+                                        ButtonSize="100"
+                                        IconSize="50"
+                                        CornerRadius="18"
+                                        ButtonColor="{DynamicResource SettingsButtonBG}"
+                                        StrokeColor="{DynamicResource MainMenuBtnStrokeColor}"
+                                        StrokeThickness="3"
+                                        IconSource="btn_icon_settings.svg"
+                                        Command="{Binding GoToSettingsCommand}"/>
             </Grid>
 
             <VerticalStackLayout Grid.Row="2"

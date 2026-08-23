@@ -4,14 +4,19 @@ namespace Game2048.Maui.Views.Pages;
 
 public partial class MainMenuView : ContentPage
 {
-	private readonly MainMenuViewModel _mainMenuViewModel;
+	private readonly MainMenuViewModel _viewModel;
+
+    private const double BaseClusterWidth = 290.0;
+    private const double BaseClusterHeight = 460.0;
+    private const double ReservedVerticalSpace = 310.0;
+    private const double HorizontalPadding = 48.0;
 
     private bool _isPageLoaded = false;
     public MainMenuView(MainMenuViewModel viewModel)
 	{
 		InitializeComponent();
-        _mainMenuViewModel = viewModel;
-		BindingContext = _mainMenuViewModel;
+        _viewModel = viewModel;
+		BindingContext = _viewModel;
 
         Loaded += OnPageLoaded;
     }
@@ -38,10 +43,54 @@ public partial class MainMenuView : ContentPage
     {
         base.OnAppearing();
 
-        Dispatcher.Dispatch(async () =>
+        _viewModel.PlayRequested += OnStartGame;
+        _viewModel.GameModesRequested += OnGoToGameModes;
+        _viewModel.AchievementsRequested += OnGoToAchievements;
+        _viewModel.ThemesRequested += OnGoToThemes;
+        _viewModel.ProfileRequested += OnGoToProfile;
+        _viewModel.HowToPlayRequested += OnGoToHowTo;
+        _viewModel.SettingsRequested += OnGoToSettings;
+
+        if (_isPageLoaded) 
         {
-            await AnimatePageAppearing();
-        });
+            Dispatcher.Dispatch(async () =>
+            {
+                await AnimatePageAppearing();
+            });
+        }
+        
+    }
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+
+        _viewModel.PlayRequested -= OnStartGame;
+        _viewModel.GameModesRequested -= OnGoToGameModes;
+        _viewModel.AchievementsRequested -= OnGoToAchievements;
+        _viewModel.ThemesRequested -= OnGoToThemes;
+        _viewModel.ProfileRequested -= OnGoToProfile;
+        _viewModel.HowToPlayRequested -= OnGoToHowTo;
+        _viewModel.SettingsRequested -= OnGoToSettings;
+    }
+
+    private void OnPageContainerSizeChanged(object? sender, EventArgs e)
+    {
+        if (MenuPageContainer.Width <= 0 || MenuPageContainer.Height <= 0 || DiamondCluster is null)
+            return;
+
+        double availableWidth = MenuPageContainer.Width - HorizontalPadding;
+        double availableHeight = MenuPageContainer.Height - ReservedVerticalSpace;
+
+        if (availableWidth <= 0 || availableHeight <= 0)
+            return;
+
+        double scaleX = availableWidth / BaseClusterWidth;
+        double scaleY = availableHeight / BaseClusterHeight;
+
+        double targetScale = Math.Min(scaleX, scaleY) * 0.86;
+
+        DiamondCluster.Scale = Math.Clamp(targetScale, 0.5, 1.20);
     }
 
     private async Task AnimatePageDissapearTo(int transitionX)
@@ -59,7 +108,7 @@ public partial class MainMenuView : ContentPage
         );
     }
 
-    private async void OnStartClassicGame(object sender, EventArgs e)
+    private async void OnStartGame()
 	{
         await AnimatePageDissapearTo(200);
 
@@ -68,7 +117,7 @@ public partial class MainMenuView : ContentPage
         ); 
     }
 
-    private async void OnGoToAchievements(object sender, EventArgs e)
+    private async void OnGoToAchievements()
     {
         await AnimatePageDissapearTo(-200);
 
@@ -77,7 +126,7 @@ public partial class MainMenuView : ContentPage
         );
     }
 
-    private async void OnGoToGameModes(object sender, EventArgs e)
+    private async void OnGoToGameModes()
     {
         await AnimatePageDissapearTo(200);
 
@@ -86,7 +135,7 @@ public partial class MainMenuView : ContentPage
         );
     }
 
-    private async void OnGoToSettings(object sender, EventArgs e)
+    private async void OnGoToSettings()
     {
         await AnimatePageDissapearTo(-200);
 
@@ -95,13 +144,33 @@ public partial class MainMenuView : ContentPage
         );
     }
 
-    private async void OnGoToHowTo(object sender, EventArgs e)
+    private async void OnGoToHowTo()
     {
         await AnimatePageDissapearTo(-200);
 
         if (Shell.Current.CurrentPage is MainMenuView mainMenu)
         {
             await Shell.Current.GoToAsync(nameof(HowToView), false); 
+        }
+    }
+
+    private async void OnGoToThemes()
+    {
+        await AnimatePageDissapearTo(200);
+
+        if (Shell.Current.CurrentPage is MainMenuView mainMenu)
+        {
+            await Shell.Current.GoToAsync(nameof(ThemeSelectionView), false);
+        }
+    }
+
+    private async void OnGoToProfile()
+    {
+        await AnimatePageDissapearTo(-200);
+
+        if (Shell.Current.CurrentPage is MainMenuView mainMenu)
+        {
+            await Shell.Current.GoToAsync(nameof(ProfilePageView), false);
         }
     }
 

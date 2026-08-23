@@ -232,4 +232,49 @@
     <Color x:Key="PreviewColor7">#111111</Color>
     <Color x:Key="PreviewColor8">#000000</Color>
 
+    <!-- Main Menu Buttons -->
+    <Color x:Key="MainMenuBtnStrokeColor">#DADADA</Color>
+
+    <LinearGradientBrush x:Key="PlayButtonBG" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#FFFFFF" Offset="0.0"/>
+        <GradientStop Color="#DADADA" Offset="0.5"/>
+        <GradientStop Color="#A8A8A8" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="GameModesButtonBG" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#4A4A4A" Offset="0.0"/>
+        <GradientStop Color="#292929" Offset="0.5"/>
+        <GradientStop Color="#111111" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="AchievementsButtonBG" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#FFFFFF" Offset="0.0"/>
+        <GradientStop Color="#E8E8E8" Offset="0.5"/>
+        <GradientStop Color="#BEBEBE" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="ThemesButtonBG" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#6A6A75" Offset="0.0"/>
+        <GradientStop Color="#474751" Offset="0.5"/>
+        <GradientStop Color="#28282F" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="ProfileButtonBG" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#777777" Offset="0.0"/>
+        <GradientStop Color="#4D4D4D" Offset="0.5"/>
+        <GradientStop Color="#292929" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="HowToButtonBG" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#F5F5F5" Offset="0.0"/>
+        <GradientStop Color="#D0D0D0" Offset="0.5"/>
+        <GradientStop Color="#A5A5A5" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="SettingsButtonBG" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#555555" Offset="0.0"/>
+        <GradientStop Color="#303030" Offset="0.5"/>
+        <GradientStop Color="#111111" Offset="1.0"/>
+    </LinearGradientBrush>
+
 </ResourceDictionary>
