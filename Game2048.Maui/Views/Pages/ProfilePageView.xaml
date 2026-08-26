@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
              x:Class="Game2048.Maui.Views.Pages.ProfilePageView"
              Shell.NavBarIsVisible="False"
-             Background="{DynamicResource GameBackgroundColor}">
+             Background="{DynamicResource PageBackgroundColor}"
+             x:DataType="vm:ProfilePageViewModel">
+
+    <Grid x:Name="PageContainer"
+          VerticalOptions="Fill"
+          HorizontalOptions="Fill"
+          Background="{DynamicResource PageBackgroundColor}">
+        
+    </Grid>
     
 </ContentPage>

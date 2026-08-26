@@ -7,10 +7,10 @@
              xmlns:lang="clr-namespace:Game2048.Maui.Resources.Localization"
              x:DataType="vm:MainMenuViewModel"
              Shell.NavBarIsVisible="False"
-             Background="{DynamicResource GameBackgroundColor}">
+             Background="{DynamicResource PageBackgroundColor}">
 
     <Grid x:Name="MenuPageContainer" 
-          Background="{DynamicResource GameBackgroundColor}"
+          Background="{DynamicResource PageBackgroundColor}"
           VerticalOptions="Fill"
           HorizontalOptions="Fill"
           IsVisible="False"

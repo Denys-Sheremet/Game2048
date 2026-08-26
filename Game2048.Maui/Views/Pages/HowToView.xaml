@@ -5,7 +5,7 @@
              x:Class="Game2048.Maui.Views.Pages.HowToView"
              x:DataType="vm:HowToViewModel"
              Shell.NavBarIsVisible="False"
-             Background="{DynamicResource GameBackgroundColor}">
+             Background="{DynamicResource PageBackgroundColor}">
 
     
 </ContentPage>

@@ -7,9 +7,9 @@
              x:DataType="vm:SettingsViewModel"
              x:Class="Game2048.Maui.Views.Pages.SettingsPageView"
              Shell.NavBarIsVisible="False"
-             Background="{DynamicResource GameBackgroundColor}">
+             Background="{DynamicResource PageBackgroundColor}">
     <Grid x:Name="PageContainer"
-          Background="{DynamicResource GameBackgroundColor}"
+          Background="{DynamicResource PageBackgroundColor}"
           VerticalOptions="Fill"
           HorizontalOptions="Fill"
           IsVisible="False">
