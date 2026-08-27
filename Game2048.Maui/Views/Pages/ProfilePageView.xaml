@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
+             xmlns:lang="clr-namespace:Game2048.Maui.Resources.Localization"
              x:Class="Game2048.Maui.Views.Pages.ProfilePageView"
              Shell.NavBarIsVisible="False"
              Background="{DynamicResource PageBackgroundColor}"
@@ -11,6 +12,308 @@
           VerticalOptions="Fill"
           HorizontalOptions="Fill"
           Background="{DynamicResource PageBackgroundColor}">
+
+        <Grid RowDefinitions="Auto, *"
+              HorizontalOptions="Fill"
+              VerticalOptions="Fill">
+
+            <Grid ColumnDefinitions="60, *, 60" RowDefinitions="Auto, Auto" Grid.Row="0" Grid.Column="0">
+                <Button x:Name="BackToMenuBtn"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="15, 0, 0, 0"
+                        WidthRequest="55"
+                        HeightRequest="55"
+                        FontFamily="FontAwesome"
+                        Text="&#xf30a;"
+                        FontSize="20"    
+                        Clicked="OnBackToMenu" 
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Style="{StaticResource MainBtnStyle}">
+
+                </Button>
+
+                <Label Text="{x:Static lang:AppResources.ProfilePage_title}"
+                       Grid.Row="0"
+                       Grid.Column="1"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       FontFamily="RubikSemi"
+                       FontSize="40"
+                       LineBreakMode="WordWrap"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       TextColor="{DynamicResource MainTitleColor}">
+                </Label>
+
+                <Border x:Name="NameBorder"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        StrokeShape="RoundRectangle 13"
+                        StrokeThickness="3"
+                        Stroke="{DynamicResource MainBorderColor}"
+                        Style="ProfilePreviewBGStyle">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCardTapped" />
+                    </Border.GestureRecognizers>
+
+                    <Grid HorizontalOptions="Start"
+                          VerticalOptions="Center">
+                        <Label x:Name="ProfileNameLabel"
+                               Grid.Row="0"
+                               Grid.Column="0"
+                               HorizontalTextAlignment="Start"
+                               VerticalTextAlignment="Center"
+                               />
+                    </Grid>
+                    
+                </Border>
+            </Grid>
+            <!-- -->
+
+            <ScrollView Grid.Row="1"
+                        VerticalScrollBarVisibility="Never"
+                        HorizontalOptions="Fill">
+                <VerticalStackLayout Spacing="16"
+                                     Padding="16, 6, 16, 24"
+                                     HorizontalOptions="Fill">
+
+                    <!-- 1. Games Statistics Main Card -->
+                    <Border Background="{DynamicResource CardBGColor}"
+                            StrokeShape="RoundRectangle 18"
+                            StrokeThickness="3"
+                            Stroke="{DynamicResource MainBorderColor}"
+                            Margin="0, 10">
+                        <Grid ColumnDefinitions="*, *, *" ColumnSpacing="8">
+
+                            <!-- Games Played Mini Card -->
+                            <Border Grid.Column="0"
+                                    Background="{DynamicResource GameFieldBackgroundColor}"
+                                    StrokeShape="RoundRectangle 12"
+                                    StrokeThickness="2"
+                                    Stroke="{DynamicResource MainBorderColor}"
+                                    Padding="8, 12">
+                                <VerticalStackLayout Spacing="4" HorizontalOptions="Center">
+                                    <Label Text="{x:Static lang:AppResources.ProfilePage_games_played_title}"
+                                           FontSize="12"
+                                           FontFamily="RubikBold"
+                                           TextColor="{DynamicResource MainTitleColor}"
+                                           HorizontalTextAlignment="Center" />
+                                    <Border HorizontalOptions="Fill"
+                                            VerticalOptions="Center"
+                                            Margin="10, 20, 10, 10"
+                                            Background="{DynamicResource MainBorderColor}">
+                                        <Label Text="{Binding TotalGamesPlayed}"
+                                               FontSize="18"
+                                               FontFamily="RubikBold"
+                                               TextColor="{DynamicResource InputTextColor}"
+                                               HorizontalTextAlignment="Center" />
+                                    </Border>
+                                    
+                                </VerticalStackLayout>
+                            </Border>
+
+                            <!-- Games Won Mini Card -->
+                            <Border Grid.Column="1"
+                                    Background="{DynamicResource GameFieldBackgroundColor}"
+                                    StrokeShape="RoundRectangle 12"
+                                    StrokeThickness="2"
+                                    Stroke="{DynamicResource MainBorderColor}"
+                                    Padding="8, 12">
+                                <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
+                                    <Label Text="{x:Static lang:AppResources.ProfilePage_games_won_title}"
+                                           FontSize="12"
+                                           FontFamily="RubikBold"
+                                           TextColor="{DynamicResource MainTitleColor}"
+                                           HorizontalTextAlignment="Center" />
+                                    <Border HorizontalOptions="Fill"
+                                            VerticalOptions="Center"
+                                            Margin="10, 20, 10, 10"
+                                            Background="{DynamicResource MainBorderColor}">
+                                        <Label Text="{Binding TotalGamesWon}"
+                                               FontSize="18"
+                                               FontFamily="RubikBold"
+                                               TextColor="{DynamicResource InputTextColor}"
+                                               HorizontalTextAlignment="Center" />
+                                    </Border>
+
+                                    
+                                </VerticalStackLayout>
+                            </Border>
+
+                            <!-- Win Rate Mini Card -->
+                            <Border Grid.Column="2"
+                                    Background="{DynamicResource GameFieldBackgroundColor}"
+                                    StrokeShape="RoundRectangle 12"
+                                    StrokeThickness="2"
+                                    Stroke="{DynamicResource MainBorderColor}"
+                                    Padding="8, 14">
+                                <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
+                                    <Label Text="{x:Static lang:AppResources.ProfilePage_win_rate_title}"
+                                           FontSize="12"
+                                           FontFamily="RubikBold"
+                                           TextColor="{DynamicResource MainTitleColor}"
+                                           HorizontalTextAlignment="Center" />
+                                    <Border HorizontalOptions="Fill"
+                                            VerticalOptions="Center"
+                                            Margin="10, 20, 10, 10"
+                                            Background="{DynamicResource MainBorderColor}">
+                                        <Label Text="{Binding WinRatePercentage}"
+                                               FontSize="18"
+                                               FontFamily="RubikBold"
+                                               TextColor="{DynamicResource InputTextColor}"
+                                               HorizontalTextAlignment="Center" />
+                                    </Border>
+                                    
+                                </VerticalStackLayout>
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!-- 2. Achievements Main Card -->
+                    <Border Background="{DynamicResource CardBGColor}"
+                            StrokeShape="RoundRectangle 18"
+                            StrokeThickness="0"
+                            Padding="12">
+                        <Border Background="{DynamicResource SecondaryFieldBGColor}"
+                                StrokeShape="RoundRectangle 12"
+                                StrokeThickness="0"
+                                Padding="14, 12">
+                            <VerticalStackLayout Spacing="8">
+                                <Grid ColumnDefinitions="*, Auto">
+                                    <HorizontalStackLayout Grid.Column="0" Spacing="8" VerticalOptions="Center">
+                                        <!-- achievement svg? -->
+                                        <Label Text="{x:Static lang:AppResources.Profile_achievements_unlocked_label}"
+                                               FontSize="13"
+                                               FontAttributes="Bold"
+                                               TextColor="{DynamicResource MainTextColor}"
+                                               VerticalOptions="Center" />
+                                    </HorizontalStackLayout>
+
+                                    <Label Grid.Column="1"
+                                           Text="{Binding AchievementsCountText}"
+                                           FontSize="13"
+                                           FontAttributes="Bold"
+                                           TextColor="{DynamicResource MainTitleColor}"
+                                           VerticalOptions="Center" />
+                                </Grid>
+
+                                <ProgressBar Progress="{Binding AchievementsProgressFraction}"
+                                             ProgressColor="{DynamicResource ProgressBarColor}"
+                                             Background="{DynamicResource ProgressBarBGColor}"
+                                             Margin="0, 4, 0, 2" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </Border>
+
+                    <!-- 3. Themes Main Card -->
+                    <Border Background="{DynamicResource CardBGColor}"
+                            StrokeShape="RoundRectangle 18"
+                            StrokeThickness="0"
+                            Padding="12">
+                        <Border Background="{DynamicResource SecondaryFieldBGColor}"
+                                StrokeShape="RoundRectangle 12"
+                                StrokeThickness="0"
+                                Padding="14, 12">
+                            <VerticalStackLayout Spacing="8">
+                                <Grid ColumnDefinitions="*, Auto">
+                                    <HorizontalStackLayout Grid.Column="0" Spacing="8" VerticalOptions="Center">
+                                        <!-- Themes svg? -->
+                                        <Label Text="{x:Static lang:AppResources.Profile_themes_collected_label}"
+                                               FontSize="13"
+                                               FontFamily="RubikBold"
+                                               TextColor="{DynamicResource MainTextColor}"
+                                               VerticalOptions="Center" />
+                                    </HorizontalStackLayout>
+
+                                    <Label Grid.Column="1"
+                                           Text="{Binding ThemesCountText}"
+                                           FontSize="13"
+                                           FontFamily="RubikBold"
+                                           TextColor="{DynamicResource MainTitleColor}"
+                                           VerticalOptions="Center" />
+                                </Grid>
+
+                                <ProgressBar Progress="{Binding ThemesProgressFraction}"
+                                             ProgressColor="{DynamicResource ProgressBarColor}"
+                                             Background="{DynamicResource ProgressBarBGColor}"
+                                             Margin="0, 4, 0, 2" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </Border>
+
+                    <!-- 4. High Scores & Records Main Card -->
+                    <Border Background="{DynamicResource CardBGColor}"
+                            StrokeShape="RoundRectangle 18"
+                            StrokeThickness="3"
+                            Stroke="{DynamicResource MainBorderColor}"
+                            Padding="12">
+                        <VerticalStackLayout Spacing="10">
+
+                            <!-- Top Mini Cards: Highest & Average Score -->
+                            <Grid ColumnDefinitions="*, *" ColumnSpacing="8">
+
+                                <!-- Highest Score Mini Card -->
+                                <Border Grid.Column="0"
+                                        Background="{DynamicResource SecondaryFieldBGColor}"
+                                        StrokeShape="RoundRectangle 12"
+                                        StrokeThickness="2"
+                                        Stroke="{DynamicResource MainBorderColor}"
+                                        Padding="10, 10">
+                                    <VerticalStackLayout Spacing="3">
+                                        <Label Text="{x:Static lang:AppResources.Profile_highest_score_label}"
+                                               FontSize="10"
+                                               FontFamily="RubikBold"
+                                               TextColor="{DynamicResource SignsTextColor}" />
+                                        <Label Text="{Binding OverallHighScore}"
+                                               FontSize="19"
+                                               FontFamily="RubikBold"
+                                               TextColor="{DynamicResource MainTitleColor}" />
+                                        <Label Text="{Binding BestScoreModeName}"
+                                               FontSize="11"
+                                               TextColor="{DynamicResource SecondaryTextColor}" />
+                                    </VerticalStackLayout>
+                                </Border>
+
+                                <!-- Average Score Mini Card -->
+                                <Border Grid.Column="1"
+                                        Background="{DynamicResource SecondaryFieldBGColor}"
+                                        StrokeShape="RoundRectangle 12"
+                                        StrokeThickness="2"
+                                        Stroke="{DynamicResource MainBorderColor}"
+                                        Padding="10, 10">
+                                    <VerticalStackLayout Spacing="3">
+                                        <Label Text="{x:Static lang:AppResources.Profile_average_score_label}"
+                                               FontSize="10"
+                                               FontFamily="RubikBold"
+                                               TextColor="{DynamicResource SignsTextColor}" />
+                                        <Label Text="{Binding AverageScore}"
+                                               FontSize="19"
+                                               FontFamily="RubikBold"
+                                               TextColor="{DynamicResource MainTextColor}" />
+                                        <Label Text="{x:Static lang:AppResources.Profile_other_modes_stats_label}"
+                                               FontSize="11"
+                                               FontFamily="RubikBold"
+                                               TextColor="{DynamicResource SignsTextColor}" 
+                                               LineBreakMode="WordWrap"/>
+                                    </VerticalStackLayout>
+                                </Border>
+                            </Grid>
+
+                           
+
+                        </VerticalStackLayout>
+                    </Border>
+
+                </VerticalStackLayout>
+            </ScrollView>
+
+            <!-- -->
+
+        </Grid>
+        
         
     </Grid>
     

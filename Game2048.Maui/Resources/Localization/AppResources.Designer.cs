@@ -682,6 +682,87 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Achievements unlocked.
+        /// </summary>
+        public static string Profile_achievements_unlocked_label {
+            get {
+                return ResourceManager.GetString("Profile_achievements_unlocked_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Average score.
+        /// </summary>
+        public static string Profile_average_score_label {
+            get {
+                return ResourceManager.GetString("Profile_average_score_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Highest score.
+        /// </summary>
+        public static string Profile_highest_score_label {
+            get {
+                return ResourceManager.GetString("Profile_highest_score_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Other modes statistics.
+        /// </summary>
+        public static string Profile_other_modes_stats_label {
+            get {
+                return ResourceManager.GetString("Profile_other_modes_stats_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Themes collected.
+        /// </summary>
+        public static string Profile_themes_collected_label {
+            get {
+                return ResourceManager.GetString("Profile_themes_collected_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Games played.
+        /// </summary>
+        public static string ProfilePage_games_played_title {
+            get {
+                return ResourceManager.GetString("ProfilePage_games_played_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Games won.
+        /// </summary>
+        public static string ProfilePage_games_won_title {
+            get {
+                return ResourceManager.GetString("ProfilePage_games_won_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Profile.
+        /// </summary>
+        public static string ProfilePage_title {
+            get {
+                return ResourceManager.GetString("ProfilePage_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Win rate.
+        /// </summary>
+        public static string ProfilePage_win_rate_title {
+            get {
+                return ResourceManager.GetString("ProfilePage_win_rate_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Buy.
         /// </summary>
         public static string PurchaseThemeOverlay_buy_btn_text {

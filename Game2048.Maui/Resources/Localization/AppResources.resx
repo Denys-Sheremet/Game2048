@@ -423,4 +423,31 @@
   <data name="Settings_back_to_menu_btn_text" xml:space="preserve">
     <value>Menu</value>
   </data>
+  <data name="ProfilePage_title" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="ProfilePage_games_played_title" xml:space="preserve">
+    <value>Games played</value>
+  </data>
+  <data name="ProfilePage_games_won_title" xml:space="preserve">
+    <value>Games won</value>
+  </data>
+  <data name="ProfilePage_win_rate_title" xml:space="preserve">
+    <value>Win rate</value>
+  </data>
+  <data name="Profile_themes_collected_label" xml:space="preserve">
+    <value>Themes collected</value>
+  </data>
+  <data name="Profile_achievements_unlocked_label" xml:space="preserve">
+    <value>Achievements unlocked</value>
+  </data>
+  <data name="Profile_highest_score_label" xml:space="preserve">
+    <value>Highest score</value>
+  </data>
+  <data name="Profile_average_score_label" xml:space="preserve">
+    <value>Average score</value>
+  </data>
+  <data name="Profile_other_modes_stats_label" xml:space="preserve">
+    <value>Other modes statistics</value>
+  </data>
 </root>
