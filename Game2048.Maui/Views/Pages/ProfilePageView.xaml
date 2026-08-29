@@ -101,14 +101,17 @@
                             <Border Grid.Column="0"
                                     Background="{DynamicResource GameFieldBackgroundColor}"
                                     StrokeShape="RoundRectangle 12"
-                                    StrokeThickness="2"
+                                    StrokeThickness="3"
                                     Stroke="{DynamicResource MainBorderColor}"
-                                    Padding="8, 12">
+                                    Padding="10">
                                 <Border.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="OnCardTapped" />
                                 </Border.GestureRecognizers>
                                 
-                                <VerticalStackLayout Spacing="4" HorizontalOptions="Center">
+                                <VerticalStackLayout Spacing="4" HorizontalOptions="Fill" VerticalOptions="Center">
+                                    <Image Source="profile_games_played.svg"
+                                           HeightRequest="35"
+                                           WidthRequest="35"/>
                                     <Label Text="{x:Static lang:AppResources.ProfilePage_games_played_title}"
                                            FontSize="12"
                                            FontFamily="RubikBold"
@@ -116,12 +119,12 @@
                                            HorizontalTextAlignment="Center" />
                                     <Border HorizontalOptions="Fill"
                                             VerticalOptions="Center"
-                                            Margin="10, 20, 10, 10"
-                                            Background="{DynamicResource MainBorderColor}">
+                                            StrokeShape="RoundRectangle 15"
+                                            Background="{DynamicResource SecondaryFieldBGColor}">
                                         <Label Text="{Binding TotalGamesPlayed}"
                                                FontSize="18"
                                                FontFamily="RubikBold"
-                                               TextColor="{DynamicResource InputTextColor}"
+                                               TextColor="{DynamicResource MainTextColor}"
                                                HorizontalTextAlignment="Center" />
                                     </Border>
                                     
@@ -132,14 +135,17 @@
                             <Border Grid.Column="1"
                                     Background="{DynamicResource GameFieldBackgroundColor}"
                                     StrokeShape="RoundRectangle 12"
-                                    StrokeThickness="2"
+                                    StrokeThickness="3"
                                     Stroke="{DynamicResource MainBorderColor}"
-                                    Padding="8, 12">
+                                    Padding="10">
                                 <Border.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="OnCardTapped" />
                                 </Border.GestureRecognizers>
                                 
-                                <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
+                                <VerticalStackLayout Spacing="4" HorizontalOptions="Fill" VerticalOptions="Center">
+                                    <Image Source="profile_games_won.svg"
+                                           HeightRequest="35"
+                                           WidthRequest="35"/>
                                     <Label Text="{x:Static lang:AppResources.ProfilePage_games_won_title}"
                                            FontSize="12"
                                            FontFamily="RubikBold"
@@ -147,12 +153,12 @@
                                            HorizontalTextAlignment="Center" />
                                     <Border HorizontalOptions="Fill"
                                             VerticalOptions="Center"
-                                            Margin="10, 20, 10, 10"
-                                            Background="{DynamicResource MainBorderColor}">
+                                            Background="{DynamicResource SecondaryFieldBGColor}"
+                                            StrokeShape="RoundRectangle 15">
                                         <Label Text="{Binding TotalGamesWon}"
                                                FontSize="18"
                                                FontFamily="RubikBold"
-                                               TextColor="{DynamicResource InputTextColor}"
+                                               TextColor="{DynamicResource MainTextColor}"
                                                HorizontalTextAlignment="Center" />
                                     </Border>
 
@@ -164,14 +170,17 @@
                             <Border Grid.Column="2"
                                     Background="{DynamicResource GameFieldBackgroundColor}"
                                     StrokeShape="RoundRectangle 12"
-                                    StrokeThickness="2"
+                                    StrokeThickness="3"
                                     Stroke="{DynamicResource MainBorderColor}"
-                                    Padding="8, 14">
+                                    Padding="10">
                                 <Border.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="OnCardTapped" />
                                 </Border.GestureRecognizers>
-                                
-                                <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
+
+                                <VerticalStackLayout Spacing="4" HorizontalOptions="Fill" VerticalOptions="Center">
+                                    <Image Source="profile_win_rate.svg"
+                                           HeightRequest="35"
+                                           WidthRequest="35"/>
                                     <Label Text="{x:Static lang:AppResources.ProfilePage_win_rate_title}"
                                            FontSize="12"
                                            FontFamily="RubikBold"
@@ -179,12 +188,12 @@
                                            HorizontalTextAlignment="Center" />
                                     <Border HorizontalOptions="Fill"
                                             VerticalOptions="Center"
-                                            Margin="10, 20, 10, 10"
-                                            Background="{DynamicResource MainBorderColor}">
+                                            StrokeShape="RoundRectangle 15"
+                                            Background="{DynamicResource SecondaryFieldBGColor}">
                                         <Label Text="{Binding WinRatePercentage}"
                                                FontSize="18"
                                                FontFamily="RubikBold"
-                                               TextColor="{DynamicResource InputTextColor}"
+                                               TextColor="{DynamicResource MainTextColor}"
                                                HorizontalTextAlignment="Center" />
                                     </Border>
                                     
@@ -206,8 +215,10 @@
                         <VerticalStackLayout Spacing="8">
                             <Grid ColumnDefinitions="*, Auto">
                                 <HorizontalStackLayout Grid.Column="0" Spacing="8" VerticalOptions="Center">
-                                    <!-- achievement svg? -->
-                                    <Label Text="{x:Static lang:AppResources.Profile_achievements_unlocked_label}"
+                                    <Image Source="profile_achievements.svg"
+                                           WidthRequest="16"
+                                           HeightRequest="16"/>
+                                    <Label Text="{x:Static lang:AppResources.ProfilePage_achievements_unlocked_label}"
                                                FontSize="16"
                                                FontFamily="RubikBold"
                                                TextColor="{DynamicResource MainTextColor}"
@@ -242,8 +253,10 @@
                         <VerticalStackLayout Spacing="8">
                             <Grid ColumnDefinitions="*, Auto">
                                 <HorizontalStackLayout Grid.Column="0" Spacing="8" VerticalOptions="Center">
-                                    <!-- Themes svg? -->
-                                    <Label Text="{x:Static lang:AppResources.Profile_themes_collected_label}"
+                                    <Image Source="profile_themes.svg"
+                                           WidthRequest="16"
+                                           HeightRequest="16"/>
+                                    <Label Text="{x:Static lang:AppResources.ProfilePage_themes_collected_label}"
                                                FontSize="16"
                                                FontFamily="RubikBold"
                                                TextColor="{DynamicResource MainTextColor}"
@@ -280,25 +293,27 @@
                                 <Border Grid.Column="0"
                                         Background="{DynamicResource SecondaryFieldBGColor}"
                                         StrokeShape="RoundRectangle 12"
-                                        StrokeThickness="2"
+                                        StrokeThickness="3"
                                         Stroke="{DynamicResource MainBorderColor}"
                                         Padding="10, 10">
                                     <Border.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="OnCardTapped" />
                                     </Border.GestureRecognizers>
                                     
-                                    <VerticalStackLayout Spacing="3">
-                                        <Label Text="{x:Static lang:AppResources.Profile_highest_score_label}"
-                                               FontSize="10"
+                                    <VerticalStackLayout Spacing="3" VerticalOptions="Center" HorizontalOptions="Center">
+                                        <Image Source="profile_best_score.svg"
+                                               WidthRequest="20"
+                                               HeightRequest="20"/>
+                                        <Label Text="{x:Static lang:AppResources.ProfilePage_highest_score_label}"
+                                               FontSize="14"
                                                FontFamily="RubikBold"
+                                               HorizontalTextAlignment="Center"
                                                TextColor="{DynamicResource SignsTextColor}" />
                                         <Label Text="{Binding OverallHighScore}"
                                                FontSize="19"
                                                FontFamily="RubikBold"
+                                               HorizontalTextAlignment="Center"
                                                TextColor="{DynamicResource MainTitleColor}" />
-                                        <Label Text="{Binding BestScoreModeName}"
-                                               FontSize="11"
-                                               TextColor="{DynamicResource SecondaryTextColor}" />
                                     </VerticalStackLayout>
                                 </Border>
 
@@ -306,30 +321,67 @@
                                 <Border Grid.Column="1"
                                         Background="{DynamicResource SecondaryFieldBGColor}"
                                         StrokeShape="RoundRectangle 12"
-                                        StrokeThickness="2"
+                                        StrokeThickness="3"
                                         Stroke="{DynamicResource MainBorderColor}"
                                         Padding="10, 10">
                                     <Border.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="OnCardTapped" />
                                     </Border.GestureRecognizers>
-                                    
-                                    <VerticalStackLayout Spacing="3">
-                                        <Label Text="{x:Static lang:AppResources.Profile_average_score_label}"
-                                               FontSize="10"
+
+                                    <VerticalStackLayout Spacing="3" VerticalOptions="Center" HorizontalOptions="Center">
+                                        <Image Source="profile_average_score.svg"
+                                               WidthRequest="20"
+                                               HeightRequest="20"/>
+                                        <Label Text="{x:Static lang:AppResources.ProfilePage_average_score_label}"
+                                               FontSize="14"
                                                FontFamily="RubikBold"
+                                               HorizontalTextAlignment="Center"
                                                TextColor="{DynamicResource SignsTextColor}" />
                                         <Label Text="{Binding AverageScore}"
                                                FontSize="19"
                                                FontFamily="RubikBold"
+                                               HorizontalTextAlignment="Center"
                                                TextColor="{DynamicResource MainTextColor}" />
-                                        <Label Text="{x:Static lang:AppResources.Profile_other_modes_stats_label}"
-                                               FontSize="11"
-                                               FontFamily="RubikBold"
-                                               TextColor="{DynamicResource SignsTextColor}" 
-                                               LineBreakMode="WordWrap"/>
                                     </VerticalStackLayout>
                                 </Border>
                             </Grid>
+                            <Border Grid.Column="1"
+                                    Background="{DynamicResource SecondaryFieldBGColor}"
+                                    StrokeShape="RoundRectangle 12"
+                                    StrokeThickness="3"
+                                    Stroke="{DynamicResource MainBorderColor}"
+                                    Padding="10, 10">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnCardTapped" />
+                                </Border.GestureRecognizers>
+
+                                <VerticalStackLayout Spacing="3" VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Image Source="profile_best_mode.svg"
+                                           WidthRequest="20"
+                                           HeightRequest="20"/>
+                                    <Label Text="{x:Static lang:AppResources.ProfilePage_best_mode_label}"
+                                           FontSize="16"
+                                           FontFamily="RubikBold"
+                                           HorizontalTextAlignment="Center"
+                                           TextColor="{DynamicResource SignsTextColor}" />
+                                    <Label Text="{Binding BestScoreModeName}"
+                                           FontSize="16"
+                                           FontFamily="RubikBold"
+                                           HorizontalTextAlignment="Center"
+                                           TextColor="{DynamicResource MainTextColor}" />
+                                </VerticalStackLayout>
+                            </Border>
+
+                            
+                            
+                            
+                            
+                            <Label Text="{x:Static lang:AppResources.ProfilePage_other_modes_stats_label}"
+       FontSize="16"
+       FontFamily="RubikBold"
+       HorizontalTextAlignment="Center"
+       TextColor="{DynamicResource MainTextColor}" 
+       LineBreakMode="WordWrap"/>
 
                            
 

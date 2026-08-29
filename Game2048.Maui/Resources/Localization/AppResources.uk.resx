@@ -433,21 +433,24 @@
     <value>Виграно</value>
   </data>
   <data name="ProfilePage_win_rate_title" xml:space="preserve">
-    <value>Процент виграшу</value>
+    <value>Виграно (%)</value>
   </data>
-  <data name="Profile_themes_collected_label" xml:space="preserve">
+  <data name="ProfilePage_themes_collected_label" xml:space="preserve">
     <value>Тем відкрито</value>
   </data>
-  <data name="Profile_achievements_unlocked_label" xml:space="preserve">
+  <data name="ProfilePage_achievements_unlocked_label" xml:space="preserve">
     <value>Кількість досягнень</value>
   </data>
-  <data name="Profile_highest_score_label" xml:space="preserve">
+  <data name="ProfilePage_highest_score_label" xml:space="preserve">
     <value>Найкращий рекорд</value>
   </data>
-  <data name="Profile_average_score_label" xml:space="preserve">
+  <data name="ProfilePage_average_score_label" xml:space="preserve">
     <value>Середній рахунок</value>
   </data>
-  <data name="Profile_other_modes_stats_label" xml:space="preserve">
+  <data name="ProfilePage_other_modes_stats_label" xml:space="preserve">
     <value>Статистика за інші режими</value>
+  </data>
+  <data name="ProfilePage_best_mode_label" xml:space="preserve">
+    <value>Найкращий режим </value>
   </data>
 </root>

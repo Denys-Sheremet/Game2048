@@ -145,7 +145,7 @@
                         <Label Text="{Binding HistoryCount}"
                                FontSize="16"
                                FontFamily="RubikBold"
-                               TextColor="{DynamicResource GameBackgroundColor}"
+                               TextColor="{DynamicResource SecondaryTextColor}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center"
                                InputTransparent="True"/>

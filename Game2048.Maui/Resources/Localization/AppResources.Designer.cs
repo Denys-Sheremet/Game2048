@@ -684,45 +684,27 @@ namespace Game2048.Maui.Resources.Localization {
         /// <summary>
         ///   Ищет локализованную строку, похожую на Achievements unlocked.
         /// </summary>
-        public static string Profile_achievements_unlocked_label {
+        public static string ProfilePage_achievements_unlocked_label {
             get {
-                return ResourceManager.GetString("Profile_achievements_unlocked_label", resourceCulture);
+                return ResourceManager.GetString("ProfilePage_achievements_unlocked_label", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Ищет локализованную строку, похожую на Average score.
         /// </summary>
-        public static string Profile_average_score_label {
+        public static string ProfilePage_average_score_label {
             get {
-                return ResourceManager.GetString("Profile_average_score_label", resourceCulture);
+                return ResourceManager.GetString("ProfilePage_average_score_label", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Highest score.
+        ///   Ищет локализованную строку, похожую на Best mode.
         /// </summary>
-        public static string Profile_highest_score_label {
+        public static string ProfilePage_best_mode_label {
             get {
-                return ResourceManager.GetString("Profile_highest_score_label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Other modes statistics.
-        /// </summary>
-        public static string Profile_other_modes_stats_label {
-            get {
-                return ResourceManager.GetString("Profile_other_modes_stats_label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Themes collected.
-        /// </summary>
-        public static string Profile_themes_collected_label {
-            get {
-                return ResourceManager.GetString("Profile_themes_collected_label", resourceCulture);
+                return ResourceManager.GetString("ProfilePage_best_mode_label", resourceCulture);
             }
         }
         
@@ -741,6 +723,33 @@ namespace Game2048.Maui.Resources.Localization {
         public static string ProfilePage_games_won_title {
             get {
                 return ResourceManager.GetString("ProfilePage_games_won_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Highest score.
+        /// </summary>
+        public static string ProfilePage_highest_score_label {
+            get {
+                return ResourceManager.GetString("ProfilePage_highest_score_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Other modes statistics.
+        /// </summary>
+        public static string ProfilePage_other_modes_stats_label {
+            get {
+                return ResourceManager.GetString("ProfilePage_other_modes_stats_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Themes collected.
+        /// </summary>
+        public static string ProfilePage_themes_collected_label {
+            get {
+                return ResourceManager.GetString("ProfilePage_themes_collected_label", resourceCulture);
             }
         }
         
