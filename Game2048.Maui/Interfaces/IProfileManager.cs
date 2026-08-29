@@ -23,6 +23,8 @@ public interface IProfileManager
     GameSessionSave? LoadCurrentGame(GameModeType gameMode);
     void SaveBestScore(GameModeType gameMode, int bestScore);
     int? GetBestScore(GameModeType gameMode);
+    int GetAverageScore();
+    (GameModeType Mode, int Score)? GetOverallBestScore();
     bool UnlockAchievement(AchievementType achievement);
     HashSet<AchievementType> GetUnlockedAchievements();
     void UnlockTheme(GameTheme theme);

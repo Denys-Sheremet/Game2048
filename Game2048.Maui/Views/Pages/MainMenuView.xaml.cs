@@ -25,18 +25,7 @@ public partial class MainMenuView : ContentPage
     {
         _isPageLoaded = true;
 
-        await AnimatePageAppearing();
-    }
-
-    private async Task AnimatePageAppearing()
-    {
-        MenuPageContainer.TranslationX = -200;
-        MenuPageContainer.Opacity = 0;
-        MenuPageContainer.IsVisible = true;
-
-        await Task.Yield();
-
-        await AnimatePageAppearTo();
+        await AnimatePageAppearingAsync();
     }
 
     protected override void OnAppearing()
@@ -55,7 +44,7 @@ public partial class MainMenuView : ContentPage
         {
             Dispatcher.Dispatch(async () =>
             {
-                await AnimatePageAppearing();
+                await AnimatePageAppearingAsync();
             });
         }
         
@@ -100,8 +89,14 @@ public partial class MainMenuView : ContentPage
             MenuPageContainer.FadeToAsync(0.0, 300, Easing.CubicIn)
         );
     }
-    private async Task AnimatePageAppearTo()
+    private async Task AnimatePageAppearingAsync()
     {
+        MenuPageContainer.TranslationX = -200;
+        MenuPageContainer.Opacity = 0;
+        MenuPageContainer.IsVisible = true;
+
+        await Task.Yield();
+
         await Task.WhenAll(
             MenuPageContainer.TranslateToAsync(0, 0, 300, Easing.CubicOut),
             MenuPageContainer.FadeToAsync(1.0, 300, Easing.CubicOut)

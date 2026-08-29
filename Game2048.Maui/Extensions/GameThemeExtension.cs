@@ -5,6 +5,10 @@ namespace Game2048.Maui.Extensions;
 
 public static class GameThemeExtension
 {
+    public static int GetTotalThemesCount()
+    {
+        return Enum.GetValues<GameTheme>().Length;
+    }
     public static string GetTitle(this GameTheme theme)
     {
         string key =  $"{theme}_title";

@@ -27,7 +27,7 @@
                         FontFamily="FontAwesome"
                         Text="&#xf30a;"
                         FontSize="20"    
-                        Clicked="OnBackToMenu" 
+                        Clicked="OnBack" 
                         HorizontalOptions="Start"
                         VerticalOptions="Center"
                         Style="{StaticResource MainBtnStyle}">
@@ -46,30 +46,6 @@
                        HorizontalTextAlignment="Center"
                        TextColor="{DynamicResource MainTitleColor}">
                 </Label>
-
-                <Border x:Name="NameBorder"
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="2"
-                        StrokeShape="RoundRectangle 13"
-                        StrokeThickness="3"
-                        Stroke="{DynamicResource MainBorderColor}"
-                        Style="ProfilePreviewBGStyle">
-                    <Border.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnCardTapped" />
-                    </Border.GestureRecognizers>
-
-                    <Grid HorizontalOptions="Start"
-                          VerticalOptions="Center">
-                        <Label x:Name="ProfileNameLabel"
-                               Grid.Row="0"
-                               Grid.Column="0"
-                               HorizontalTextAlignment="Start"
-                               VerticalTextAlignment="Center"
-                               />
-                    </Grid>
-                    
-                </Border>
             </Grid>
             <!-- -->
 
@@ -79,13 +55,46 @@
                 <VerticalStackLayout Spacing="16"
                                      Padding="16, 6, 16, 24"
                                      HorizontalOptions="Fill">
+                    <!-- Player name -->
+                    <Grid>
+                        <Border x:Name="NameBorder"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Fill"
+                                Padding="25, 15"
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                StrokeShape="RoundRectangle 13"
+                                StrokeThickness="3"
+                                Stroke="{DynamicResource MainBorderColor}"
+                                Style="{StaticResource ProfilePreviewBGStyle}"> 
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnCardTapped" />
+                            </Border.GestureRecognizers>
+
+
+                            <Label x:Name="ProfileNameLabel"
+                                   Grid.Row="0"
+                                   Grid.Column="0"
+                                   FontFamily="RubikBold"
+                                   FontSize="26"
+                                   Padding="2"
+                                   TextColor="{DynamicResource PreviewTextColor}"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalTextAlignment="Center"
+                                   Text="{Binding PlayerName}"/>
+
+
+                        </Border>
+                    </Grid>
 
                     <!-- 1. Games Statistics Main Card -->
                     <Border Background="{DynamicResource CardBGColor}"
                             StrokeShape="RoundRectangle 18"
                             StrokeThickness="3"
                             Stroke="{DynamicResource MainBorderColor}"
-                            Margin="0, 10">
+                            Margin="0, 10"
+                            Padding="12">
                         <Grid ColumnDefinitions="*, *, *" ColumnSpacing="8">
 
                             <!-- Games Played Mini Card -->
@@ -95,6 +104,10 @@
                                     StrokeThickness="2"
                                     Stroke="{DynamicResource MainBorderColor}"
                                     Padding="8, 12">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnCardTapped" />
+                                </Border.GestureRecognizers>
+                                
                                 <VerticalStackLayout Spacing="4" HorizontalOptions="Center">
                                     <Label Text="{x:Static lang:AppResources.ProfilePage_games_played_title}"
                                            FontSize="12"
@@ -122,6 +135,10 @@
                                     StrokeThickness="2"
                                     Stroke="{DynamicResource MainBorderColor}"
                                     Padding="8, 12">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnCardTapped" />
+                                </Border.GestureRecognizers>
+                                
                                 <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
                                     <Label Text="{x:Static lang:AppResources.ProfilePage_games_won_title}"
                                            FontSize="12"
@@ -150,6 +167,10 @@
                                     StrokeThickness="2"
                                     Stroke="{DynamicResource MainBorderColor}"
                                     Padding="8, 14">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnCardTapped" />
+                                </Border.GestureRecognizers>
+                                
                                 <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
                                     <Label Text="{x:Static lang:AppResources.ProfilePage_win_rate_title}"
                                            FontSize="12"
@@ -172,76 +193,76 @@
                         </Grid>
                     </Border>
 
-                    <!-- 2. Achievements Main Card -->
+                    <!-- 2. Achievements Card -->
                     <Border Background="{DynamicResource CardBGColor}"
                             StrokeShape="RoundRectangle 18"
-                            StrokeThickness="0"
+                            StrokeThickness="3"
+                            Stroke="{DynamicResource MainBorderColor}"
                             Padding="12">
-                        <Border Background="{DynamicResource SecondaryFieldBGColor}"
-                                StrokeShape="RoundRectangle 12"
-                                StrokeThickness="0"
-                                Padding="14, 12">
-                            <VerticalStackLayout Spacing="8">
-                                <Grid ColumnDefinitions="*, Auto">
-                                    <HorizontalStackLayout Grid.Column="0" Spacing="8" VerticalOptions="Center">
-                                        <!-- achievement svg? -->
-                                        <Label Text="{x:Static lang:AppResources.Profile_achievements_unlocked_label}"
-                                               FontSize="13"
-                                               FontAttributes="Bold"
-                                               TextColor="{DynamicResource MainTextColor}"
-                                               VerticalOptions="Center" />
-                                    </HorizontalStackLayout>
+                        <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnCardTapped" />
+                            </Border.GestureRecognizers>
 
-                                    <Label Grid.Column="1"
-                                           Text="{Binding AchievementsCountText}"
-                                           FontSize="13"
-                                           FontAttributes="Bold"
-                                           TextColor="{DynamicResource MainTitleColor}"
-                                           VerticalOptions="Center" />
-                                </Grid>
-
-                                <ProgressBar Progress="{Binding AchievementsProgressFraction}"
-                                             ProgressColor="{DynamicResource ProgressBarColor}"
-                                             Background="{DynamicResource ProgressBarBGColor}"
-                                             Margin="0, 4, 0, 2" />
-                            </VerticalStackLayout>
-                        </Border>
-                    </Border>
-
-                    <!-- 3. Themes Main Card -->
-                    <Border Background="{DynamicResource CardBGColor}"
-                            StrokeShape="RoundRectangle 18"
-                            StrokeThickness="0"
-                            Padding="12">
-                        <Border Background="{DynamicResource SecondaryFieldBGColor}"
-                                StrokeShape="RoundRectangle 12"
-                                StrokeThickness="0"
-                                Padding="14, 12">
-                            <VerticalStackLayout Spacing="8">
-                                <Grid ColumnDefinitions="*, Auto">
-                                    <HorizontalStackLayout Grid.Column="0" Spacing="8" VerticalOptions="Center">
-                                        <!-- Themes svg? -->
-                                        <Label Text="{x:Static lang:AppResources.Profile_themes_collected_label}"
-                                               FontSize="13"
+                        <VerticalStackLayout Spacing="8">
+                            <Grid ColumnDefinitions="*, Auto">
+                                <HorizontalStackLayout Grid.Column="0" Spacing="8" VerticalOptions="Center">
+                                    <!-- achievement svg? -->
+                                    <Label Text="{x:Static lang:AppResources.Profile_achievements_unlocked_label}"
+                                               FontSize="16"
                                                FontFamily="RubikBold"
                                                TextColor="{DynamicResource MainTextColor}"
                                                VerticalOptions="Center" />
-                                    </HorizontalStackLayout>
+                                </HorizontalStackLayout>
 
-                                    <Label Grid.Column="1"
-                                           Text="{Binding ThemesCountText}"
-                                           FontSize="13"
+                                <Label Grid.Column="1"
+                                           Text="{Binding AchievementsCountText}"
+                                           FontSize="16"
                                            FontFamily="RubikBold"
                                            TextColor="{DynamicResource MainTitleColor}"
                                            VerticalOptions="Center" />
-                                </Grid>
+                            </Grid>
 
-                                <ProgressBar Progress="{Binding ThemesProgressFraction}"
-                                             ProgressColor="{DynamicResource ProgressBarColor}"
-                                             Background="{DynamicResource ProgressBarBGColor}"
-                                             Margin="0, 4, 0, 2" />
-                            </VerticalStackLayout>
-                        </Border>
+                            <ProgressBar Progress="{Binding AchievementsProgressFraction}"
+                                         ProgressColor="{DynamicResource ProgressBarColor}"
+                                         HeightRequest="8"
+                                         VerticalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <!-- 3. Themes Card -->
+                    <Border Background="{DynamicResource CardBGColor}"
+                            StrokeShape="RoundRectangle 18"
+                            StrokeThickness="3"
+                            Stroke="{DynamicResource MainBorderColor}"
+                            Padding="12">
+                        <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnCardTapped" />
+                            </Border.GestureRecognizers>
+
+                        <VerticalStackLayout Spacing="8">
+                            <Grid ColumnDefinitions="*, Auto">
+                                <HorizontalStackLayout Grid.Column="0" Spacing="8" VerticalOptions="Center">
+                                    <!-- Themes svg? -->
+                                    <Label Text="{x:Static lang:AppResources.Profile_themes_collected_label}"
+                                               FontSize="16"
+                                               FontFamily="RubikBold"
+                                               TextColor="{DynamicResource MainTextColor}"
+                                               VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+
+                                <Label Grid.Column="1"
+                                           Text="{Binding ThemesCountText}"
+                                           FontSize="16"
+                                           FontFamily="RubikBold"
+                                           TextColor="{DynamicResource MainTitleColor}"
+                                           VerticalOptions="Center" />
+                            </Grid>
+
+                            <ProgressBar Progress="{Binding ThemesProgressFraction}"
+                                         ProgressColor="{DynamicResource ProgressBarColor}"
+                                         HeightRequest="8"
+                                         VerticalOptions="Center"/>
+                        </VerticalStackLayout>
                     </Border>
 
                     <!-- 4. High Scores & Records Main Card -->
@@ -262,6 +283,10 @@
                                         StrokeThickness="2"
                                         Stroke="{DynamicResource MainBorderColor}"
                                         Padding="10, 10">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnCardTapped" />
+                                    </Border.GestureRecognizers>
+                                    
                                     <VerticalStackLayout Spacing="3">
                                         <Label Text="{x:Static lang:AppResources.Profile_highest_score_label}"
                                                FontSize="10"
@@ -284,6 +309,10 @@
                                         StrokeThickness="2"
                                         Stroke="{DynamicResource MainBorderColor}"
                                         Padding="10, 10">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnCardTapped" />
+                                    </Border.GestureRecognizers>
+                                    
                                     <VerticalStackLayout Spacing="3">
                                         <Label Text="{x:Static lang:AppResources.Profile_average_score_label}"
                                                FontSize="10"

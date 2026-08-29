@@ -168,7 +168,7 @@
     </LinearGradientBrush>
 
     <Color x:Key="ProgressBarColor">#5B5FEF</Color>
-    <Color x:Key="ProgressBarBGColor">#29263A</Color>
+    <Color x:Key="ProgressBarBGColor">#36C9B5</Color>
 
     <!-- Text -->
     <Color x:Key="MainTextColor">#29263A</Color>

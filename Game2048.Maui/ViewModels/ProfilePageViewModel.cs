@@ -1,5 +1,5 @@
 ﻿using Game2048.Maui.Interfaces;
-using CommunityToolkit.Mvvm.ComponentModel;
+using Game2048.Maui.Extensions;
 
 namespace Game2048.Maui.ViewModels;
 
@@ -8,7 +8,31 @@ public partial class ProfilePageViewModel : BindableObject
     private readonly IProfileManager _profileManager;
     private readonly IThemesManager _themesManager;
 
+    private string _playerName = String.Empty;
     private double _totalGamesPlayed = 0;
+    private double _totalGamesWon = 0;
+    private double _winRateRatio = 0;
+    private string _achievementsCountText = "0 / 0";
+    private double _achievementsProgressFraction = 0;
+    private string _themesCountText = "0 / 0";
+    private double _themesProgressFraction = 0;
+    private double _overallHighScore = 0;
+    private string _bestScoreModeName = String.Empty;
+    private double _averageScore = 0;
+
+    public string WinRatePercentage => $"{WinRateRatio * 100}%";
+    public string PlayerName
+    {
+        get { return _playerName; }
+        set
+        {
+            if (_playerName != value)
+            {
+                _playerName = value;
+                OnPropertyChanged();
+            }
+        }
+    }
     public double TotalGamesPlayed
     {
         get { return _totalGamesPlayed; }
@@ -21,8 +45,6 @@ public partial class ProfilePageViewModel : BindableObject
             }
         }
     }
-    
-    private double _totalGamesWon = 0;
     public double TotalGamesWon
     {
         get { return _totalGamesWon; }
@@ -35,9 +57,6 @@ public partial class ProfilePageViewModel : BindableObject
             }
         }
     }
-
-    public string WinRatePercentage => $"{WinRateRatio * 100}%";
-    private double _winRateRatio = 0;
     public double WinRateRatio
     {
         get { return _winRateRatio; }
@@ -51,9 +70,6 @@ public partial class ProfilePageViewModel : BindableObject
             }
         }
     }
-
-    private string _achievementsCountText = "0 / 0";
-
     public string AchievementsCountText
     {
         get => _achievementsCountText;
@@ -66,8 +82,6 @@ public partial class ProfilePageViewModel : BindableObject
             }
         }
     }
-
-    private double _achievementsProgressFraction = 0;
     public double AchievementsProgressFraction
     {
         get => _achievementsProgressFraction;
@@ -80,9 +94,6 @@ public partial class ProfilePageViewModel : BindableObject
             }
         }
     }
-
-    private string _themesCountText = "0 / 0";
-
     public string ThemesCountText
     {
         get => _themesCountText;
@@ -95,8 +106,6 @@ public partial class ProfilePageViewModel : BindableObject
             }
         }
     }
-
-    private double _themesProgressFraction = 0;
     public double ThemesProgressFraction
     {
         get => _themesProgressFraction;
@@ -109,14 +118,85 @@ public partial class ProfilePageViewModel : BindableObject
             }
         }
     }
+    public double OverallHighScore
+    {
+        get => _overallHighScore;
+        set
+        {
+            if (_overallHighScore != value)
+            {
+                _overallHighScore = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+    public string BestScoreModeName
+    {
+        get => _bestScoreModeName;
+        set
+        {
+            if (_bestScoreModeName != value)
+            {
+                _bestScoreModeName = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+    public double AverageScore
+    {
+        get => _averageScore;
+        set
+        {
+            if (_averageScore != value)
+            {
+                _averageScore = value;
+                OnPropertyChanged();
+            }
+        }
+    }
 
-
+    
 
     public ProfilePageViewModel(IProfileManager profileManager, IThemesManager themeManager)
     {
         _profileManager = profileManager;
         _themesManager = themeManager;
+
+        LoadProfileData();
     }
 
+    private void LoadProfileData()
+    {
+        var stats = _profileManager.GetGlobalStatistics();
+        int totalAchievementsCount = AchievementTypeExtension.GetTotalAchievementsCount();
+        int totalAchievementsUnlocked = _profileManager.GetUnlockedAchievements().Count;
+        int totalThemesCount = GameThemeExtension.GetTotalThemesCount();
+        int totalThemesUnlocked = _profileManager.GetUnlockedThemes().Count;
+        var highestScore = _profileManager.GetOverallBestScore();
 
+        PlayerName = _profileManager.GetPlayerName();
+        TotalGamesPlayed = stats.TotalGamesPlayed;
+        TotalGamesWon = stats.TotalGamesWon;
+
+        WinRateRatio = TotalGamesPlayed > 0
+            ? TotalGamesWon / TotalGamesPlayed
+            : 0;
+
+        AchievementsCountText = $"{totalAchievementsUnlocked} / {totalAchievementsCount}";
+
+        AchievementsProgressFraction = totalAchievementsCount > 0
+            ? (double)totalAchievementsUnlocked / totalAchievementsCount
+            : 0;
+
+        ThemesCountText = $"{totalThemesUnlocked} / {totalThemesCount}";
+
+        ThemesProgressFraction = totalThemesCount > 0
+            ? (double)totalThemesUnlocked / totalThemesCount
+            : 0;
+
+        OverallHighScore = highestScore?.Score ?? 0;
+        if (highestScore is null) BestScoreModeName = "None";
+        else BestScoreModeName = highestScore.Value.Mode.GetTitle();
+        AverageScore = _profileManager.GetAverageScore();
+    }
 }

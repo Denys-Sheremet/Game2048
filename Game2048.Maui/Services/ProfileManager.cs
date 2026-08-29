@@ -103,6 +103,31 @@ public class ProfileManager : IProfileManager
     }
 
     //Best score
+    public int GetAverageScore()
+    {
+        var profile = GetValidProfile();
+
+        if (profile.BestScores?.Count > 0)
+        {
+            return (int)Math.Round(profile.BestScores.Values.Average());
+        }
+
+        return 0;
+    }
+
+    public (GameModeType Mode, int Score)? GetOverallBestScore()
+    {
+        var profile = GetValidProfile();
+        
+        if (profile.BestScores?.Count > 0)
+        {
+            var bestPair = profile.BestScores.MaxBy(bs => bs.Value);
+            return (bestPair.Key, bestPair.Value);
+        }
+
+        return null;
+    }
+
     public void SaveBestScore(GameModeType gameMode, int bestScore)
     {
         var profile = GetValidProfile();

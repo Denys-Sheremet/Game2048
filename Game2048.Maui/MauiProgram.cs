@@ -64,6 +64,8 @@ namespace Game2048.Maui
             builder.Services.AddTransient<ThemeSelectionView>();
             builder.Services.AddTransient<ThemePreviewViewModel>();
             builder.Services.AddTransient<ThemePreviewTileViewModel>();
+            builder.Services.AddTransient<ProfilePageViewModel>();
+            builder.Services.AddTransient<ProfilePageView>();
 
 #if DEBUG
             builder.Logging.AddDebug();
