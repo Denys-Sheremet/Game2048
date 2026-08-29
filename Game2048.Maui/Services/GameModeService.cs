@@ -3,6 +3,7 @@ using Game2048.Maui.Interfaces;
 using Game2048.Maui.Models;
 using Game2048.Maui.Services;
 using Game2048.Maui.Resources.Localization;
+using Game2048.Maui.Extensions;
 
 namespace Game2048.Maui.Services;
 
@@ -11,13 +12,13 @@ public class GameModeService : IGameModeService
     private readonly IThemesManager _themesManager;
     private readonly ISettingsManager _settingsManager;
 
-    private IReadOnlyList<GameMode> _gameModes = new List<GameMode>()
+    private readonly List<GameMode> _gameModes = new List<GameMode>()
     {
-            new GameMode(GameModeType.Classic, AppResources.GameMode_Classic_title, AppResources.GameMode_Classic_desc, "classic_game_preview.gif", Colors.Transparent, false),
-            new GameMode(GameModeType.ClassicPlus, AppResources.GameMode_ClassicPlus_title, AppResources.GameMode_ClassicPlus_desc, "classic_plus_game_preview.gif", Colors.Transparent, false),
-            new GameMode(GameModeType.Compact, AppResources.GameMode_Compact_title, AppResources.GameMode_Compact_desc, "compact_game_preview.gif", Colors.Transparent, false),
-            new GameMode(GameModeType.Extended, AppResources.GameMode_Extended_title, AppResources.GameMode_Extended_desc, "extended_game_preview.gif", Colors.Transparent, false),
-            new GameMode(GameModeType.ChillZone, AppResources.GameMode_ChillZone_title, AppResources.GameMode_ChillZone_desc, "chill_zone_game_preview.gif", Colors.Transparent, false)
+            new GameMode(GameModeType.Classic, GameModeType.Classic.GetTitle(), GameModeType.Classic.GetDesc(), "classic_game_preview.gif", Colors.Transparent, false),
+            new GameMode(GameModeType.ClassicPlus, GameModeType.ClassicPlus.GetTitle(), GameModeType.ClassicPlus.GetDesc(), "classic_plus_game_preview.gif", Colors.Transparent, false),
+            new GameMode(GameModeType.Compact, GameModeType.Compact.GetTitle(), GameModeType.Compact.GetDesc(), "compact_game_preview.gif", Colors.Transparent, false),
+            new GameMode(GameModeType.Extended, GameModeType.Extended.GetTitle(), GameModeType.Extended.GetDesc(), "extended_game_preview.gif", Colors.Transparent, false),
+            new GameMode(GameModeType.ChillZone, GameModeType.ChillZone.GetTitle(), GameModeType.ChillZone.GetDesc(), "chill_zone_game_preview.gif", Colors.Transparent, false)
     };
 
     public GameModeService(IThemesManager themesManager, ISettingsManager settingsManager)

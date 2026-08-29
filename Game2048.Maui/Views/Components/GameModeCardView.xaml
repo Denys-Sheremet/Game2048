@@ -43,10 +43,10 @@
                 <Border StrokeShape="RoundRectangle 15"
                         StrokeThickness="2"
                         Stroke="{DynamicResource MainBorderColor}"
-                        Background="{DynamicResource SelectionStrokeColor}">
+                        Background="{DynamicResource SecondaryFieldBGColor}">
                     <Label Text="{Binding Title}" 
                            FontSize="25" 
-                           TextColor="White" 
+                           TextColor="{DynamicResource MainTitleColor}" 
                            FontFamily="RubikBold"
                            Margin="10, 0, 10, 0"
                            HorizontalOptions="Center"
@@ -58,7 +58,7 @@
                 <Label Text="{Binding Desc}" 
                        FontSize="20" 
                        FontAttributes="Bold" 
-                       TextColor="White"
+                       TextColor="{DynamicResource MainTextColor}"
                        FontFamily="RubikSemi"
                        HorizontalOptions="Center"
                        HorizontalTextAlignment="Center"

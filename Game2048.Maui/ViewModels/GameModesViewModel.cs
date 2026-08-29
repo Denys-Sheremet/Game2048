@@ -44,7 +44,14 @@ public partial class GameModesViewModel : ObservableObject
 
         StartGameCommand =  new RelayCommand<GameModeType>(OnStartGameRequested);
 
-        SelectedMode = Modes.FirstOrDefault();
+        if (Enum.TryParse<GameModeType>(_settingsManager.GetCurrentGameMode(), out var lastMode))
+        {
+            SelectedMode = Modes.FirstOrDefault(m => m.ModeType == lastMode);
+        } 
+        else
+        {
+            SelectedMode = Modes.FirstOrDefault();
+        }
     }
 
     private void UpdateActiveCardState(GameMode? activeMode) 
