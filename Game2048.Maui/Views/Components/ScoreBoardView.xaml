@@ -29,7 +29,8 @@
                        x:Name="ActualScoreLabel"
                        FontSize="24" 
                        FontFamily="RubikBold"  
-                       HorizontalOptions="Center" 
+                       HorizontalOptions="Center"
+                       Padding="2"
                        TextColor="{DynamicResource ScoreBoardNumColor}"/>
 
             </VerticalStackLayout>
@@ -55,6 +56,7 @@
                        FontSize="24" 
                        FontFamily="RubikBold"  
                        HorizontalOptions="Center" 
+                       Padding="2"
                        TextColor="{DynamicResource ScoreBoardNumColor}"/>
 
             </VerticalStackLayout>

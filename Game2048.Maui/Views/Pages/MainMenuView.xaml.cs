@@ -79,7 +79,7 @@ public partial class MainMenuView : ContentPage
 
         double targetScale = Math.Min(scaleX, scaleY) * 0.86;
 
-        DiamondCluster.Scale = Math.Clamp(targetScale, 0.5, 1.20);
+        DiamondCluster.Scale = Math.Clamp(targetScale, 0.5, 2.0);
     }
 
     private async Task AnimatePageDissapearTo(int transitionX)
