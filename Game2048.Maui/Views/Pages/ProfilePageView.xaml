@@ -56,37 +56,33 @@
                                      Padding="16, 6, 16, 24"
                                      HorizontalOptions="Fill">
                     <!-- Player name -->
-                    <Grid>
-                        <Border x:Name="NameBorder"
-                                VerticalOptions="Center"
-                                HorizontalOptions="Fill"
-                                Padding="25, 15"
-                                Grid.Row="1"
+
+                    <Border x:Name="NameBorder"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Fill"
+                            Padding="25, 15"
+                            StrokeShape="RoundRectangle 13"
+                            StrokeThickness="3"
+                            Stroke="{DynamicResource MainBorderColor}"
+                            Style="{StaticResource ProfilePreviewBGStyle}">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnCardTapped" />
+                        </Border.GestureRecognizers>
+
+
+                        <Label x:Name="ProfileNameLabel"
+                                Grid.Row="0"
                                 Grid.Column="0"
-                                Grid.ColumnSpan="2"
-                                StrokeShape="RoundRectangle 13"
-                                StrokeThickness="3"
-                                Stroke="{DynamicResource MainBorderColor}"
-                                Style="{StaticResource ProfilePreviewBGStyle}"> 
-                            <Border.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnCardTapped" />
-                            </Border.GestureRecognizers>
+                                FontFamily="RubikBold"
+                                FontSize="26"
+                                Padding="2"
+                                TextColor="{DynamicResource PreviewTextColor}"
+                                HorizontalTextAlignment="Start"
+                                VerticalTextAlignment="Center"
+                                Text="{Binding PlayerName}"/>
 
 
-                            <Label x:Name="ProfileNameLabel"
-                                   Grid.Row="0"
-                                   Grid.Column="0"
-                                   FontFamily="RubikBold"
-                                   FontSize="26"
-                                   Padding="2"
-                                   TextColor="{DynamicResource PreviewTextColor}"
-                                   HorizontalTextAlignment="Start"
-                                   VerticalTextAlignment="Center"
-                                   Text="{Binding PlayerName}"/>
-
-
-                        </Border>
-                    </Grid>
+                    </Border>
 
                     <!-- 1. Games Statistics Main Card -->
                     <Border Background="{DynamicResource CardBGColor}"
@@ -345,8 +341,8 @@
                                     </VerticalStackLayout>
                                 </Border>
                             </Grid>
-                            <Border Grid.Column="1"
-                                    Background="{DynamicResource SecondaryFieldBGColor}"
+                            <!-- Best mode Mini Card -->
+                            <Border Background="{DynamicResource SecondaryFieldBGColor}"
                                     StrokeShape="RoundRectangle 12"
                                     StrokeThickness="3"
                                     Stroke="{DynamicResource MainBorderColor}"
