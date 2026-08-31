@@ -99,11 +99,6 @@ public partial class SettingsPageView : ContentPage
 
     public async void OnLangSelectBtnClicked(object sender, EventArgs e)
     {
-        if (sender is Button btn)
-        {
-            await btn.ScaleToAsync(0.9, 100, Easing.CubicIn);
-            await btn.ScaleToAsync(1.0, 100, Easing.CubicOut);
-        }
 
         if (!_viewModel.IsNotCurrentLang) return;
 

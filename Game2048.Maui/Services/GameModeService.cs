@@ -14,11 +14,11 @@ public class GameModeService : IGameModeService
 
     private readonly List<GameMode> _gameModes = new List<GameMode>()
     {
-            new GameMode(GameModeType.Classic, GameModeType.Classic.GetTitle(), GameModeType.Classic.GetDesc(), "classic_game_preview.gif", Colors.Transparent, false),
-            new GameMode(GameModeType.ClassicPlus, GameModeType.ClassicPlus.GetTitle(), GameModeType.ClassicPlus.GetDesc(), "classic_plus_game_preview.gif", Colors.Transparent, false),
-            new GameMode(GameModeType.Compact, GameModeType.Compact.GetTitle(), GameModeType.Compact.GetDesc(), "compact_game_preview.gif", Colors.Transparent, false),
-            new GameMode(GameModeType.Extended, GameModeType.Extended.GetTitle(), GameModeType.Extended.GetDesc(), "extended_game_preview.gif", Colors.Transparent, false),
-            new GameMode(GameModeType.ChillZone, GameModeType.ChillZone.GetTitle(), GameModeType.ChillZone.GetDesc(), "chill_zone_game_preview.gif", Colors.Transparent, false)
+            new GameMode(GameModeType.Classic, GameModeType.Classic.ToString(), GameModeType.Classic.ToString(), "classic_game_preview.gif", Colors.Transparent, false),
+            new GameMode(GameModeType.ClassicPlus, GameModeType.ClassicPlus.ToString(), GameModeType.ClassicPlus.ToString(), "classic_plus_game_preview.gif", Colors.Transparent, false),
+            new GameMode(GameModeType.Compact, GameModeType.Compact.ToString(), GameModeType.Compact.ToString(), "compact_game_preview.gif", Colors.Transparent, false),
+            new GameMode(GameModeType.Extended, GameModeType.Extended.ToString(), GameModeType.Extended.ToString(), "extended_game_preview.gif", Colors.Transparent, false),
+            new GameMode(GameModeType.ChillZone, GameModeType.ChillZone.ToString(), GameModeType.ChillZone.ToString(), "chill_zone_game_preview.gif", Colors.Transparent, false)
     };
 
     public GameModeService(IThemesManager themesManager, ISettingsManager settingsManager)
@@ -39,6 +39,8 @@ public class GameModeService : IGameModeService
             var gm = _gameModes[i];
             var isActive = (gm.ModeType == lastGameMode);
             string BGColorKey = $"Card{i + 1}BGColor";
+            gm.Title = gm.ModeType.GetTitle();
+            gm.Desc = gm.ModeType.GetDesc();
             gm.CardColor = _themesManager.GetCurrentThemeBrush(BGColorKey);
             gm.IsActive = isActive;
             gameModes.Add(gm);

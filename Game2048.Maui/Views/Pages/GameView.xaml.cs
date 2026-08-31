@@ -6,7 +6,6 @@ using Game2048.Maui.Interfaces;
 using Game2048.Maui.Services;
 using Game2048.Maui.ViewModels;
 using Game2048.Maui.Views.Components;
-using Game2048.Maui.Views.Overlays;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Controls.Shapes;
 using System.ComponentModel;

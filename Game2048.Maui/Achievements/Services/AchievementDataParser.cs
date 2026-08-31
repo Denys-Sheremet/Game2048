@@ -11,13 +11,13 @@ public static class AchievementDataParser
     public static string GetTitle(AchievementType achievementType)
     {
         string titleKey = $"Ach_{achievementType}_title";
-        return AppResources.ResourceManager.GetString(titleKey) ?? achievementType.ToString();
+        return AppResources.ResourceManager.GetString(titleKey, AppResources.Culture) ?? achievementType.ToString();
     }
 
     public static string GetDesc(AchievementType achievementType)
     {
         string descKey = $"Ach_{achievementType}_desc";
-        return AppResources.ResourceManager.GetString(descKey) ?? "NaN";
+        return AppResources.ResourceManager.GetString(descKey, AppResources.Culture) ?? "NaN";
     }
 
     public static string GetImageName(AchievementType achievementType)
