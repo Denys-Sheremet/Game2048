@@ -1,5 +1,7 @@
 ﻿using Game2048.Maui.Interfaces;
 using Game2048.Maui.Extensions;
+using System.Collections.ObjectModel;
+using Game2048.Maui.ViewModels.Items;
 
 namespace Game2048.Maui.ViewModels;
 
@@ -20,7 +22,8 @@ public partial class ProfilePageViewModel : BindableObject
     private string _bestScoreModeName = String.Empty;
     private double _averageScore = 0;
 
-    public string WinRatePercentage => $"{WinRateRatio * 100}%";
+    public ObservableCollection<ModeStatViewModel> ModeStats { get; } = new();
+    public string WinRatePercentage => $"{(int)Math.Round(WinRateRatio * 100)}%";
     public string PlayerName
     {
         get { return _playerName; }
@@ -179,7 +182,7 @@ public partial class ProfilePageViewModel : BindableObject
         TotalGamesWon = stats.TotalGamesWon;
 
         WinRateRatio = TotalGamesPlayed > 0
-            ? TotalGamesWon / TotalGamesPlayed
+            ? (double)TotalGamesWon / TotalGamesPlayed
             : 0;
 
         AchievementsCountText = $"{totalAchievementsUnlocked} / {totalAchievementsCount}";
@@ -198,5 +201,28 @@ public partial class ProfilePageViewModel : BindableObject
         if (highestScore is null) BestScoreModeName = "None";
         else BestScoreModeName = highestScore.Value.Mode.GetTitle();
         AverageScore = _profileManager.GetAverageScore();
+
+        LoadModeStats();
+    }
+
+    private void LoadModeStats()
+    {
+        ModeStats.Clear();
+
+        var sortedModes = _profileManager.GetBestScores().OrderByDescending(bs => bs.Value);
+
+        int modePlace = 1;
+        foreach (var mode in sortedModes) 
+        {
+            bool isTopMode = modePlace <= 3 && mode.Value > 0;
+            ModeStats.Add(new ModeStatViewModel
+            {
+                ModeType = mode.Key,
+                ModeName = mode.Key.GetTitle(),
+                HighestScore = mode.Value,
+                RatingIcon = isTopMode ? $"profile_top_{modePlace}.svg" : "profile_top_none.svg"
+            });
+            modePlace++;
+        }
     }
 }

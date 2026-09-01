@@ -103,6 +103,12 @@ public class ProfileManager : IProfileManager
     }
 
     //Best score
+    public Dictionary<GameModeType, int> GetBestScores()
+    {
+        var profile = GetValidProfile();
+        return profile.BestScores;
+    }
+
     public int GetAverageScore()
     {
         var profile = GetValidProfile();

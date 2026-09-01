@@ -21,6 +21,7 @@ public interface IProfileManager
     void SetCurrentProfile(PlayerProfile profile);
     void SaveCurrentGame(GameModeType gameMode, StateSnapshot currentState, IReadOnlyList<StateSnapshot>? history);
     GameSessionSave? LoadCurrentGame(GameModeType gameMode);
+    Dictionary<GameModeType, int> GetBestScores();
     void SaveBestScore(GameModeType gameMode, int bestScore);
     int? GetBestScore(GameModeType gameMode);
     int GetAverageScore();

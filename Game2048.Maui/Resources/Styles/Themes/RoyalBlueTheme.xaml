@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Game2048.Maui.Resources.Styles.Themes.RoyalBlueTheme">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="Game2048.Maui.Resources.Styles.Themes.RoyalBlueTheme">
 
     <!-- Background -->
     <LinearGradientBrush x:Key="GameBackgroundColor" StartPoint="0,0" EndPoint="0,1">
@@ -14,6 +14,12 @@
         <GradientStop Color="#203063" Offset="0.0"/>
         <GradientStop Color="#17234D" Offset="0.5"/>
         <GradientStop Color="#0F1736" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="SecondaryFieldBGColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#1C2B59" Offset="0.0"/>
+        <GradientStop Color="#11193B" Offset="0.5"/>
+        <GradientStop Color="#0A0E24" Offset="1.0"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="EmptyCellColor" StartPoint="0,0" EndPoint="0,1">
@@ -179,39 +185,44 @@
 
     <!-- Cards -->
     <LinearGradientBrush x:Key="CardBGColor" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#1B2859" Offset="0.0"/>
-        <GradientStop Color="#131C42" Offset="1.0"/>
+        <GradientStop Color="#202F69" Offset="0.0"/>
+        <GradientStop Color="#16214A" Offset="0.5"/>
+        <GradientStop Color="#0E1533" Offset="1.0"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="Card1BGColor" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#1E2D63" Offset="0.0"/>
-        <GradientStop Color="#15214D" Offset="1.0"/>
+        <GradientStop Color="#26397D" Offset="0.0"/>
+        <GradientStop Color="#1B2859" Offset="0.5"/>
+        <GradientStop Color="#121B3D" Offset="1.0"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="Card2BGColor" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#21326E" Offset="0.0"/>
-        <GradientStop Color="#172557" Offset="1.0"/>
+        <GradientStop Color="#2B408C" Offset="0.0"/>
+        <GradientStop Color="#1E2D63" Offset="0.5"/>
+        <GradientStop Color="#141E45" Offset="1.0"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="Card3BGColor" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#243878" Offset="0.0"/>
-        <GradientStop Color="#192A61" Offset="1.0"/>
+        <GradientStop Color="#2F4699" Offset="0.0"/>
+        <GradientStop Color="#22326E" Offset="0.5"/>
+        <GradientStop Color="#16224C" Offset="1.0"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="Card4BGColor" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#283E85" Offset="0.0"/>
-        <GradientStop Color="#1C2F6E" Offset="1.0"/>
+        <GradientStop Color="#354FA8" Offset="0.0"/>
+        <GradientStop Color="#263878" Offset="0.5"/>
+        <GradientStop Color="#192552" Offset="1.0"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="Card5BGColor" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#2C4491" Offset="0.0"/>
-        <GradientStop Color="#1E347A" Offset="1.0"/>
+        <GradientStop Color="#3B57B8" Offset="0.0"/>
+        <GradientStop Color="#2A3E85" Offset="0.5"/>
+        <GradientStop Color="#1C2A5C" Offset="1.0"/>
     </LinearGradientBrush>
 
     <!-- Borders -->
     <Color x:Key="MainBorderColor">#D4AF37</Color>
     <Color x:Key="ScoreBoardBorderColor">#D4AF37</Color>
-    <Color x:Key="SecondaryFieldBGColor">#11193B</Color>
 
     <Color x:Key="SelectionStrokeColor">#4A76CE</Color>
     <Color x:Key="AttentionFieldStrokeColor">#FFFFFF</Color>
