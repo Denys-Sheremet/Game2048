@@ -104,7 +104,7 @@
                         Text="{x:Static lang:AppResources.Game_settings_btn_text}" 
                         Command="{Binding OpenSettingsCommand}"
                         FontSize="24" 
-                        Style="{StaticResource MainBtnStyle}" 
+                        Style="{StaticResource MainBtnStyle}"
                         FontFamily="MontBold">
                     <Button.Triggers>
                         <DataTrigger TargetType="Button"
@@ -138,14 +138,14 @@
                             StrokeShape="RoundRectangle 14"
                             StrokeThickness="2"
                             Stroke="{DynamicResource GameBackgroundColor}"
-                            Background="{DynamicResource LogoNumColor}"
+                            Background="{DynamicResource UndoCountBadgeBGColor}"
                             InputTransparent="True"
                             ZIndex="2">
 
                         <Label Text="{Binding HistoryCount}"
                                FontSize="16"
                                FontFamily="RubikBold"
-                               TextColor="{DynamicResource SecondaryTextColor}"
+                               TextColor="{DynamicResource UndoCountBadgeTextColor}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center"
                                InputTransparent="True"/>

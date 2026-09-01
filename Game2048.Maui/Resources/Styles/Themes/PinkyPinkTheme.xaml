@@ -35,8 +35,8 @@
     </LinearGradientBrush>
 
     <!-- Buttons -->
-    <Color x:Key="QuickPlayBtnTextColor">#FFFFFF</Color>
-    <LinearGradientBrush x:Key="QuickPlayBtnBGColor" StartPoint="0,0" EndPoint="0,1">
+    <Color x:Key="UndoCountBadgeTextColor">#FFFFFF</Color>
+    <LinearGradientBrush x:Key="UndoCountBadgeBGColor" StartPoint="0,0" EndPoint="0,1">
         <GradientStop Color="#FF62B2" Offset="0.0"/>
         <GradientStop Color="#D63499" Offset="0.5"/>
         <GradientStop Color="#A424B2" Offset="1.0"/>
