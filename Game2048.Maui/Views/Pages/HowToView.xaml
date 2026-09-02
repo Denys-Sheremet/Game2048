@@ -11,7 +11,8 @@
     <Grid x:Name="PageContainer"
           VerticalOptions="Fill"
           HorizontalOptions="Fill"
-          Background="{DynamicResource PageBackgroundColor}">
+          Background="{DynamicResource PageBackgroundColor}"
+          IsVisible="False">
 
         <Grid RowDefinitions="Auto, *"
               HorizontalOptions="Fill"
