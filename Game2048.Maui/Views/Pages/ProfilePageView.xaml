@@ -414,7 +414,8 @@
                                     Opacity="0.45" />
                         </Border.Shadow>
                         <VerticalStackLayout Spacing="8"
-                                                     BindableLayout.ItemsSource="{Binding ModeStats}">
+                                             BindableLayout.ItemsSource="{Binding ModeStats}"
+                                             IsVisible="{Binding IsModeStatsNotEmpty}">
                                     <BindableLayout.ItemTemplate>
                                         <DataTemplate x:DataType="item:ModeStatViewModel">
                                             <Border Background="{DynamicResource SecondaryFieldBGColor}"

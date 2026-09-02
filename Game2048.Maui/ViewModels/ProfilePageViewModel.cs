@@ -24,6 +24,7 @@ public partial class ProfilePageViewModel : BindableObject
 
     public ObservableCollection<ModeStatViewModel> ModeStats { get; } = new();
     public string WinRatePercentage => $"{(int)Math.Round(WinRateRatio * 100)}%";
+    public bool IsModeStatsNotEmpty => ModeStats.Count > 0;
     public string PlayerName
     {
         get { return _playerName; }
