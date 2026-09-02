@@ -453,4 +453,7 @@
   <data name="ProfilePage_best_mode_label" xml:space="preserve">
     <value>Найкращий режим </value>
   </data>
+  <data name="HowToPage_title" xml:space="preserve">
+    <value>Як грати</value>
+  </data>
 </root>

@@ -2,10 +2,57 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
+             xmlns:lang="clr-namespace:Game2048.Maui.Resources.Localization"
              x:Class="Game2048.Maui.Views.Pages.HowToView"
              x:DataType="vm:HowToViewModel"
              Shell.NavBarIsVisible="False"
              Background="{DynamicResource PageBackgroundColor}">
+
+    <Grid x:Name="PageContainer"
+          VerticalOptions="Fill"
+          HorizontalOptions="Fill"
+          Background="{DynamicResource PageBackgroundColor}">
+
+        <Grid RowDefinitions="Auto, *"
+              HorizontalOptions="Fill"
+              VerticalOptions="Fill">
+            
+            <Grid ColumnDefinitions="60, *, 60" RowDefinitions="Auto, Auto" Grid.Row="0" Grid.Column="0">
+                <Button x:Name="BackToMenuBtn"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="15, 0, 0, 0"
+                        WidthRequest="55"
+                        HeightRequest="55"
+                        FontFamily="FontAwesome"
+                        Text="&#xf30a;"
+                        FontSize="20"    
+                        Clicked="OnBack" 
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Style="{StaticResource MainBtnStyle}">
+
+                </Button>
+
+                <Label Text="{x:Static lang:AppResources.HowToPage_title}"
+                       Grid.Row="0"
+                       Grid.Column="1"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       FontFamily="RubikSemi"
+                       FontSize="40"
+                       LineBreakMode="WordWrap"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       TextColor="{DynamicResource MainTitleColor}">
+                </Label>
+            </Grid>
+
+            
+            
+        </Grid>
+        
+    </Grid>
 
     
 </ContentPage>

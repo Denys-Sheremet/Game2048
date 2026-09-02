@@ -453,4 +453,7 @@
   <data name="ProfilePage_best_mode_label" xml:space="preserve">
     <value>Best mode</value>
   </data>
+  <data name="HowToPage_title" xml:space="preserve">
+    <value>How to play</value>
+  </data>
 </root>

@@ -592,6 +592,15 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на How to play.
+        /// </summary>
+        public static string HowToPage_title {
+            get {
+                return ResourceManager.GetString("HowToPage_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на GAME MODES.
         /// </summary>
         public static string Menu_game_modes_btn_text {
