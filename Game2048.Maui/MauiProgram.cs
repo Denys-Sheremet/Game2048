@@ -43,6 +43,7 @@ namespace Game2048.Maui
             builder.Services.AddSingleton<ISettingsManager, SettingsManager>();
             builder.Services.AddSingleton<IStoreManager, StoreManager>();
             builder.Services.AddSingleton<IRewardManager, RewardManager>();
+            builder.Services.AddSingleton<IHowToService, HowToService>();
 
             builder.Services.AddSingleton<ThemeRegistry>();
 
@@ -66,6 +67,8 @@ namespace Game2048.Maui
             builder.Services.AddTransient<ThemePreviewTileViewModel>();
             builder.Services.AddTransient<ProfilePageViewModel>();
             builder.Services.AddTransient<ProfilePageView>();
+            builder.Services.AddTransient<HowToView>();
+            builder.Services.AddTransient<HowToViewModel>();
 
 #if DEBUG
             builder.Logging.AddDebug();

@@ -149,6 +149,9 @@
 	  <MauiXaml Update="Views\Components\DiamondButtonView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Components\HowToCardView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Components\ThemeItemView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

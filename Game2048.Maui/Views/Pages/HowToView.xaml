@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
              xmlns:lang="clr-namespace:Game2048.Maui.Resources.Localization"
+             xmlns:item="clr-namespace:Game2048.Maui.ViewModels.Items"
+             xmlns:comp="clr-namespace:Game2048.Maui.Views.Components"
              x:Class="Game2048.Maui.Views.Pages.HowToView"
              x:DataType="vm:HowToViewModel"
              Shell.NavBarIsVisible="False"
@@ -14,7 +16,7 @@
           Background="{DynamicResource PageBackgroundColor}"
           IsVisible="False">
 
-        <Grid RowDefinitions="Auto, *"
+        <Grid RowDefinitions="Auto, *, Auto"
               HorizontalOptions="Fill"
               VerticalOptions="Fill">
             
@@ -49,8 +51,30 @@
                 </Label>
             </Grid>
 
-            
-            
+            <CarouselView Grid.Row="1"
+                          ItemsSource="{Binding HowToCards}"
+                          Position="0"
+                          Loop="False"
+                          HorizontalScrollBarVisibility="Never"
+                          VerticalScrollBarVisibility="Never"
+                          IndicatorView="{x:Reference HowToIndicator}">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate x:DataType="item:HowToCardViewModel">
+                        <comp:HowToCardView/>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+
+            </CarouselView>
+
+            <IndicatorView x:Name="HowToIndicator"
+                   Grid.Row="2"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Margin="0,0,0,25"
+                   IndicatorSize="10"
+                   IndicatorsShape="Circle"
+                   IndicatorColor="{DynamicResource SignsTextColor}"
+                   SelectedIndicatorColor="{DynamicResource PreviewTextColor}" />
         </Grid>
         
     </Grid>

@@ -1,11 +1,15 @@
+using Game2048.Maui.ViewModels;
 
 namespace Game2048.Maui.Views.Pages;
 
 public partial class HowToView : ContentPage
 {
-	public HowToView()
+    private readonly HowToViewModel _viewModel;
+    public HowToView(HowToViewModel viewModel)
 	{
 		InitializeComponent();
+        _viewModel = viewModel;
+        BindingContext = _viewModel;
 
         Loaded += OnPageLoaded;
     }
