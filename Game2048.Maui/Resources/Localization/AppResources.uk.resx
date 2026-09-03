@@ -456,4 +456,40 @@
   <data name="HowToPage_title" xml:space="preserve">
     <value>Як грати</value>
   </data>
+  <data name="HowToCard_1_title" xml:space="preserve">
+    <value>Рухай плитки</value>
+  </data>
+  <data name="HowToCard_1_desc" xml:space="preserve">
+    <value>Проведи по екрану, щоб рухати плитки по дошці</value>
+  </data>
+  <data name="HowToCard_2_title" xml:space="preserve">
+    <value>З'єднюй плитки</value>
+  </data>
+  <data name="HowToCard_2_desc" xml:space="preserve">
+    <value>Плитки однакового номіналу сумуються у нову з вищим номіналом</value>
+  </data>
+  <data name="HowToCard_3_title" xml:space="preserve">
+    <value>Намагайся завжди з'єднювати</value>
+  </data>
+  <data name="HowToCard_3_desc" xml:space="preserve">
+    <value>Якщо не залишилось доступних ходів - програш</value>
+  </data>
+  <data name="HowToCard_4_title" xml:space="preserve">
+    <value>Скасовуй ходи</value>
+  </data>
+  <data name="HowToCard_4_desc" xml:space="preserve">
+    <value>Ти можеш скасувати декілька ходів щоб не допустити програшу у деяких режимах гри</value>
+  </data>
+  <data name="HowToCard_5_title" xml:space="preserve">
+    <value>Збирай досягнення</value>
+  </data>
+  <data name="HowToCard_5_desc" xml:space="preserve">
+    <value>Відкривай досягнення, поліпшуй свою статистику та заробляй монети</value>
+  </data>
+  <data name="HowToCard_6_title" xml:space="preserve">
+    <value>Стилізуйся</value>
+  </data>
+  <data name="HowToCard_6_desc" xml:space="preserve">
+    <value>Витрачай монети на придбання нових тем та відкрий новий ігровий досвід для себе</value>
+  </data>
 </root>

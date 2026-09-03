@@ -16,6 +16,7 @@
                LineBreakMode="WordWrap"
                FontSize="18"
                FontFamily="RubikBold"
+               Margin="10, 0"
                TextColor="{DynamicResource MainTitleColor}" />
 
         <Border Grid.Row="1"
@@ -37,6 +38,7 @@
                LineBreakMode="WordWrap"
                FontSize="18"
                FontFamily="RubikSemi"
+               Margin="10, 0"
                TextColor="{DynamicResource SecondaryTextColor}" />
     </Grid>
     

@@ -456,4 +456,40 @@
   <data name="HowToPage_title" xml:space="preserve">
     <value>How to play</value>
   </data>
+  <data name="HowToCard_1_title" xml:space="preserve">
+    <value>Move tiles</value>
+  </data>
+  <data name="HowToCard_1_desc" xml:space="preserve">
+    <value>Swipe to move the tiles on a board</value>
+  </data>
+  <data name="HowToCard_2_title" xml:space="preserve">
+    <value>Merge tiles</value>
+  </data>
+  <data name="HowToCard_2_desc" xml:space="preserve">
+    <value>Tiles with the same value will merge in their sum</value>
+  </data>
+  <data name="HowToCard_3_title" xml:space="preserve">
+    <value>Try to always merge</value>
+  </data>
+  <data name="HowToCard_3_desc" xml:space="preserve">
+    <value>If you are out of possible moves - you lose</value>
+  </data>
+  <data name="HowToCard_4_title" xml:space="preserve">
+    <value>Undo moves</value>
+  </data>
+  <data name="HowToCard_4_desc" xml:space="preserve">
+    <value>You can undo a couple of moves to prevent your loss in some game modes</value>
+  </data>
+  <data name="HowToCard_5_title" xml:space="preserve">
+    <value>Collect achievements</value>
+  </data>
+  <data name="HowToCard_5_desc" xml:space="preserve">
+    <value>Unlock achievements, improve your statistics and earn coins</value>
+  </data>
+  <data name="HowToCard_6_title" xml:space="preserve">
+    <value>Get stylish</value>
+  </data>
+  <data name="HowToCard_6_desc" xml:space="preserve">
+    <value>Spend your coins on new themes and make your own gaming experience </value>
+  </data>
 </root>

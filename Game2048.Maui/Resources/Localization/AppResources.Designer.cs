@@ -592,6 +592,114 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Swipe to move the tiles on a board.
+        /// </summary>
+        public static string HowToCard_1_desc {
+            get {
+                return ResourceManager.GetString("HowToCard_1_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Move tiles.
+        /// </summary>
+        public static string HowToCard_1_title {
+            get {
+                return ResourceManager.GetString("HowToCard_1_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Tiles with the same value will merge in their sum.
+        /// </summary>
+        public static string HowToCard_2_desc {
+            get {
+                return ResourceManager.GetString("HowToCard_2_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Merge tiles.
+        /// </summary>
+        public static string HowToCard_2_title {
+            get {
+                return ResourceManager.GetString("HowToCard_2_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на If you are out of possible moves - you lose.
+        /// </summary>
+        public static string HowToCard_3_desc {
+            get {
+                return ResourceManager.GetString("HowToCard_3_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Try to always merge.
+        /// </summary>
+        public static string HowToCard_3_title {
+            get {
+                return ResourceManager.GetString("HowToCard_3_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на You can undo a couple of moves to prevent your loss in some game modes.
+        /// </summary>
+        public static string HowToCard_4_desc {
+            get {
+                return ResourceManager.GetString("HowToCard_4_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Undo moves.
+        /// </summary>
+        public static string HowToCard_4_title {
+            get {
+                return ResourceManager.GetString("HowToCard_4_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Unlock achievements, improve your statistics and earn coins.
+        /// </summary>
+        public static string HowToCard_5_desc {
+            get {
+                return ResourceManager.GetString("HowToCard_5_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Collect achievements.
+        /// </summary>
+        public static string HowToCard_5_title {
+            get {
+                return ResourceManager.GetString("HowToCard_5_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Spend your coins on new themes and make your own gaming experience .
+        /// </summary>
+        public static string HowToCard_6_desc {
+            get {
+                return ResourceManager.GetString("HowToCard_6_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Get stylish.
+        /// </summary>
+        public static string HowToCard_6_title {
+            get {
+                return ResourceManager.GetString("HowToCard_6_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на How to play.
         /// </summary>
         public static string HowToPage_title {
