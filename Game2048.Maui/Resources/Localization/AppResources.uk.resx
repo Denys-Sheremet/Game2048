@@ -190,13 +190,13 @@
     <value>Бог потужності!</value>
   </data>
   <data name="Ach_Score1000_desc" xml:space="preserve">
-    <value>Набрати 1000 очок в одній грі</value>
+    <value>Набрано 1000 очок в одній грі</value>
   </data>
   <data name="Ach_Score1000_title" xml:space="preserve">
     <value>Рекордсмен</value>
   </data>
   <data name="Ach_Score5000_desc" xml:space="preserve">
-    <value>Набрати 5000 очок в одній грі</value>
+    <value>Набрано 5000 очок в одній грі</value>
   </data>
   <data name="BWTheme_desc" xml:space="preserve">
     <value>Два кольори, нічого зайвого</value>
@@ -491,5 +491,104 @@
   </data>
   <data name="HowToCard_6_desc" xml:space="preserve">
     <value>Витрачай монети на придбання нових тем та відкрий новий ігровий досвід для себе</value>
+  </data>
+  <data name="Ach_Reach4096_title" xml:space="preserve">
+    <value>Це легально?</value>
+  </data>
+  <data name="Ach_Reach4096_desc" xml:space="preserve">
+    <value>Зібрано плитку... 4096?... Хай Бог милує...</value>
+  </data>
+  <data name="Ach_Score10000_title" xml:space="preserve">
+    <value>Скільки ж це плиток?</value>
+  </data>
+  <data name="Ach_Score10000_desc" xml:space="preserve">
+    <value>Набрано 10000 очок в одній грі</value>
+  </data>
+  <data name="Ach_Score20000_title" xml:space="preserve">
+    <value>Так, ну це вже серйозно</value>
+  </data>
+  <data name="Ach_Score20000_desc" xml:space="preserve">
+    <value>Набрано 20000 очок в одній грі</value>
+  </data>
+  <data name="Ach_Score30000_title" xml:space="preserve">
+    <value>Супер рекордсмен</value>
+  </data>
+  <data name="Ach_Score30000_desc" xml:space="preserve">
+    <value>Набрано 30000 очок в одній грі</value>
+  </data>
+  <data name="Ach_Score45000_title" xml:space="preserve">
+    <value>Нескінченність - не межа</value>
+  </data>
+  <data name="Ach_Score45000_desc" xml:space="preserve">
+    <value>Набрано 45000 очок в одній грі</value>
+  </data>
+  <data name="Ach_Earn1000Coins_title" xml:space="preserve">
+    <value>Пачка, пачка...</value>
+  </data>
+  <data name="Ach_Earn1000Coins_desc" xml:space="preserve">
+    <value>Зароблено 1000 монет за весь час</value>
+  </data>
+  <data name="Ach_Earn2000Coins_title" xml:space="preserve">
+    <value>Заробітчанин</value>
+  </data>
+  <data name="Ach_Earn2000Coins_desc" xml:space="preserve">
+    <value>Зароблено 2000 монет за весь час</value>
+  </data>
+  <data name="Ach_Earn5000Coins_title" xml:space="preserve">
+    <value>Зароблено 5000 монет за весь час</value>
+  </data>
+  <data name="Ach_Move1000_title" xml:space="preserve">
+    <value>Слідкуй за рухами</value>
+  </data>
+  <data name="Ach_Move1000_desc" xml:space="preserve">
+    <value>Зроблено 1000 ходів</value>
+  </data>
+  <data name="Ach_FirstWin_title" xml:space="preserve">
+    <value>Солодка перемога</value>
+  </data>
+  <data name="Ach_FirstWin_desc" xml:space="preserve">
+    <value>Переміг вперше</value>
+  </data>
+  <data name="Ach_Win3Times_title" xml:space="preserve">
+    <value>Потрійний постріл</value>
+  </data>
+  <data name="Ach_Win3Times_desc" xml:space="preserve">
+    <value>Переміг 3 рази</value>
+  </data>
+  <data name="Ach_Win5Times_title" xml:space="preserve">
+    <value>Ейс</value>
+  </data>
+  <data name="Ach_Win5Times_desc" xml:space="preserve">
+    <value>Переміг 5 разів</value>
+  </data>
+  <data name="Ach_Win10Times_title" xml:space="preserve">
+    <value>Наче вперше</value>
+  </data>
+  <data name="Ach_Win10Times_desc" xml:space="preserve">
+    <value>Переміг 10 разів</value>
+  </data>
+  <data name="Ach_Win25Times_title" xml:space="preserve">
+    <value>Абсолютний чемпіон</value>
+  </data>
+  <data name="Ach_Win25Times_desc" xml:space="preserve">
+    <value>Переміг 25 разів</value>
+  </data>
+  <data name="Ach_Why30_title" xml:space="preserve">
+    <value>Що я повинен зробити?</value>
+  </data>
+  <data name="Ach_Why30_desc" xml:space="preserve">
+    <value>???</value>
+  </data>
+  <data name="Ach_AllThemesUnlocked_title" xml:space="preserve">
+    <value>Це точно безкоштовно?</value>
+  </data>
+  <data name="Ach_AllThemesUnlocked_desc" xml:space="preserve">
+    <value>Відкрито всі теми стилізації гри</value>
+  </data>
+  <data name="Ach_AllAchievementsUnlocked_title" xml:space="preserve">
+    <value>Платина</value>
+  </data>
+  <data name="Ach_AllAchievementsUnlocked_desc" xml:space="preserve">
+    <value>Відкрито всі досягнення у грі</value>
   </data>
 </root>

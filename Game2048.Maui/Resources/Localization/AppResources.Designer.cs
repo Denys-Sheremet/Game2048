@@ -61,6 +61,87 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Unlocked all achievements in the game.
+        /// </summary>
+        public static string Ach_AllAchievementsUnlocked_desc {
+            get {
+                return ResourceManager.GetString("Ach_AllAchievementsUnlocked_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Platinum.
+        /// </summary>
+        public static string Ach_AllAchievementsUnlocked_title {
+            get {
+                return ResourceManager.GetString("Ach_AllAchievementsUnlocked_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Unlocked all themes in the game.
+        /// </summary>
+        public static string Ach_AllThemesUnlocked_desc {
+            get {
+                return ResourceManager.GetString("Ach_AllThemesUnlocked_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Should have been microtransactions.
+        /// </summary>
+        public static string Ach_AllThemesUnlocked_title {
+            get {
+                return ResourceManager.GetString("Ach_AllThemesUnlocked_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Earned 1000 coins for the whole time.
+        /// </summary>
+        public static string Ach_Earn1000Coins_desc {
+            get {
+                return ResourceManager.GetString("Ach_Earn1000Coins_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Bankroll.
+        /// </summary>
+        public static string Ach_Earn1000Coins_title {
+            get {
+                return ResourceManager.GetString("Ach_Earn1000Coins_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Earned 2000 coins for the whole time.
+        /// </summary>
+        public static string Ach_Earn2000Coins_desc {
+            get {
+                return ResourceManager.GetString("Ach_Earn2000Coins_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Money maker.
+        /// </summary>
+        public static string Ach_Earn2000Coins_title {
+            get {
+                return ResourceManager.GetString("Ach_Earn2000Coins_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Earned 5000 coins for the whole time.
+        /// </summary>
+        public static string Ach_Earn5000Coins_title {
+            get {
+                return ResourceManager.GetString("Ach_Earn5000Coins_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Played your first game in 2048.
         /// </summary>
         public static string Ach_FirstGame_desc {
@@ -93,6 +174,42 @@ namespace Game2048.Maui.Resources.Localization {
         public static string Ach_FirstUndo_title {
             get {
                 return ResourceManager.GetString("Ach_FirstUndo_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Won for the first time.
+        /// </summary>
+        public static string Ach_FirstWin_desc {
+            get {
+                return ResourceManager.GetString("Ach_FirstWin_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Sweet victory.
+        /// </summary>
+        public static string Ach_FirstWin_title {
+            get {
+                return ResourceManager.GetString("Ach_FirstWin_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Made 1000 moves.
+        /// </summary>
+        public static string Ach_Move1000_desc {
+            get {
+                return ResourceManager.GetString("Ach_Move1000_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Watch my moves.
+        /// </summary>
+        public static string Ach_Move1000_title {
+            get {
+                return ResourceManager.GetString("Ach_Move1000_title", resourceCulture);
             }
         }
         
@@ -223,6 +340,24 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Merged a 4096 tile... Lord have mercy....
+        /// </summary>
+        public static string Ach_Reach4096_desc {
+            get {
+                return ResourceManager.GetString("Ach_Reach4096_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на How did you do it?.
+        /// </summary>
+        public static string Ach_Reach4096_title {
+            get {
+                return ResourceManager.GetString("Ach_Reach4096_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Merged a 512 tile.
         /// </summary>
         public static string Ach_Reach512_desc {
@@ -259,7 +394,7 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Score 1000 points in one game.
+        ///   Ищет локализованную строку, похожую на Scored 1000 points in one game.
         /// </summary>
         public static string Ach_Score1000_desc {
             get {
@@ -277,7 +412,79 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Score 5000 points in one game.
+        ///   Ищет локализованную строку, похожую на Scored 10000 points in one game.
+        /// </summary>
+        public static string Ach_Score10000_desc {
+            get {
+                return ResourceManager.GetString("Ach_Score10000_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на How many tiles does it take?.
+        /// </summary>
+        public static string Ach_Score10000_title {
+            get {
+                return ResourceManager.GetString("Ach_Score10000_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Scored 20000 points in one game.
+        /// </summary>
+        public static string Ach_Score20000_desc {
+            get {
+                return ResourceManager.GetString("Ach_Score20000_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Okay, that&apos;s a big one.
+        /// </summary>
+        public static string Ach_Score20000_title {
+            get {
+                return ResourceManager.GetString("Ach_Score20000_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Scored 30000 points in one game.
+        /// </summary>
+        public static string Ach_Score30000_desc {
+            get {
+                return ResourceManager.GetString("Ach_Score30000_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Big boy scorer.
+        /// </summary>
+        public static string Ach_Score30000_title {
+            get {
+                return ResourceManager.GetString("Ach_Score30000_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Scored 45000 points in one game.
+        /// </summary>
+        public static string Ach_Score45000_desc {
+            get {
+                return ResourceManager.GetString("Ach_Score45000_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на To infinity and beyond.
+        /// </summary>
+        public static string Ach_Score45000_title {
+            get {
+                return ResourceManager.GetString("Ach_Score45000_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Scored 5000 points in one game.
         /// </summary>
         public static string Ach_Score5000_desc {
             get {
@@ -291,6 +498,96 @@ namespace Game2048.Maui.Resources.Localization {
         public static string Ach_Score5000_title {
             get {
                 return ResourceManager.GetString("Ach_Score5000_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ???.
+        /// </summary>
+        public static string Ach_Why30_desc {
+            get {
+                return ResourceManager.GetString("Ach_Why30_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на What did you expect?.
+        /// </summary>
+        public static string Ach_Why30_title {
+            get {
+                return ResourceManager.GetString("Ach_Why30_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Won 10 times.
+        /// </summary>
+        public static string Ach_Win10Times_desc {
+            get {
+                return ResourceManager.GetString("Ach_Win10Times_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Like first time.
+        /// </summary>
+        public static string Ach_Win10Times_title {
+            get {
+                return ResourceManager.GetString("Ach_Win10Times_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Won 25 times.
+        /// </summary>
+        public static string Ach_Win25Times_desc {
+            get {
+                return ResourceManager.GetString("Ach_Win25Times_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Absolute champion.
+        /// </summary>
+        public static string Ach_Win25Times_title {
+            get {
+                return ResourceManager.GetString("Ach_Win25Times_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Won 3 times.
+        /// </summary>
+        public static string Ach_Win3Times_desc {
+            get {
+                return ResourceManager.GetString("Ach_Win3Times_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Triple shot.
+        /// </summary>
+        public static string Ach_Win3Times_title {
+            get {
+                return ResourceManager.GetString("Ach_Win3Times_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Won 5 times.
+        /// </summary>
+        public static string Ach_Win5Times_desc {
+            get {
+                return ResourceManager.GetString("Ach_Win5Times_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Ace.
+        /// </summary>
+        public static string Ach_Win5Times_title {
+            get {
+                return ResourceManager.GetString("Ach_Win5Times_title", resourceCulture);
             }
         }
         

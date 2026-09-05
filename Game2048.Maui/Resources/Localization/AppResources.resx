@@ -190,13 +190,13 @@
     <value>GOLD GOLD GOLD</value>
   </data>
   <data name="Ach_Score1000_desc" xml:space="preserve">
-    <value>Score 1000 points in one game</value>
+    <value>Scored 1000 points in one game</value>
   </data>
   <data name="Ach_Score1000_title" xml:space="preserve">
     <value>Scorer</value>
   </data>
   <data name="Ach_Score5000_desc" xml:space="preserve">
-    <value>Score 5000 points in one game</value>
+    <value>Scored 5000 points in one game</value>
   </data>
   <data name="BWTheme_desc" xml:space="preserve">
     <value>Two colors, nothing else</value>
@@ -491,5 +491,104 @@
   </data>
   <data name="HowToCard_6_desc" xml:space="preserve">
     <value>Spend your coins on new themes and make your own gaming experience </value>
+  </data>
+  <data name="Ach_Reach4096_title" xml:space="preserve">
+    <value>How did you do it?</value>
+  </data>
+  <data name="Ach_Reach4096_desc" xml:space="preserve">
+    <value>Merged a 4096 tile... Lord have mercy...</value>
+  </data>
+  <data name="Ach_Score10000_title" xml:space="preserve">
+    <value>How many tiles does it take?</value>
+  </data>
+  <data name="Ach_Score10000_desc" xml:space="preserve">
+    <value>Scored 10000 points in one game</value>
+  </data>
+  <data name="Ach_Score20000_title" xml:space="preserve">
+    <value>Okay, that's a big one</value>
+  </data>
+  <data name="Ach_Score20000_desc" xml:space="preserve">
+    <value>Scored 20000 points in one game</value>
+  </data>
+  <data name="Ach_Score30000_title" xml:space="preserve">
+    <value>Big boy scorer</value>
+  </data>
+  <data name="Ach_Score30000_desc" xml:space="preserve">
+    <value>Scored 30000 points in one game</value>
+  </data>
+  <data name="Ach_Score45000_title" xml:space="preserve">
+    <value>To infinity and beyond</value>
+  </data>
+  <data name="Ach_Score45000_desc" xml:space="preserve">
+    <value>Scored 45000 points in one game</value>
+  </data>
+  <data name="Ach_Earn1000Coins_title" xml:space="preserve">
+    <value>Bankroll</value>
+  </data>
+  <data name="Ach_Earn1000Coins_desc" xml:space="preserve">
+    <value>Earned 1000 coins for the whole time</value>
+  </data>
+  <data name="Ach_Earn2000Coins_title" xml:space="preserve">
+    <value>Money maker</value>
+  </data>
+  <data name="Ach_Earn2000Coins_desc" xml:space="preserve">
+    <value>Earned 2000 coins for the whole time</value>
+  </data>
+  <data name="Ach_Earn5000Coins_title" xml:space="preserve">
+    <value>Earned 5000 coins for the whole time</value>
+  </data>
+  <data name="Ach_Move1000_title" xml:space="preserve">
+    <value>Watch my moves</value>
+  </data>
+  <data name="Ach_Move1000_desc" xml:space="preserve">
+    <value>Made 1000 moves</value>
+  </data>
+  <data name="Ach_FirstWin_title" xml:space="preserve">
+    <value>Sweet victory</value>
+  </data>
+  <data name="Ach_FirstWin_desc" xml:space="preserve">
+    <value>Won for the first time</value>
+  </data>
+  <data name="Ach_Win3Times_title" xml:space="preserve">
+    <value>Triple shot</value>
+  </data>
+  <data name="Ach_Win3Times_desc" xml:space="preserve">
+    <value>Won 3 times</value>
+  </data>
+  <data name="Ach_Win5Times_title" xml:space="preserve">
+    <value>Ace</value>
+  </data>
+  <data name="Ach_Win5Times_desc" xml:space="preserve">
+    <value>Won 5 times</value>
+  </data>
+  <data name="Ach_Win10Times_title" xml:space="preserve">
+    <value>Like first time</value>
+  </data>
+  <data name="Ach_Win10Times_desc" xml:space="preserve">
+    <value>Won 10 times</value>
+  </data>
+  <data name="Ach_Win25Times_title" xml:space="preserve">
+    <value>Absolute champion</value>
+  </data>
+  <data name="Ach_Win25Times_desc" xml:space="preserve">
+    <value>Won 25 times</value>
+  </data>
+  <data name="Ach_Why30_title" xml:space="preserve">
+    <value>What did you expect?</value>
+  </data>
+  <data name="Ach_Why30_desc" xml:space="preserve">
+    <value>???</value>
+  </data>
+  <data name="Ach_AllThemesUnlocked_title" xml:space="preserve">
+    <value>Should have been microtransactions</value>
+  </data>
+  <data name="Ach_AllThemesUnlocked_desc" xml:space="preserve">
+    <value>Unlocked all themes in the game</value>
+  </data>
+  <data name="Ach_AllAchievementsUnlocked_title" xml:space="preserve">
+    <value>Platinum</value>
+  </data>
+  <data name="Ach_AllAchievementsUnlocked_desc" xml:space="preserve">
+    <value>Unlocked all achievements in the game</value>
   </data>
 </root>
