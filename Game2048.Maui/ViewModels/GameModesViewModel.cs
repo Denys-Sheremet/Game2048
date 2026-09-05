@@ -26,10 +26,6 @@ public partial class GameModesViewModel : ObservableObject
         {
             if(SetProperty(ref _selectedMode, value))
             {
-                if (value is not null)
-                {
-                    _settingsManager.SetGameMode(value.ModeType);
-                }
                 UpdateActiveCardState(value);
             }
         }
@@ -64,6 +60,8 @@ public partial class GameModesViewModel : ObservableObject
 
     private void OnStartGameRequested(GameModeType modeType)
     {
+        _settingsManager.SetGameMode(modeType);
+
         _gameConfig.SetConfig(modeType);
 
         OnReadyToPlay?.Invoke();
