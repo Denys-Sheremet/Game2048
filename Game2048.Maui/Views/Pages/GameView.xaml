@@ -17,14 +17,14 @@
         
     
         <Grid x:Name="PageGrid" 
-              RowDefinitions="Auto, *, Auto"
+              RowDefinitions="2*, 3*, *"
               IsVisible="False">
 
             <!-- Info block with score -->
             <Grid x:Name="InfoBlockWrapper" 
                   Grid.Row="0" 
                   ColumnDefinitions="*, *, *, *" 
-                  RowDefinitions="Auto, Auto" 
+                  RowDefinitions="*, 2.4*" 
                   ColumnSpacing="20" 
                   Padding="15"
                   HorizontalOptions="Fill"
@@ -179,6 +179,8 @@
 
         <ovr:AchievementToastView x:Name="AchievementToast" 
               ZIndex="100" 
-              InputTransparent="True"/>
+              InputTransparent="True"
+              HorizontalOptions="Center"
+              VerticalOptions="Start"/>
     </Grid>
 </ContentPage>

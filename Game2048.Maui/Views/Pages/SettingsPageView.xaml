@@ -20,13 +20,8 @@
 
             <ScrollView>
                 <VerticalStackLayout Spacing="25" Padding="10">
-                    <Grid RowDefinitions="Auto, Auto, *"
-                          ColumnDefinitions="*"
-                          RowSpacing="10"
-                          Padding="0, 20, 0, 5"
-                          HorizontalOptions="Fill"
-                          VerticalOptions="Fill">
-                        <Grid ColumnDefinitions="*, Auto, *" Grid.Row="0" Grid.Column="0">
+                    
+                        <Grid ColumnDefinitions="*, 6*, *" Grid.Row="0" Grid.Column="0" Padding="0, 20, 0, 5">
                             <Button x:Name="BackToMenuBtn"
                                     Grid.Row="0"
                                     Grid.Column="0"
@@ -55,7 +50,6 @@
                             </Label>
                         </Grid>
                         
-                    </Grid>
                     <Border x:Name="NicknameField"
                             StrokeShape="RoundRectangle 8"
                             StrokeThickness="2"

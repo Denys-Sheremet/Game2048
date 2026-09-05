@@ -19,12 +19,12 @@
         <Grid x:Name="PageContentContainer"
               HorizontalOptions="Fill"
                 VerticalOptions="Fill"
-                RowDefinitions="Auto, *"
+                RowDefinitions="*, 7*"
                 ZIndex="10">
 
             
             
-            <Grid ColumnDefinitions="*, Auto, *" Grid.Row="0" Grid.Column="0" Margin="0, 25, 0, 10">
+            <Grid ColumnDefinitions="*, 6*, *" Grid.Row="0" Grid.Column="0" Margin="0, 25, 0, 10">
                 <Button x:Name="BackToMenuBtn"
                         Grid.Row="0"
                         Grid.Column="0"

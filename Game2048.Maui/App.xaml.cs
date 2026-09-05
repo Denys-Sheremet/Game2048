@@ -52,7 +52,18 @@ namespace Game2048.Maui
                 shell.SetCurrentToLangSelect();
             }
 
-            return new Window(shell);
+            var window = new Window(shell);
+
+#if WINDOWS
+            window.Width = 420;
+            window.Height = 840;
+            window.MinimumWidth = 420;
+            window.MinimumHeight = 840;
+            window.MaximumWidth = 420;
+            window.MaximumHeight = 840;
+#endif
+
+            return window;
         }
 
         public void RestartApp(string initialRoute = "///MainMenuPage")

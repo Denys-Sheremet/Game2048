@@ -15,18 +15,16 @@
           HorizontalOptions="Fill"
           VerticalOptions="Fill"
           IsVisible="False"
-          Background="{DynamicResource PageBackgroundColor}"
-          Padding="0, 15, 0, 0">
+          Background="{DynamicResource PageBackgroundColor}">
         
-        <Grid RowDefinitions="Auto, *"
+        <Grid RowDefinitions="*, 7*"
               VerticalOptions="Fill"
               HorizontalOptions="Fill"
-              Padding="10, 0, 10, 0">
+              Padding="10, 15, 10, 0">
 
             <Grid Grid.Row="0"
-                  ColumnDefinitions="*, Auto, Auto, *" 
-                  Padding="15"
-                  VerticalOptions="Start"
+                  ColumnDefinitions="*, 6*, *"
+                  VerticalOptions="Center"
                   HorizontalOptions="Fill">
 
                 <Button x:Name="BackBtn"
@@ -42,10 +40,9 @@
                         HorizontalOptions="Start"/>
 
                 <Label Grid.Column="1"
-                       Grid.ColumnSpan="2"
                        Text="{x:Static lang:AppResources.Achievements_title}" 
                        FontFamily="MontBold"
-                       FontSize="28"
+                       FontSize="30"
                        TextColor="{DynamicResource MainTitleColor}"
                        VerticalOptions="Center"
                        HorizontalOptions="Center"/>

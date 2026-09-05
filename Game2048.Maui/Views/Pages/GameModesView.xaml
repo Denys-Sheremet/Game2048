@@ -16,13 +16,13 @@
           VerticalOptions="Fill"
           HorizontalOptions="Fill">
 
-        <Grid RowDefinitions="Auto, Auto, *"
+        <Grid RowDefinitions="2*, 7*, *"
               ColumnDefinitions="*"
               RowSpacing="10"
-              Padding="0, 25, 0, 10"
+              Padding="0, 0, 0, 10"
               HorizontalOptions="Fill"
               VerticalOptions="Fill">
-            <Grid ColumnDefinitions="60, *, 60" Grid.Row="0" Grid.Column="0">
+            <Grid ColumnDefinitions="*, 6*, *" Grid.Row="0" Grid.Column="0">
                 <Button x:Name="BackToMenuBtn"
                         Grid.Row="0"
                         Grid.Column="0"
@@ -53,11 +53,14 @@
                 </Label>
             </Grid>
 
-            <CarouselView Grid.Row="2"
+            <CarouselView Grid.Row="1"
                           Grid.Column="0"
                           ItemsSource="{Binding Modes}"
                           CurrentItem="{Binding SelectedMode}"
                           PeekAreaInsets="40"
+                          HorizontalScrollBarVisibility="Never"
+                          VerticalScrollBarVisibility="Never"
+                          IndicatorView="{x:Reference GameModesIndicator}"
                           Loop="False">
                 <CarouselView.ItemTemplate>
                     <DataTemplate x:DataType="models:GameMode">
@@ -68,7 +71,17 @@
                 </CarouselView.ItemTemplate>
                 
             </CarouselView>
-        
+
+            <IndicatorView x:Name="GameModesIndicator"
+                           Grid.Row="2"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Margin="0,0,0,25"
+                           IndicatorSize="10"
+                           IndicatorsShape="Circle"
+                           IndicatorColor="{DynamicResource SignsTextColor}"
+                           SelectedIndicatorColor="{DynamicResource PreviewTextColor}" />
+
         </Grid>
     </Grid>
 </ContentPage>

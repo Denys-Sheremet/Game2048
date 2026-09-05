@@ -26,13 +26,12 @@
                         TextColor="{DynamicResource ScoreBoardTextColor}"/>
 
                 <Label Text="{Binding Score}" 
-                       x:Name="ActualScoreLabel"
-                       FontSize="24" 
-                       FontFamily="RubikBold"  
-                       HorizontalOptions="Center"
-                       Padding="2"
-                       TextColor="{DynamicResource ScoreBoardNumColor}"/>
-
+                        x:Name="ActualScoreLabel"
+                        FontSize="24" 
+                        FontFamily="RubikBold"  
+                        HorizontalOptions="Center"
+                        Padding="5, 0, 5, 0"
+                        TextColor="{DynamicResource ScoreBoardNumColor}"/>
             </VerticalStackLayout>
         </Border>
         
@@ -55,8 +54,8 @@
                        x:Name="BestScoreLabel"
                        FontSize="24" 
                        FontFamily="RubikBold"  
-                       HorizontalOptions="Center" 
-                       Padding="2"
+                       HorizontalOptions="Center"
+                       Padding="5, 0, 5, 0"
                        TextColor="{DynamicResource ScoreBoardNumColor}"/>
 
             </VerticalStackLayout>

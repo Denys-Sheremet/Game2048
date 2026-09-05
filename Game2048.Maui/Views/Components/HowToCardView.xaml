@@ -5,7 +5,7 @@
              x:Class="Game2048.Maui.Views.Components.HowToCardView"
              x:DataType="item:HowToCardViewModel">
 
-    <Grid RowDefinitions="Auto, *, Auto"
+    <Grid RowDefinitions="*, 9*, *"
           RowSpacing="20"
           HorizontalOptions="Center"
           VerticalOptions="Center">

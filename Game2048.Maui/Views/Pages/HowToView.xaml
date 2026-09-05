@@ -16,11 +16,11 @@
           Background="{DynamicResource PageBackgroundColor}"
           IsVisible="False">
 
-        <Grid RowDefinitions="Auto, *, Auto"
+        <Grid RowDefinitions="*, 10*, *"
               HorizontalOptions="Fill"
               VerticalOptions="Fill">
             
-            <Grid ColumnDefinitions="60, *, 60" RowDefinitions="Auto, Auto" Grid.Row="0" Grid.Column="0" Margin="0, 15, 0, 0">
+            <Grid ColumnDefinitions="*, 6*, *" RowDefinitions="Auto" Grid.Row="0" Grid.Column="0" Margin="0, 15, 0, 0">
                 <Button x:Name="BackToMenuBtn"
                         Grid.Row="0"
                         Grid.Column="0"
