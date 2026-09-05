@@ -58,11 +58,11 @@ public partial class RewardManager : IRewardManager, IDisposable
 
         if (themesCount > _lastThemesCount)
         {
+            _lastThemesCount = themesCount;
             if (themesCount % 5 == 0)
             {
                 SmallReward();
             }
-            _lastThemesCount = themesCount;
         }
     }
 
@@ -76,20 +76,20 @@ public partial class RewardManager : IRewardManager, IDisposable
 
         if (gamesWon > _lastWonCount)
         {
+            _lastWonCount = gamesWon;
             if (gamesWon % 5 == 0)
             {
                 MediumReward();
             }
-            _lastWonCount = gamesWon;
         }
 
         if (gamesLost > _lastLostCount)
         {
+            _lastLostCount = gamesLost;
             if (gamesLost % 5 == 0)
             {
                 SmallReward();
             }
-            _lastLostCount = gamesLost;
         }
     }
 

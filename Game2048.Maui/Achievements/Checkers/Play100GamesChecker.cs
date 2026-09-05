@@ -10,9 +10,9 @@ public class Play100GamesChecker : IGlobalAchievementChecker
 {
     public AchievementType Type => AchievementType.Play100Games;
 
-    public bool Check(PlayerStatistics stats)
+    public bool Check(PlayerProfile profile)
     {
-        return stats.TotalGamesPlayed >= 100;
+        return profile.GlobalPlayerStatistics.TotalGamesPlayed >= 100;
     }
 }
 

@@ -25,16 +25,16 @@ public static class GameThemeExtension
     {
         GameTheme.ClassicTheme => 0,
         GameTheme.DarkTheme => 0,
-        GameTheme.NatureTheme => 0, //200
-        GameTheme.NeonColorTheme => 0, //300
-        GameTheme.RainbowTheme => 0, //300
-        GameTheme.BWTheme => 0, //350
-        GameTheme.PinkyPinkTheme => 0, //400
-        GameTheme.RoyalRedTheme => 0, //500
-        GameTheme.RoyalBlueTheme => 0, //500
-        GameTheme.HazardTheme => 0, //350
-        GameTheme.SolarTheme => 0, //200
-        GameTheme.TokyoTheme => 0, //150
+        GameTheme.NatureTheme => 200,
+        GameTheme.NeonColorTheme => 300,
+        GameTheme.RainbowTheme => 300,
+        GameTheme.BWTheme => 350,
+        GameTheme.PinkyPinkTheme => 400,
+        GameTheme.RoyalRedTheme => 500,
+        GameTheme.RoyalBlueTheme => 500,
+        GameTheme.HazardTheme => 350,
+        GameTheme.SolarTheme => 200,
+        GameTheme.TokyoTheme => 150,
         _ => 100
     };
 }

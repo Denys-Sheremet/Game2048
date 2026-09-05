@@ -4,12 +4,11 @@ using Game2048.Maui.Enums;
 
 namespace Game2048.Maui.Achievements.Checkers;
 
-public class FirstUndoChecker : ISpecialAchievementChecker
+public class Why30Checker : ISpecialAchievementChecker
 {
-    public AchievementType Type => AchievementType.FirstUndo;
-
+    public AchievementType Type => AchievementType.Why30;
     public bool Check(IStatisticsManager statisticsManager)
     {
-        return statisticsManager.UndosMade > 0;
+        return statisticsManager.UselessUndoClicked >= 30;
     }
 }

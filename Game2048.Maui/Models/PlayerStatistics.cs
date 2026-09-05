@@ -7,4 +7,5 @@ public class PlayerStatistics
     public int TotalGamesWon { get; set; } = 0;
     public int TotalMovesMade { get; set; } = 0;
     public int TotalUndosUsed { get; set; } = 0;
+    public int TotalCoinsEarned { get; set; } = 0;
 }

@@ -200,8 +200,12 @@ public class ProfileManager : IProfileManager
     {
         var profile = GetValidProfile();
         if (amount <= 0) throw new InvalidOperationException("Amount of coins to add should be more than 0");
+
         profile.Coins += amount;
+        profile.GlobalPlayerStatistics.TotalCoinsEarned += amount;
+
         CoinsChanged?.Invoke(profile.Coins);
+        StatisticsUpdated?.Invoke();
     }
 
     public bool SpendCoins(int amount)

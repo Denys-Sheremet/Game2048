@@ -47,12 +47,12 @@ public class AchievementManager : IAchievementManager
     {
         if (_profileManager.CurrentProfile is null) return;
 
-        var stats = _profileManager.CurrentProfile.GlobalPlayerStatistics;
+        var profile = _profileManager.CurrentProfile;
 
         foreach (var ga in _globalAchievements)
         {
             if (_profileManager.IsAchievementUnlocked(ga.Type)) continue;
-            if (ga.Check(stats))
+            if (ga.Check(profile))
             {
                 TryUnlock(ga.Type);
             }
@@ -77,12 +77,10 @@ public class AchievementManager : IAchievementManager
     {
         if (_profileManager.CurrentProfile is null) return;
 
-        var stats = statisticsManager.GetStatisticsManager();
-
         foreach (var sa in _specialAchievements)
         {
             if (_profileManager.IsAchievementUnlocked(sa.Type)) continue;
-            if (sa.Check(stats.GameOver, stats.HasWon, stats.MovesMade, stats.UndosMade, stats.TilesMerged))
+            if (sa.Check(statisticsManager))
             {
                 TryUnlock(sa.Type);
             }

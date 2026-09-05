@@ -9,8 +9,8 @@ public class NoUndoVictoryChecker : ISpecialAchievementChecker
 {
     public AchievementType Type => AchievementType.NoUndoVictory;
 
-    public bool Check(bool gameOver, bool hasWon, int movesMade, int undosMade, int mergedTiles)
+    public bool Check(IStatisticsManager statisticsManager)
     {
-        return gameOver && hasWon && undosMade == 0;
+        return statisticsManager.HasWon && statisticsManager.UndosMade == 0;
     }
 }

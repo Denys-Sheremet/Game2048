@@ -18,6 +18,9 @@ public class StatisticsManager : IStatisticsManager
     // Not saved in profile
     public int TilesMerged { get; private set; } = 0;
 
+    //Easter egg =)
+    public int UselessUndoClicked { get; private set; } = 0;
+
     public StatisticsManager GetStatisticsManager()
     {
         return this;
@@ -46,6 +49,11 @@ public class StatisticsManager : IStatisticsManager
         UndosMade++;
     }
 
+    public void UselessUndone()
+    {
+        UselessUndoClicked++;
+    }
+
     public void GameEnded(bool hasWon = false)
     {
         GameOver = true;
@@ -58,6 +66,8 @@ public class StatisticsManager : IStatisticsManager
         HasWon = false;
         MovesMade = 0;
         UndosMade = 0;
+        TilesMerged = 0;
+        UselessUndoClicked = 0;
     }
 
     public void Push()

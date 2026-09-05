@@ -1,0 +1,19 @@
+﻿using Game2048.Core.DTOs;
+using Game2048.Core.Models;
+using Game2048.Maui.Achievements.Interfaces;
+using Game2048.Maui.Enums;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Game2048.Maui.Achievements.Checkers;
+
+public class Score10000Checker : ISessionAchievementChecker
+{
+    public AchievementType Type => AchievementType.Score10000;
+
+    public bool Check(StateSnapshot state, List<TileTransition> transitions)
+    {
+        return state.Score >= 10000;
+    }
+}

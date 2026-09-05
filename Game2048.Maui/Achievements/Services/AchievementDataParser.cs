@@ -22,6 +22,6 @@ public static class AchievementDataParser
 
     public static string GetImageName(AchievementType achievementType)
     {
-        return $"ach_{achievementType.ToString().ToLower()}.png";
+        return $"ach_{achievementType.ToString().ToLower()}.svg";
     }
 }

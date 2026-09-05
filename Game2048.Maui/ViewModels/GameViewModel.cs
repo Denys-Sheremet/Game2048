@@ -353,7 +353,12 @@ public partial class GameViewModel : BindableObject, IDisposable
         }
 
 
-        if ((transitions.Count == 0)) return;
+        if ((transitions.Count == 0))
+        {
+            _statisticsManager.UselessUndone();
+            _achievementManager.CheckSpecialAchievements(_statisticsManager);
+            return;
+        }
 
         SyncTiles();
 
