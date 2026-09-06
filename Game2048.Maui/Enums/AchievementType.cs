@@ -5,6 +5,21 @@ public enum AchievementType
     /// <summary>Played the first game</summary>
     FirstGame,
 
+    /// <summary>Won a game in Classic mode</summary>
+    WinClassicMode,
+
+    /// <summary>Won a game in Classic Plus mode</summary>
+    WinClassicPlusMode,
+
+    /// <summary>Won a game in Compact mode</summary>
+    WinCompactMode,
+
+    /// <summary>Won a game in Extended mode</summary>
+    WinExtendedMode,
+
+    /// <summary>Won a game in Chill Zone mode</summary>
+    WinChillZoneMode,
+
     /// <summary>Reached the 64 tile</summary>
     Reach64,
 

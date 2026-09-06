@@ -591,4 +591,34 @@
   <data name="Ach_AllAchievementsUnlocked_desc" xml:space="preserve">
     <value>Відкрито всі досягнення у грі</value>
   </data>
+  <data name="Ach_WinClassicMode_title" xml:space="preserve">
+    <value>Чиста класика</value>
+  </data>
+  <data name="Ach_WinClassicMode_desc" xml:space="preserve">
+    <value>Досяг кінцевої плитки у класичному режимі гри</value>
+  </data>
+  <data name="Ach_WinClassicPlusMode_title" xml:space="preserve">
+    <value>Інновації це непогано</value>
+  </data>
+  <data name="Ach_WinClassicPlusMode_desc" xml:space="preserve">
+    <value>Досяг кінцевої плитки у режимі гри Класика+</value>
+  </data>
+  <data name="Ach_WinCompactMode_title" xml:space="preserve">
+    <value>Клаустрофоб</value>
+  </data>
+  <data name="Ach_WinCompactMode_desc" xml:space="preserve">
+    <value>Досяг кінцевої плитки у режимі гри Компактний</value>
+  </data>
+  <data name="Ach_WinExtendedMode_title" xml:space="preserve">
+    <value>Любитель хардкору</value>
+  </data>
+  <data name="Ach_WinExtendedMode_desc" xml:space="preserve">
+    <value>Досяг кінцевої плитки у розширеному режимі гри</value>
+  </data>
+  <data name="Ach_WinChillZoneMode_title" xml:space="preserve">
+    <value>Гордий новачок</value>
+  </data>
+  <data name="Ach_WinChillZoneMode_desc" xml:space="preserve">
+    <value>Досяг кінцевої плитки у режимі Зона відпочинку</value>
+  </data>
 </root>

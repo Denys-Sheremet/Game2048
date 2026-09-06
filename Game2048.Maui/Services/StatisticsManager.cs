@@ -13,6 +13,7 @@ public class StatisticsManager : IStatisticsManager
     public bool HasWon { get; private set; } = false;
     public int MovesMade { get; private set; } = 0;
     public int UndosMade { get; private set; } = 0;
+    public GameModeType CurrentGameMode { get; private set; } = GameModeType.Classic;
 
     // This property tracks the total number of tiles merged during the game session
     // Not saved in profile
@@ -28,6 +29,10 @@ public class StatisticsManager : IStatisticsManager
     public StatisticsManager(IProfileManager profileManager)
     {
         _profileManager = profileManager;
+    }
+    public void SetCurrentGameMode(GameModeType gameMode)
+    {
+        CurrentGameMode = gameMode;
     }
     public void Merged(int count)
     {

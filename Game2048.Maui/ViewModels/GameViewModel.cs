@@ -230,6 +230,8 @@ public partial class GameViewModel : BindableObject, IDisposable
         _gameCore.OnStateChanged += HandleOnStateChanged;
 
         _achievementManager.AchievementUnlocked += HandleAchievementUnlocked;
+
+        _statisticsManager.SetCurrentGameMode(config.GameMode);
     }
 
     private void HandleAchievementUnlocked(AchievementType achievementType)

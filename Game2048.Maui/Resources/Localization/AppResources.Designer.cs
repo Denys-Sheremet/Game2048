@@ -592,6 +592,96 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Reached a final tile in Chill Zone mode.
+        /// </summary>
+        public static string Ach_WinChillZoneMode_desc {
+            get {
+                return ResourceManager.GetString("Ach_WinChillZoneMode_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Proud amateur.
+        /// </summary>
+        public static string Ach_WinChillZoneMode_title {
+            get {
+                return ResourceManager.GetString("Ach_WinChillZoneMode_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Reached a final tile in Classic mode.
+        /// </summary>
+        public static string Ach_WinClassicMode_desc {
+            get {
+                return ResourceManager.GetString("Ach_WinClassicMode_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на True purist.
+        /// </summary>
+        public static string Ach_WinClassicMode_title {
+            get {
+                return ResourceManager.GetString("Ach_WinClassicMode_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Reached a final tile in Classic Plus mode.
+        /// </summary>
+        public static string Ach_WinClassicPlusMode_desc {
+            get {
+                return ResourceManager.GetString("Ach_WinClassicPlusMode_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Innovations are not bad.
+        /// </summary>
+        public static string Ach_WinClassicPlusMode_title {
+            get {
+                return ResourceManager.GetString("Ach_WinClassicPlusMode_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Reached a final tile in Compact mode.
+        /// </summary>
+        public static string Ach_WinCompactMode_desc {
+            get {
+                return ResourceManager.GetString("Ach_WinCompactMode_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Claustrophobia.
+        /// </summary>
+        public static string Ach_WinCompactMode_title {
+            get {
+                return ResourceManager.GetString("Ach_WinCompactMode_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Reached a final tile in Extended mode.
+        /// </summary>
+        public static string Ach_WinExtendedMode_desc {
+            get {
+                return ResourceManager.GetString("Ach_WinExtendedMode_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Hardcore lover.
+        /// </summary>
+        public static string Ach_WinExtendedMode_title {
+            get {
+                return ResourceManager.GetString("Ach_WinExtendedMode_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Progress.
         /// </summary>
         public static string Achievements_progress_label {

@@ -591,4 +591,34 @@
   <data name="Ach_AllAchievementsUnlocked_desc" xml:space="preserve">
     <value>Unlocked all achievements in the game</value>
   </data>
+  <data name="Ach_WinClassicMode_title" xml:space="preserve">
+    <value>True purist</value>
+  </data>
+  <data name="Ach_WinClassicMode_desc" xml:space="preserve">
+    <value>Reached a final tile in Classic mode</value>
+  </data>
+  <data name="Ach_WinClassicPlusMode_title" xml:space="preserve">
+    <value>Innovations are not bad</value>
+  </data>
+  <data name="Ach_WinClassicPlusMode_desc" xml:space="preserve">
+    <value>Reached a final tile in Classic Plus mode</value>
+  </data>
+  <data name="Ach_WinCompactMode_title" xml:space="preserve">
+    <value>Claustrophobia</value>
+  </data>
+  <data name="Ach_WinCompactMode_desc" xml:space="preserve">
+    <value>Reached a final tile in Compact mode</value>
+  </data>
+  <data name="Ach_WinExtendedMode_title" xml:space="preserve">
+    <value>Hardcore lover</value>
+  </data>
+  <data name="Ach_WinExtendedMode_desc" xml:space="preserve">
+    <value>Reached a final tile in Extended mode</value>
+  </data>
+  <data name="Ach_WinChillZoneMode_title" xml:space="preserve">
+    <value>Proud amateur</value>
+  </data>
+  <data name="Ach_WinChillZoneMode_desc" xml:space="preserve">
+    <value>Reached a final tile in Chill Zone mode</value>
+  </data>
 </root>

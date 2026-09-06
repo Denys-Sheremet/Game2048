@@ -1,4 +1,5 @@
 ﻿using Game2048.Maui.Services;
+using Game2048.Core.Enums;
 
 namespace Game2048.Maui.Interfaces;
 
@@ -10,7 +11,9 @@ public interface IStatisticsManager
     int UndosMade { get; }
     int TilesMerged { get; }
     int UselessUndoClicked { get; }
+    GameModeType CurrentGameMode { get; }
     StatisticsManager GetStatisticsManager();
+    void SetCurrentGameMode(GameModeType gameMode);
     void Moved();
     void Merged(int count);
     void Respawned(int count);
