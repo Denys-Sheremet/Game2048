@@ -61,6 +61,24 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Deep ocean drive. Get ready for the dive!.
+        /// </summary>
+        public static string AbyssTheme_desc {
+            get {
+                return ResourceManager.GetString("AbyssTheme_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Abyss.
+        /// </summary>
+        public static string AbyssTheme_title {
+            get {
+                return ResourceManager.GetString("AbyssTheme_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Unlocked all achievements in the game.
         /// </summary>
         public static string Ach_AllAchievementsUnlocked_desc {
@@ -700,6 +718,24 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Tonight&apos;s the night....
+        /// </summary>
+        public static string BayHarbourTheme_desc {
+            get {
+                return ResourceManager.GetString("BayHarbourTheme_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Bay Harbour.
+        /// </summary>
+        public static string BayHarbourTheme_title {
+            get {
+                return ResourceManager.GetString("BayHarbourTheme_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Two colors, nothing else.
         /// </summary>
         public static string BWTheme_desc {
@@ -763,6 +799,24 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Wake up, samurai, we have a tile to achieve....
+        /// </summary>
+        public static string Cyberpunk2078Theme_desc {
+            get {
+                return ResourceManager.GetString("Cyberpunk2078Theme_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Cyberpunk 2078.
+        /// </summary>
+        public static string Cyberpunk2078Theme_title {
+            get {
+                return ResourceManager.GetString("Cyberpunk2078Theme_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Classic dark 2048 theme.
         /// </summary>
         public static string DarkTheme_desc {
@@ -777,6 +831,24 @@ namespace Game2048.Maui.Resources.Localization {
         public static string DarkTheme_title {
             get {
                 return ResourceManager.GetString("DarkTheme_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Cover the tile with emerald. Feel the luxury.
+        /// </summary>
+        public static string EmeraldBloomNumberlessTheme_desc {
+            get {
+                return ResourceManager.GetString("EmeraldBloomNumberlessTheme_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Emerald bloom (Numberless).
+        /// </summary>
+        public static string EmeraldBloomNumberlessTheme_title {
+            get {
+                return ResourceManager.GetString("EmeraldBloomNumberlessTheme_title", resourceCulture);
             }
         }
         
@@ -1096,6 +1168,24 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Drink to warm up your heart.
+        /// </summary>
+        public static string MatchaCreamTheme_desc {
+            get {
+                return ResourceManager.GetString("MatchaCreamTheme_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Matcha cream.
+        /// </summary>
+        public static string MatchaCreamTheme_title {
+            get {
+                return ResourceManager.GetString("MatchaCreamTheme_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на GAME MODES.
         /// </summary>
         public static string Menu_game_modes_btn_text {
@@ -1132,6 +1222,24 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на From white to black, let it happen.
+        /// </summary>
+        public static string MonochromeNumberlessTheme_desc {
+            get {
+                return ResourceManager.GetString("MonochromeNumberlessTheme_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Monochrome (Numberless).
+        /// </summary>
+        public static string MonochromeNumberlessTheme_title {
+            get {
+                return ResourceManager.GetString("MonochromeNumberlessTheme_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Green and blue based nature theme.
         /// </summary>
         public static string NatureTheme_desc {
@@ -1146,6 +1254,24 @@ namespace Game2048.Maui.Resources.Localization {
         public static string NatureTheme_title {
             get {
                 return ResourceManager.GetString("NatureTheme_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Astronomically cool theme....
+        /// </summary>
+        public static string NebulaTheme_desc {
+            get {
+                return ResourceManager.GetString("NebulaTheme_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Nebula.
+        /// </summary>
+        public static string NebulaTheme_title {
+            get {
+                return ResourceManager.GetString("NebulaTheme_title", resourceCulture);
             }
         }
         
@@ -1330,6 +1456,24 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Same tiles, different rarity, go on.
+        /// </summary>
+        public static string RarityNumberlessTheme_desc {
+            get {
+                return ResourceManager.GetString("RarityNumberlessTheme_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Rarity (Numberless).
+        /// </summary>
+        public static string RarityNumberlessTheme_title {
+            get {
+                return ResourceManager.GetString("RarityNumberlessTheme_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Deep colors, royal vibe.
         /// </summary>
         public static string RoyalBlueTheme_desc {
@@ -1362,6 +1506,24 @@ namespace Game2048.Maui.Resources.Localization {
         public static string RoyalRedTheme_title {
             get {
                 return ResourceManager.GetString("RoyalRedTheme_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на The pink fallen leaves will tell the story.
+        /// </summary>
+        public static string SakuraTheme_desc {
+            get {
+                return ResourceManager.GetString("SakuraTheme_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Sakura.
+        /// </summary>
+        public static string SakuraTheme_title {
+            get {
+                return ResourceManager.GetString("SakuraTheme_title", resourceCulture);
             }
         }
         
@@ -1492,6 +1654,60 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Bip-bap-boop... Access granted.
+        /// </summary>
+        public static string TerminalRetroTheme_desc {
+            get {
+                return ResourceManager.GetString("TerminalRetroTheme_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Terminal.
+        /// </summary>
+        public static string TerminalRetroTheme_title {
+            get {
+                return ResourceManager.GetString("TerminalRetroTheme_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Try yourself in this color-associative theme.
+        /// </summary>
+        public static string TetrisNumberlessTheme_desc {
+            get {
+                return ResourceManager.GetString("TetrisNumberlessTheme_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Tetris (Numberless).
+        /// </summary>
+        public static string TetrisNumberlessTheme_title {
+            get {
+                return ResourceManager.GetString("TetrisNumberlessTheme_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на The Great City for The Great People.
+        /// </summary>
+        public static string TheGreatCityTheme_desc {
+            get {
+                return ResourceManager.GetString("TheGreatCityTheme_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на The Great City.
+        /// </summary>
+        public static string TheGreatCityTheme_title {
+            get {
+                return ResourceManager.GetString("TheGreatCityTheme_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Themes.
         /// </summary>
         public static string Themes_title {
@@ -1533,6 +1749,24 @@ namespace Game2048.Maui.Resources.Localization {
         public static string UnsuccessfulPurchaseOverlay_title {
             get {
                 return ResourceManager.GetString("UnsuccessfulPurchaseOverlay_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Vaporwave party. Feel the vibe.
+        /// </summary>
+        public static string VaporWaveTheme_desc {
+            get {
+                return ResourceManager.GetString("VaporWaveTheme_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Vaporwave.
+        /// </summary>
+        public static string VaporWaveTheme_title {
+            get {
+                return ResourceManager.GetString("VaporWaveTheme_title", resourceCulture);
             }
         }
         

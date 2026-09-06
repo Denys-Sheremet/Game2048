@@ -25,16 +25,33 @@ public static class GameThemeExtension
     {
         GameTheme.ClassicTheme => 0,
         GameTheme.DarkTheme => 0,
-        GameTheme.NatureTheme => 200,
-        GameTheme.NeonColorTheme => 300,
-        GameTheme.RainbowTheme => 300,
-        GameTheme.BWTheme => 350,
-        GameTheme.PinkyPinkTheme => 400,
-        GameTheme.RoyalRedTheme => 500,
-        GameTheme.RoyalBlueTheme => 500,
-        GameTheme.HazardTheme => 350,
-        GameTheme.SolarTheme => 200,
-        GameTheme.TokyoTheme => 150,
+
+        GameTheme.TokyoTheme => 100,
+        GameTheme.NatureTheme => 100,
+        GameTheme.SolarTheme => 100,
+        GameTheme.MatchaCreamTheme => 100,
+        GameTheme.BWTheme => 100,
+        GameTheme.TetrisNumberlessTheme => 100,
+
+        GameTheme.NeonColorTheme => 150,
+        GameTheme.RainbowTheme => 150,
+        GameTheme.TerminalRetroTheme => 150,
+        GameTheme.PinkyPinkTheme => 150,
+        GameTheme.HazardTheme => 150,
+        GameTheme.VaporWaveTheme => 150,
+        GameTheme.SakuraTheme => 150,
+        GameTheme.EmeraldBloomNumberlessTheme => 150,
+        GameTheme.RarityNumberlessTheme => 150,
+        GameTheme.MonochromeNumberlessTheme => 150,
+
+        GameTheme.RoyalRedTheme => 200,
+        GameTheme.RoyalBlueTheme => 200,
+        GameTheme.AbyssTheme => 200,
+        GameTheme.TheGreatCityTheme => 200,
+        GameTheme.NebulaTheme => 200,
+        GameTheme.BayHarbourTheme => 200,
+        GameTheme.Cyberpunk2078Theme => 200,
+
         _ => 100
     };
 }

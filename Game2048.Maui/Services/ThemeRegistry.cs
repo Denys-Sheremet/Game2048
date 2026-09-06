@@ -21,7 +21,20 @@ public sealed class ThemeRegistry
         { GameTheme.RoyalBlueTheme, new RoyalBlueTheme()},
         { GameTheme.HazardTheme, new HazardTheme()},
         { GameTheme.SolarTheme, new SolarTheme()},
-        { GameTheme.TokyoTheme, new TokyoTheme()}
+        { GameTheme.TokyoTheme, new TokyoTheme()},
+        { GameTheme.MatchaCreamTheme, new MatchaCreamTheme()},
+        { GameTheme.TerminalRetroTheme, new TerminalRetroTheme()},
+        { GameTheme.AbyssTheme, new AbyssTheme()},
+        { GameTheme.VaporWaveTheme, new VaporWaveTheme()},
+        { GameTheme.TheGreatCityTheme, new TheGreatCityTheme()},
+        { GameTheme.NebulaTheme, new NebulaTheme()},
+        { GameTheme.Cyberpunk2078Theme, new Cyberpunk2078Theme()},
+        { GameTheme.SakuraTheme, new SakuraTheme()},
+        { GameTheme.BayHarbourTheme, new BayHarbourTheme()},
+        { GameTheme.TetrisNumberlessTheme, new TetrisNumberlessTheme()},
+        { GameTheme.EmeraldBloomNumberlessTheme, new EmeraldBloomNumberlessTheme()},
+        { GameTheme.RarityNumberlessTheme, new RarityNumberlessTheme()},
+        { GameTheme.MonochromeNumberlessTheme, new MonochromeNumberlessTheme()}
     };
 
     public ResourceDictionary this[GameTheme theme] => Themes[theme];
