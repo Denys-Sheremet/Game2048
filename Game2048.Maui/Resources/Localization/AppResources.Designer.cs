@@ -187,7 +187,7 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Back to the future!.
+        ///   Ищет локализованную строку, похожую на Forward to the past!.
         /// </summary>
         public static string Ach_FirstUndo_title {
             get {

@@ -133,7 +133,7 @@
     <value>První použití kroku zpět</value>
   </data>
   <data name="Ach_FirstUndo_title" xml:space="preserve">
-    <value>Návrat do budoucnosti!</value>
+    <value>Vpřed do minulosti!</value>
   </data>
   <data name="Ach_NoUndoVictory_desc" xml:space="preserve">
     <value>Hra 2048 dohrána bez kroku zpět</value>

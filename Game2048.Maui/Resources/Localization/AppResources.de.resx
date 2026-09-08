@@ -133,7 +133,7 @@
     <value>Zum ersten Mal einen Zug rückgängig gemacht</value>
   </data>
   <data name="Ach_FirstUndo_title" xml:space="preserve">
-    <value>Zurück in die Zukunft!</value>
+    <value>Vorwärts in die Vergangenheit!</value>
   </data>
   <data name="Ach_NoUndoVictory_desc" xml:space="preserve">
     <value>2048 ohne Rückgängigmachen gewonnen</value>

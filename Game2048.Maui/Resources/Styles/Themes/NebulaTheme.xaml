@@ -10,22 +10,13 @@
         <GradientStop Color="#030105" Offset="1.0"/>
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="GameFieldBackgroundColor" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#170926" Offset="0.0"/>
-        <GradientStop Color="#0D0417" Offset="0.5"/>
-        <GradientStop Color="#06010A" Offset="1.0"/>
-    </LinearGradientBrush>
+    <Color x:Key="GameFieldBackgroundColor">#0A0212</Color>
 
-    <LinearGradientBrush x:Key="SecondaryFieldBGColor" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#220D38" Offset="0.0"/>
-        <GradientStop Color="#140624" Offset="0.5"/>
-        <GradientStop Color="#090212" Offset="1.0"/>
-    </LinearGradientBrush>
+    <Color x:Key="SecondaryFieldBGColor">#140524</Color>
 
-    <LinearGradientBrush x:Key="EmptyCellColor" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#1C0A30" Offset="0.0"/>
-        <GradientStop Color="#10051C" Offset="0.5"/>
-        <GradientStop Color="#08020E" Offset="1.0"/>
+    <LinearGradientBrush x:Key="EmptyCellColor" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#1D0833" Offset="0.0"/>
+        <GradientStop Color="#0D0317" Offset="1.0"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="PageBackgroundColor" StartPoint="0,0" EndPoint="0,1">
@@ -43,108 +34,98 @@
     </LinearGradientBrush>
 
     <Color x:Key="AchBtnTextColor">#FF007F</Color>
-    <LinearGradientBrush x:Key="AchBtnBGColor" StartPoint="0,0" EndPoint="0,1">
+    <LinearGradientBrush x:Key="AchBtnBGColor" StartPoint="0,0" EndPoint="1,1">
         <GradientStop Color="#2E0E47" Offset="0.0"/>
-        <GradientStop Color="#1C072E" Offset="0.5"/>
+        <GradientStop Color="#1C072E" Offset="0.6"/>
         <GradientStop Color="#0E0217" Offset="1.0"/>
     </LinearGradientBrush>
 
     <!-- Tiles -->
-    <!-- 2 -->
     <LinearGradientBrush x:Key="Tile2BGColor" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#26083B" Offset="0.0"/>
-        <GradientStop Color="#4A0E4E" Offset="0.5"/>
-        <GradientStop Color="#083E47" Offset="1.0"/>
+        <GradientStop Color="#420D66" Offset="0.0"/>
+        <GradientStop Color="#280640" Offset="0.6"/>
+        <GradientStop Color="#130121" Offset="1.0"/>
     </LinearGradientBrush>
-    <Color x:Key="Tile2TextColor">#FFFFFF</Color>
-    <Color x:Key="Tile2BorderColor">#00E5FF</Color>
+    <Color x:Key="Tile2TextColor">#F4EBFF</Color>
+    <Color x:Key="Tile2BorderColor">#8E24AA</Color>
 
-    <!-- 4 -->
     <LinearGradientBrush x:Key="Tile4BGColor" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#360C54" Offset="0.0"/>
-        <GradientStop Color="#631057" Offset="0.5"/>
-        <GradientStop Color="#0A5261" Offset="1.0"/>
+        <GradientStop Color="#5C0F80" Offset="0.0"/>
+        <GradientStop Color="#3A0854" Offset="0.6"/>
+        <GradientStop Color="#1D022E" Offset="1.0"/>
     </LinearGradientBrush>
-    <Color x:Key="Tile4TextColor">#FFFFFF</Color>
-    <Color x:Key="Tile4BorderColor">#00F5D4</Color>
+    <Color x:Key="Tile4TextColor">#F4EBFF</Color>
+    <Color x:Key="Tile4BorderColor">#BA68C8</Color>
 
-    <!-- 8 -->
     <LinearGradientBrush x:Key="Tile8BGColor" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#4A0F73" Offset="0.0"/>
-        <GradientStop Color="#7D1364" Offset="0.5"/>
-        <GradientStop Color="#0A6C7E" Offset="1.0"/>
+        <GradientStop Color="#7B149E" Offset="0.0"/>
+        <GradientStop Color="#500969" Offset="0.6"/>
+        <GradientStop Color="#280338" Offset="1.0"/>
     </LinearGradientBrush>
     <Color x:Key="Tile8TextColor">#FFFFFF</Color>
-    <Color x:Key="Tile8BorderColor">#38FFDC</Color>
+    <Color x:Key="Tile8BorderColor">#CE93D8</Color>
 
-    <!-- 16 -->
     <LinearGradientBrush x:Key="Tile16BGColor" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#5F1294" Offset="0.0"/>
-        <GradientStop Color="#9E1673" Offset="0.5"/>
-        <GradientStop Color="#0B879E" Offset="1.0"/>
+        <GradientStop Color="#9C17AD" Offset="0.0"/>
+        <GradientStop Color="#680A78" Offset="0.6"/>
+        <GradientStop Color="#360240" Offset="1.0"/>
     </LinearGradientBrush>
     <Color x:Key="Tile16TextColor">#FFFFFF</Color>
-    <Color x:Key="Tile16BorderColor">#FF2E93</Color>
+    <Color x:Key="Tile16BorderColor">#E1BEE7</Color>
 
-    <!-- 32 -->
     <LinearGradientBrush x:Key="Tile32BGColor" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#7717BA" Offset="0.0"/>
-        <GradientStop Color="#BD1780" Offset="0.5"/>
-        <GradientStop Color="#00A1BD" Offset="1.0"/>
+        <GradientStop Color="#C2188B" Offset="0.0"/>
+        <GradientStop Color="#850B5C" Offset="0.6"/>
+        <GradientStop Color="#47022F" Offset="1.0"/>
     </LinearGradientBrush>
     <Color x:Key="Tile32TextColor">#FFFFFF</Color>
-    <Color x:Key="Tile32BorderColor">#FF57AA</Color>
+    <Color x:Key="Tile32BorderColor">#F48FB1</Color>
 
-    <!-- 64 -->
     <LinearGradientBrush x:Key="Tile64BGColor" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#8F1CE0" Offset="0.0"/>
-        <GradientStop Color="#DE188C" Offset="0.5"/>
-        <GradientStop Color="#00BFDE" Offset="1.0"/>
+        <GradientStop Color="#E6007A" Offset="0.0"/>
+        <GradientStop Color="#9E0054" Offset="0.6"/>
+        <GradientStop Color="#54002C" Offset="1.0"/>
     </LinearGradientBrush>
     <Color x:Key="Tile64TextColor">#FFFFFF</Color>
-    <Color x:Key="Tile64BorderColor">#00F5D4</Color>
+    <Color x:Key="Tile64BorderColor">#FF80AB</Color>
 
-    <!-- 128 -->
     <LinearGradientBrush x:Key="Tile128BGColor" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#A22EFF" Offset="0.0"/>
-        <GradientStop Color="#F7259C" Offset="0.5"/>
-        <GradientStop Color="#00DBFA" Offset="1.0"/>
+        <GradientStop Color="#00B4D8" Offset="0.0"/>
+        <GradientStop Color="#007799" Offset="0.6"/>
+        <GradientStop Color="#003E52" Offset="1.0"/>
     </LinearGradientBrush>
     <Color x:Key="Tile128TextColor">#FFFFFF</Color>
-    <Color x:Key="Tile128BorderColor">#00F5D4</Color>
+    <Color x:Key="Tile128BorderColor">#80E5FF</Color>
 
-    <!-- 256 -->
     <LinearGradientBrush x:Key="Tile256BGColor" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#B54DFF" Offset="0.0"/>
-        <GradientStop Color="#FF47B0" Offset="0.5"/>
-        <GradientStop Color="#00F5D4" Offset="1.0"/>
+        <GradientStop Color="#00E5FF" Offset="0.0"/>
+        <GradientStop Color="#0099B8" Offset="0.6"/>
+        <GradientStop Color="#005061" Offset="1.0"/>
     </LinearGradientBrush>
-    <Color x:Key="Tile256TextColor">#05010A</Color>
-    <Color x:Key="Tile256BorderColor">#FFFFFF</Color>
+    <Color x:Key="Tile256TextColor">#030105</Color>
+    <Color x:Key="Tile256BorderColor">#B3F5FF</Color>
 
-    <!-- 512 -->
     <LinearGradientBrush x:Key="Tile512BGColor" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#C76BFF" Offset="0.0"/>
-        <GradientStop Color="#FF69C2" Offset="0.5"/>
-        <GradientStop Color="#38FFDC" Offset="1.0"/>
+        <GradientStop Color="#00F5D4" Offset="0.0"/>
+        <GradientStop Color="#00A892" Offset="0.6"/>
+        <GradientStop Color="#00594D" Offset="1.0"/>
     </LinearGradientBrush>
-    <Color x:Key="Tile512TextColor">#05010A</Color>
-    <Color x:Key="Tile512BorderColor">#FFFFFF</Color>
+    <Color x:Key="Tile512TextColor">#030105</Color>
+    <Color x:Key="Tile512BorderColor">#B8FFF4</Color>
 
-    <!-- 1024 -->
     <LinearGradientBrush x:Key="Tile1024BGColor" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#DA8AFF" Offset="0.0"/>
-        <GradientStop Color="#FF8FD5" Offset="0.5"/>
-        <GradientStop Color="#70FFE5" Offset="1.0"/>
+        <GradientStop Color="#FF66C4" Offset="0.0"/>
+        <GradientStop Color="#FF007F" Offset="0.5"/>
+        <GradientStop Color="#8F0047" Offset="1.0"/>
     </LinearGradientBrush>
-    <Color x:Key="Tile1024TextColor">#05010A</Color>
-    <Color x:Key="Tile1024BorderColor">#FFFFFF</Color>
+    <Color x:Key="Tile1024TextColor">#FFFFFF</Color>
+    <Color x:Key="Tile1024BorderColor">#FFA8DD</Color>
 
-    <!-- 2048 -->
     <LinearGradientBrush x:Key="Tile2048BGColor" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#F0C2FF" Offset="0.0"/>
-        <GradientStop Color="#FFFFFF" Offset="0.5"/>
-        <GradientStop Color="#A6FFF5" Offset="1.0"/>
+        <GradientStop Color="#FFFFFF" Offset="0.0"/>
+        <GradientStop Color="#D6FFF9" Offset="0.35"/>
+        <GradientStop Color="#00F5D4" Offset="0.75"/>
+        <GradientStop Color="#006659" Offset="1.0"/>
     </LinearGradientBrush>
     <Color x:Key="Tile2048TextColor">#030106</Color>
     <Color x:Key="Tile2048BorderColor">#FFFFFF</Color>
@@ -152,26 +133,26 @@
     <!-- Extra -->
     <LinearGradientBrush x:Key="TileExtraBGColor" StartPoint="0,0" EndPoint="1,1">
         <GradientStop Color="#FFFFFF" Offset="0.0"/>
-        <GradientStop Color="#FFBEEB" Offset="0.4"/>
-        <GradientStop Color="#C7FFF9" Offset="0.8"/>
-        <GradientStop Color="#FFFFFF" Offset="1.0"/>
+        <GradientStop Color="#FFD6EF" Offset="0.35"/>
+        <GradientStop Color="#FF007F" Offset="0.75"/>
+        <GradientStop Color="#660033" Offset="1.0"/>
     </LinearGradientBrush>
     <Color x:Key="TileExtraTextColor">#030106</Color>
     <Color x:Key="TileExtraBorderColor">#FFFFFF</Color>
 
     <!-- Main Buttons -->
     <LinearGradientBrush x:Key="MainButtonBGColor" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#3B0C5C" Offset="0.0"/>
-        <GradientStop Color="#8F0555" Offset="0.5"/>
-        <GradientStop Color="#044D59" Offset="1.0"/>
+        <GradientStop Color="#5E0F8A" Offset="0.0"/>
+        <GradientStop Color="#380654" Offset="0.6"/>
+        <GradientStop Color="#1A0129" Offset="1.0"/>
     </LinearGradientBrush>
-    <Color x:Key="MainButtonTextColor">#FFFFFF</Color>
+    <Color x:Key="MainButtonTextColor">#00F5D4</Color>
 
     <!-- Score -->
-    <LinearGradientBrush x:Key="ScoreBoardBGColor" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#1E0A33" Offset="0.0"/>
-        <GradientStop Color="#12051F" Offset="0.5"/>
-        <GradientStop Color="#08020E" Offset="1.0"/>
+    <LinearGradientBrush x:Key="ScoreBoardBGColor" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#240A3D" Offset="0.0"/>
+        <GradientStop Color="#150524" Offset="0.6"/>
+        <GradientStop Color="#0A0212" Offset="1.0"/>
     </LinearGradientBrush>
     <Color x:Key="ScoreBoardTextColor">#FF54B0</Color>
     <Color x:Key="ScoreBoardNumColor">#00F5D4</Color>
@@ -187,7 +168,7 @@
     </LinearGradientBrush>
 
     <Color x:Key="ProgressBarColor">#FF007F</Color>
-    <Color x:Key="ProgressBarBGColor">#2500E5FF</Color>
+    <Color x:Key="ProgressBarBGColor">#1A082E</Color>
 
     <!-- Text -->
     <Color x:Key="MainTextColor">#FAF0FF</Color>
@@ -197,9 +178,9 @@
     <Color x:Key="InputTextColor">#FF007F</Color>
 
     <!-- Cards -->
-    <LinearGradientBrush x:Key="CardBGColor" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#1A082E" Offset="0.0"/>
-        <GradientStop Color="#10041C" Offset="0.5"/>
+    <LinearGradientBrush x:Key="CardBGColor" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#210A38" Offset="0.0"/>
+        <GradientStop Color="#130421" Offset="0.6"/>
         <GradientStop Color="#08010E" Offset="1.0"/>
     </LinearGradientBrush>
 
@@ -234,7 +215,7 @@
     </LinearGradientBrush>
 
     <!-- Borders -->
-    <Color x:Key="MainBorderColor">#64149E</Color>
+    <Color x:Key="MainBorderColor">#8E1CE0</Color>
     <Color x:Key="ScoreBoardBorderColor">#8E1CE0</Color>
 
     <Color x:Key="SelectionStrokeColor">#00F5D4</Color>
@@ -257,48 +238,48 @@
     <Color x:Key="PreviewColor8">#00F5D4</Color>
 
     <!-- Main Menu Buttons -->
-    <Color x:Key="MainMenuBtnStrokeColor">#64149E</Color>
+    <Color x:Key="MainMenuBtnStrokeColor">#BD63DB</Color>
 
     <LinearGradientBrush x:Key="PlayButtonBG" StartPoint="0,0" EndPoint="1,1">
         <GradientStop Color="#FF007F" Offset="0.0"/>
-        <GradientStop Color="#E60073" Offset="0.5"/>
-        <GradientStop Color="#A80054" Offset="1.0"/>
+        <GradientStop Color="#C70063" Offset="0.6"/>
+        <GradientStop Color="#6E0037" Offset="1.0"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="GameModesButtonBG" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#781BD4" Offset="0.0"/>
-        <GradientStop Color="#530FA3" Offset="0.5"/>
-        <GradientStop Color="#330669" Offset="1.0"/>
+        <GradientStop Color="#8E24AA" Offset="0.0"/>
+        <GradientStop Color="#5C1073" Offset="0.6"/>
+        <GradientStop Color="#2B0338" Offset="1.0"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="AchievementsButtonBG" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#00C4E6" Offset="0.0"/>
-        <GradientStop Color="#0093AD" Offset="0.5"/>
-        <GradientStop Color="#006375" Offset="1.0"/>
+        <GradientStop Color="#00B4D8" Offset="0.0"/>
+        <GradientStop Color="#007799" Offset="0.6"/>
+        <GradientStop Color="#003D4F" Offset="1.0"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="ThemesButtonBG" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#FF2994" Offset="0.0"/>
-        <GradientStop Color="#C7186F" Offset="0.5"/>
-        <GradientStop Color="#8F0D4D" Offset="1.0"/>
+        <GradientStop Color="#D81B60" Offset="0.0"/>
+        <GradientStop Color="#960E41" Offset="0.6"/>
+        <GradientStop Color="#4D0420" Offset="1.0"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="ProfileButtonBG" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#00E5BD" Offset="0.0"/>
-        <GradientStop Color="#00A88B" Offset="0.5"/>
-        <GradientStop Color="#00705D" Offset="1.0"/>
+        <GradientStop Color="#00F5D4" Offset="0.0"/>
+        <GradientStop Color="#00A892" Offset="0.6"/>
+        <GradientStop Color="#00574B" Offset="1.0"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="HowToButtonBG" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#5E14A8" Offset="0.0"/>
-        <GradientStop Color="#400B75" Offset="0.5"/>
-        <GradientStop Color="#260447" Offset="1.0"/>
+        <GradientStop Color="#6A1B9A" Offset="0.0"/>
+        <GradientStop Color="#420D63" Offset="0.6"/>
+        <GradientStop Color="#200330" Offset="1.0"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="SettingsButtonBG" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#088199" Offset="0.0"/>
-        <GradientStop Color="#04596B" Offset="0.5"/>
-        <GradientStop Color="#023642" Offset="1.0"/>
+        <GradientStop Color="#009688" Offset="0.0"/>
+        <GradientStop Color="#00665C" Offset="0.6"/>
+        <GradientStop Color="#003833" Offset="1.0"/>
     </LinearGradientBrush>
 
 </ResourceDictionary>

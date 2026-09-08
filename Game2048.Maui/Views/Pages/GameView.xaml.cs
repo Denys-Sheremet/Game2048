@@ -37,19 +37,9 @@ public partial class GameView : ContentPage
         _achievementManager = achievementManager;
         _logger = logger;
 
-        _viewModel.TilesMoved += async (transitions) =>
+        _viewModel.TransitionsReady += async (transitions) =>
         {
-            await ApplyMoveTransitionsAsync(transitions);
-        };
-
-        _viewModel.TilesRemoved += async (transitions) =>
-        {
-            await ApplyRemoveTransitionsAsync(transitions);
-        };
-
-        _viewModel.TilesCreated += async (transitions) =>
-        {
-            await ApplyCreateTransitionsAsync(transitions);
+            await Dispatcher.DispatchAsync(() => ProcessTransitionsPhaseAsync(transitions));
         };
 
         GameOverOverlay.GoToMenuRequested += OnGoToMenu;
@@ -59,6 +49,19 @@ public partial class GameView : ContentPage
         Loaded += OnPageLoaded;
 
         _lastHistoryCount = _viewModel.HistoryCount;
+    }
+
+    private async Task ProcessTransitionsPhaseAsync(IEnumerable<TileTransition> transitions)
+    {
+        var trList = transitions.ToList();
+
+        var moves = trList.Where(t => t.Type is TileTransitionType.Move or TileTransitionType.Merge);
+        var removes = trList.Where(t => t.Type is TileTransitionType.Disappear or TileTransitionType.Merge or TileTransitionType.Split);
+        var creates = trList.Where(t => t.Type is TileTransitionType.Spawn or TileTransitionType.Result or TileTransitionType.Respawn);
+
+        await ApplyMoveTransitionsAsync(moves);
+        await ApplyRemoveTransitionsAsync(removes);
+        await ApplyCreateTransitionsAsync(creates);
     }
 
     private async Task SafeRun(Task task, string tag)
@@ -75,6 +78,8 @@ public partial class GameView : ContentPage
 
     private async Task ApplyMoveTransitionsAsync(IEnumerable<TileTransition> transitions)
     {
+        if (!transitions.Any()) return;
+
         var trList = transitions.ToList();
         var moveTasks = new List<Task>();
         foreach (var mt in trList)
@@ -93,6 +98,8 @@ public partial class GameView : ContentPage
 
     private async Task ApplyRemoveTransitionsAsync(IEnumerable<TileTransition> transitions)
     {
+        if (!transitions.Any()) return;
+
         var viewsToRemove = transitions
             .Select(rt => new {Id = rt.TileId, View = FindTileView(rt.TileId)})
             .Where(x => x.View != null)
@@ -115,6 +122,8 @@ public partial class GameView : ContentPage
 
     private async Task ApplyCreateTransitionsAsync(IEnumerable<TileTransition> transitions)
     {
+        if (!transitions.Any()) return;
+
         var trList = transitions.ToList();
         var createTasks = new List<Task>();
         foreach (var ct in trList)
@@ -173,7 +182,6 @@ public partial class GameView : ContentPage
         GameFrame.HeightRequest = _targetHeight;
 
         BackgroundGridLayout.Children.Clear();
-        var emptyColor = (Application.Current?.Resources["EmptyCellColor"] as Color) ?? Colors.Gray;
 
         double size = LayoutConstants.TileSize;
 
@@ -183,15 +191,19 @@ public partial class GameView : ContentPage
             {
                 var cell = new Border
                 {
-                    BackgroundColor = emptyColor,
                     StrokeShape = new RoundRectangle { CornerRadius = 8 },
+                    StrokeThickness = 0,
                     WidthRequest = size,
                     HeightRequest = size
                 };
+
+                cell.SetDynamicResource(Border.BackgroundProperty, "EmptyCellColor");
+
                 double x = LayoutConstants.GetCoordinate(c);
                 double y = LayoutConstants.GetCoordinate(r);
-                AbsoluteLayout.SetLayoutBounds(cell, new Rect(x, y, size, size));
+
                 BackgroundGridLayout.Children.Add(cell);
+                AbsoluteLayout.SetLayoutBounds(cell, new Rect(x, y, size, size));
             }
         }
     }

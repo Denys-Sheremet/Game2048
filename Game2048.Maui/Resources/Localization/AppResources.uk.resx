@@ -133,7 +133,7 @@
     <value>Вперше використано скасування ходу</value>
   </data>
   <data name="Ach_FirstUndo_title" xml:space="preserve">
-    <value>Назад у майбутнє!</value>
+    <value>Вперед у минуле!</value>
   </data>
   <data name="Ach_NoUndoVictory_desc" xml:space="preserve">
     <value>Пройдено 2048 без скасування ходів </value>

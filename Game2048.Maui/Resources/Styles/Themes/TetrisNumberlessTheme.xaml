@@ -10,22 +10,19 @@
         <GradientStop Color="#010103" Offset="1.0"/>
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="GameFieldBackgroundColor" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#12131F" Offset="0.0"/>
-        <GradientStop Color="#0A0B14" Offset="0.5"/>
+    <LinearGradientBrush x:Key="GameFieldBackgroundColor" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#151724" Offset="0.0"/>
         <GradientStop Color="#04040A" Offset="1.0"/>
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="SecondaryFieldBGColor" StartPoint="0,0" EndPoint="0,1">
+    <LinearGradientBrush x:Key="SecondaryFieldBGColor" StartPoint="0,0" EndPoint="1,1">
         <GradientStop Color="#1A1C2B" Offset="0.0"/>
-        <GradientStop Color="#10111C" Offset="0.5"/>
         <GradientStop Color="#06060D" Offset="1.0"/>
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="EmptyCellColor" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#151724" Offset="0.0"/>
-        <GradientStop Color="#0E0F17" Offset="0.5"/>
-        <GradientStop Color="#05060A" Offset="1.0"/>
+    <LinearGradientBrush x:Key="EmptyCellColor" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#1C1F2E" Offset="0.0"/>
+        <GradientStop Color="#07080D" Offset="1.0"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="PageBackgroundColor" StartPoint="0,0" EndPoint="0,1">
@@ -50,7 +47,6 @@
     </RadialGradientBrush>
 
     <!-- Tiles -->
-    <!-- 2: Cyan (I-Tetrimino) -->
     <RadialGradientBrush x:Key="Tile2BGColor" Center="0.5,0.5" Radius="0.75">
         <GradientStop Color="#9EFFFF" Offset="0.0"/>
         <GradientStop Color="#00E5E5" Offset="0.45"/>
@@ -59,7 +55,6 @@
     <Color x:Key="Tile2TextColor">Transparent</Color>
     <Color x:Key="Tile2BorderColor">#00FFFF</Color>
 
-    <!-- 4: Blue (J-Tetrimino) -->
     <RadialGradientBrush x:Key="Tile4BGColor" Center="0.5,0.5" Radius="0.75">
         <GradientStop Color="#7094FF" Offset="0.0"/>
         <GradientStop Color="#1A47FF" Offset="0.45"/>
@@ -68,7 +63,6 @@
     <Color x:Key="Tile4TextColor">Transparent</Color>
     <Color x:Key="Tile4BorderColor">#3366FF</Color>
 
-    <!-- 8: Orange (L-Tetrimino) -->
     <RadialGradientBrush x:Key="Tile8BGColor" Center="0.5,0.5" Radius="0.75">
         <GradientStop Color="#FFB84D" Offset="0.0"/>
         <GradientStop Color="#FF7700" Offset="0.45"/>
@@ -77,7 +71,6 @@
     <Color x:Key="Tile8TextColor">Transparent</Color>
     <Color x:Key="Tile8BorderColor">#FFA033</Color>
 
-    <!-- 16: Yellow (O-Tetrimino) -->
     <RadialGradientBrush x:Key="Tile16BGColor" Center="0.5,0.5" Radius="0.75">
         <GradientStop Color="#FFFF80" Offset="0.0"/>
         <GradientStop Color="#FFD700" Offset="0.45"/>
@@ -86,7 +79,6 @@
     <Color x:Key="Tile16TextColor">Transparent</Color>
     <Color x:Key="Tile16BorderColor">#FFEE00</Color>
 
-    <!-- 32: Green (S-Tetrimino) -->
     <RadialGradientBrush x:Key="Tile32BGColor" Center="0.5,0.5" Radius="0.75">
         <GradientStop Color="#80FF80" Offset="0.0"/>
         <GradientStop Color="#00E600" Offset="0.45"/>
@@ -95,7 +87,6 @@
     <Color x:Key="Tile32TextColor">Transparent</Color>
     <Color x:Key="Tile32BorderColor">#33FF33</Color>
 
-    <!-- 64: Purple (T-Tetrimino) -->
     <RadialGradientBrush x:Key="Tile64BGColor" Center="0.5,0.5" Radius="0.75">
         <GradientStop Color="#D966FF" Offset="0.0"/>
         <GradientStop Color="#A000F0" Offset="0.45"/>
@@ -104,7 +95,6 @@
     <Color x:Key="Tile64TextColor">Transparent</Color>
     <Color x:Key="Tile64BorderColor">#BF33FF</Color>
 
-    <!-- 128: Red (Z-Tetrimino) -->
     <RadialGradientBrush x:Key="Tile128BGColor" Center="0.5,0.5" Radius="0.75">
         <GradientStop Color="#FF6666" Offset="0.0"/>
         <GradientStop Color="#FF0033" Offset="0.45"/>
@@ -113,7 +103,6 @@
     <Color x:Key="Tile128TextColor">Transparent</Color>
     <Color x:Key="Tile128BorderColor">#FF3355</Color>
 
-    <!-- 256: Hot Pink (Arcade Flare) -->
     <RadialGradientBrush x:Key="Tile256BGColor" Center="0.5,0.5" Radius="0.75">
         <GradientStop Color="#FFA6DF" Offset="0.0"/>
         <GradientStop Color="#FF1493" Offset="0.45"/>
@@ -122,7 +111,6 @@
     <Color x:Key="Tile256TextColor">Transparent</Color>
     <Color x:Key="Tile256BorderColor">#FF4DB8</Color>
 
-    <!-- 512: Acid Lime (Level 9 Retro) -->
     <RadialGradientBrush x:Key="Tile512BGColor" Center="0.5,0.5" Radius="0.75">
         <GradientStop Color="#E6FF66" Offset="0.0"/>
         <GradientStop Color="#B3FF00" Offset="0.45"/>
@@ -131,7 +119,6 @@
     <Color x:Key="Tile512TextColor">Transparent</Color>
     <Color x:Key="Tile512BorderColor">#CCFF33</Color>
 
-    <!-- 1024: Rich Gold (Championship Trophy) -->
     <RadialGradientBrush x:Key="Tile1024BGColor" Center="0.5,0.5" Radius="0.75">
         <GradientStop Color="#FFF0A6" Offset="0.0"/>
         <GradientStop Color="#FFAA00" Offset="0.45"/>
@@ -140,7 +127,6 @@
     <Color x:Key="Tile1024TextColor">Transparent</Color>
     <Color x:Key="Tile1024BorderColor">#FFCC33</Color>
 
-    <!-- 2048: Diamond Ice (Maxout White-Cyan) -->
     <RadialGradientBrush x:Key="Tile2048BGColor" Center="0.5,0.5" Radius="0.75">
         <GradientStop Color="#FFFFFF" Offset="0.0"/>
         <GradientStop Color="#D1F5FF" Offset="0.40"/>
@@ -149,7 +135,6 @@
     <Color x:Key="Tile2048TextColor">Transparent</Color>
     <Color x:Key="Tile2048BorderColor">#FFFFFF</Color>
 
-    <!-- Extra: Prismatic Core (Master Glitch) -->
     <RadialGradientBrush x:Key="TileExtraBGColor" Center="0.5,0.5" Radius="0.75">
         <GradientStop Color="#FFFFFF" Offset="0.0"/>
         <GradientStop Color="#FFA6F2" Offset="0.40"/>
@@ -186,7 +171,7 @@
     </RadialGradientBrush>
 
     <Color x:Key="ProgressBarColor">#00E600</Color>
-    <Color x:Key="ProgressBarBGColor">#2500E600</Color>
+    <Color x:Key="ProgressBarBGColor">#0F240F</Color>
 
     <!-- Text -->
     <Color x:Key="MainTextColor">#FFFFFF</Color>

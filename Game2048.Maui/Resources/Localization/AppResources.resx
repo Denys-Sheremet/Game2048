@@ -133,7 +133,7 @@
     <value>Used undo for the first time</value>
   </data>
   <data name="Ach_FirstUndo_title" xml:space="preserve">
-    <value>Back to the future!</value>
+    <value>Forward to the past!</value>
   </data>
   <data name="Ach_NoUndoVictory_desc" xml:space="preserve">
     <value>Beaten 2048 without undo </value>

@@ -22,10 +22,9 @@
         <GradientStop Color="#04140C" Offset="1.0"/>
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="EmptyCellColor" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#0F2A1C" Offset="0.0"/>
-        <GradientStop Color="#091F14" Offset="0.5"/>
-        <GradientStop Color="#04120B" Offset="1.0"/>
+    <LinearGradientBrush x:Key="EmptyCellColor" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#1C1F2E" Offset="0.0"/>
+        <GradientStop Color="#07080D" Offset="1.0"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="PageBackgroundColor" StartPoint="0,0" EndPoint="0,1">
