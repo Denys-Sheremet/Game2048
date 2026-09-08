@@ -61,6 +61,18 @@ public partial class GameView : ContentPage
         _lastHistoryCount = _viewModel.HistoryCount;
     }
 
+    private async Task SafeRun(Task task, string tag)
+    {
+        try
+        {
+            await task;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Exception occurred in {Tag}", tag);
+        }
+    }
+
     private async Task ApplyMoveTransitionsAsync(IEnumerable<TileTransition> transitions)
     {
         var trList = transitions.ToList();
@@ -73,7 +85,7 @@ public partial class GameView : ContentPage
                 double tx = LayoutConstants.GetCoordinate(mt.ToX);
                 double ty = LayoutConstants.GetCoordinate(mt.ToY);
 
-                moveTasks.Add(view.MoveToAsync(tx, ty));
+                moveTasks.Add(SafeRun(view.MoveToAsync(tx, ty), "Move phase"));
             }
         }
         await Task.WhenAll(moveTasks);
@@ -86,7 +98,7 @@ public partial class GameView : ContentPage
             .Where(x => x.View != null)
             .ToList();
 
-        var removeTasks = viewsToRemove.Select(x => x.View!.DisappearAsync());
+        var removeTasks = viewsToRemove.Select(x => SafeRun(x.View!.DisappearAsync(), "Remove phase"));
 
         await Task.WhenAll(removeTasks);
 
@@ -126,7 +138,7 @@ public partial class GameView : ContentPage
                     AbsoluteLayout.SetLayoutBounds(tileView, new Rect(fx, fy, size, size));
                     GameGridLayout.Children.Add(tileView);
 
-                    createTasks.Add(tileView.RespawnToAsync(tx, ty)); //150?
+                    createTasks.Add(SafeRun(tileView.RespawnToAsync(tx, ty), "Create phase"));
                 }
                 else
                 {
@@ -135,11 +147,11 @@ public partial class GameView : ContentPage
 
                     if (ct.Type == TileTransitionType.Result)
                     {
-                        createTasks.Add(tileView.PopAsync());
+                        createTasks.Add(SafeRun(tileView.PopAsync(), "Create phase"));
                     }
                     else
                     {
-                        createTasks.Add(tileView.AppearAsync());
+                        createTasks.Add(SafeRun(tileView.AppearAsync(), "Create phase"));
                     }
                 }
             }

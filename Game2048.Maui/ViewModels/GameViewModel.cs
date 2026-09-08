@@ -459,9 +459,9 @@ public partial class GameViewModel : BindableObject, IDisposable
         }
     }
 
-    private void OnRestartRequested()
+    private async void OnRestartRequested()
     {
-        _actionQueue.Clear();
+        await _actionQueue.ClearAndWaitAsync();
 
         _statisticsManager.Push();
 
@@ -479,7 +479,7 @@ public partial class GameViewModel : BindableObject, IDisposable
 
     public async Task OnBackToMenu()
     {
-        _actionQueue.Clear();
+        await _actionQueue.ClearAndWaitAsync();
 
         _statisticsManager.Push();
 
@@ -488,7 +488,7 @@ public partial class GameViewModel : BindableObject, IDisposable
 
     public async Task OnGoToMenu()
     {
-        _actionQueue.Clear();
+        await _actionQueue.ClearAndWaitAsync();
 
         _statisticsManager.Push();
 
@@ -500,9 +500,9 @@ public partial class GameViewModel : BindableObject, IDisposable
         await _profileManager.SaveCurrentProfileAsync();
     }
 
-    private void OnUndoAndContinueRequested()
+    private async void OnUndoAndContinueRequested()
     {
-        _actionQueue.Clear();
+        await _actionQueue.ClearAndWaitAsync();
 
         _statisticsManager.Push();
 
@@ -529,11 +529,11 @@ public partial class GameViewModel : BindableObject, IDisposable
         });
     }
 
-    private void OnExtendRequested()
+    private async void OnExtendRequested()
     {
         if(!IsExtendedAllowed) return;
 
-        _actionQueue.Clear();
+        await _actionQueue.ClearAndWaitAsync();
 
         _statisticsManager.Push();
 

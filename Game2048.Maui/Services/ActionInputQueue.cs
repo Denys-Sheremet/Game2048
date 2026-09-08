@@ -22,10 +22,10 @@ public class ActionInputQueue
 
         _queue.Enqueue(task);
 
-        Process();
+        _ = ProcessAsync();
     }
 
-    private async void Process()
+    private async Task ProcessAsync()
     {
         if (!_semaphore.Wait(0)) return;
 
@@ -52,5 +52,22 @@ public class ActionInputQueue
     public void Clear()
     {
         _queue.Clear();
+    }
+
+    // Important: This method should not be called from the task inside the current queue,
+    // as it will cause a deadlock. It should be called from outside the queue processing context.
+    public async Task ClearAndWaitAsync()
+    {
+        _queue.Clear();
+        await _semaphore.WaitAsync();
+
+        try
+        {
+            _queue.Clear();
+        }
+        finally
+        {
+            _semaphore.Release();
+        }
     }
 }
