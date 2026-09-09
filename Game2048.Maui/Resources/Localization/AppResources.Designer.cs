@@ -1393,6 +1393,15 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Total coins earned: .
+        /// </summary>
+        public static string ProfilePage_total_coins_label {
+            get {
+                return ResourceManager.GetString("ProfilePage_total_coins_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Win rate.
         /// </summary>
         public static string ProfilePage_win_rate_title {

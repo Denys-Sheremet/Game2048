@@ -699,4 +699,7 @@
   <data name="MonochromeNumberlessTheme_desc" xml:space="preserve">
     <value>From white to black, let it happen</value>
   </data>
+  <data name="ProfilePage_total_coins_label" xml:space="preserve">
+    <value>Total coins earned: </value>
+  </data>
 </root>

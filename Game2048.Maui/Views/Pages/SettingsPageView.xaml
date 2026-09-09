@@ -43,7 +43,7 @@
                                    HorizontalOptions="Center"
                                    VerticalOptions="Center"
                                    FontFamily="RubikSemi"
-                                   FontSize="40"
+                                   FontSize="30"
                                    LineBreakMode="NoWrap"
                                    TextColor="{DynamicResource MainTitleColor}">
 

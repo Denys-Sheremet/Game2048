@@ -39,6 +39,7 @@
                FontSize="18"
                FontFamily="RubikSemi"
                Margin="10, 0"
+               HeightRequest="75"
                TextColor="{DynamicResource SecondaryTextColor}" />
     </Grid>
     

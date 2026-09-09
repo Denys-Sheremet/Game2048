@@ -445,7 +445,7 @@
     <value>Höchste Punktzahl</value>
   </data>
   <data name="ProfilePage_average_score_label" xml:space="preserve">
-    <value>Durchschnittspunktzahl</value>
+    <value>Avg. Punktzahl</value>
   </data>
   <data name="ProfilePage_other_modes_stats_label" xml:space="preserve">
     <value>Statistiken anderer Modi</value>
@@ -698,5 +698,8 @@
   </data>
   <data name="MonochromeNumberlessTheme_desc" xml:space="preserve">
     <value>Von Weiß nach Schwarz, lass es geschehen</value>
+  </data>
+  <data name="ProfilePage_total_coins_label" xml:space="preserve">
+    <value>Münzen insgesamt:</value>
   </data>
 </root>

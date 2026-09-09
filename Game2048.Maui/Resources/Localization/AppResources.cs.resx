@@ -699,4 +699,7 @@
   <data name="MonochromeNumberlessTheme_desc" xml:space="preserve">
     <value>Od bílé po černou, nechte to plynout</value>
   </data>
+  <data name="ProfilePage_total_coins_label" xml:space="preserve">
+    <value>Celkem získaných mincí:</value>
+  </data>
 </root>

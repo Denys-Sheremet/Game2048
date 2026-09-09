@@ -699,4 +699,7 @@
   <data name="MonochromeNumberlessTheme_desc" xml:space="preserve">
     <value>Від білого до чорного - нехай усе йде своєю чергою</value>
   </data>
+  <data name="ProfilePage_total_coins_label" xml:space="preserve">
+    <value>Всього монет зароблено:</value>
+  </data>
 </root>

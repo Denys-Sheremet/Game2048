@@ -21,6 +21,7 @@ public partial class ProfilePageViewModel : BindableObject
     private double _overallHighScore = 0;
     private string _bestScoreModeName = String.Empty;
     private double _averageScore = 0;
+    private double _totalCoinsEarned = 0;
 
     public ObservableCollection<ModeStatViewModel> ModeStats { get; } = new();
     public string WinRatePercentage => $"{(int)Math.Round(WinRateRatio * 100)}%";
@@ -159,7 +160,19 @@ public partial class ProfilePageViewModel : BindableObject
         }
     }
 
-    
+    public double TotalCoinsEarned
+    {
+        get => _totalCoinsEarned;
+        set
+        {
+            if (_totalCoinsEarned != value)
+            {
+                _totalCoinsEarned = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
 
     public ProfilePageViewModel(IProfileManager profileManager, IThemesManager themeManager)
     {
@@ -202,6 +215,7 @@ public partial class ProfilePageViewModel : BindableObject
         if (highestScore is null) BestScoreModeName = "None";
         else BestScoreModeName = highestScore.Value.Mode.GetTitle();
         AverageScore = _profileManager.GetAverageScore();
+        TotalCoinsEarned = stats.TotalCoinsEarned;
 
         LoadModeStats();
     }
