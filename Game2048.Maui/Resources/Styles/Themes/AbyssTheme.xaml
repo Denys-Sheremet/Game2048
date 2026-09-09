@@ -239,46 +239,46 @@
     <!-- Main Menu Buttons -->
     <Color x:Key="MainMenuBtnStrokeColor">#00C4EB</Color>
 
-    <LinearGradientBrush x:Key="PlayButtonBG" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#0077B6" Offset="0.0"/>
-        <GradientStop Color="#004A73" Offset="0.6"/>
-        <GradientStop Color="#002236" Offset="1.0"/>
-    </LinearGradientBrush>
-
-    <LinearGradientBrush x:Key="GameModesButtonBG" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#006D9E" Offset="0.0"/>
-        <GradientStop Color="#004361" Offset="0.6"/>
-        <GradientStop Color="#001F2E" Offset="1.0"/>
-    </LinearGradientBrush>
-
-    <LinearGradientBrush x:Key="AchievementsButtonBG" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#00638C" Offset="0.0"/>
-        <GradientStop Color="#003B54" Offset="0.6"/>
-        <GradientStop Color="#001B26" Offset="1.0"/>
-    </LinearGradientBrush>
-
-    <LinearGradientBrush x:Key="ThemesButtonBG" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#00587A" Offset="0.0"/>
-        <GradientStop Color="#003447" Offset="0.6"/>
-        <GradientStop Color="#001721" Offset="1.0"/>
-    </LinearGradientBrush>
-
-    <LinearGradientBrush x:Key="ProfileButtonBG" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#004E6B" Offset="0.0"/>
-        <GradientStop Color="#002D3D" Offset="0.6"/>
-        <GradientStop Color="#00141C" Offset="1.0"/>
-    </LinearGradientBrush>
-
-    <LinearGradientBrush x:Key="HowToButtonBG" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#00445C" Offset="0.0"/>
-        <GradientStop Color="#002533" Offset="0.6"/>
-        <GradientStop Color="#001017" Offset="1.0"/>
-    </LinearGradientBrush>
-
-    <LinearGradientBrush x:Key="SettingsButtonBG" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#003A4D" Offset="0.0"/>
+    <RadialGradientBrush x:Key="PlayButtonBG" Center="0.5,0.5" Radius="0.5" >
+        <GradientStop Color="#0093B3" Offset="0.0"/>
         <GradientStop Color="#001E29" Offset="0.6"/>
         <GradientStop Color="#000D12" Offset="1.0"/>
-    </LinearGradientBrush>
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="GameModesButtonBG" Center="0.5,0.5" Radius="0.5" >
+        <GradientStop Color="#0093B3" Offset="0.0"/>
+        <GradientStop Color="#001E29" Offset="0.6"/>
+        <GradientStop Color="#000D12" Offset="1.0"/>
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="AchievementsButtonBG" Center="0.5,0.5" Radius="0.5" >
+        <GradientStop Color="#0093B3" Offset="0.0"/>
+        <GradientStop Color="#001E29" Offset="0.6"/>
+        <GradientStop Color="#000D12" Offset="1.0"/>
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="ThemesButtonBG" Center="0.5,0.5" Radius="0.5" >
+        <GradientStop Color="#0093B3" Offset="0.0"/>
+        <GradientStop Color="#001E29" Offset="0.6"/>
+        <GradientStop Color="#000D12" Offset="1.0"/>
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="ProfileButtonBG" Center="0.5,0.5" Radius="0.5" >
+        <GradientStop Color="#0093B3" Offset="0.0"/>
+        <GradientStop Color="#001E29" Offset="0.6"/>
+        <GradientStop Color="#000D12" Offset="1.0"/>
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="HowToButtonBG" Center="0.5,0.5" Radius="0.5" >
+        <GradientStop Color="#0093B3" Offset="0.0"/>
+        <GradientStop Color="#001E29" Offset="0.6"/>
+        <GradientStop Color="#000D12" Offset="1.0"/>
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="SettingsButtonBG" Center="0.5,0.5" Radius="0.5" >
+        <GradientStop Color="#0093B3" Offset="0.0"/>
+        <GradientStop Color="#001E29" Offset="0.6"/>
+        <GradientStop Color="#000D12" Offset="1.0"/>
+    </RadialGradientBrush>
 
 </ResourceDictionary>

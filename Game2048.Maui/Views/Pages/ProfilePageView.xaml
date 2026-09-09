@@ -95,7 +95,7 @@
                             StrokeShape="RoundRectangle 18"
                             StrokeThickness="3"
                             Stroke="{DynamicResource MainBorderColor}"
-                            Margin="0, 10"
+                            Margin="0, 5"
                             Padding="12">
                         <Border.Shadow>
                             <Shadow Brush="#000000"
@@ -230,6 +230,10 @@
 
                         <Grid ColumnDefinitions="*, Auto">
                             <HorizontalStackLayout Grid.Column="0" Spacing="8" VerticalOptions="Center">
+                                <Image Source="coin.svg"
+                                       WidthRequest="16"
+                                       HeightRequest="16"
+                                       VerticalOptions="Center"/>
                                 <Label Text="{x:Static lang:AppResources.ProfilePage_total_coins_label}"
                                        FontSize="16"
                                        FontFamily="RubikBold"
@@ -243,10 +247,7 @@
                                        FontFamily="RubikBold"
                                        TextColor="{DynamicResource MainTitleColor}"
                                        VerticalOptions="Center" />
-                                <Image Source="coin.svg"
-                                       WidthRequest="20"
-                                       HeightRequest="20"
-                                       VerticalOptions="Center"/>
+                                
                             </HorizontalStackLayout>
                         </Grid>
                     </Border>
