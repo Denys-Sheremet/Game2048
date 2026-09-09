@@ -702,4 +702,10 @@
   <data name="ProfilePage_total_coins_label" xml:space="preserve">
     <value>Всього монет зароблено:</value>
   </data>
+  <data name="Settings_github_label" xml:space="preserve">
+    <value>View on GitHub</value>
+  </data>
+  <data name="Settings_email_label" xml:space="preserve">
+    <value>Зв'язатися з нами</value>
+  </data>
 </root>

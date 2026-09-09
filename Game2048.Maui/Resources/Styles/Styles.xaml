@@ -4,6 +4,20 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
+    <Style x:Key="GitHubLinkStyle" TargetType="Border">
+        <Setter Property="Background" Value="#1C1C1E" />
+        <Setter Property="Stroke" Value="#38383A" />
+        <Setter Property="StrokeThickness" Value="2" />
+        <Setter Property="Padding" Value="10, 5, 10, 5" />
+
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="8" />
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
     <Style x:Key="ProfilePreviewBGStyle" TargetType="Border">
         <Setter Property="Shadow">
             <Setter.Value>

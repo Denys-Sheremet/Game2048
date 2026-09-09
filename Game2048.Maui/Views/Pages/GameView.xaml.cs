@@ -1,9 +1,9 @@
 ﻿using Game2048.Core.DTOs;
 using Game2048.Core.Enums;
+using Game2048.Maui.Constants;
 using Game2048.Maui.Achievements.Services;
 using Game2048.Maui.Enums;
 using Game2048.Maui.Interfaces;
-using Game2048.Maui.Services;
 using Game2048.Maui.ViewModels;
 using Game2048.Maui.Views.Components;
 using Microsoft.Extensions.Logging;

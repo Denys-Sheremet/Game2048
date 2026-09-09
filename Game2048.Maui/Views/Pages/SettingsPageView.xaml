@@ -287,6 +287,71 @@
                                     BorderWidth="1"/>
                         </VerticalStackLayout>
                     </Border>
+
+                    <VerticalStackLayout Spacing="12" 
+                     Margin="0, 10, 0, 35" 
+                     HorizontalOptions="Center">
+
+                        <Border x:Name="GitHubLinkBorder"
+                                Style="{StaticResource GitHubLinkStyle}"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GitHubLinkCommand}"/>
+                            </Border.GestureRecognizers>
+                            <Grid ColumnDefinitions="Auto, *"
+                                  VerticalOptions="Center">
+                                <Border WidthRequest="30"
+                                        HeightRequest="30"
+                                        ZIndex="10"
+                                        Grid.Column="0"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center"
+                                        BackgroundColor="White"
+                                        StrokeShape="RoundRectangle 8"
+                                        StrokeThickness="0">
+
+                                </Border>
+                                <Image Source="github_badge.svg"
+                                       WidthRequest="30"
+                                       HeightRequest="30"
+                                       ZIndex="11"
+                                       Grid.Column="0"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center"/>
+                                <Label Text="{x:Static lang:AppResources.Settings_github_label}" 
+                                       Grid.Column="1" 
+                                       VerticalOptions="Center" 
+                                       Margin="10,0,0,0"
+                                       LineBreakMode="WordWrap"
+                                       MaxLines="1"
+                                       TextColor="White"
+                                       FontFamily="RubikBold"
+                                       FontSize="16"/>
+                            </Grid>
+
+                        </Border>
+
+                        <Border HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                StrokeThickness="0">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SendEmailCommand}"/>
+                            </Border.GestureRecognizers>
+                            
+                            <Label Text="{x:Static lang:AppResources.Settings_email_label}"
+                                   TextColor="{DynamicResource MainTitleColor}"
+                                   FontFamily="RubikBold"
+                                   FontSize="13"
+                                   MaxLines="2"
+                                   LineBreakMode="WordWrap"
+                                   TextDecorations="Underline"
+                                   HorizontalTextAlignment="Center"/>
+                        </Border>
+
+                    </VerticalStackLayout>
+                    
+
                 </VerticalStackLayout>
             </ScrollView>
         </Grid>

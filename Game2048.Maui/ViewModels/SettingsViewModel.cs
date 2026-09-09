@@ -1,5 +1,9 @@
 ﻿using Game2048.Maui.Interfaces;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.Logging;
+using Game2048.Maui.Constants;
+using Microsoft.Maui.ApplicationModel;
+
 namespace Game2048.Maui.ViewModels;
 
 public partial class SettingsViewModel : BindableObject
@@ -10,6 +14,7 @@ public partial class SettingsViewModel : BindableObject
     private readonly IProfileManager _profileManager;
     private readonly ISettingsManager _settingsManager;
     private readonly IServiceProvider _serviceProvider;
+    private readonly ILogger<SettingsViewModel> _logger;
 
     private string _playerName = string.Empty;
     private string _currentProfileName = string.Empty;
@@ -20,15 +25,18 @@ public partial class SettingsViewModel : BindableObject
 
     public bool IsConfirmationNeeded = false;
 
-    public SettingsViewModel(IProfileManager profileManager, ISettingsManager settingsManager, IServiceProvider serviceProvider)
+    public SettingsViewModel(IProfileManager profileManager, ISettingsManager settingsManager, IServiceProvider serviceProvider, ILogger<SettingsViewModel> logger)
     {
         _profileManager = profileManager;
         _settingsManager = settingsManager;
         _serviceProvider = serviceProvider;
+        _logger = logger;
 
         SaveNameCommand = new AsyncRelayCommand(SaveNameAsync);
         SelectLanguageCommand = new RelayCommand<string>(SelectLanguage);
         ConfirmAndRestartCommand = new AsyncRelayCommand(ConfirmAndRestart);
+        GitHubLinkCommand = new AsyncRelayCommand(OpenGitHubLinkAsync);
+        SendEmailCommand = new AsyncRelayCommand(SendEmailAsync);
 
         ResetToCurrentSettings();
     }
@@ -75,9 +83,11 @@ public partial class SettingsViewModel : BindableObject
         }
     }
 
-    public IAsyncRelayCommand SaveNameCommand { get; }
-    public IRelayCommand SelectLanguageCommand { get; }
-    public IAsyncRelayCommand ConfirmAndRestartCommand { get; }
+    public IAsyncRelayCommand SaveNameCommand { get; private set; }
+    public IRelayCommand SelectLanguageCommand { get; private set; }
+    public IAsyncRelayCommand ConfirmAndRestartCommand { get; private set; }
+    public IAsyncRelayCommand GitHubLinkCommand { get; private set; }
+    public IAsyncRelayCommand SendEmailCommand { get; private set; }
 
     private async Task SaveNameAsync() 
     {
@@ -134,5 +144,32 @@ public partial class SettingsViewModel : BindableObject
         CurrentProfileName = _profileManager.CurrentProfile?.Name ?? DefaultPlayerName;
         PlayerName = CurrentProfileName;
         SelectedLanguage = _settingsManager.GetCurrentLang();
+    }
+
+    private async Task OpenGitHubLinkAsync()
+    {
+        try
+        {
+            await Browser.Default.OpenAsync(AppConstants.GitHubUrl, BrowserLaunchMode.SystemPreferred);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Failed to open GitHub link.");
+        }
+    }
+
+    private async Task SendEmailAsync()
+    {
+        try
+        {
+            string subject = Uri.EscapeDataString("Game 2048 - Support / Bug Report");
+            string mailtoUri = $"mailto:{AppConstants.SupportEmail}?subject={subject}";
+
+            await Launcher.Default.OpenAsync(new Uri(mailtoUri));
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Failed to open email client.");
+        }
     }
 }

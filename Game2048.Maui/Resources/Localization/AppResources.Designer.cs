@@ -1555,6 +1555,24 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Contact us.
+        /// </summary>
+        public static string Settings_email_label {
+            get {
+                return ResourceManager.GetString("Settings_email_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на View on GitHub.
+        /// </summary>
+        public static string Settings_github_label {
+            get {
+                return ResourceManager.GetString("Settings_github_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на How to.
         /// </summary>
         public static string Settings_how_to_btn_text {

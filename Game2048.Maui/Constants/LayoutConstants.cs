@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Game2048.Maui.Services;
+namespace Game2048.Maui.Constants;
 
 public static class LayoutConstants
 {

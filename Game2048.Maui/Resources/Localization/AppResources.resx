@@ -702,4 +702,10 @@
   <data name="ProfilePage_total_coins_label" xml:space="preserve">
     <value>Total coins earned: </value>
   </data>
+  <data name="Settings_github_label" xml:space="preserve">
+    <value>View on GitHub</value>
+  </data>
+  <data name="Settings_email_label" xml:space="preserve">
+    <value>Contact us</value>
+  </data>
 </root>
