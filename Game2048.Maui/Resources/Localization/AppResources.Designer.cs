@@ -835,7 +835,7 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Cover the tile with emerald. Feel the luxury.
+        ///   Ищет локализованную строку, похожую на Cover the tile with emerald.
         /// </summary>
         public static string EmeraldBloomNumberlessTheme_desc {
             get {

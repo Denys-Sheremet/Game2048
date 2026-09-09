@@ -124,106 +124,106 @@
     <value>Úspěchy</value>
   </data>
   <data name="Ach_FirstGame_desc" xml:space="preserve">
-    <value>Odehrána první hra v 2048</value>
+    <value>Odehráli jste svou první hru v 2048</value>
   </data>
   <data name="Ach_FirstGame_title" xml:space="preserve">
-    <value>První krůčky</value>
+    <value>První kroky</value>
   </data>
   <data name="Ach_FirstUndo_desc" xml:space="preserve">
-    <value>První použití kroku zpět</value>
+    <value>Poprvé jste použili krok zpět</value>
   </data>
   <data name="Ach_FirstUndo_title" xml:space="preserve">
-    <value>Vpřed do minulosti!</value>
+    <value>Kupředu do minulosti!</value>
   </data>
   <data name="Ach_NoUndoVictory_desc" xml:space="preserve">
-    <value>Hra 2048 dohrána bez kroku zpět</value>
+    <value>Porazili jste 2048 bez kroku zpět</value>
   </data>
   <data name="Ach_NoUndoVictory_title" xml:space="preserve">
     <value>Bez chyb!</value>
   </data>
   <data name="Ach_Play10Games_desc" xml:space="preserve">
-    <value>Odehráno 10 her</value>
+    <value>Odehráli jste 10 her</value>
   </data>
   <data name="Ach_Play10Games_title" xml:space="preserve">
-    <value>Jen tak dál</value>
+    <value>Nepřestávejte zkoušet</value>
   </data>
   <data name="Ach_Play100Games_desc" xml:space="preserve">
-    <value>Odehráno 100 her</value>
+    <value>Odehráli jste 100 her</value>
   </data>
   <data name="Ach_Play100Games_title" xml:space="preserve">
     <value>Hráč</value>
   </data>
   <data name="Ach_Reach64_desc" xml:space="preserve">
-    <value>Složena dlaždice 64</value>
+    <value>Sloučili jste dlaždici 64</value>
   </data>
   <data name="Ach_Reach64_title" xml:space="preserve">
-    <value>Někam to vede!</value>
+    <value>To už k něčemu vede!</value>
   </data>
   <data name="Ach_Reach128_desc" xml:space="preserve">
-    <value>Složena dlaždice 128</value>
+    <value>Sloučili jste dlaždici 128</value>
   </data>
   <data name="Ach_Reach128_title" xml:space="preserve">
     <value>Nebylo to tak těžké, že?</value>
   </data>
   <data name="Ach_Reach256_desc" xml:space="preserve">
-    <value>Složena dlaždice 256</value>
+    <value>Sloučili jste dlaždici 256</value>
   </data>
   <data name="Ach_Reach256_title" xml:space="preserve">
     <value>2^8</value>
   </data>
   <data name="Ach_Reach512_desc" xml:space="preserve">
-    <value>Složena dlaždice 512</value>
+    <value>Sloučili jste dlaždici 512</value>
   </data>
   <data name="Ach_Reach512_title" xml:space="preserve">
-    <value>Ještě dvě zbývají!</value>
+    <value>Ještě dvě a jsme tam!</value>
   </data>
   <data name="Ach_Reach1024_desc" xml:space="preserve">
-    <value>Složena dlaždice 1024</value>
+    <value>Sloučili jste dlaždici 1024</value>
   </data>
   <data name="Ach_Reach1024_title" xml:space="preserve">
-    <value>Skoro v cíli!</value>
+    <value>Už skoro tam!</value>
   </data>
   <data name="Ach_Reach2048_desc" xml:space="preserve">
-    <value>Složena dlaždice 2048</value>
+    <value>Sloučili jste dlaždici 2048</value>
   </data>
   <data name="Ach_Reach2048_title" xml:space="preserve">
     <value>ZLATO ZLATO ZLATO</value>
   </data>
   <data name="Ach_Score1000_desc" xml:space="preserve">
-    <value>Dosaženo 1000 bodů v jedné hře</value>
+    <value>Získali jste 1000 bodů v jedné hře</value>
   </data>
   <data name="Ach_Score1000_title" xml:space="preserve">
-    <value>Sběratel bodů</value>
+    <value>Skórující</value>
   </data>
   <data name="Ach_Score5000_desc" xml:space="preserve">
-    <value>Dosaženo 5000 bodů v jedné hře</value>
+    <value>Získali jste 5000 bodů v jedné hře</value>
   </data>
   <data name="BWTheme_desc" xml:space="preserve">
-    <value>Dvě barvy, nic víc</value>
+    <value>Dvě barvy, nic jiného</value>
   </data>
   <data name="BWTheme_title" xml:space="preserve">
-    <value>Černobílá</value>
+    <value>Černá &amp; Bílá</value>
   </data>
   <data name="ClassicTheme_desc" xml:space="preserve">
-    <value>Klasický motiv 2048</value>
+    <value>Klasické téma 2048</value>
   </data>
   <data name="ClassicTheme_title" xml:space="preserve">
-    <value>Klasický motiv</value>
+    <value>Klasické téma</value>
   </data>
   <data name="ConfirmationOverlay_confirm_btn_text" xml:space="preserve">
     <value>Potvrdit</value>
   </data>
   <data name="ConfirmationOverlay_desc" xml:space="preserve">
-    <value>Pro změnu jazyka je nutný restart. Prosím, potvrďte restart.</value>
+    <value>Pro změnu jazyka je nutný restart. Prosím potvrďte restart.</value>
   </data>
   <data name="ConfirmationOverlay_title" xml:space="preserve">
     <value>Potvrzení</value>
   </data>
   <data name="DarkTheme_desc" xml:space="preserve">
-    <value>Klasický tmavý motiv 2048</value>
+    <value>Klasické tmavé téma 2048</value>
   </data>
   <data name="DarkTheme_title" xml:space="preserve">
-    <value>Tmavý motiv</value>
+    <value>Tmavé téma</value>
   </data>
   <data name="GameModes_title" xml:space="preserve">
     <value>VÝBĚR REŽIMU</value>
@@ -268,19 +268,19 @@
     <value>ver. 1.0</value>
   </data>
   <data name="NatureTheme_desc" xml:space="preserve">
-    <value>Přírodní motiv v zelených a modrých tónech</value>
+    <value>Přírodní téma založené na zelené a modré</value>
   </data>
   <data name="NatureTheme_title" xml:space="preserve">
     <value>Příroda</value>
   </data>
   <data name="NeonColorTheme_desc" xml:space="preserve">
-    <value>Zářivé barvy a tmavé pozadí</value>
+    <value>Jasné barvy a tmavé pozadí</value>
   </data>
   <data name="NeonColorTheme_title" xml:space="preserve">
     <value>Neon</value>
   </data>
   <data name="RainbowTheme_desc" xml:space="preserve">
-    <value>Barevný BOOM</value>
+    <value>Barevný BUM</value>
   </data>
   <data name="RainbowTheme_title" xml:space="preserve">
     <value>Duha</value>
@@ -304,22 +304,22 @@
     <value>Restartovat</value>
   </data>
   <data name="Settings_themes_btn_text" xml:space="preserve">
-    <value>Motivy</value>
+    <value>Témata</value>
   </data>
   <data name="Settings_theme_pick_desc_label" xml:space="preserve">
-    <value>Vyberte si styl motivu</value>
+    <value>Vyberte styl tématu</value>
   </data>
   <data name="Settings_theme_pick_label" xml:space="preserve">
     <value>Přizpůsobení</value>
   </data>
   <data name="Settings_theme_pick_sub_label" xml:space="preserve">
-    <value>Motivy</value>
+    <value>Témata</value>
   </data>
   <data name="Settings_title" xml:space="preserve">
     <value>Nastavení</value>
   </data>
   <data name="Themes_title" xml:space="preserve">
-    <value>Motivy</value>
+    <value>Témata</value>
   </data>
   <data name="VictoryOverlay_continue_btn_text" xml:space="preserve">
     <value>Pokračovat</value>
@@ -337,16 +337,16 @@
     <value>Velká čísla</value>
   </data>
   <data name="PinkyPinkTheme_title" xml:space="preserve">
-    <value>Volba pravých mužů</value>
+    <value>Mužná volba</value>
   </data>
   <data name="PinkyPinkTheme_desc" xml:space="preserve">
     <value>21 odstínů růžové</value>
   </data>
   <data name="PurchaseThemeOverlay_title" xml:space="preserve">
-    <value>Zakoupit motiv</value>
+    <value>Zakoupit téma</value>
   </data>
   <data name="PurchaseThemeOverlay_message" xml:space="preserve">
-    <value>Chcete zakoupit následující motiv?</value>
+    <value>Chcete si koupit toto téma?</value>
   </data>
   <data name="PurchaseThemeOverlay_buy_btn_text" xml:space="preserve">
     <value>Koupit</value>
@@ -355,19 +355,19 @@
     <value>za</value>
   </data>
   <data name="UnsuccessfulPurchaseOverlay_title" xml:space="preserve">
-    <value>Neúspěšné</value>
+    <value>Selhalo</value>
   </data>
   <data name="UnsuccessfulPurchaseOverlay_desc" xml:space="preserve">
-    <value>Tento motiv nelze zakoupit, nemáte dostatek mincí</value>
+    <value>Toto téma si nemůžete koupit, protože nemáte dostatek mincí</value>
   </data>
   <data name="GameMode_Classic_title" xml:space="preserve">
-    <value>Klasik 2048</value>
+    <value>Klasická 2048</value>
   </data>
   <data name="GameMode_Classic_desc" xml:space="preserve">
     <value>4x4</value>
   </data>
   <data name="GameMode_ClassicPlus_title" xml:space="preserve">
-    <value>Klasik+</value>
+    <value>Klasická+</value>
   </data>
   <data name="GameMode_ClassicPlus_desc" xml:space="preserve">
     <value>4x4 + Krok zpět</value>
@@ -376,19 +376,19 @@
     <value>Kompaktní</value>
   </data>
   <data name="GameMode_Compact_desc" xml:space="preserve">
-    <value>3x3 + Krok zpět (výherní dlaždice – 1024)</value>
+    <value>3x3 + Krok zpět (dlaždice k výhře - 1024)</value>
   </data>
   <data name="GameMode_Extended_title" xml:space="preserve">
-    <value>Rozšířené 2048</value>
+    <value>Rozšířená 2048</value>
   </data>
   <data name="GameMode_Extended_desc" xml:space="preserve">
-    <value>Režim 5x5 hardcore s dvojitým spawnem</value>
+    <value>5x5 hardcore režim se zdvojeným spawnem</value>
   </data>
   <data name="GameMode_ChillZone_title" xml:space="preserve">
     <value>Odpočinková zóna</value>
   </data>
   <data name="GameMode_ChillZone_desc" xml:space="preserve">
-    <value>Rozšířený režim 5x5 s možností kroku zpět</value>
+    <value>Rozšířený režim 5x5 s možností vrácení tahu</value>
   </data>
   <data name="RoyalRedTheme_title" xml:space="preserve">
     <value>Královská červená</value>
@@ -406,7 +406,7 @@
     <value>Hazard</value>
   </data>
   <data name="HazardTheme_desc" xml:space="preserve">
-    <value>Toxicky žlutý a limetkový motiv. Opatrně!</value>
+    <value>Toxicky žluté a limetkové téma. Opatrně!</value>
   </data>
   <data name="SolarTheme_title" xml:space="preserve">
     <value>Solární</value>
@@ -433,10 +433,10 @@
     <value>Vyhrané hry</value>
   </data>
   <data name="ProfilePage_win_rate_title" xml:space="preserve">
-    <value>Úspěšnost</value>
+    <value>Míra výher</value>
   </data>
   <data name="ProfilePage_themes_collected_label" xml:space="preserve">
-    <value>Nasbírané motivy</value>
+    <value>Nasbíraná témata</value>
   </data>
   <data name="ProfilePage_achievements_unlocked_label" xml:space="preserve">
     <value>Odemčené úspěchy</value>
@@ -457,121 +457,121 @@
     <value>Jak hrát</value>
   </data>
   <data name="HowToCard_1_title" xml:space="preserve">
-    <value>Přesouvání dlaždic</value>
+    <value>Přesouvejte dlaždice</value>
   </data>
   <data name="HowToCard_1_desc" xml:space="preserve">
-    <value>Přejetím prstem přesouváte dlaždice na herní ploše</value>
+    <value>Přejetím přesunete dlaždice na hrací ploše</value>
   </data>
   <data name="HowToCard_2_title" xml:space="preserve">
-    <value>Spojování dlaždic</value>
+    <value>Spojujte dlaždice</value>
   </data>
   <data name="HowToCard_2_desc" xml:space="preserve">
-    <value>Dlaždice se stejnou hodnotou se po srážce sečtou</value>
+    <value>Dlaždice se stejnou hodnotou se spojí v jejich součet</value>
   </data>
   <data name="HowToCard_3_title" xml:space="preserve">
-    <value>Snažte se stále spojovat</value>
+    <value>Snažte se vždy spojovat</value>
   </data>
   <data name="HowToCard_3_desc" xml:space="preserve">
-    <value>Pokud vám dojdou možné tahy, prohráváte</value>
+    <value>Pokud vám dojdou možné tahy - prohráváte</value>
   </data>
   <data name="HowToCard_4_title" xml:space="preserve">
-    <value>Vracení tahů</value>
+    <value>Vrácení tahů</value>
   </data>
   <data name="HowToCard_4_desc" xml:space="preserve">
-    <value>V některých herních režimech můžete vrátit tahy a zachránit se tak před prohrou</value>
+    <value>V některých herních režimech můžete vrátit pár tahů a zabránit tak prohře</value>
   </data>
   <data name="HowToCard_5_title" xml:space="preserve">
     <value>Sbírejte úspěchy</value>
   </data>
   <data name="HowToCard_5_desc" xml:space="preserve">
-    <value>Odemkněte úspěchy, vylepšete si statistiky a získávejte mince</value>
+    <value>Odemkněte úspěchy, vylepšujte své statistiky a získávejte mince</value>
   </data>
   <data name="HowToCard_6_title" xml:space="preserve">
-    <value>Hrajte stylově</value>
+    <value>Buďte styloví</value>
   </data>
   <data name="HowToCard_6_desc" xml:space="preserve">
-    <value>Utrácejte mince za nové motivy a vytvořte si vlastní herní zážitek </value>
+    <value>Utrácejte mince za nová témata a vytvořte si vlastní herní zážitek </value>
   </data>
   <data name="Ach_Reach4096_title" xml:space="preserve">
-    <value>Jak se ti to povedlo?</value>
+    <value>Jak jste to udělali?</value>
   </data>
   <data name="Ach_Reach4096_desc" xml:space="preserve">
-    <value>Složena dlaždice 4096... Pane smiluj se...</value>
+    <value>Sloučili jste dlaždici 4096... Pane smiluj se...</value>
   </data>
   <data name="Ach_Score10000_title" xml:space="preserve">
     <value>Kolik dlaždic je na to potřeba?</value>
   </data>
   <data name="Ach_Score10000_desc" xml:space="preserve">
-    <value>Dosaženo 10 000 bodů v jedné hře</value>
+    <value>Získali jste 10000 bodů v jedné hře</value>
   </data>
   <data name="Ach_Score20000_title" xml:space="preserve">
-    <value>Dobrá, to už je něco</value>
+    <value>Dobře, tohle je velké</value>
   </data>
   <data name="Ach_Score20000_desc" xml:space="preserve">
-    <value>Dosaženo 20 000 bodů v jedné hře</value>
+    <value>Získali jste 20000 bodů v jedné hře</value>
   </data>
   <data name="Ach_Score30000_title" xml:space="preserve">
-    <value>Pan střelec</value>
+    <value>Mistr skóre</value>
   </data>
   <data name="Ach_Score30000_desc" xml:space="preserve">
-    <value>Dosaženo 30 000 bodů v jedné hře</value>
+    <value>Získali jste 30000 bodů v jedné hře</value>
   </data>
   <data name="Ach_Score45000_title" xml:space="preserve">
-    <value>Vzhůru do nekonečna a ještě dál</value>
+    <value>Do nekonečna a ještě dál</value>
   </data>
   <data name="Ach_Score45000_desc" xml:space="preserve">
-    <value>Dosaženo 45 000 bodů v jedné hře</value>
+    <value>Získali jste 45000 bodů v jedné hře</value>
   </data>
   <data name="Ach_Earn1000Coins_title" xml:space="preserve">
-    <value>Balík</value>
+    <value>Kapitál</value>
   </data>
   <data name="Ach_Earn1000Coins_desc" xml:space="preserve">
-    <value>Celkově získáno 1000 mincí</value>
+    <value>Celkově jste získali 1000 mincí</value>
   </data>
   <data name="Ach_Earn2000Coins_title" xml:space="preserve">
     <value>Stroj na peníze</value>
   </data>
   <data name="Ach_Earn2000Coins_desc" xml:space="preserve">
-    <value>Celkově získáno 2000 mincí</value>
+    <value>Celkově jste získali 2000 mincí</value>
   </data>
   <data name="Ach_Earn5000Coins_title" xml:space="preserve">
-    <value>Celkově získáno 5000 mincí</value>
+    <value>Celkově jste získali 5000 mincí</value>
   </data>
   <data name="Ach_Move1000_title" xml:space="preserve">
-    <value>Sleduj mé tahy</value>
+    <value>Sledujte moje tahy</value>
   </data>
   <data name="Ach_Move1000_desc" xml:space="preserve">
-    <value>Provedeno 1000 tahů</value>
+    <value>Provedli jste 1000 tahů</value>
   </data>
   <data name="Ach_FirstWin_title" xml:space="preserve">
     <value>Sladké vítězství</value>
   </data>
   <data name="Ach_FirstWin_desc" xml:space="preserve">
-    <value>První výhra</value>
+    <value>Vaše první výhra</value>
   </data>
   <data name="Ach_Win3Times_title" xml:space="preserve">
     <value>Trojitý zásah</value>
   </data>
   <data name="Ach_Win3Times_desc" xml:space="preserve">
-    <value>3x vyhráno</value>
+    <value>Vyhráli jste 3krát</value>
   </data>
   <data name="Ach_Win5Times_title" xml:space="preserve">
     <value>Eso</value>
   </data>
   <data name="Ach_Win5Times_desc" xml:space="preserve">
-    <value>5x vyhráno</value>
+    <value>Vyhráli jste 5krát</value>
   </data>
   <data name="Ach_Win10Times_title" xml:space="preserve">
     <value>Jako poprvé</value>
   </data>
   <data name="Ach_Win10Times_desc" xml:space="preserve">
-    <value>10x vyhráno</value>
+    <value>Vyhráli jste 10krát</value>
   </data>
   <data name="Ach_Win25Times_title" xml:space="preserve">
     <value>Absolutní šampion</value>
   </data>
   <data name="Ach_Win25Times_desc" xml:space="preserve">
-    <value>25x vyhráno</value>
+    <value>Vyhráli jste 25krát</value>
   </data>
   <data name="Ach_Why30_title" xml:space="preserve">
     <value>Co jste čekali?</value>
@@ -580,70 +580,70 @@
     <value>???</value>
   </data>
   <data name="Ach_AllThemesUnlocked_title" xml:space="preserve">
-    <value>Tohle měly být mikrotransakce</value>
+    <value>Měly to být mikrotransakce</value>
   </data>
   <data name="Ach_AllThemesUnlocked_desc" xml:space="preserve">
-    <value>Odemčeny všechny motivy ve hře</value>
+    <value>Odemkli jste všechna témata ve hře</value>
   </data>
   <data name="Ach_AllAchievementsUnlocked_title" xml:space="preserve">
     <value>Platina</value>
   </data>
   <data name="Ach_AllAchievementsUnlocked_desc" xml:space="preserve">
-    <value>Odemčeny všechny úspěchy ve hře</value>
+    <value>Odemkli jste všechny úspěchy ve hře</value>
   </data>
   <data name="Ach_WinClassicMode_title" xml:space="preserve">
-    <value>Skutečný purista</value>
+    <value>Pravý purista</value>
   </data>
   <data name="Ach_WinClassicMode_desc" xml:space="preserve">
-    <value>Dosažena finální dlaždice v režimu Klasik</value>
+    <value>Dosáhli jste finální dlaždice v Klasickém režimu</value>
   </data>
   <data name="Ach_WinClassicPlusMode_title" xml:space="preserve">
-    <value>Inovace nejsou na škodu</value>
+    <value>Inovace nejsou špatné</value>
   </data>
   <data name="Ach_WinClassicPlusMode_desc" xml:space="preserve">
-    <value>Dosažena finální dlaždice v režimu Klasik+</value>
+    <value>Dosáhli jste finální dlaždice v režimu Klasický+</value>
   </data>
   <data name="Ach_WinCompactMode_title" xml:space="preserve">
     <value>Klaustrofobie</value>
   </data>
   <data name="Ach_WinCompactMode_desc" xml:space="preserve">
-    <value>Dosažena finální dlaždice v Kompaktním režimu</value>
+    <value>Dosáhli jste finální dlaždice v Kompaktním režimu</value>
   </data>
   <data name="Ach_WinExtendedMode_title" xml:space="preserve">
     <value>Milovník hardcore</value>
   </data>
   <data name="Ach_WinExtendedMode_desc" xml:space="preserve">
-    <value>Dosažena finální dlaždice v Rozšířeném režimu</value>
+    <value>Dosáhli jste finální dlaždice v Rozšířeném režimu</value>
   </data>
   <data name="Ach_WinChillZoneMode_title" xml:space="preserve">
     <value>Hrdý amatér</value>
   </data>
   <data name="Ach_WinChillZoneMode_desc" xml:space="preserve">
-    <value>Dosažena finální dlaždice v režimu Odpočinková zóna</value>
+    <value>Dosáhli jste finální dlaždice v režimu Odpočinková zóna</value>
   </data>
   <data name="MatchaCreamTheme_title" xml:space="preserve">
     <value>Matcha krém</value>
   </data>
   <data name="MatchaCreamTheme_desc" xml:space="preserve">
-    <value>Nápoj pro zahřátí u srdce</value>
+    <value>Nápoj k zahřátí vašeho srdce</value>
   </data>
   <data name="TerminalRetroTheme_title" xml:space="preserve">
     <value>Terminál</value>
   </data>
   <data name="TerminalRetroTheme_desc" xml:space="preserve">
-    <value>Píp-páp-půp... Přístup povolen</value>
+    <value>Píp-píp-píp... Přístup povolen</value>
   </data>
   <data name="AbyssTheme_title" xml:space="preserve">
     <value>Propast</value>
   </data>
   <data name="AbyssTheme_desc" xml:space="preserve">
-    <value>Jízda hlubokým oceánem. Připravte se na ponor!</value>
+    <value>Hlubokomořská jízda. Připravte se na ponor!</value>
   </data>
   <data name="VaporWaveTheme_title" xml:space="preserve">
     <value>Vaporwave</value>
   </data>
   <data name="VaporWaveTheme_desc" xml:space="preserve">
-    <value>Vaporwave party. Užijte si atmosféru</value>
+    <value>Vaporwave party. Nasajte atmosféru</value>
   </data>
   <data name="TheGreatCityTheme_title" xml:space="preserve">
     <value>Velkoměsto</value>
@@ -655,10 +655,10 @@
     <value>Mlhovina</value>
   </data>
   <data name="NebulaTheme_desc" xml:space="preserve">
-    <value>Astronomicky hustý motiv...</value>
+    <value>Astronomicky husté téma...</value>
   </data>
   <data name="Cyberpunk2078Theme_title" xml:space="preserve">
-    <value>Cyberpunk 2078</value>
+    <value>Kyberpunk 2078</value>
   </data>
   <data name="Cyberpunk2078Theme_desc" xml:space="preserve">
     <value>Vstávej, samuraji, musíme získat dlaždici...</value>
@@ -670,36 +670,36 @@
     <value>Růžové spadané listí bude vyprávět příběh</value>
   </data>
   <data name="BayHarbourTheme_title" xml:space="preserve">
-    <value>Přístavní záliv</value>
+    <value>Zálivový přístav</value>
   </data>
   <data name="BayHarbourTheme_desc" xml:space="preserve">
-    <value>Dneska je ta noc...</value>
+    <value>Dnes v noci to přijde...</value>
   </data>
   <data name="TetrisNumberlessTheme_title" xml:space="preserve">
-    <value>Tetris (Bez čísel)</value>
+    <value>Tetris (bez čísel)</value>
   </data>
   <data name="TetrisNumberlessTheme_desc" xml:space="preserve">
-    <value>Vyzkoušejte si tento motiv založený na asociaci barev</value>
+    <value>Vyzkoušejte si toto téma asociující barvy</value>
   </data>
   <data name="EmeraldBloomNumberlessTheme_title" xml:space="preserve">
-    <value>Smaragdový květ (Bez čísel)</value>
+    <value>Smaragdový květ (bez čísel)</value>
   </data>
   <data name="EmeraldBloomNumberlessTheme_desc" xml:space="preserve">
-    <value>Pokryjte dlaždice smaragdy. Pociťte luxus</value>
+    <value>Pokryjte dlaždici smaragdem</value>
   </data>
   <data name="RarityNumberlessTheme_title" xml:space="preserve">
-    <value>Vzácnost (Bez čísel)</value>
+    <value>Vzácnost (bez čísel)</value>
   </data>
   <data name="RarityNumberlessTheme_desc" xml:space="preserve">
     <value>Stejné dlaždice, jiná vzácnost, do toho</value>
   </data>
   <data name="MonochromeNumberlessTheme_title" xml:space="preserve">
-    <value>Monochrom (Bez čísel)</value>
+    <value>Monochrom (bez čísel)</value>
   </data>
   <data name="MonochromeNumberlessTheme_desc" xml:space="preserve">
-    <value>Od bílé po černou, nechte to plynout</value>
+    <value>Od bílé k černé, nechte to plynout</value>
   </data>
   <data name="ProfilePage_total_coins_label" xml:space="preserve">
-    <value>Celkem získaných mincí:</value>
+    <value>Celkem získaných mincí: </value>
   </data>
 </root>

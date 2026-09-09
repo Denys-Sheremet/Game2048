@@ -18,7 +18,9 @@
               HorizontalOptions="Fill"
               VerticalOptions="Fill">
 
-            <Grid ColumnDefinitions="60, *, 60" RowDefinitions="Auto, Auto" Grid.Row="0" Grid.Column="0">
+            <Grid ColumnDefinitions="60, *, 60" RowDefinitions="Auto, Auto" 
+                  Grid.Row="0" Grid.Column="0"
+                  Margin="0,15,0,10">
                 <Button x:Name="BackToMenuBtn"
                         Grid.Row="0"
                         Grid.Column="0"

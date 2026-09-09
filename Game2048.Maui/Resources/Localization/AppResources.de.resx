@@ -124,22 +124,22 @@
     <value>Erfolge</value>
   </data>
   <data name="Ach_FirstGame_desc" xml:space="preserve">
-    <value>Dein erstes Spiel in 2048 gespielt</value>
+    <value>Hast dein erstes Spiel in 2048 gespielt</value>
   </data>
   <data name="Ach_FirstGame_title" xml:space="preserve">
     <value>Erste Schritte</value>
   </data>
   <data name="Ach_FirstUndo_desc" xml:space="preserve">
-    <value>Zum ersten Mal einen Zug rückgängig gemacht</value>
+    <value>Hast zum ersten Mal rückgängig gemacht</value>
   </data>
   <data name="Ach_FirstUndo_title" xml:space="preserve">
     <value>Vorwärts in die Vergangenheit!</value>
   </data>
   <data name="Ach_NoUndoVictory_desc" xml:space="preserve">
-    <value>2048 ohne Rückgängigmachen gewonnen</value>
+    <value>2048 ohne rückgängig zu machen geschlagen </value>
   </data>
   <data name="Ach_NoUndoVictory_title" xml:space="preserve">
-    <value>Ohne Fehler!</value>
+    <value>Keine Fehler!</value>
   </data>
   <data name="Ach_Play10Games_desc" xml:space="preserve">
     <value>10 Spiele gespielt</value>
@@ -154,49 +154,49 @@
     <value>Gamer</value>
   </data>
   <data name="Ach_Reach64_desc" xml:space="preserve">
-    <value>Eine 64er-Kachel kombiniert</value>
+    <value>Eine 64er Kachel kombiniert</value>
   </data>
   <data name="Ach_Reach64_title" xml:space="preserve">
     <value>Ein guter Anfang!</value>
   </data>
   <data name="Ach_Reach128_desc" xml:space="preserve">
-    <value>Eine 128er-Kachel kombiniert</value>
+    <value>Eine 128er Kachel kombiniert</value>
   </data>
   <data name="Ach_Reach128_title" xml:space="preserve">
-    <value>War gar nicht so schwer, oder?</value>
+    <value>War doch gar nicht so schwer, oder?</value>
   </data>
   <data name="Ach_Reach256_desc" xml:space="preserve">
-    <value>Eine 256er-Kachel kombiniert</value>
+    <value>Eine 256er Kachel kombiniert</value>
   </data>
   <data name="Ach_Reach256_title" xml:space="preserve">
     <value>2^8</value>
   </data>
   <data name="Ach_Reach512_desc" xml:space="preserve">
-    <value>Eine 512er-Kachel kombiniert</value>
+    <value>Eine 512er Kachel kombiniert</value>
   </data>
   <data name="Ach_Reach512_title" xml:space="preserve">
-    <value>Nur noch zwei!</value>
+    <value>Noch zwei übrig!</value>
   </data>
   <data name="Ach_Reach1024_desc" xml:space="preserve">
-    <value>Eine 1024er-Kachel kombiniert</value>
+    <value>Eine 1024er Kachel kombiniert</value>
   </data>
   <data name="Ach_Reach1024_title" xml:space="preserve">
     <value>Fast geschafft!</value>
   </data>
   <data name="Ach_Reach2048_desc" xml:space="preserve">
-    <value>Eine 2048er-Kachel kombiniert</value>
+    <value>Eine 2048er Kachel kombiniert</value>
   </data>
   <data name="Ach_Reach2048_title" xml:space="preserve">
     <value>GOLD GOLD GOLD</value>
   </data>
   <data name="Ach_Score1000_desc" xml:space="preserve">
-    <value>1.000 Punkte in einem Spiel erzielt</value>
+    <value>1000 Punkte in einem Spiel erzielt</value>
   </data>
   <data name="Ach_Score1000_title" xml:space="preserve">
     <value>Punktesammler</value>
   </data>
   <data name="Ach_Score5000_desc" xml:space="preserve">
-    <value>5.000 Punkte in einem Spiel erzielt</value>
+    <value>5000 Punkte in einem Spiel erzielt</value>
   </data>
   <data name="BWTheme_desc" xml:space="preserve">
     <value>Zwei Farben, sonst nichts</value>
@@ -205,7 +205,7 @@
     <value>Schwarz &amp; Weiß</value>
   </data>
   <data name="ClassicTheme_desc" xml:space="preserve">
-    <value>Das klassische 2048-Design</value>
+    <value>Klassisches 2048 Design</value>
   </data>
   <data name="ClassicTheme_title" xml:space="preserve">
     <value>Klassisches Design</value>
@@ -214,13 +214,13 @@
     <value>Bestätigen</value>
   </data>
   <data name="ConfirmationOverlay_desc" xml:space="preserve">
-    <value>Ein Neustart ist erforderlich, um die Sprache zu ändern. Bitte bestätige den Neustart.</value>
+    <value>Ein Neustart ist erforderlich, um die Sprache zu ändern. Bitte Neustart bestätigen.</value>
   </data>
   <data name="ConfirmationOverlay_title" xml:space="preserve">
     <value>Bestätigung</value>
   </data>
   <data name="DarkTheme_desc" xml:space="preserve">
-    <value>Klassisches dunkles 2048-Design</value>
+    <value>Klassisches dunkles 2048 Design</value>
   </data>
   <data name="DarkTheme_title" xml:space="preserve">
     <value>Dunkles Design</value>
@@ -235,10 +235,10 @@
     <value>Nochmal versuchen</value>
   </data>
   <data name="GameOverOverlay_title" xml:space="preserve">
-    <value>SPIEL VORBEI</value>
+    <value>GAME OVER</value>
   </data>
   <data name="GameOverOverlay_undo5_btn_text" xml:space="preserve">
-    <value>5 Züge zurück</value>
+    <value>5 Züge rückgängig machen</value>
   </data>
   <data name="Game_ScoreBoard_best_score_label" xml:space="preserve">
     <value>Rekord</value>
@@ -253,13 +253,13 @@
     <value>2048</value>
   </data>
   <data name="Game_undo_btn_text" xml:space="preserve">
-    <value>Zurück</value>
+    <value>Rückgängig</value>
   </data>
   <data name="Menu_game_modes_btn_text" xml:space="preserve">
     <value>SPIELMODI</value>
   </data>
   <data name="Menu_how_to_btn_text" xml:space="preserve">
-    <value>ANLEITUNG</value>
+    <value>SPIELANLEITUNG</value>
   </data>
   <data name="Menu_settings_btn_text" xml:space="preserve">
     <value>EINSTELLUNGEN</value>
@@ -268,13 +268,13 @@
     <value>Ver. 1.0</value>
   </data>
   <data name="NatureTheme_desc" xml:space="preserve">
-    <value>Naturdesign basierend auf Grün- und Blautönen</value>
+    <value>Natur-Design in Grün und Blau</value>
   </data>
   <data name="NatureTheme_title" xml:space="preserve">
     <value>Natur</value>
   </data>
   <data name="NeonColorTheme_desc" xml:space="preserve">
-    <value>Leuchtende Farben und dunkler Hintergrund</value>
+    <value>Helle Farben und dunkler Hintergrund</value>
   </data>
   <data name="NeonColorTheme_title" xml:space="preserve">
     <value>Neon</value>
@@ -298,7 +298,7 @@
     <value>Spitzname</value>
   </data>
   <data name="Settings_nickname_placeholder_text" xml:space="preserve">
-    <value>Namen eingeben...</value>
+    <value>Name eingeben...</value>
   </data>
   <data name="Settings_restart_btn_text" xml:space="preserve">
     <value>Neustart</value>
@@ -337,7 +337,7 @@
     <value>Große Zahlen</value>
   </data>
   <data name="PinkyPinkTheme_title" xml:space="preserve">
-    <value>Wahl echter Männer</value>
+    <value>Männersache</value>
   </data>
   <data name="PinkyPinkTheme_desc" xml:space="preserve">
     <value>21 Nuancen von Pink</value>
@@ -346,7 +346,7 @@
     <value>Design kaufen</value>
   </data>
   <data name="PurchaseThemeOverlay_message" xml:space="preserve">
-    <value>Möchtest du das folgende Design kaufen?</value>
+    <value>Möchtest du folgendes Design kaufen?</value>
   </data>
   <data name="PurchaseThemeOverlay_buy_btn_text" xml:space="preserve">
     <value>Kaufen</value>
@@ -358,16 +358,16 @@
     <value>Fehlgeschlagen</value>
   </data>
   <data name="UnsuccessfulPurchaseOverlay_desc" xml:space="preserve">
-    <value>Du kannst dieses Design nicht kaufen, da du nicht genügend Münzen hast</value>
+    <value>Du kannst dieses Design nicht kaufen, da du nicht genug Münzen hast</value>
   </data>
   <data name="GameMode_Classic_title" xml:space="preserve">
-    <value>Klassik 2048</value>
+    <value>Klassisches 2048</value>
   </data>
   <data name="GameMode_Classic_desc" xml:space="preserve">
     <value>4x4</value>
   </data>
   <data name="GameMode_ClassicPlus_title" xml:space="preserve">
-    <value>Klassik+</value>
+    <value>Klassisch+</value>
   </data>
   <data name="GameMode_ClassicPlus_desc" xml:space="preserve">
     <value>4x4 + Rückgängig</value>
@@ -376,7 +376,7 @@
     <value>Kompakt</value>
   </data>
   <data name="GameMode_Compact_desc" xml:space="preserve">
-    <value>3x3 + Rückgängig (Gewinnkachel - 1024)</value>
+    <value>3x3 + Rückgängig (Siegeskachel - 1024)</value>
   </data>
   <data name="GameMode_Extended_title" xml:space="preserve">
     <value>Erweitertes 2048</value>
@@ -400,7 +400,7 @@
     <value>Königliches Blau</value>
   </data>
   <data name="RoyalBlueTheme_desc" xml:space="preserve">
-    <value>Tiefe Farben, königliche Ausstrahlung</value>
+    <value>Tiefe Farben, königliches Flair</value>
   </data>
   <data name="HazardTheme_title" xml:space="preserve">
     <value>Gefahr</value>
@@ -412,7 +412,7 @@
     <value>Solar</value>
   </data>
   <data name="SolarTheme_desc" xml:space="preserve">
-    <value>Warme Farben und Gemütlichkeit</value>
+    <value>Warme Farben und Behaglichkeit</value>
   </data>
   <data name="TokyoTheme_title" xml:space="preserve">
     <value>Tokio</value>
@@ -442,7 +442,7 @@
     <value>Freigeschaltete Erfolge</value>
   </data>
   <data name="ProfilePage_highest_score_label" xml:space="preserve">
-    <value>Höchste Punktzahl</value>
+    <value>Höchstpunktzahl</value>
   </data>
   <data name="ProfilePage_average_score_label" xml:space="preserve">
     <value>Avg. Punktzahl</value>
@@ -460,7 +460,7 @@
     <value>Kacheln bewegen</value>
   </data>
   <data name="HowToCard_1_desc" xml:space="preserve">
-    <value>Wische, um die Kacheln auf dem Spielfeld zu bewegen</value>
+    <value>Wische, um die Kacheln auf dem Brett zu bewegen</value>
   </data>
   <data name="HowToCard_2_title" xml:space="preserve">
     <value>Kacheln kombinieren</value>
@@ -472,7 +472,7 @@
     <value>Versuche immer zu kombinieren</value>
   </data>
   <data name="HowToCard_3_desc" xml:space="preserve">
-    <value>Wenn du keine möglichen Züge mehr hast, verlierst du</value>
+    <value>Wenn keine Züge mehr möglich sind, verlierst du</value>
   </data>
   <data name="HowToCard_4_title" xml:space="preserve">
     <value>Züge rückgängig machen</value>
@@ -490,58 +490,58 @@
     <value>Werde stylisch</value>
   </data>
   <data name="HowToCard_6_desc" xml:space="preserve">
-    <value>Gib deine Münzen für neue Designs aus und gestalte dein eigenes Spielerlebnis</value>
+    <value>Gib deine Münzen für neue Designs aus und erschaffe dein eigenes Spielerlebnis </value>
   </data>
   <data name="Ach_Reach4096_title" xml:space="preserve">
     <value>Wie hast du das gemacht?</value>
   </data>
   <data name="Ach_Reach4096_desc" xml:space="preserve">
-    <value>Eine 4096er-Kachel kombiniert... Herr, erbarme dich...</value>
+    <value>Eine 4096er Kachel kombiniert... Herr erbarme dich...</value>
   </data>
   <data name="Ach_Score10000_title" xml:space="preserve">
     <value>Wie viele Kacheln braucht man dafür?</value>
   </data>
   <data name="Ach_Score10000_desc" xml:space="preserve">
-    <value>10.000 Punkte in einem Spiel erzielt</value>
+    <value>10000 Punkte in einem Spiel erzielt</value>
   </data>
   <data name="Ach_Score20000_title" xml:space="preserve">
-    <value>Okay, das ist ordentlich</value>
+    <value>Okay, das ist eine große Nummer</value>
   </data>
   <data name="Ach_Score20000_desc" xml:space="preserve">
-    <value>20.000 Punkte in einem Spiel erzielt</value>
+    <value>20000 Punkte in einem Spiel erzielt</value>
   </data>
   <data name="Ach_Score30000_title" xml:space="preserve">
-    <value>Punkte-Gigant</value>
+    <value>Profi-Punktesammler</value>
   </data>
   <data name="Ach_Score30000_desc" xml:space="preserve">
-    <value>30.000 Punkte in einem Spiel erzielt</value>
+    <value>30000 Punkte in einem Spiel erzielt</value>
   </data>
   <data name="Ach_Score45000_title" xml:space="preserve">
-    <value>Bis zur Unendlichkeit und noch viel weiter</value>
+    <value>Unendlich und noch viel weiter</value>
   </data>
   <data name="Ach_Score45000_desc" xml:space="preserve">
-    <value>45.000 Punkte in einem Spiel erzielt</value>
+    <value>45000 Punkte in einem Spiel erzielt</value>
   </data>
   <data name="Ach_Earn1000Coins_title" xml:space="preserve">
     <value>Kapital</value>
   </data>
   <data name="Ach_Earn1000Coins_desc" xml:space="preserve">
-    <value>Insgesamt 1.000 Münzen gesammelt</value>
+    <value>Insgesamt 1000 Münzen verdient</value>
   </data>
   <data name="Ach_Earn2000Coins_title" xml:space="preserve">
     <value>Geldmaschine</value>
   </data>
   <data name="Ach_Earn2000Coins_desc" xml:space="preserve">
-    <value>Insgesamt 2.000 Münzen gesammelt</value>
+    <value>Insgesamt 2000 Münzen verdient</value>
   </data>
   <data name="Ach_Earn5000Coins_title" xml:space="preserve">
-    <value>Insgesamt 5.000 Münzen gesammelt</value>
+    <value>Insgesamt 5000 Münzen verdient</value>
   </data>
   <data name="Ach_Move1000_title" xml:space="preserve">
-    <value>Pass auf meine Züge auf</value>
+    <value>Schau dir meine Züge an</value>
   </data>
   <data name="Ach_Move1000_desc" xml:space="preserve">
-    <value>1.000 Züge gemacht</value>
+    <value>1000 Züge gemacht</value>
   </data>
   <data name="Ach_FirstWin_title" xml:space="preserve">
     <value>Süßer Sieg</value>
@@ -595,31 +595,31 @@
     <value>Wahrer Purist</value>
   </data>
   <data name="Ach_WinClassicMode_desc" xml:space="preserve">
-    <value>Die finale Kachel im Klassik-Modus erreicht</value>
+    <value>Finale Kachel im Klassik-Modus erreicht</value>
   </data>
   <data name="Ach_WinClassicPlusMode_title" xml:space="preserve">
     <value>Innovationen sind nicht schlecht</value>
   </data>
   <data name="Ach_WinClassicPlusMode_desc" xml:space="preserve">
-    <value>Die finale Kachel im Klassik+-Modus erreicht</value>
+    <value>Finale Kachel im Klassisch+-Modus erreicht</value>
   </data>
   <data name="Ach_WinCompactMode_title" xml:space="preserve">
     <value>Klaustrophobie</value>
   </data>
   <data name="Ach_WinCompactMode_desc" xml:space="preserve">
-    <value>Die finale Kachel im Kompakt-Modus erreicht</value>
+    <value>Finale Kachel im Kompakt-Modus erreicht</value>
   </data>
   <data name="Ach_WinExtendedMode_title" xml:space="preserve">
     <value>Hardcore-Liebhaber</value>
   </data>
   <data name="Ach_WinExtendedMode_desc" xml:space="preserve">
-    <value>Die finale Kachel im Erweiterten Modus erreicht</value>
+    <value>Finale Kachel im Erweiterten Modus erreicht</value>
   </data>
   <data name="Ach_WinChillZoneMode_title" xml:space="preserve">
     <value>Stolzer Amateur</value>
   </data>
   <data name="Ach_WinChillZoneMode_desc" xml:space="preserve">
-    <value>Die finale Kachel im Chill-Zonen-Modus erreicht</value>
+    <value>Finale Kachel im Chill-Zone-Modus erreicht</value>
   </data>
   <data name="MatchaCreamTheme_title" xml:space="preserve">
     <value>Matcha-Creme</value>
@@ -637,37 +637,37 @@
     <value>Abgrund</value>
   </data>
   <data name="AbyssTheme_desc" xml:space="preserve">
-    <value>Tiefe Ozeanfahrt. Mach dich bereit für den Tauchgang!</value>
+    <value>Tiefseefahrt. Mach dich bereit für den Tauchgang!</value>
   </data>
   <data name="VaporWaveTheme_title" xml:space="preserve">
     <value>Vaporwave</value>
   </data>
   <data name="VaporWaveTheme_desc" xml:space="preserve">
-    <value>Vaporwave-Party. Fühl den Vibe</value>
+    <value>Vaporwave-Party. Spür den Vibe</value>
   </data>
   <data name="TheGreatCityTheme_title" xml:space="preserve">
-    <value>Velkoměsto</value>
+    <value>Die Großstadt</value>
   </data>
   <data name="TheGreatCityTheme_desc" xml:space="preserve">
-    <value>Die große Stadt für große Menschen</value>
+    <value>Die Großstadt für großartige Menschen</value>
   </data>
   <data name="NebulaTheme_title" xml:space="preserve">
     <value>Nebel</value>
   </data>
   <data name="NebulaTheme_desc" xml:space="preserve">
-    <value>Astronomisch cooles Design...</value>
+    <value>Ein astronomisch cooles Design...</value>
   </data>
   <data name="Cyberpunk2078Theme_title" xml:space="preserve">
     <value>Cyberpunk 2078</value>
   </data>
   <data name="Cyberpunk2078Theme_desc" xml:space="preserve">
-    <value>Wach auf, Samurai, wir müssen eine Kachel erreichen...</value>
+    <value>Wach auf, Samurai, wir haben eine Kachel zu erreichen...</value>
   </data>
   <data name="SakuraTheme_title" xml:space="preserve">
     <value>Sakura</value>
   </data>
   <data name="SakuraTheme_desc" xml:space="preserve">
-    <value>Die abgefallenen rosa Blätter erzählen die Geschichte</value>
+    <value>Die fallenden rosa Blätter erzählen die Geschichte</value>
   </data>
   <data name="BayHarbourTheme_title" xml:space="preserve">
     <value>Bay Harbour</value>
@@ -676,30 +676,30 @@
     <value>Heute ist die Nacht...</value>
   </data>
   <data name="TetrisNumberlessTheme_title" xml:space="preserve">
-    <value>Tetris (Ohne Zahlen)</value>
+    <value>Tetris (ohne Zahlen)</value>
   </data>
   <data name="TetrisNumberlessTheme_desc" xml:space="preserve">
-    <value>Stell dich auf die Probe in diesem farbassoziativen Design</value>
+    <value>Versuch dich an diesem farbassoziativen Design</value>
   </data>
   <data name="EmeraldBloomNumberlessTheme_title" xml:space="preserve">
-    <value>Smaragdblüte (Ohne Zahlen)</value>
+    <value>Smaragdblüte (ohne Zahlen)</value>
   </data>
   <data name="EmeraldBloomNumberlessTheme_desc" xml:space="preserve">
-    <value>Überziehe die Kachel mit Smaragd. Spüre den Luxus</value>
+    <value>Bedecke die Kachel mit Smaragd</value>
   </data>
   <data name="RarityNumberlessTheme_title" xml:space="preserve">
-    <value>Seltenheit (Ohne Zahlen)</value>
+    <value>Seltenheit (ohne Zahlen)</value>
   </data>
   <data name="RarityNumberlessTheme_desc" xml:space="preserve">
     <value>Gleiche Kacheln, andere Seltenheit, mach weiter</value>
   </data>
   <data name="MonochromeNumberlessTheme_title" xml:space="preserve">
-    <value>Monochrom (Ohne Zahlen)</value>
+    <value>Monochrom (ohne Zahlen)</value>
   </data>
   <data name="MonochromeNumberlessTheme_desc" xml:space="preserve">
-    <value>Von Weiß nach Schwarz, lass es geschehen</value>
+    <value>Von Weiß zu Schwarz, lass es geschehen</value>
   </data>
   <data name="ProfilePage_total_coins_label" xml:space="preserve">
-    <value>Münzen insgesamt:</value>
+    <value>Insgesamt verdiente Münzen: </value>
   </data>
 </root>
