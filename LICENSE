@@ -1,0 +1,51 @@
+RBSOFT NON-COMMERCIAL & NO-REDISTRIBUTION LICENSE
+
+Copyright (c) 2026 Denys Sheremet (@Denys-Sheremet) / RBsoft
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the “Software”), to view,
+download, run, and modify the Software solely for personal, educational,
+research, testing, and other non-commercial purposes.
+
+CONDITIONS & RESTRICTIONS
+
+1. Attribution
+   The above copyright notice and this license notice must be included in all
+   copies or substantial portions of the Software.
+
+2. Non-Commercial Use
+   Commercial use of the Software is strictly prohibited without prior
+   written permission from the copyright holder.
+   You may not sell, monetize, license, or use the Software for commercial
+   advantage or monetary compensation, including through advertisements,
+   in-app purchases, subscriptions, or paid services.
+
+3. No Public Redistribution
+   You may not publicly distribute or republish the Software or modified
+   versions of it without prior written permission from the copyright holder.
+   This includes publishing compiled builds such as APKs, executables, or
+   packages on application stores, file-sharing platforms, or other public
+   distribution services.
+
+4. GitHub Forks
+   Public forks created through GitHub’s standard forking functionality are
+   permitted for code review, learning, and portfolio purposes, provided that
+   they remain non-commercial and subject to this license.
+   A GitHub fork does not grant permission to distribute compiled builds,
+   publish the Software on application or game stores, commercially use the
+   Software, or redistribute it outside GitHub.
+
+5. Third-Party Components
+   This license applies only to code and materials owned by Denys Sheremet /
+   RBsoft. Third-party libraries, frameworks, assets, fonts, images, sounds,
+   and other components remain subject to their respective licenses.
+
+DISCLAIMER
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES, OR OTHER LIABILITY ARISING FROM, OUT OF, OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
