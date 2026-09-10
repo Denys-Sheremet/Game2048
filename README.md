@@ -33,7 +33,29 @@ This project represents fresh and reimagined version of classic puzzle game 2048
 
 <table>
   <tr>
-    
+    <td align="center" width="50%" valign="top">
+      <img src="docs/Game2048-ThemesScroll-2.gif" width="260" alt="Themes selection" />
+      <br>
+      <sub><em>Wide selection for customization</em></sub>
+    </td>
+    <td align="center" width="50%" valign="top">
+      <img src="docs/Game2048-ThemeChange-3.gif" width="260" alt="Theme apply" />
+      <br>
+      <sub><em>Different gaming experience</em></sub>
+    </td>
+  </tr>
+  
+  <tr>
+    <td align="center" width="50%" valign="top">
+      <img src="docs/Game2048-CompactMode-4.gif" width="260" alt="Compact mode" />
+      <br>
+      <sub><em>Compact 3x3 mode</em></sub>
+    </td>
+    <td align="center" width="50%" valign="top">
+      <img src="docs/Game2048-ChillZoneMode-5.gif" width="260" alt="Chill Zone Mode" />
+      <br>
+      <sub><em>Chill 5x5 mode</em></sub>
+    </td>
   </tr>
 </table>
 
