@@ -19,4 +19,24 @@ This project represents fresh and reimagined version of classic puzzle game 2048
 
 ## 2. Screenshots & Gameplay :video_game:
 
+<div align="center">
 
+<img src="docs/Game2048-Gameplay-1.gif" alt="Game 2048 Gameplay Preview" width="300" />
+
+<p><em>Dynamic tile animations, undo mechanics, and score tracking</em></p>
+
+<br>
+
+<details>
+<summary><b>More game previews</b></summary>
+<br>
+
+<table>
+  <tr>
+    
+  </tr>
+</table>
+
+</details>
+
+</div>
