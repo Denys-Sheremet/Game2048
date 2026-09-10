@@ -679,7 +679,7 @@
     <value>Тетріс (Без цифр)</value>
   </data>
   <data name="TetrisNumberlessTheme_desc" xml:space="preserve">
-    <value>Спробуйте свої сили в цій темі, що базується на колірних асоціаціях.</value>
+    <value>Спробуйте свої сили в колірних асоціаціях.</value>
   </data>
   <data name="EmeraldBloomNumberlessTheme_title" xml:space="preserve">
     <value>Смарагдовий цвіт (Без цифр)</value>
@@ -691,7 +691,7 @@
     <value>Рідкісність (Без цифр)</value>
   </data>
   <data name="RarityNumberlessTheme_desc" xml:space="preserve">
-    <value>Ті самі плитки, різна рідкісність, хай щастить</value>
+    <value>Ті самі плитки, різна рідкісність</value>
   </data>
   <data name="MonochromeNumberlessTheme_title" xml:space="preserve">
     <value>Монохром (Без цифр)</value>
