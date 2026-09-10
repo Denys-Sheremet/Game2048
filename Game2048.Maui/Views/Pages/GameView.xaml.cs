@@ -483,20 +483,6 @@ public partial class GameView : ContentPage
         return true;
     }
 
-    public async Task AnimateAndNavigateToThemesAsync()
-    {
-        await PageDisappearToAsync(-200);
-
-        if (BindingContext is GameViewModel vm)
-        {
-            if (vm.IsSettings)
-            {
-                vm.CloseSettingsCommand.Execute(null);
-            }
-        }
-        await Shell.Current.GoToAsync(nameof(ThemeSelectionView), false);
-    }
-
     public async Task AnimateAndNavigateToHowToAsync()
     {
         await PageDisappearToAsync(-200);

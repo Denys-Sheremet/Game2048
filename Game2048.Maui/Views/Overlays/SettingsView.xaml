@@ -51,14 +51,6 @@
                     Command="{Binding RestartCommand}">
             </Button>
 
-            <Button x:Name="ThemesBtn"
-                    Style="{StaticResource MainBtnStyle}"
-                    Text="{x:Static lang:AppResources.Settings_themes_btn_text}"
-                    FontFamily="MontBold"
-                    FontSize="20"
-                    Clicked="OnThemesClicked">
-            </Button>
-
             <Button x:Name="HowToBtn"
                     Style="{StaticResource MainBtnStyle}"
                     Text="{x:Static lang:AppResources.Settings_how_to_btn_text}"

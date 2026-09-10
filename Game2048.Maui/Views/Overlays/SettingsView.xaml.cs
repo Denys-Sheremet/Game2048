@@ -10,14 +10,6 @@ public partial class SettingsView : ContentView
 	{
 		InitializeComponent();
 	}
-    
-    private async void OnThemesClicked(object sender, EventArgs e)
-    {
-        if (Shell.Current.CurrentPage is GameView gamePage)
-        {
-            await gamePage.AnimateAndNavigateToThemesAsync();
-        }
-    }
 
     private async void OnHowToClicked(object sender, EventArgs e)
     {
