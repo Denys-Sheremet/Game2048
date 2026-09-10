@@ -46,6 +46,7 @@
                        VerticalOptions="Center"
                        FontFamily="RubikSemi"
                        FontSize="30"
+                       Margin="10, 0, 10, 0"
                        LineBreakMode="WordWrap"
                        VerticalTextAlignment="Center"
                        HorizontalTextAlignment="Center"
