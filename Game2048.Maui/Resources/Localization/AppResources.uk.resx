@@ -226,7 +226,7 @@
     <value>Темна тема</value>
   </data>
   <data name="GameModes_title" xml:space="preserve">
-    <value>ВИБІР РЕЖИМУ</value>
+    <value>РЕЖИМИ ГРИ</value>
   </data>
   <data name="GameOverOverlay_menu_btn_text" xml:space="preserve">
     <value>Меню</value>

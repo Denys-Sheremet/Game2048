@@ -226,7 +226,7 @@
     <value>Dark theme</value>
   </data>
   <data name="GameModes_title" xml:space="preserve">
-    <value>MODE SELECTION</value>
+    <value>GAME MODES</value>
   </data>
   <data name="GameOverOverlay_menu_btn_text" xml:space="preserve">
     <value>Menu</value>

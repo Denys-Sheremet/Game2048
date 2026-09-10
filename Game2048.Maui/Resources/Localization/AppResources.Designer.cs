@@ -988,7 +988,7 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на MODE SELECTION.
+        ///   Ищет локализованную строку, похожую на GAME MODES.
         /// </summary>
         public static string GameModes_title {
             get {
