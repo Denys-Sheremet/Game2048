@@ -101,3 +101,11 @@ Game2048/
         ├── Components/             # Reusable UI controls (e.g., Custom TileView)
         ├── Overlays/               # Custom modal popups (Game Over, Settings etc.)
         └── Pages/                  # Shell routing destinations (GamePage, MainMenu)
+```
+For more details on the architecture and game logic, explore the modules below:
+* **:brain: Game2048.Core:** Read about the core game mechanics and state management in [Core](./Game2048.Core/).
+* **:eye: Game2048.Maui:** Learn more about the UI layer and MVVM setup in [Maui](./Game2048.Maui/).
+
+Additionally, the repository includes:
+* **:test_tube: Unit tests:** Check out the [Core Test Project](./Game2048.Core.Test/) for coverage details.
+* **:computer: Console UI:** A runnable [console application](./Game2048.ConsoleApp/) built with [Spectre.Console](https://github.com/spectreconsole/spectre.console) for testing the game engine in a UI-agnostic environment.
