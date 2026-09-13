@@ -21,10 +21,10 @@
 		<Nullable>enable</Nullable>
 
 		<!-- Display name -->
-		<ApplicationTitle>Game2048.Maui</ApplicationTitle>
+		<ApplicationTitle>2048 Reimagined</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.rbsoft.game2048.maui</ApplicationId>
+		<ApplicationId>com.rbsoft.game2048</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -43,6 +43,13 @@
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-android|AnyCPU'">
 	  <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
 	  <AndroidEnableFastDeployment>true</AndroidEnableFastDeployment>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-android|AnyCPU'">
+		<!-- Google Play -->
+		<AndroidPackageFormat>aab</AndroidPackageFormat>
+		<AndroidEnableProfiler>false</AndroidEnableProfiler>
+		<RunAOTCompilation>false</RunAOTCompilation>
 	</PropertyGroup>
 	
 
