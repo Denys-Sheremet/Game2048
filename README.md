@@ -109,3 +109,52 @@ For more details on the architecture and game logic, explore the modules below:
 Additionally, the repository includes:
 * **:test_tube: Unit tests:** Check out the [Core Test Project](./Game2048.Core.Test/) for coverage details.
 * **:computer: Console UI:** A runnable [console application](./Game2048.ConsoleApp/) built with [Spectre.Console](https://github.com/spectreconsole/spectre.console) for testing the game engine in a UI-agnostic environment.
+
+## 5. Getting Started & Build Instructions :rocket:
+
+### :iphone: Android
+To test this project on Android OS, you can go two ways:
+* The easiest one is to [get it on Google Play]()
+* The second option is to compile the project in your own environment following those steps:
+
+#### Prerequisites
+* [.NET 10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
+* [Visual Studio 2026](https://visualstudio.microsoft.com/ru/downloads/) (recommended) or Visual Studio Code with .NET MAUI extension.
+* Android SDK (API 21+ / Target SDK 36).
+* Android phone or Android Emulator (API 21+, API 36 Recommended)
+
+#### Prepare phone
+
+* If you use a physical Android device, make sure you switch it to developer mode and turn on the USB installation.
+* Check out [this instructions](https://developer.android.com/studio/debug/dev-options?hl=en) for more details.
+* Connect the phone with USB cable to your PC and accept the storage access.
+
+#### Build & Run
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Denys-Sheremet/Game2048.git
+   cd Game2048/Game2048.Maui
+   ```
+
+2. **Install/Restore MAUI workloads**
+   ```bash
+   dotnet workload install maui
+   ```
+
+3. **Restore .NET NuGet packages**
+   ```bash
+   dotnet restore
+   ```
+
+4. **Deploy & run on a connected device / emulator**
+   Via CLI:
+   ```bash
+   dotnet build Game2048.Maui/Game2048.Maui.csproj -t:Run -f net10.0-android -c Release
+   ```
+   Via Visual Studio:
+   * Set Game2048.Maui as a Startup Project
+   * Set solution's configuration to Release
+   * Choose either local Android devices > your device or Android emulators > your emulator
+   * Click Run without debug or `Ctrl + F5`
+   
