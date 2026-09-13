@@ -708,4 +708,7 @@
   <data name="Settings_email_label" xml:space="preserve">
     <value>Contact us</value>
   </data>
+  <data name="Settings_privacy_label" xml:space="preserve">
+    <value>Privacy Policy</value>
+  </data>
 </root>

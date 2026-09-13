@@ -36,6 +36,7 @@ public partial class SettingsViewModel : BindableObject
         SelectLanguageCommand = new RelayCommand<string>(SelectLanguage);
         ConfirmAndRestartCommand = new AsyncRelayCommand(ConfirmAndRestart);
         GitHubLinkCommand = new AsyncRelayCommand(OpenGitHubLinkAsync);
+        PrivacyPolicyLinkCommand = new AsyncRelayCommand(OpenPrivacyPolicyLinkAsync);
         SendEmailCommand = new AsyncRelayCommand(SendEmailAsync);
 
         ResetToCurrentSettings();
@@ -87,6 +88,7 @@ public partial class SettingsViewModel : BindableObject
     public IRelayCommand SelectLanguageCommand { get; private set; }
     public IAsyncRelayCommand ConfirmAndRestartCommand { get; private set; }
     public IAsyncRelayCommand GitHubLinkCommand { get; private set; }
+    public IAsyncRelayCommand PrivacyPolicyLinkCommand { get; private set; }
     public IAsyncRelayCommand SendEmailCommand { get; private set; }
 
     private async Task SaveNameAsync() 
@@ -155,6 +157,18 @@ public partial class SettingsViewModel : BindableObject
         catch (Exception ex)
         {
             _logger.LogWarning(ex, "Failed to open GitHub link.");
+        }
+    }
+
+    private async Task OpenPrivacyPolicyLinkAsync()
+    {
+        try
+        {
+            await Browser.Default.OpenAsync(AppConstants.PrivacyPolicyUrl, BrowserLaunchMode.SystemPreferred);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Failed to open Privacy Policy link.");
         }
     }
 

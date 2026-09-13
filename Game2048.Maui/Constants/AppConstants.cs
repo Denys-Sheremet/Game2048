@@ -8,5 +8,7 @@ public static class AppConstants
 {
     public const string GitHubUrl = "https://github.com/Denys-Sheremet/Game2048";
 
+    public const string PrivacyPolicyUrl = "https://Denys-Sheremet.github.io/privacy-policy/Game2048";
+
     public const string SupportEmail = "support.rbsoft@gmail.com";
 }

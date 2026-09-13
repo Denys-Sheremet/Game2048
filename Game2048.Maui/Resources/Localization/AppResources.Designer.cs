@@ -1609,6 +1609,15 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Privacy Policy.
+        /// </summary>
+        public static string Settings_privacy_label {
+            get {
+                return ResourceManager.GetString("Settings_privacy_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Restart.
         /// </summary>
         public static string Settings_restart_btn_text {
