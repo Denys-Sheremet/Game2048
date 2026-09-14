@@ -102,13 +102,15 @@ Game2048/
         ├── Overlays/               # Custom modal popups (Game Over, Settings etc.)
         └── Pages/                  # Shell routing destinations (GamePage, MainMenu)
 ```
-For more details on the architecture and game logic, explore the modules below:
-* **:brain: Game2048.Core:** Read about the core game mechanics and state management in [Core](./Game2048.Core/).
-* **:eye: Game2048.Maui:** Learn more about the UI layer and MVVM setup in [Maui](./Game2048.Maui/).
+>[!TIP]
+>For more details on the architecture and game logic, explore the modules below:
+>* **:brain: Game2048.Core:** Read about the core game mechanics and state management in [Core](./Game2048.Core/).
+>* **:eye: Game2048.Maui:** Learn more about the UI layer and MVVM setup in [Maui](./Game2048.Maui/).
 
-Additionally, the repository includes:
-* **:test_tube: Unit tests:** Check out the [Core Test Project](./Game2048.Core.Test/) for coverage details.
-* **:computer: Console UI:** A runnable [console application](./Game2048.ConsoleApp/) built with [Spectre.Console](https://github.com/spectreconsole/spectre.console) for testing the game engine in a UI-agnostic environment.
+>[!NOTE]
+>Additionally, the repository includes:
+>* **:test_tube: Unit tests:** Check out the [Core Test Project](./Game2048.Core.Test/) for coverage details.
+>* **:computer: Console UI:** A runnable [console application](./Game2048.ConsoleApp/) built with [Spectre.Console](https://github.com/spectreconsole/spectre.console) for testing the game engine in a UI-agnostic environment.
 
 ## 5. Getting Started & Build Instructions :rocket:
 
@@ -127,8 +129,11 @@ To test this project on Android OS, you can go two ways:
 #### Prepare the phone
 
 * If you use a physical Android device, make sure you switch it to developer mode and turn on the USB installation.
-* Check out [this instructions](https://developer.android.com/studio/debug/dev-options?hl=en) for more details.
+>[!TIP]
+>Check out [this instructions](https://developer.android.com/studio/debug/dev-options?hl=en) for more details about developer mode on Android.
 * Connect the phone with USB cable to your PC and accept the storage access.
+> [!NOTE]
+> If you run it on Android Emulator make sure to enable hardware acceleration for smooth performance. Go to `Turn Windows features on or off` and enable `Hyper-V` or `Windows Hypervisor Platform` (depending on your CPU). Without this, the emulator might fail to start or run extremely slow. You might also need to turn this options in BIOS. More information can be found [here](https://developer.android.com/studio/run/emulator-acceleration?hl=en)
 
 #### Build & Run
 
@@ -153,6 +158,7 @@ To test this project on Android OS, you can go two ways:
    ```bash
    dotnet build Game2048.Maui/Game2048.Maui.csproj -t:Run -f net10.0-android -c Release
    ```
+   
    Via Visual Studio:
    * Set Game2048.Maui as a Startup Project
    * Set solution's configuration to Release
@@ -161,9 +167,9 @@ To test this project on Android OS, you can go two ways:
 
 ### :green_apple: iOS (Experimental)
 
-> **Note:** The iOS build is currently unverified. The codebase is fully cross-platform and ready for Apple devices, but this target has not been successfully compiled and tested locally yet due to environment constraints.
-
-If you have a macOS environment with Xcode configured, you can build the project using the standard .NET MAUI workflow:
+>[!IMPORTANT]
+>The iOS build is currently unverified. The codebase is fully cross-platform and ready for Apple devices, but this target has not been successfully compiled and tested locally yet due to environment constraints.
+>If you have a macOS environment with Xcode configured, you can build the project using the standard .NET MAUI workflow.
 
 #### Prerequisites
 
@@ -178,7 +184,8 @@ If you have a macOS environment with Xcode configured, you can build the project
 * Connect your iPhone to the Mac via USB cable and tap **Trust** on the device screen.
 * Open Xcode, navigate to `Window > Devices and Simulators`, and wait for your device to be recognized and paired. 
 * Enable **Developer Mode** on your iPhone (`Settings > Privacy & Security > Developer Mode`) and restart the device when prompted.
-* **Note:** If the Developer Mode option is missing in settings, create a blank dummy project in Xcode, select your iPhone as the target destination, and hit "Run". This will forcefully trigger the option to appear.
+>[!TIP]
+>If the Developer Mode option is missing in settings, create a blank dummy project in Xcode, select your iPhone as the target destination, and hit "Run". This will forcefully trigger the option to appear.
 * **Trust the Developer:** If you are using a free Apple Developer account, iOS will block the app from launching the first time. Go to `Settings > General > VPN & Device Management` on your iPhone, tap your Apple ID under "Developer App", and select **Trust**.
 
 #### Build & Run
@@ -200,6 +207,92 @@ If you have a macOS environment with Xcode configured, you can build the project
    ```
 
 4. **Deploy & run on a connected device / emulator**
+   Via CLI:
    ```bash
    dotnet build Game2048.Maui/Game2048.Maui.csproj -t:Run -f net10.0-ios -c Release
    ```
+
+   Via Visual Studio Code:
+   * Ensure the .NET MAUI extension is installed
+   * Click the project selector `{}` in the bottom status bar to choose Game2048.Maui and target framework `net10.0-ios`
+   * Click the Device Selector in the status bar to choose your emulator or local device
+   * Go to `Run > Run Without Debugging` or press `Fn + Control + F5`
+>[!NOTE]
+>Official MAUI for iOS guide from Microsoft is [here](https://learn.microsoft.com/en-us/dotnet/maui/ios/cli?view=net-maui-10.0)
+
+### :desktop_computer: Windows
+
+>[!IMPORTANT]
+>This application is fully functional and runnable on Windows, however, as it is mainly a mobile game project some of the UI elements might be showing wrong. It will be fixed in the next updates.
+
+To run the application natively on Windows as a WinUI 3 desktop app, follow these steps:
+
+#### Prerequisites
+
+* Windows 10 or Windows 11
+* [.NET 10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
+* [Visual Studio 2026](https://visualstudio.microsoft.com/ru/downloads/) with the **.NET Multi-platform App UI development** workload installed.
+
+#### Prepare the OS
+
+* You must enable Developer Mode on your Windows machine to build and sideload the app.
+* Go to **Settings > Privacy & security > For developers** and toggle on **Developer Mode**.
+
+#### Build & Run
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/Denys-Sheremet/Game2048.git](https://github.com/Denys-Sheremet/Game2048.git)
+   cd Game2048/Game2048.Maui
+   ```
+
+2. **Install/Restore MAUI workloads**
+   ```bash
+   dotnet workload install maui-windows
+   ```
+
+3. **Restore .NET NuGet packages**
+   ```bash
+   dotnet restore
+   ```
+
+4. **Deploy & run natively**
+   
+   Via CLI (Make sure to match the target framework version to your project settings):
+   ```bash
+   dotnet build Game2048.Maui/Game2048.Maui.csproj -t:Run -f net10.0-windows10.0.19041.0 -c Release
+   ```
+   
+   Via Visual Studio:
+   * Set `Game2048.Maui` as a Startup Project
+   * Set solution's configuration to **Release**
+   * In the debug dropdown, select **Windows Machine**
+   * Click Run without debug or `Ctrl + F5`
+
+## 6. Dependencies & Credits :package:
+
+This project is made possible thanks to the following open-source libraries and resources:
+
+* [CommunityToolkit.Mvvm](https://github.com/CommunityToolkit/dotnet) - Fast, modular MVVM framework.
+* [Spectre.Console](https://github.com/spectreconsole/spectre.console) - Used for the UI-agnostic console testing app.
+
+## 7. Contributing :handshake:
+
+This repository serves primarily as a personal portfolio project to demonstrate .NET MAUI development, MVVM, and Clean Architecture principles. 
+While I am not actively seeking major feature contributions, feedback, code reviews, and bug reports are highly appreciated! If you spot an issue, find a bug, or have an architectural suggestion, feel free to open an issue or submit a pull request.
+
+## 8. License :memo:
+
+This project is distributed under a custom license. Please refer to the `LICENSE` file located in the root directory of this repository for full details and terms of use.
+
+## 9. Author & Contact :mailbox_with_mail:
+
+Developed by **Denys Sheremet** ([@Denys-Sheremet](https://github.com/Denys-Sheremet))  
+Published under the studio name **RBsoft**
+
+* **Bug Reports & Feedback:** [Open an issue](https://github.com/Denys-Sheremet/Game2048/issues)
+
+---
+<div align="center">
+  <p>If you found this project interesting or helpful, please consider giving it a :star:!</p>
+</div>
