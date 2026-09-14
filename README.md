@@ -118,12 +118,13 @@ To test this project on Android OS, you can go two ways:
 * The second option is to compile the project in your own environment following those steps:
 
 #### Prerequisites
+
 * [.NET 10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
 * [Visual Studio 2026](https://visualstudio.microsoft.com/ru/downloads/) (recommended) or Visual Studio Code with .NET MAUI extension.
 * Android SDK (API 21+ / Target SDK 36).
 * Android phone or Android Emulator (API 21+, API 36 Recommended)
 
-#### Prepare phone
+#### Prepare the phone
 
 * If you use a physical Android device, make sure you switch it to developer mode and turn on the USB installation.
 * Check out [this instructions](https://developer.android.com/studio/debug/dev-options?hl=en) for more details.
@@ -157,4 +158,48 @@ To test this project on Android OS, you can go two ways:
    * Set solution's configuration to Release
    * Choose either local Android devices > your device or Android emulators > your emulator
    * Click Run without debug or `Ctrl + F5`
-   
+
+### :green_apple: iOS (Experimental)
+
+> **Note:** The iOS build is currently unverified. The codebase is fully cross-platform and ready for Apple devices, but this target has not been successfully compiled and tested locally yet due to environment constraints.
+
+If you have a macOS environment with Xcode configured, you can build the project using the standard .NET MAUI workflow:
+
+#### Prerequisites
+
+* macOS machine (MacBook, Mac Mini, etc.)
+* [.NET 10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
+* Xcode (latest version available on the Mac App Store)
+* Visual Studio Code with .NET MAUI extension or JetBrains Rider
+* Apple Developer Account (free or paid) for provisioning profiles
+
+#### Prepare phone (Physical Device)
+
+* Connect your iPhone to the Mac via USB cable and tap **Trust** on the device screen.
+* Open Xcode, navigate to `Window > Devices and Simulators`, and wait for your device to be recognized and paired. 
+* Enable **Developer Mode** on your iPhone (`Settings > Privacy & Security > Developer Mode`) and restart the device when prompted.
+* **Note:** If the Developer Mode option is missing in settings, create a blank dummy project in Xcode, select your iPhone as the target destination, and hit "Run". This will forcefully trigger the option to appear.
+* **Trust the Developer:** If you are using a free Apple Developer account, iOS will block the app from launching the first time. Go to `Settings > General > VPN & Device Management` on your iPhone, tap your Apple ID under "Developer App", and select **Trust**.
+
+#### Build & Run
+
+1. **Clone the repository:**
+  ```bash
+  git clone https://github.com/Denys-Sheremet/Game2048.git
+  cd Game2048/Game2048.Maui
+  ```
+
+2. **Install/Restore MAUI workloads**
+   ```bash
+   dotnet workload install maui-ios
+   ```
+
+3. **Restore .NET NuGet packages**
+   ```bash
+   dotnet restore
+   ```
+
+4. **Deploy & run on a connected device / emulator**
+   ```bash
+   dotnet build Game2048.Maui/Game2048.Maui.csproj -t:Run -f net10.0-ios -c Release
+   ```
