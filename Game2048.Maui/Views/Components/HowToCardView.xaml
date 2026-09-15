@@ -5,9 +5,9 @@
              x:Class="Game2048.Maui.Views.Components.HowToCardView"
              x:DataType="item:HowToCardViewModel">
 
-    <Grid RowDefinitions="*, 9*, *"
+    <Grid RowDefinitions="Auto, *, Auto"
           RowSpacing="20"
-          HorizontalOptions="Center"
+          HorizontalOptions="Fill"
           VerticalOptions="Center">
 
         <Label Grid.Row="0"
@@ -39,7 +39,6 @@
                FontSize="18"
                FontFamily="RubikSemi"
                Margin="10, 0"
-               HeightRequest="75"
                TextColor="{DynamicResource SecondaryTextColor}" />
     </Grid>
     

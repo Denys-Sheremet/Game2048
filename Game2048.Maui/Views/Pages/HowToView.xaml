@@ -16,7 +16,7 @@
           Background="{DynamicResource PageBackgroundColor}"
           IsVisible="False">
 
-        <Grid RowDefinitions="*, 10*, *"
+        <Grid RowDefinitions="Auto, *, Auto"
               HorizontalOptions="Fill"
               VerticalOptions="Fill">
             

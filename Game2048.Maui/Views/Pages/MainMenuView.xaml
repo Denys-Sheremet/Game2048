@@ -4,6 +4,7 @@
              x:Class="Game2048.Maui.Views.Pages.MainMenuView"
              xmlns:vm="clr-namespace:Game2048.Maui.ViewModels"
              xmlns:comp="clr-namespace:Game2048.Maui.Views.Components"
+             xmlns:const="clr-namespace:Game2048.Maui.Constants"
              xmlns:lang="clr-namespace:Game2048.Maui.Resources.Localization"
              x:DataType="vm:MainMenuViewModel"
              Shell.NavBarIsVisible="False"
@@ -130,12 +131,21 @@
                        Source="rbsoft_logo.png"
                        HeightRequest="60"/>
 
-                <Label Text="{x:Static lang:AppResources.Menu_version_text}"
-                       FontFamily="MontSemi"
-                       FontSize="14"
-                       HorizontalOptions="Center"
-                       TextColor="{DynamicResource VersionTextColor}"
-                       Opacity="0.6"/> 
+                <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Start" Spacing="5">
+                    <Label Text="{x:Static lang:AppResources.Menu_version_text}"
+                           FontFamily="MontSemi"
+                           FontSize="14"
+                           HorizontalOptions="Center"
+                           TextColor="{DynamicResource VersionTextColor}"
+                           Opacity="0.6"/>
+                    <Label Text="{x:Static const:AppConstants.VersionString}"
+                           FontFamily="MontSemi"
+                           FontSize="14"
+                           HorizontalOptions="Center"
+                           TextColor="{DynamicResource VersionTextColor}"
+                           Opacity="0.6"/>
+                </HorizontalStackLayout>
+                
             </VerticalStackLayout>
         
 

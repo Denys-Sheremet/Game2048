@@ -265,7 +265,7 @@
     <value>ОПЦІЇ</value>
   </data>
   <data name="Menu_version_text" xml:space="preserve">
-    <value>вер. 1.0</value>
+    <value>вер.</value>
   </data>
   <data name="NatureTheme_desc" xml:space="preserve">
     <value>Синьо-зелена тема, природні кольори</value>
@@ -463,7 +463,7 @@
     <value>Проведи по екрану, щоб рухати плитки по дошці</value>
   </data>
   <data name="HowToCard_2_title" xml:space="preserve">
-    <value>З'єднюй плитки</value>
+    <value>З'єднуй плитки</value>
   </data>
   <data name="HowToCard_2_desc" xml:space="preserve">
     <value>Плитки однакового номіналу сумуються у нову з вищим номіналом</value>

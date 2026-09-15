@@ -17,14 +17,14 @@
         
     
         <Grid x:Name="PageGrid" 
-              RowDefinitions="2*, 3*, *"
+              RowDefinitions="Auto, *, Auto"
               IsVisible="False">
 
             <!-- Info block with score -->
             <Grid x:Name="InfoBlockWrapper" 
                   Grid.Row="0" 
                   ColumnDefinitions="*, *, *, *" 
-                  RowDefinitions="*, 2.4*" 
+                  RowDefinitions="Auto, Auto" 
                   ColumnSpacing="20" 
                   Padding="15"
                   HorizontalOptions="Fill"
@@ -95,7 +95,7 @@
                   Grid.Row="2" 
                   ColumnDefinitions="*, *" 
                   ColumnSpacing="20" 
-                  Padding="15, 40" 
+                  Padding="15, 20" 
                   VerticalOptions="End"
                   IsEnabled="{Binding IsActiveGame}">
 

@@ -265,7 +265,7 @@
     <value>EINSTELLUNGEN</value>
   </data>
   <data name="Menu_version_text" xml:space="preserve">
-    <value>Ver. 1.0</value>
+    <value>Ver.</value>
   </data>
   <data name="NatureTheme_desc" xml:space="preserve">
     <value>Natur-Design in Grün und Blau</value>

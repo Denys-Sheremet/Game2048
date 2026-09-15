@@ -1213,7 +1213,7 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на ver. 1.0.
+        ///   Ищет локализованную строку, похожую на ver..
         /// </summary>
         public static string Menu_version_text {
             get {
