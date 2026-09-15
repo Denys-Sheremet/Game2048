@@ -17,4 +17,32 @@ public static class GameModeTypeExtension
         string key = $"GameMode_{type}_desc";
         return AppResources.ResourceManager.GetString(key, AppResources.Culture) ?? type.ToString();
     }
+
+    public static List<string> GetCharacteristics(this GameModeType type)
+    {
+        List<string> keys = new()
+        {
+            $"GameMode_char_{type}_difficulty",
+            $"GameMode_char_{type}_grid_size",
+            $"GameMode_char_{type}_max_value",
+            $"GameMode_char_{type}_extension_possible",
+            $"GameMode_char_{type}_spawn_type",
+            $"GameMode_char_{type}_undo_available"
+        };
+
+        List<string> characteristics = new();
+
+        foreach (var key in keys)
+        {
+            string value = AppResources.ResourceManager.GetString(key, AppResources.Culture) ?? type.ToString();
+            characteristics.Add(value);
+        }
+
+        if (characteristics.Count == 0)
+        {
+            characteristics.Add(type.ToString());
+        }
+
+        return characteristics;
+    }
 }

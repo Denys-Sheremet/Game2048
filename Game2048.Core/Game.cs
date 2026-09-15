@@ -330,11 +330,14 @@ public class Game
         IsGameOver = false;
     }
 
-    public void ColdLoadFromSave(StateSnapshot state, List<StateSnapshot>? history)
+    public void ColdLoadFromSave(StateSnapshot state, List<StateSnapshot>? history, int maxTileValue = 2048)
     {
         if (Grid.Height != state.Height || Grid.Width != state.Width) 
             throw new InvalidDataException("Save data is corrupted");
         Clear();
+
+        SetMaxValue(maxTileValue);
+
         Grid.ColdRestore(state);
         for (int i = 0; i < Grid.Count; i++)
         {
@@ -342,5 +345,15 @@ public class Game
         }
         HistoryColdRestore(history);
         _nextTileId = state.NextId;
+
+        if (Grid.CheckForValue(_maxTileValue))
+        {
+            IsVictory = true;
+        }
+
+        else if (Grid.GetEmptyCells().Count == 0 && !CanMergeHorizontal() && !CanMergeVertical())
+        {
+            IsGameOver = true;
+        }
     }
 }

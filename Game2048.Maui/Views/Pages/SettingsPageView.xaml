@@ -18,7 +18,8 @@
               HorizontalOptions="Fill"
               ZIndex="10">
 
-            <ScrollView>
+            <ScrollView HorizontalScrollBarVisibility="Never"
+                        VerticalScrollBarVisibility="Never">
                 <VerticalStackLayout Spacing="25" Padding="10">
                     
                         <Grid ColumnDefinitions="*, 6*, *" Grid.Row="0" Grid.Column="0" Padding="0, 20, 0, 5">

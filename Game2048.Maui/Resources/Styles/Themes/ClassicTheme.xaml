@@ -130,12 +130,12 @@
     <Color x:Key="Tile2048BorderColor">#FFE773</Color>
 
     <LinearGradientBrush x:Key="TileExtraBGColor" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#4A413A" Offset="0.0"/>
-        <GradientStop Color="#3C332C" Offset="0.6"/>
-        <GradientStop Color="#292019" Offset="1.0"/>
+        <GradientStop Color="#E53935" Offset="0.0"/>
+        <GradientStop Color="#FF9800" Offset="0.6"/>
+        <GradientStop Color="#FFEB3B" Offset="1.0"/>
     </LinearGradientBrush>
     <Color x:Key="TileExtraTextColor">#FFFFFF</Color>
-    <Color x:Key="TileExtraBorderColor">#6E6157</Color>
+    <Color x:Key="TileExtraBorderColor">#B71C1C</Color>
 
     <!-- Main Buttons -->
     <LinearGradientBrush x:Key="MainButtonBGColor" StartPoint="0,0" EndPoint="0,1">

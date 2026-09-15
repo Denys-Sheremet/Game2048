@@ -56,7 +56,9 @@
                             x:Name="ThemeCollectionView"
                             ItemsSource="{Binding ThemeItems}"
                             SelectionMode="None"
-                            ZIndex="9">
+                            ZIndex="9"
+                            HorizontalScrollBarVisibility="Never"
+                            VerticalScrollBarVisibility="Never">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="5" />
                 </CollectionView.ItemsLayout>

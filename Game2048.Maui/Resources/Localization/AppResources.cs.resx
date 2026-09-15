@@ -711,4 +711,94 @@
   <data name="Settings_privacy_label" xml:space="preserve">
     <value>Privacy Policy</value>
   </data>
+  <data name="GameMode_char_Classic_difficulty" xml:space="preserve">
+    <value>Obtížnost: Těžká</value>
+  </data>
+  <data name="GameMode_char_ClassicPlus_difficulty" xml:space="preserve">
+    <value>Obtížnost: Normální</value>
+  </data>
+  <data name="GameMode_char_Compact_difficulty" xml:space="preserve">
+    <value>Obtížnost: Těžká</value>
+  </data>
+  <data name="GameMode_char_Extended_difficulty" xml:space="preserve">
+    <value>Obtížnost: Velmi těžká</value>
+  </data>
+  <data name="GameMode_char_ChillZone_difficulty" xml:space="preserve">
+    <value>Obtížnost: Lehká</value>
+  </data>
+  <data name="GameMode_char_Classic_grid_size" xml:space="preserve">
+    <value>Velikost: 4x4</value>
+  </data>
+  <data name="GameMode_char_ClassicPlus_grid_size" xml:space="preserve">
+    <value>Velikost: 4x4</value>
+  </data>
+  <data name="GameMode_char_Compact_grid_size" xml:space="preserve">
+    <value>Velikost: 3x3</value>
+  </data>
+  <data name="GameMode_char_Extended_grid_size" xml:space="preserve">
+    <value>Velikost: 5x5</value>
+  </data>
+  <data name="GameMode_char_ChillZone_grid_size" xml:space="preserve">
+    <value>Velikost: 5x5</value>
+  </data>
+  <data name="GameMode_char_Classic_max_value" xml:space="preserve">
+    <value>Cílová dlaždice: 2048</value>
+  </data>
+  <data name="GameMode_char_ClassicPlus_max_value" xml:space="preserve">
+    <value>Cílová dlaždice: 2048</value>
+  </data>
+  <data name="GameMode_char_Compact_max_value" xml:space="preserve">
+    <value>Cílová dlaždice: 1024</value>
+  </data>
+  <data name="GameMode_char_ChillZone_max_value" xml:space="preserve">
+    <value>Cílová dlaždice: 4096</value>
+  </data>
+  <data name="GameMode_char_Extended_max_value" xml:space="preserve">
+    <value>Cílová dlaždice: 4096</value>
+  </data>
+  <data name="GameMode_char_Classic_extension_possible" xml:space="preserve">
+    <value>Lze pokračovat: Ano</value>
+  </data>
+  <data name="GameMode_char_ClassicPlus_extension_possible" xml:space="preserve">
+    <value>Lze pokračovat: Ano</value>
+  </data>
+  <data name="GameMode_char_Compact_extension_possible" xml:space="preserve">
+    <value>Lze pokračovat: Ne</value>
+  </data>
+  <data name="GameMode_char_ChillZone_extension_possible" xml:space="preserve">
+    <value>Lze pokračovat: Ne</value>
+  </data>
+  <data name="GameMode_char_Extended_extension_possible" xml:space="preserve">
+    <value>Lze pokračovat: Ne</value>
+  </data>
+  <data name="GameMode_char_Classic_spawn_type" xml:space="preserve">
+    <value>Nové dlaždice: 1 za tah</value>
+  </data>
+  <data name="GameMode_char_ClassicPlus_spawn_type" xml:space="preserve">
+    <value>Nové dlaždice: 1 za tah</value>
+  </data>
+  <data name="GameMode_char_Compact_spawn_type" xml:space="preserve">
+    <value>Nové dlaždice: 0,5 za tah</value>
+  </data>
+  <data name="GameMode_char_ChillZone_spawn_type" xml:space="preserve">
+    <value>Nové dlaždice: 2 za tah</value>
+  </data>
+  <data name="GameMode_char_Extended_spawn_type" xml:space="preserve">
+    <value>Nové dlaždice: 2 za tah</value>
+  </data>
+  <data name="GameMode_char_Classic_undo_available" xml:space="preserve">
+    <value>Krok zpět: Vypnuto</value>
+  </data>
+  <data name="GameMode_char_ClassicPlus_undo_available" xml:space="preserve">
+    <value>Krok zpět: Zapnuto</value>
+  </data>
+  <data name="GameMode_char_Compact_undo_available" xml:space="preserve">
+    <value>Krok zpět: Zapnuto</value>
+  </data>
+  <data name="GameMode_char_ChillZone_undo_available" xml:space="preserve">
+    <value>Krok zpět: Zapnuto</value>
+  </data>
+  <data name="GameMode_char_Extended_undo_available" xml:space="preserve">
+    <value>Krok zpět: Vypnuto</value>
+  </data>
 </root>

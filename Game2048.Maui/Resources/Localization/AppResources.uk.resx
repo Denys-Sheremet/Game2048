@@ -711,4 +711,94 @@
   <data name="Settings_privacy_label" xml:space="preserve">
     <value>Privacy Policy</value>
   </data>
+  <data name="GameMode_char_Classic_difficulty" xml:space="preserve">
+    <value>Складність: Складно</value>
+  </data>
+  <data name="GameMode_char_ClassicPlus_difficulty" xml:space="preserve">
+    <value>Складність: Нормально</value>
+  </data>
+  <data name="GameMode_char_Compact_difficulty" xml:space="preserve">
+    <value>Складність: Складно</value>
+  </data>
+  <data name="GameMode_char_Extended_difficulty" xml:space="preserve">
+    <value>Складність: Дуже складно</value>
+  </data>
+  <data name="GameMode_char_ChillZone_difficulty" xml:space="preserve">
+    <value>Складність: Легко</value>
+  </data>
+  <data name="GameMode_char_Classic_grid_size" xml:space="preserve">
+    <value>Розмір поля: 4x4</value>
+  </data>
+  <data name="GameMode_char_ClassicPlus_grid_size" xml:space="preserve">
+    <value>Розмір поля: 4x4</value>
+  </data>
+  <data name="GameMode_char_Compact_grid_size" xml:space="preserve">
+    <value>Розмір поля: 3x3</value>
+  </data>
+  <data name="GameMode_char_Extended_grid_size" xml:space="preserve">
+    <value>Розмір поля: 5x5</value>
+  </data>
+  <data name="GameMode_char_ChillZone_grid_size" xml:space="preserve">
+    <value>Розмір поля: 5x5</value>
+  </data>
+  <data name="GameMode_char_Classic_max_value" xml:space="preserve">
+    <value>Фінальна плитка: 2048</value>
+  </data>
+  <data name="GameMode_char_ClassicPlus_max_value" xml:space="preserve">
+    <value>Фінальна плитка: 2048</value>
+  </data>
+  <data name="GameMode_char_Compact_max_value" xml:space="preserve">
+    <value>Фінальна плитка: 1024</value>
+  </data>
+  <data name="GameMode_char_ChillZone_max_value" xml:space="preserve">
+    <value>Фінальна плитка: 4096</value>
+  </data>
+  <data name="GameMode_char_Extended_max_value" xml:space="preserve">
+    <value>Фінальна плитка: 4096</value>
+  </data>
+  <data name="GameMode_char_Classic_extension_possible" xml:space="preserve">
+    <value>Можна продовжити: Так</value>
+  </data>
+  <data name="GameMode_char_ClassicPlus_extension_possible" xml:space="preserve">
+    <value>Можна продовжити: Так</value>
+  </data>
+  <data name="GameMode_char_Compact_extension_possible" xml:space="preserve">
+    <value>Можна продовжити: Ні</value>
+  </data>
+  <data name="GameMode_char_ChillZone_extension_possible" xml:space="preserve">
+    <value>Можна продовжити: Ні</value>
+  </data>
+  <data name="GameMode_char_Extended_extension_possible" xml:space="preserve">
+    <value>Можна продовжити: Ні</value>
+  </data>
+  <data name="GameMode_char_Classic_spawn_type" xml:space="preserve">
+    <value>Поява плиток: 1 за хід</value>
+  </data>
+  <data name="GameMode_char_ClassicPlus_spawn_type" xml:space="preserve">
+    <value>Поява плиток: 1 за хід</value>
+  </data>
+  <data name="GameMode_char_Compact_spawn_type" xml:space="preserve">
+    <value>Поява плиток: 0.5 за хід</value>
+  </data>
+  <data name="GameMode_char_ChillZone_spawn_type" xml:space="preserve">
+    <value>Поява плиток: 2 за хід</value>
+  </data>
+  <data name="GameMode_char_Extended_spawn_type" xml:space="preserve">
+    <value>Поява плиток: 2 за хід</value>
+  </data>
+  <data name="GameMode_char_Classic_undo_available" xml:space="preserve">
+    <value>Скасування ходу: Ні</value>
+  </data>
+  <data name="GameMode_char_ClassicPlus_undo_available" xml:space="preserve">
+    <value>Скасування ходу: Так</value>
+  </data>
+  <data name="GameMode_char_Compact_undo_available" xml:space="preserve">
+    <value>Скасування ходу: Так</value>
+  </data>
+  <data name="GameMode_char_ChillZone_undo_available" xml:space="preserve">
+    <value>Скасування ходу: Так</value>
+  </data>
+  <data name="GameMode_char_Extended_undo_available" xml:space="preserve">
+    <value>Скасування ходу: Ні</value>
+  </data>
 </root>

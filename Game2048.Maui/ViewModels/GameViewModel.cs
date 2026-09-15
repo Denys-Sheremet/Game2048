@@ -256,7 +256,22 @@ public partial class GameViewModel : BindableObject, IDisposable
         var save = _profileManager.LoadCurrentGame(gameMode);
         if (save is not null)
         {
-            _gameCore.ColdLoadFromSave(save.LastState, save.History);
+            int activeLimit = save.MaxTileValue ?? _gameConfig.TargetValue;
+            _gameCore.ColdLoadFromSave(save.LastState, save.History, activeLimit);
+            if (save.MaxTileValue.HasValue && save.MaxTileValue > _gameConfig.TargetValue)
+            {
+                IsExtendedAllowed = false;
+            }
+
+            if (_gameCore.IsVictory)
+            {
+                SetVictoryState();
+            }
+            else if (_gameCore.IsGameOver)
+            {
+                SetGameOverState();
+            }
+
             LoadBestScore();
             return true;
         }
@@ -530,7 +545,18 @@ public partial class GameViewModel : BindableObject, IDisposable
 
             _gameCore.Extend(4096);
 
+            var save = _profileManager.LoadCurrentGame(_gameConfig.GameMode);
+            if (save is not null)
+            {
+                save.MaxTileValue = 4096;
+            }
+
+            IsVictory = false;
+            IsGameOver = false;
+
             SetActiveState();
+
+            await _profileManager.SaveCurrentProfileAsync();
         });
     }
 

@@ -898,6 +898,276 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Difficulty: Easy.
+        /// </summary>
+        public static string GameMode_char_ChillZone_difficulty {
+            get {
+                return ResourceManager.GetString("GameMode_char_ChillZone_difficulty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Can be extended: No.
+        /// </summary>
+        public static string GameMode_char_ChillZone_extension_possible {
+            get {
+                return ResourceManager.GetString("GameMode_char_ChillZone_extension_possible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Size: 5x5.
+        /// </summary>
+        public static string GameMode_char_ChillZone_grid_size {
+            get {
+                return ResourceManager.GetString("GameMode_char_ChillZone_grid_size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Final tile: 4096.
+        /// </summary>
+        public static string GameMode_char_ChillZone_max_value {
+            get {
+                return ResourceManager.GetString("GameMode_char_ChillZone_max_value", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Spawn speed: 2 per move.
+        /// </summary>
+        public static string GameMode_char_ChillZone_spawn_type {
+            get {
+                return ResourceManager.GetString("GameMode_char_ChillZone_spawn_type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Undo: Enabled.
+        /// </summary>
+        public static string GameMode_char_ChillZone_undo_available {
+            get {
+                return ResourceManager.GetString("GameMode_char_ChillZone_undo_available", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Difficulty: Hard.
+        /// </summary>
+        public static string GameMode_char_Classic_difficulty {
+            get {
+                return ResourceManager.GetString("GameMode_char_Classic_difficulty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Can be extended: Yes.
+        /// </summary>
+        public static string GameMode_char_Classic_extension_possible {
+            get {
+                return ResourceManager.GetString("GameMode_char_Classic_extension_possible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Size: 4x4.
+        /// </summary>
+        public static string GameMode_char_Classic_grid_size {
+            get {
+                return ResourceManager.GetString("GameMode_char_Classic_grid_size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Final tile: 2048.
+        /// </summary>
+        public static string GameMode_char_Classic_max_value {
+            get {
+                return ResourceManager.GetString("GameMode_char_Classic_max_value", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Spawn speed: 1 per move.
+        /// </summary>
+        public static string GameMode_char_Classic_spawn_type {
+            get {
+                return ResourceManager.GetString("GameMode_char_Classic_spawn_type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Undo: Disabled.
+        /// </summary>
+        public static string GameMode_char_Classic_undo_available {
+            get {
+                return ResourceManager.GetString("GameMode_char_Classic_undo_available", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Difficulty: Normal.
+        /// </summary>
+        public static string GameMode_char_ClassicPlus_difficulty {
+            get {
+                return ResourceManager.GetString("GameMode_char_ClassicPlus_difficulty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Can be extended: Yes.
+        /// </summary>
+        public static string GameMode_char_ClassicPlus_extension_possible {
+            get {
+                return ResourceManager.GetString("GameMode_char_ClassicPlus_extension_possible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Size: 4x4.
+        /// </summary>
+        public static string GameMode_char_ClassicPlus_grid_size {
+            get {
+                return ResourceManager.GetString("GameMode_char_ClassicPlus_grid_size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Final tile: 2048.
+        /// </summary>
+        public static string GameMode_char_ClassicPlus_max_value {
+            get {
+                return ResourceManager.GetString("GameMode_char_ClassicPlus_max_value", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Spawn speed: 1 per move.
+        /// </summary>
+        public static string GameMode_char_ClassicPlus_spawn_type {
+            get {
+                return ResourceManager.GetString("GameMode_char_ClassicPlus_spawn_type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Undo: Enabled.
+        /// </summary>
+        public static string GameMode_char_ClassicPlus_undo_available {
+            get {
+                return ResourceManager.GetString("GameMode_char_ClassicPlus_undo_available", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Difficulty: Hard.
+        /// </summary>
+        public static string GameMode_char_Compact_difficulty {
+            get {
+                return ResourceManager.GetString("GameMode_char_Compact_difficulty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Can be extended: No.
+        /// </summary>
+        public static string GameMode_char_Compact_extension_possible {
+            get {
+                return ResourceManager.GetString("GameMode_char_Compact_extension_possible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Size: 3x3.
+        /// </summary>
+        public static string GameMode_char_Compact_grid_size {
+            get {
+                return ResourceManager.GetString("GameMode_char_Compact_grid_size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Final tile: 1024.
+        /// </summary>
+        public static string GameMode_char_Compact_max_value {
+            get {
+                return ResourceManager.GetString("GameMode_char_Compact_max_value", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Spawn speed: 0.5 per move.
+        /// </summary>
+        public static string GameMode_char_Compact_spawn_type {
+            get {
+                return ResourceManager.GetString("GameMode_char_Compact_spawn_type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Undo: Enabled.
+        /// </summary>
+        public static string GameMode_char_Compact_undo_available {
+            get {
+                return ResourceManager.GetString("GameMode_char_Compact_undo_available", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Difficulty: Very hard.
+        /// </summary>
+        public static string GameMode_char_Extended_difficulty {
+            get {
+                return ResourceManager.GetString("GameMode_char_Extended_difficulty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Can be extended: No.
+        /// </summary>
+        public static string GameMode_char_Extended_extension_possible {
+            get {
+                return ResourceManager.GetString("GameMode_char_Extended_extension_possible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Size: 5x5.
+        /// </summary>
+        public static string GameMode_char_Extended_grid_size {
+            get {
+                return ResourceManager.GetString("GameMode_char_Extended_grid_size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Final tile: 4096.
+        /// </summary>
+        public static string GameMode_char_Extended_max_value {
+            get {
+                return ResourceManager.GetString("GameMode_char_Extended_max_value", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Spawn speed: 2 per move.
+        /// </summary>
+        public static string GameMode_char_Extended_spawn_type {
+            get {
+                return ResourceManager.GetString("GameMode_char_Extended_spawn_type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Undo: Disabled.
+        /// </summary>
+        public static string GameMode_char_Extended_undo_available {
+            get {
+                return ResourceManager.GetString("GameMode_char_Extended_undo_available", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Extended 5x5 mode with undo ability.
         /// </summary>
         public static string GameMode_ChillZone_desc {

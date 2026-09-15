@@ -11,60 +11,81 @@
             StrokeShape="RoundRectangle 32"
             StrokeThickness="3"
             Stroke="{DynamicResource MainBorderColor}"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
             Background="{Binding CardColor}"
-            Margin="10,20"
-            HeightRequest="500"
-            WidthRequest="300">
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            MaximumWidthRequest="{OnIdiom Phone=400, Tablet=550}"
+            Margin="10, 20">
 
         <Border.GestureRecognizers>
             <TapGestureRecognizer 
-                    Command="{Binding Command, Source={RelativeSource AncestorType={x:Type comp:GameModeCardView}}, x:DataType={x:Type comp:GameModeCardView}}"
-                    CommandParameter="{Binding CommandParameter, Source={RelativeSource AncestorType={x:Type comp:GameModeCardView}}, x:DataType={x:Type comp:GameModeCardView}}" />
+                Command="{Binding Command, Source={RelativeSource AncestorType={x:Type comp:GameModeCardView}}, x:DataType={x:Type comp:GameModeCardView}}"
+                CommandParameter="{Binding CommandParameter, Source={RelativeSource AncestorType={x:Type comp:GameModeCardView}}, x:DataType={x:Type comp:GameModeCardView}}" />
         </Border.GestureRecognizers>
 
-        <VerticalStackLayout Spacing="0" VerticalOptions="Fill">
-            <Grid HeightRequest="250"
-                  WidthRequest="250"
-                  Margin="0,25,0,0">
-                
-                <Grid.Clip>
-                    <RoundRectangleGeometry CornerRadius="5" Rect="0,0,250,250"/>
-                </Grid.Clip>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <Border StrokeThickness="0"
+                    StrokeShape="RoundRectangle 10"
+                    Background="Transparent"
+                    HorizontalOptions="Center">
 
                 <Image Source="{Binding GifSource}"
-                       IsAnimationPlaying="{Binding IsActive}"
-                       Aspect="AspectFill">
-                </Image>
-            </Grid>
+                       Aspect="AspectFit"
+                       HeightRequest="{OnIdiom Phone=260, Tablet=380}"
+                       WidthRequest="{OnIdiom Phone=260, Tablet=380}" />
+            </Border>
 
-            <VerticalStackLayout Padding="20" Spacing="5" HorizontalOptions="Center">
-                <Border StrokeShape="RoundRectangle 15"
-                        StrokeThickness="2"
-                        Stroke="{DynamicResource MainBorderColor}"
-                        Background="{DynamicResource SecondaryFieldBGColor}">
-                    <Label Text="{Binding Title}" 
-                           FontSize="25" 
-                           TextColor="{DynamicResource MainTitleColor}" 
-                           FontFamily="RubikBold"
-                           Margin="10, 0, 10, 0"
-                           HorizontalOptions="Center"
-                           HorizontalTextAlignment="Center"
-                           LineBreakMode="NoWrap"/>
-                </Border>
-                
+            <Border StrokeShape="RoundRectangle 15"
+                    StrokeThickness="2"
+                    Stroke="{DynamicResource MainBorderColor}"
+                    Background="{DynamicResource SecondaryFieldBGColor}"
+                    HorizontalOptions="Fill">
 
-                <Label Text="{Binding Desc}" 
-                       FontSize="20" 
-                       FontAttributes="Bold" 
-                       TextColor="{DynamicResource MainTextColor}"
-                       FontFamily="RubikSemi"
-                       HorizontalOptions="Center"
+                <Label Text="{Binding Title}" 
+                       FontSize="{OnIdiom Phone=25, Tablet=32}" 
+                       TextColor="{DynamicResource MainTitleColor}" 
+                       FontFamily="RubikBold"
+                       Margin="15, 5"
                        HorizontalTextAlignment="Center"
-                       LineBreakMode="WordWrap"/>   
+                       LineBreakMode="NoWrap"/>
+            </Border>
 
-            </VerticalStackLayout>
+            <Border StrokeShape="RoundRectangle 15"
+                    StrokeThickness="2"
+                    Stroke="{DynamicResource MainBorderColor}"
+                    Background="{DynamicResource SecondaryFieldBGColor}"
+                    HorizontalOptions="Fill"
+                    HeightRequest="{OnIdiom Phone=240, Tablet=320}">
+
+                <VerticalStackLayout BindableLayout.ItemsSource="{Binding Characteristics}"
+                                     Spacing="4" 
+                                     Padding="15, 10"
+                                     HorizontalOptions="Fill">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="x:String">
+                            <Grid ColumnDefinitions="Auto, *" ColumnSpacing="8">
+                                <Label Grid.Column="0"
+                                       Text="•" 
+                                       FontSize="{OnIdiom Phone=16, Tablet=20}" 
+                                       FontFamily="RubikBold" 
+                                       TextColor="{DynamicResource MainTitleColor}" 
+                                       VerticalOptions="Start"/>
+
+                                <Label Grid.Column="1"
+                                       Text="{Binding .}" 
+                                       FontSize="{OnIdiom Phone=16, Tablet=20}" 
+                                       FontFamily="RubikSemi" 
+                                       TextColor="{DynamicResource MainTitleColor}"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Fill"
+                                       LineBreakMode="WordWrap" />
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+            </Border>
+
         </VerticalStackLayout>
     </Border>
 

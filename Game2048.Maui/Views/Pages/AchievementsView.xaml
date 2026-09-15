@@ -52,7 +52,9 @@
 
                 <CollectionView ItemsSource="{Binding Achievements}"
                                 SelectionMode="None"
-                                ItemsUpdatingScrollMode="KeepScrollOffset">
+                                ItemsUpdatingScrollMode="KeepScrollOffset"
+                                HorizontalScrollBarVisibility="Never"
+                                VerticalScrollBarVisibility="Never">
 
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout x:Name="AchievementsLayout"

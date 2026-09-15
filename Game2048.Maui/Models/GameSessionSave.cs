@@ -11,5 +11,5 @@ public class GameSessionSave
 {
     public required StateSnapshot LastState { get; set; }
     public List<StateSnapshot>? History { get; set; }
-
+    public int? MaxTileValue { get; set; }
 }
