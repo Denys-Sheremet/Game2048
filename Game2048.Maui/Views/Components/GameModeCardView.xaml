@@ -14,6 +14,7 @@
             Background="{Binding CardColor}"
             HorizontalOptions="Center"
             VerticalOptions="Center"
+            WidthRequest="{OnIdiom Phone=300, Tablet=335}"
             MaximumWidthRequest="{OnIdiom Phone=400, Tablet=550}"
             Margin="10, 20">
 
@@ -23,27 +24,29 @@
                 CommandParameter="{Binding CommandParameter, Source={RelativeSource AncestorType={x:Type comp:GameModeCardView}}, x:DataType={x:Type comp:GameModeCardView}}" />
         </Border.GestureRecognizers>
 
-        <VerticalStackLayout Padding="20" Spacing="20">
+        <Grid RowDefinitions="*, Auto, Auto" Padding="15" RowSpacing="5">
 
-            <Border StrokeThickness="0"
+            <Border Grid.Row="0"
+                    StrokeThickness="0"
                     StrokeShape="RoundRectangle 10"
                     Background="Transparent"
                     HorizontalOptions="Center">
 
                 <Image Source="{Binding GifSource}"
                        Aspect="AspectFit"
-                       HeightRequest="{OnIdiom Phone=260, Tablet=380}"
-                       WidthRequest="{OnIdiom Phone=260, Tablet=380}" />
+                       MaximumHeightRequest="{OnIdiom Phone=260, Tablet=280}"
+                       MaximumWidthRequest="{OnIdiom Phone=260, Tablet=280}" />
             </Border>
 
-            <Border StrokeShape="RoundRectangle 15"
+            <Border Grid.Row="1"
+                    StrokeShape="RoundRectangle 15"
                     StrokeThickness="2"
                     Stroke="{DynamicResource MainBorderColor}"
                     Background="{DynamicResource SecondaryFieldBGColor}"
                     HorizontalOptions="Fill">
 
                 <Label Text="{Binding Title}" 
-                       FontSize="{OnIdiom Phone=25, Tablet=32}" 
+                       FontSize="{OnIdiom Phone=20, Tablet=24}" 
                        TextColor="{DynamicResource MainTitleColor}" 
                        FontFamily="RubikBold"
                        Margin="15, 5"
@@ -51,13 +54,15 @@
                        LineBreakMode="NoWrap"/>
             </Border>
 
-            <Border StrokeShape="RoundRectangle 15"
+            <Border Grid.Row="2"
+                    StrokeShape="RoundRectangle 15"
                     StrokeThickness="2"
                     Stroke="{DynamicResource MainBorderColor}"
                     Background="{DynamicResource SecondaryFieldBGColor}"
                     HorizontalOptions="Fill"
-                    HeightRequest="{OnIdiom Phone=240, Tablet=320}">
+                    HeightRequest="{OnIdiom Phone=240, Tablet=260}">
 
+                
                 <VerticalStackLayout BindableLayout.ItemsSource="{Binding Characteristics}"
                                      Spacing="4" 
                                      Padding="15, 10"
@@ -67,14 +72,14 @@
                             <Grid ColumnDefinitions="Auto, *" ColumnSpacing="8">
                                 <Label Grid.Column="0"
                                        Text="•" 
-                                       FontSize="{OnIdiom Phone=16, Tablet=20}" 
+                                       FontSize="{OnIdiom Phone=16, Tablet=18}" 
                                        FontFamily="RubikBold" 
                                        TextColor="{DynamicResource MainTitleColor}" 
                                        VerticalOptions="Start"/>
 
                                 <Label Grid.Column="1"
                                        Text="{Binding .}" 
-                                       FontSize="{OnIdiom Phone=16, Tablet=20}" 
+                                       FontSize="{OnIdiom Phone=16, Tablet=18}" 
                                        FontFamily="RubikSemi" 
                                        TextColor="{DynamicResource MainTitleColor}"
                                        VerticalOptions="Center"
@@ -86,7 +91,7 @@
                 </VerticalStackLayout>
             </Border>
 
-        </VerticalStackLayout>
+        </Grid>
     </Border>
 
 </ContentView>

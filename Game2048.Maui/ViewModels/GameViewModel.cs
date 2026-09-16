@@ -285,6 +285,7 @@ public partial class GameViewModel : BindableObject, IDisposable
         if (!TryLoadSave())
         {
             _gameCore.Clear();
+            _gameCore.SetMaxValue(_gameConfig.TargetValue);
             Tiles.Clear();
             _gameCore.SpawnMultipleTiles(2);
         }
@@ -294,7 +295,19 @@ public partial class GameViewModel : BindableObject, IDisposable
 
     public void StartNewGame()
     {
+        IsExtendedAllowed = _gameConfig.GameMode != GameModeType.Compact &&
+                        _gameConfig.GameMode != GameModeType.Extended &&
+                        _gameConfig.GameMode != GameModeType.ChillZone;
+
+        var save = _profileManager.LoadCurrentGame(_gameConfig.GameMode);
+        if (save is not null)
+        {
+            save.MaxTileValue = null;
+        }
+
         _gameCore.Clear();
+        _gameCore.SetMaxValue(_gameConfig.TargetValue);
+
         SetNewGameState();
         Tiles.Clear();
         _gameCore.SpawnMultipleTiles(2);

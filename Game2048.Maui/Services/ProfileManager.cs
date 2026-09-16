@@ -85,10 +85,18 @@ public class ProfileManager : IProfileManager
     public void SaveCurrentGame(GameModeType gameMode, StateSnapshot currentState, IReadOnlyList<StateSnapshot>? history)
     {
         var profile = GetValidProfile();
+
+        int? existingMax = null;
+        if (profile.Saves.TryGetValue(gameMode, out var oldSave))
+        {
+            existingMax = oldSave.MaxTileValue;
+        }
+
         profile.Saves[gameMode] = new GameSessionSave
         {
             LastState = currentState,
-            History = history?.ToList()
+            History = history?.ToList(),
+            MaxTileValue = existingMax
         };
     }
 
