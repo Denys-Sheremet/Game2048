@@ -248,7 +248,7 @@ To run the application natively on Windows as a WinUI 3 desktop app, follow thes
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/Denys-Sheremet/Game2048.git](https://github.com/Denys-Sheremet/Game2048.git)
+   git clone https://github.com/Denys-Sheremet/Game2048.git
    cd Game2048/Game2048.Maui
    ```
 
