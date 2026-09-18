@@ -2,10 +2,11 @@
   
 # Game 2048 
 
-![C#](https://img.shields.io/badge/Language-C%23-darkblue)
-![.NET 10.0](https://img.shields.io/badge/.NET-10.0-purple?logo=dotnet&logoColor=purple)
-![.NET MAUI](https://img.shields.io/badge/Platform-MAUI-lightblue?logo=dotnet&logoColor=purple)
-![Architecture](https://img.shields.io/badge/Architecture-MVVM-success)
+![C#](https://img.shields.io/badge/Language-C%23-68217A?logo=csharp&logoColor=white)
+![.NET](https://img.shields.io/badge/.NET-10.0-512BD4?logo=dotnet&logoColor=white)
+![MAUI](https://img.shields.io/badge/Platform-MAUI-512BD4?logo=dotnet&logoColor=white)
+![Architecture](https://img.shields.io/badge/Architecture-Clean-informational)
+![Pattern](https://img.shields.io/badge/Pattern-MVVM-informational)
 
 > *A modern, cross-platform implementation of the classic 2048 puzzle game, built with .NET MAUI and scalable architecture.*
 
