@@ -6,7 +6,7 @@
 ![.NET](https://img.shields.io/badge/.NET-10.0-512BD4?logo=dotnet&logoColor=white)
 ![Architecture](https://img.shields.io/badge/Architecture-Clean-informational)
 
->*The UI-agnostic core for [Game 2048](../Game2048), with smart Undo / State history support and transition analyzer*
+>*The UI-agnostic core for [Game 2048](..), with smart Undo / State history support and transition analyzer*
 
 </div>
 
