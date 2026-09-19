@@ -17,14 +17,48 @@ Built with Clean Architecture principles in mind, the project separates game rul
 
 >[!NOTE]
 >To go to the main sections:
->* [Key features]()
->* [Architecture]()
->* [Key concepts]()
+>* [Key features](#2-key-features-sparkles)
+>* [Architecture](#3-architecture-building_construction)
+>* [Game modes]()
 >* [Use examples]()
+>* [Testing]()
+>* [Tech stack]()
+>* [Related projects]()
+>* [License]()
 
 ## 2. Key features :sparkles:
 
+* **UI-agnostic engine:** This project has no UI dependencies, so it is completely decoupled from the presentation layer (MAUI / WPF / Console).
+* **Undo option:** The Memento pattern is used to store state snapshots in the history, providing a stable and deterministic undo system.
+* **Transition Analyzer:** Core provides a static class that analyzes the list of transitions for the current turn by comparing two state snapshots.
+* **DI-oriented architecture:** The main class `Game.cs` is designed with the Facade pattern in mind, making it a centralized entry point that orchestrates the underlying subsystems — such as grid management, movement logic, score calculation, and state history persistence.
+* **Serialization support:** `StateSnapshot` and `TileSnapshot` feature a custom `JsonConverter` for nullable tuples, making the engine state ready to be saved and loaded in JSON format.
+* **Event-driven model:** Exposes core events (`OnStateChanged`, `OnScoreGained`, `OnVictory`, `OnGameOver`) to provide a clean, reactive way for the UI to subscribe to engine updates without relying on performance-heavy state polling.
+
+
 ## 3. Architecture :building_construction:
+
+>[!NOTE]
+>This section is divided into few sub-sections, you can go to the one you like by using links below:
+>* [Project diagram](#project-diagram-bulb)
+>* [Turn lifecycle](#turn-lifecycle-arrows_counterclockwise)
+>* [Game Mechanics' core concepts](#game-mechanics-core-concepts-gear)
+>* [Transition Analyzer's core concepts](#transition-analyzers-core-concepts-crystal_ball)
+>* [Project structure](#project-structure-file_folder)
+
+### Architecture overview
+The engine is strictly divided into specialized sub-domains to enforce the **Single Responsibility Principle (SRP)**. By isolating responsibilities and communicating through interfaces, subsystems can be easily mocked, tested, or entirely replaced with custom strategies (e.g., injecting deterministic randomness for unit testing).
+
+### Project diagram :bulb:
+
+This class diagram illustrates the engine's decoupled nature. Rather than a monolithic structure, the core utilizes several established design patterns:
+
+* **Facade Pattern (`Game.cs`):** Acts as the central orchestrator. Notice how it relies heavily on Dependency Injection (`uses (DI)`) rather than concrete implementations, delegating tasks to specialized managers.
+* **Strategy Pattern (Interfaces):** Subsystems like `ITileSpawner` and `IHistoryManager` have multiple implementations (e.g., `DisabledHistoryManager` vs. `LimitedHistoryManager`). This makes it trivial to introduce new game modes (like a "hardcore" mode with no undo) without touching core logic.
+* **Factory Pattern (`GameFactory`):** Centralizes the complex initialization of the `Game` object, ensuring that all necessary dependencies and configs (like grid size and `GameModeType`) are properly wired up before gameplay begins.
+* **Memento Pattern (`StateSnapshot`):** The state models are completely separate from the active `Grid` and `Tile` entities. This guarantees that history snapshots remain immutable and safe from unintended reference mutations during gameplay.
+* **Stateless Domain Services:** `GameMechanics` and `TransitionAnalyzer` handle the heavy mathematical lifting. By keeping them stateless, they remain highly testable and prevent the `Grid` class from becoming bloated.
+* **Template Method:** `TileSpawner.Spawn()` is virtual, overridden by `MultipleTileSpawner` and `DelayedTileSpawner` to alter spawn cadence/quantity while reusing base placement logic.
 
 ````mermaid
 classDiagram
@@ -212,3 +246,46 @@ classDiagram
     HistoryManager ..> StateSnapshot : stores
     LimitedHistoryManager ..> StateSnapshot : stores
 ````
+
+### Turn lifecycle :arrows_counterclockwise:
+
+A single call to `Move(direction)` walks through several subsystems in sequence:
+
+1. A `StateSnapshot` of the grid is taken **before** any mutation (`before`).
+2. Each row/column (depending on a `MoveDirection` passed to the parameters) is extracted and handed to the stateless `GameMechanics.ProcessLine()`, which merges tiles and computes score for that line.
+3. `TileRegistry` registers new tiles to reflect merged/created tiles.
+4. If anything moved, the pre-move snapshot is pushed to `IHistoryManager` (enabling Undo), one or more new tiles are spawned via `ITileSpawner`, and `OnScoreGained` / `OnStateChanged` fire. Otherwise, if there were no moves/merges in the current turn, the method will return an empty `List<TileTransition>` and doesn't spawn new tiles.
+5. A second `StateSnapshot` is taken **after** (`after`), and `TransitionAnalyzer.Analyze(before, after)` diffs the two to produce a `List<TileTransition>` — this is what the UI layer consumes to animate tiles frame-by-frame instead of just snapping to the new grid state.
+
+`Undo()` on the other hand follows the sequence below:
+1. Just like a `Move()` method it takes a snapshot of the state (`before`).
+2. Checks if there is anything left in `IHistoryManager`, returns an empty `List<TileTransition>` if it's empty.
+3. `Pop()`s the state snapshot from the `IHistoryManager`.
+4. Calls `Grid.Restore(StateSnapshot)` method to apply the snapshot to the current grid. `_nextTileId` is being restored also from the `StateSnapshot`.
+5. `TileRegistry` is updated per line: tiles consumed by a merge are unregistered, and the resulting merged tile is registered.
+6. Sets the `IsGameOver` flag to `false` and invokes the `OnStateChanged` event.
+7. Takes the second snapshot **after** (`after`), and pass two snapshots to the analyzer to get the list of transitions for UI.
+
+>[!IMPORTANT]
+> The `Undo()` calls the `TransitionAnalyzer.Analyze()` with an optional flag `isUndo` set to `true`. The codebase of `TransitionAnalyzer` will execute analysis of the reversed sequence of parameters `(after, before)` and then **reverse** the `TileTransitionType` and swaps `FromX/FromY` with `ToX/ToY` for each transition DTO.
+
+### Game Mechanics' core concepts :gear:
+
+`GameMechanics.ProcessLine()` is the single algorithm the entire merge system is built on - `Move()` calls it once per row or column, regardless of direction, and it knows nothing about the grid, the game mode, or where the line came from.
+
+* **Compaction as a Byproduct:** Sliding tiles together isn't a separate step - it happens implicitly. `existingTiles = line.Where(t => t != null)` filters out empty cells while preserving order, so "gravity" falls out naturally from the filter rather than needing its own algorithm.
+* **Single-Pass, Merge-Once Rule:** The loop compares each tile only to its immediate neighbor and, on a successful merge, increments `i` an extra step (`i++`). This enforces the classic 2048 rule that three equal tiles in a row merge only the first pair - a tile can never merge twice in the same move.
+* **Stateless & Id-Agnostic:** The method doesn't generate tile ids itself - it receives a `Func<int> generateId` delegate from the caller. This keeps `GameMechanics` fully decoupled from `Game`'s id-counter state, making it trivially testable in isolation.
+* **Explicit State Hygiene:** Tiles that *don't* merge still get `SetMerged(false)` and `SetParents()` called on them. Since `Tile` instances are mutated and reused across turns, this reset is what prevents a tile's stale `IsMerged`/`Parents` flags from a previous merge bleeding into the next turn's `TransitionAnalyzer` classification - a tile with a lingering non-null `Parents` would be misread as a fresh merge `Result`.
+* **Reference-Based Move Detection:** `WasMoved` is computed via `!line.SequenceEqual(finalArray)` — since `Tile` has no overridden equality, this compares by reference. A merge always produces a *new* `Tile` instance, so this single check correctly flags both slides and merges as "moved" without needing separate logic for each.
+
+### Transition Analyzer's core concepts :crystal_ball:
+
+The `TransitionAnalyzer` acts as the architectural bridge between the pure game math and the front-end rendering. Instead of the core dictating UI actions, it utilizes a state-diffing approach.
+
+* **Genealogy-Aware Diffing:** The engine compares the board's `StateSnapshot` `before` a move against the `StateSnapshot` `after`. By tracking immutable `Tile` `Id`s and their `Parents`, it distinguishes a tile that simply moved from one that was consumed by a merge - and outputs a clean `List<TileTransition>` describing exactly what happened, tile by tile.
+* **Declarative Animations:** The UI framework (e.g. MAUI) remains completely blind to game rules. It simply reads the generated transaction log's `TileTransitionType` (`Spawn`, `Move`, `Merge`, `Result`, `Split`, `Respawn`, `Stay`, `Disappear`) and executes the corresponding visual animation.
+* **Undo for Free:** Because transitions are derived purely from comparing two id-keyed snapshots, reversing a move requires no separate logic - `Analyze()` simply re-runs with the snapshots swapped, then inverts each transition's type and direction. The same diffing engine drives both forward and backward animation.
+
+
+### Project structure :file_folder:
