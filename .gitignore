@@ -6,6 +6,7 @@
 *.userosscache
 *.sln.docstates
 TestResults/
+*.cd
 
 **/[Bb]in/
 **/[Oo]bj/

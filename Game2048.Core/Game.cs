@@ -1,6 +1,4 @@
-﻿using System.Runtime.Intrinsics.Arm;
-
-namespace Game2048.Core;
+﻿namespace Game2048.Core;
 
 public class Game
 {
