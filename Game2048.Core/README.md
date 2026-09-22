@@ -289,3 +289,48 @@ The `TransitionAnalyzer` acts as the architectural bridge between the pure game 
 
 
 ### Project structure :file_folder:
+
+```text
+Directory structure:
+└── Game2048.Core/
+    ├── README.md                                # You are here
+    ├── Game.cs                                  # Entry point class (Facade pattern)
+    ├── Game2048.Core.csproj                     # 
+    ├── GlobalUsings.cs                          # Global usings among all files
+    ├── DTOs/                                    
+    │   └── TileTransition.cs                    # DTO for UI providers
+    ├── Enums/                                   
+    │   ├── GameModeType.cs                      # Enumeration of all game modes added
+    │   ├── MoveDirection.cs                     # Enumeration for deterministic swipe directions
+    │   └── TileTransitionType.cs                # Enumeration for deterministic transition type for UI
+    ├── Factories/
+    │   └── GameFactory.cs                       
+    ├── Interfaces/
+    │   ├── IHistoryManager.cs
+    │   ├── IRandomProvider.cs
+    │   ├── IReadOnlyTileRegistry.cs
+    │   ├── ITileRegistry.cs
+    │   └── ITileSpawner.cs
+    ├── Logic/
+    │   └── TransitionAnalyzer.cs
+    ├── Mechanics/
+    │   └── GameMechanics.cs
+    ├── Models/
+    │   ├── GameConfig.cs
+    │   ├── Grid.cs
+    │   ├── StateSnapshot.cs
+    │   ├── Tile.cs
+    │   └── TileSnapshot.cs
+    ├── Serialization/
+    │   └── NullableIntTupleConverter.cs
+    └── Services/
+        ├── DefaultRandomProvider.cs
+        ├── DelayedTileSpawner.cs
+        ├── DisabledHistoryManager.cs
+        ├── HistoryManager.cs
+        ├── LimitedHistoryManager.cs
+        ├── MultipleTileSpawner.cs
+        ├── TileRegistry.cs
+        └── TileSpawner.cs
+
+```
