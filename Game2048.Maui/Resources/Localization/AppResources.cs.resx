@@ -637,7 +637,7 @@
     <value>Propast</value>
   </data>
   <data name="AbyssTheme_desc" xml:space="preserve">
-    <value>Hlubokomořská jízda. Připravte se na ponor!</value>
+    <value>Připravte se na ponor!</value>
   </data>
   <data name="VaporWaveTheme_title" xml:space="preserve">
     <value>Vaporwave</value>
@@ -661,7 +661,7 @@
     <value>Kyberpunk 2078</value>
   </data>
   <data name="Cyberpunk2078Theme_desc" xml:space="preserve">
-    <value>Vstávej, samuraji, musíme získat dlaždici...</value>
+    <value>Vstávej, samuraji...</value>
   </data>
   <data name="SakuraTheme_title" xml:space="preserve">
     <value>Sakura</value>
@@ -697,7 +697,7 @@
     <value>Monochrom (bez čísel)</value>
   </data>
   <data name="MonochromeNumberlessTheme_desc" xml:space="preserve">
-    <value>Od bílé k černé, nechte to plynout</value>
+    <value>Od bílé k černé</value>
   </data>
   <data name="ProfilePage_total_coins_label" xml:space="preserve">
     <value>Celkem získaných mincí: </value>

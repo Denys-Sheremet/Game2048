@@ -20,14 +20,14 @@
             <VerticalStackLayout HorizontalOptions="Center">
 
                 <Label Text="{x:Static lang:AppResources.Game_ScoreBoard_score_label}" 
-                        FontSize="24" 
+                        FontSize="{OnIdiom Phone=20, Tablet=22, Desktop=22}" 
                         FontFamily="MontBold"  
                         HorizontalOptions="Center" 
                         TextColor="{DynamicResource ScoreBoardTextColor}"/>
 
                 <Label Text="{Binding Score}" 
                         x:Name="ActualScoreLabel"
-                        FontSize="24" 
+                        FontSize="{OnIdiom Phone=20, Tablet=22, Desktop=22}" 
                         FontFamily="RubikBold"  
                         HorizontalOptions="Center"
                         Padding="5, 0, 5, 0"
@@ -45,14 +45,14 @@
             <VerticalStackLayout HorizontalOptions="Center">
 
                 <Label Text="{x:Static lang:AppResources.Game_ScoreBoard_best_score_label}" 
-                       FontSize="24" 
+                       FontSize="{OnIdiom Phone=20, Tablet=22, Desktop=22}" 
                        FontFamily="MontBold"  
                        HorizontalOptions="Center" 
                        TextColor="{DynamicResource ScoreBoardTextColor}"/>
 
                 <Label Text="{Binding BestScore}" 
                        x:Name="BestScoreLabel"
-                       FontSize="24" 
+                       FontSize="{OnIdiom Phone=20, Tablet=22, Desktop=22}" 
                        FontFamily="RubikBold"  
                        HorizontalOptions="Center"
                        Padding="5, 0, 5, 0"

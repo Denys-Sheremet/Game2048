@@ -14,7 +14,7 @@
             Background="{Binding CardColor}"
             HorizontalOptions="Center"
             VerticalOptions="Center"
-            WidthRequest="{OnIdiom Phone=300, Tablet=335}"
+            WidthRequest="{OnIdiom Phone=280, Tablet=335}"
             MaximumWidthRequest="{OnIdiom Phone=400, Tablet=550}"
             Margin="10, 20">
 

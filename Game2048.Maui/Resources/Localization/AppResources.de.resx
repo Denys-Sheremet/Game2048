@@ -637,7 +637,7 @@
     <value>Abgrund</value>
   </data>
   <data name="AbyssTheme_desc" xml:space="preserve">
-    <value>Tiefseefahrt. Mach dich bereit für den Tauchgang!</value>
+    <value>Mach dich bereit für den Tauchgang!</value>
   </data>
   <data name="VaporWaveTheme_title" xml:space="preserve">
     <value>Vaporwave</value>
@@ -661,7 +661,7 @@
     <value>Cyberpunk 2078</value>
   </data>
   <data name="Cyberpunk2078Theme_desc" xml:space="preserve">
-    <value>Wach auf, Samurai, wir haben eine Kachel zu erreichen...</value>
+    <value>Wach auf, Samurai...</value>
   </data>
   <data name="SakuraTheme_title" xml:space="preserve">
     <value>Sakura</value>
@@ -697,7 +697,7 @@
     <value>Monochrom (ohne Zahlen)</value>
   </data>
   <data name="MonochromeNumberlessTheme_desc" xml:space="preserve">
-    <value>Von Weiß zu Schwarz, lass es geschehen</value>
+    <value>Von Weiß zu Schwarz</value>
   </data>
   <data name="ProfilePage_total_coins_label" xml:space="preserve">
     <value>Insgesamt verdiente Münzen: </value>

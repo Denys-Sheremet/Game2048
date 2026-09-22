@@ -61,7 +61,7 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Deep ocean drive. Get ready for the dive!.
+        ///   Ищет локализованную строку, похожую на Get ready for the dive!.
         /// </summary>
         public static string AbyssTheme_desc {
             get {
@@ -799,7 +799,7 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Wake up, samurai, we have a tile to achieve....
+        ///   Ищет локализованную строку, похожую на Wake up, samurai....
         /// </summary>
         public static string Cyberpunk2078Theme_desc {
             get {
@@ -1492,7 +1492,7 @@ namespace Game2048.Maui.Resources.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на From white to black, let it happen.
+        ///   Ищет локализованную строку, похожую на From white to black.
         /// </summary>
         public static string MonochromeNumberlessTheme_desc {
             get {

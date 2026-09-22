@@ -637,7 +637,7 @@
     <value>Безодня</value>
   </data>
   <data name="AbyssTheme_desc" xml:space="preserve">
-    <value>Глибокий океан чекає на тебе. Приготуйся!</value>
+    <value>Пірнай!</value>
   </data>
   <data name="VaporWaveTheme_title" xml:space="preserve">
     <value>Вейпорвейв</value>
@@ -649,7 +649,7 @@
     <value>Велике місто</value>
   </data>
   <data name="TheGreatCityTheme_desc" xml:space="preserve">
-    <value>Це місто, де збуваються мрії, де душа тремтить від щастя на світанку...</value>
+    <value>Місто - Герой</value>
   </data>
   <data name="NebulaTheme_title" xml:space="preserve">
     <value>Туманність</value>
@@ -661,7 +661,7 @@
     <value>Кіберпанк 2078</value>
   </data>
   <data name="Cyberpunk2078Theme_desc" xml:space="preserve">
-    <value>Вставай, самурай, ми маємо досягнути цю плитку</value>
+    <value>Прокидайся, самурай...</value>
   </data>
   <data name="SakuraTheme_title" xml:space="preserve">
     <value>Сакура</value>
@@ -697,7 +697,7 @@
     <value>Монохром (Без цифр)</value>
   </data>
   <data name="MonochromeNumberlessTheme_desc" xml:space="preserve">
-    <value>Від білого до чорного - нехай усе йде своєю чергою</value>
+    <value>Від білого до чорного</value>
   </data>
   <data name="ProfilePage_total_coins_label" xml:space="preserve">
     <value>Всього монет зароблено:</value>

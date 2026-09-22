@@ -159,11 +159,11 @@
                     </Border>
 
                     <Border x:Name="LanguageField"
-                                StrokeShape="RoundRectangle 8"
-                                StrokeThickness="2"
-                                Stroke="{DynamicResource MainBorderColor}"
-                                Padding="10, 5, 10, 5"
-                                Background="{DynamicResource SecondaryFieldBGColor}">
+                            StrokeShape="RoundRectangle 8"
+                            StrokeThickness="2"
+                            Stroke="{DynamicResource MainBorderColor}"
+                            Padding="10, 5, 10, 5"
+                            Background="{DynamicResource SecondaryFieldBGColor}">       
                         <Border.Triggers>
                             <DataTrigger TargetType="Border" 
                                          Binding="{Binding IsNotCurrentLang}" 
@@ -183,99 +183,92 @@
                                     Background="{DynamicResource CardBGColor}" 
                                     StrokeShape="RoundRectangle 16" 
                                     Padding="15">
-                                <Grid ColumnDefinitions="*, *, *, *" ColumnSpacing="10">
+                                <Grid ColumnDefinitions="*, *, *, *" ColumnSpacing="8">
+
                                     <Border x:Name="SelectedLangStroke"
                                             BackgroundColor="Transparent"
                                             Stroke="{DynamicResource SelectionStrokeColor}"
                                             InputTransparent="True"
-                                            WidthRequest="75"
-                                            HeightRequest="65"
-                                            HorizontalOptions="Center"
-                                            VerticalOptions="Center"
+                                            HorizontalOptions="Fill"
+                                            VerticalOptions="Fill"
                                             StrokeThickness="4"
                                             StrokeShape="RoundRectangle 8"
                                             IsVisible="False"
                                             ZIndex="11" />
-
                                     <Border ZIndex="10"
                                             x:Name="Uk_Btn"
-                                            WidthRequest="70"
-                                            HeightRequest="60" 
-                                            HorizontalOptions="Center"
-                                            VerticalOptions="Center"
+                                            HeightRequest="55" 
+                                            HorizontalOptions="Fill"
+                                            VerticalOptions="Fill"
                                             Grid.Column="0" 
                                             StrokeShape="RoundRectangle 8" 
                                             Stroke="Transparent" 
-                                            StrokeThickness="0" 
+                                            StrokeThickness="4" 
                                             BackgroundColor="Transparent">
-                                        <ImageButton     x:Name="UkLangBtn"
-                                                             Source="uk_btn_img.svg" 
-                                                             Command="{Binding SelectLanguageCommand}" 
-                                                             CommandParameter="uk"
-                                                             Clicked="OnImgBtnClicked"
-                                                             Aspect="AspectFill" />
+                                        <ImageButton x:Name="UkLangBtn"
+                                                     Source="uk_btn_img.svg" 
+                                                     Command="{Binding SelectLanguageCommand}" 
+                                                     CommandParameter="uk"
+                                                     Clicked="OnImgBtnClicked"
+                                                     Aspect="AspectFill" />
                                     </Border>
 
                                     <Border ZIndex="10"
                                             x:Name="En_Btn"
-                                            WidthRequest="70"
-                                            HeightRequest="60"
-                                            HorizontalOptions="Center"
-                                            VerticalOptions="Center"
+                                            HeightRequest="55"
+                                            HorizontalOptions="Fill"
+                                            VerticalOptions="Fill"
                                             Grid.Column="1" 
                                             StrokeShape="RoundRectangle 8" 
                                             Stroke="Transparent" 
-                                            StrokeThickness="0" 
+                                            StrokeThickness="4" 
                                             BackgroundColor="Transparent">
-                                        <ImageButton     x:Name="EnLangBtn"
-                                                             Source="en_btn_img.svg" 
-                                                             Command="{Binding SelectLanguageCommand}" 
-                                                             CommandParameter="en"
-                                                             Clicked="OnImgBtnClicked"
-                                                             Aspect="AspectFill" />
+                                        <ImageButton x:Name="EnLangBtn"
+                                                     Source="en_btn_img.svg" 
+                                                     Command="{Binding SelectLanguageCommand}" 
+                                                     CommandParameter="en"
+                                                     Clicked="OnImgBtnClicked"
+                                                     Aspect="AspectFill" />
                                     </Border>
 
                                     <Border ZIndex="10"
                                             x:Name="Cs_Btn"
-                                            WidthRequest="70"
-                                            HeightRequest="60" 
-                                            HorizontalOptions="Center"
-                                            VerticalOptions="Center"
+                                            HeightRequest="55" 
+                                            HorizontalOptions="Fill"
+                                            VerticalOptions="Fill"
                                             Grid.Column="2" 
                                             StrokeShape="RoundRectangle 8" 
                                             Stroke="Transparent" 
-                                            StrokeThickness="0" 
+                                            StrokeThickness="4" 
                                             BackgroundColor="Transparent">
-                                        <ImageButton     x:Name="CsLangBtn"
-                                                             Source="cs_btn_img.svg" 
-                                                             Command="{Binding SelectLanguageCommand}" 
-                                                             CommandParameter="cs"
-                                                             Clicked="OnImgBtnClicked"
-                                                             Aspect="AspectFill" />
+                                        <ImageButton x:Name="CsLangBtn"
+                                                     Source="cs_btn_img.svg" 
+                                                     Command="{Binding SelectLanguageCommand}" 
+                                                     CommandParameter="cs"
+                                                     Clicked="OnImgBtnClicked"
+                                                     Aspect="AspectFill" />
                                     </Border>
 
                                     <Border ZIndex="10"
                                             x:Name="De_Btn"
-                                            WidthRequest="70"
-                                            HeightRequest="60" 
-                                            HorizontalOptions="Center"
-                                            VerticalOptions="Center"
+                                            HeightRequest="55" 
+                                            HorizontalOptions="Fill"
+                                            VerticalOptions="Fill"
                                             Grid.Column="3" 
                                             StrokeShape="RoundRectangle 8" 
                                             Stroke="Transparent" 
-                                            StrokeThickness="0" 
+                                            StrokeThickness="4" 
                                             BackgroundColor="Transparent">
-                                        <ImageButton     x:Name="DeLangBtn"
-                                                             Source="de_btn_img.svg" 
-                                                             Command="{Binding SelectLanguageCommand}" 
-                                                             CommandParameter="de"
-                                                             Clicked="OnImgBtnClicked"
-                                                             Aspect="AspectFill" />
+                                        <ImageButton x:Name="DeLangBtn"
+                                                     Source="de_btn_img.svg" 
+                                                     Command="{Binding SelectLanguageCommand}" 
+                                                     CommandParameter="de"
+                                                     Clicked="OnImgBtnClicked"
+                                                     Aspect="AspectFill" />
                                     </Border>
-
                                 </Grid>
-
                             </Border>
+
                             <Button Text="{x:Static lang:AppResources.Settings_apply_btn}" 
                                     FontSize="16"
                                     FontAttributes="Bold"

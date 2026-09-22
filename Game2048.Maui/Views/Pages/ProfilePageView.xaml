@@ -230,27 +230,27 @@
                             <TapGestureRecognizer Tapped="OnCardTapped" />
                         </Border.GestureRecognizers>
 
-                        <Grid ColumnDefinitions="*, Auto">
-                            <HorizontalStackLayout Grid.Column="0" Spacing="8" VerticalOptions="Center">
-                                <Image Source="coin.svg"
-                                       WidthRequest="16"
-                                       HeightRequest="16"
-                                       VerticalOptions="Center"/>
-                                <Label Text="{x:Static lang:AppResources.ProfilePage_total_coins_label}"
-                                       FontSize="16"
-                                       FontFamily="RubikBold"
-                                       TextColor="{DynamicResource MainTextColor}"
-                                       VerticalOptions="Center" />
-                            </HorizontalStackLayout>
+                        <Grid ColumnDefinitions="Auto, *, Auto" ColumnSpacing="8" VerticalOptions="Center">
+                            <Image Grid.Column="0"
+                                   Source="coin.svg"
+                                   WidthRequest="16"
+                                   HeightRequest="16"
+                                   VerticalOptions="Center"/>
 
-                            <HorizontalStackLayout Grid.Column="1" Spacing="4" VerticalOptions="Center">
-                                <Label Text="{Binding TotalCoinsEarned}"
-                                       FontSize="18"
-                                       FontFamily="RubikBold"
-                                       TextColor="{DynamicResource MainTitleColor}"
-                                       VerticalOptions="Center" />
-                                
-                            </HorizontalStackLayout>
+                            <Label Grid.Column="1"
+                                   Text="{x:Static lang:AppResources.ProfilePage_total_coins_label}"
+                                   FontSize="16"
+                                   FontFamily="RubikBold"
+                                   TextColor="{DynamicResource MainTextColor}"
+                                   LineBreakMode="WordWrap"
+                                   VerticalOptions="Center" />
+
+                            <Label Grid.Column="2"
+                                   Text="{Binding TotalCoinsEarned}"
+                                   FontSize="18"
+                                   FontFamily="RubikBold"
+                                   TextColor="{DynamicResource MainTitleColor}"
+                                   VerticalOptions="Center" />
                         </Grid>
                     </Border>
 
@@ -465,12 +465,12 @@
                                                     StrokeThickness="3"
                                                     Stroke="{DynamicResource MainBorderColor}"
                                                     Padding="12, 10"
-                                                    HeightRequest="70">
+                                                    HeightRequest="85">
                                                 <Border.GestureRecognizers>
                                                     <TapGestureRecognizer Tapped="OnCardTapped" />
                                                 </Border.GestureRecognizers>
 
-                                        <Grid ColumnDefinitions="Auto, *, *" InputTransparent="True">
+                                            <Grid ColumnDefinitions="Auto, *, *" InputTransparent="True">
                                                     <Image Source="{Binding RatingIcon}"
                                                            Grid.Column="0"
                                                            HeightRequest="35"
@@ -479,7 +479,7 @@
                                                            HorizontalOptions="Start"/>
                                                     <Label Text="{Binding ModeName}"
                                                            Grid.Column="1"
-                                                           FontSize="16"
+                                                           FontSize="14"
                                                            FontFamily="RubikBold"
                                                            VerticalOptions="Center"
                                                            HorizontalOptions="Start"
@@ -488,13 +488,13 @@
                                                            TextColor="{DynamicResource SignsTextColor}"/>
                                                     <Label Text="{Binding HighestScore}"
                                                            Grid.Column="2"
-                                                           FontSize="16"
+                                                           FontSize="14"
                                                            FontFamily="RubikBold"
                                                            VerticalOptions="Center"
                                                            HorizontalOptions="End"
                                                            Margin="0, 0, 25, 0"
                                                            TextColor="{DynamicResource MainTextColor}"/>
-                                        </Grid>
+                                            </Grid>
                                         </Border>
                                     </DataTemplate>
                                 </BindableLayout.ItemTemplate>
