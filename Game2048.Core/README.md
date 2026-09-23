@@ -21,7 +21,7 @@ Built with Clean Architecture principles in mind, the project separates game rul
 >* [Architecture](#3-architecture-building_construction)
 >* [Game modes](#4-game-modes-game_die)
 >* [Use examples](#5-use-examples-wrench)
->* [Testing]()
+>* [Testing](#6-testing-test_tube)
 >* [Tech stack]()
 >* [Related projects]()
 >* [License]()
@@ -356,4 +356,79 @@ The Game2048.Core features 5 standard game modes with different game rules. All 
 
 ## 5. Use examples :wrench:
 
+The basic use case of Game2048.Core is by using `GameConfig`, `Game` and `GameFactory` classes. Here is a quick C# snippet that tells the complete story of a basic game loop:
 
+```csharp
+using Game2048.Core;
+using Game2048.Core.DTOs;
+using Game2048.Core.Enums;
+using Game2048.Core.Models;
+using Game2048.Core.Factories;
+
+GameConfig config = new GameConfig(); //Creates a standard config for Classic game mode
+
+config.SetConfig(GameModeType.ClassicPlus); // Sets config to selected game mode
+
+Game game = GameFactory.CreateGame(config); // Creates a Game object using config info
+
+game.SpawnMultipleTiles(2); // Spawns 2 new tiles for the beginning of the game
+
+var moveTransitions = game.Move(MoveDirection.Right); // Executes move to the right, returns a list of transitions and spawns new tile
+
+var undoTransitions = game.Undo(); // Executes undo if the game mode supports it and returns a list of transitions
+
+game.Clear(); // Resets the whole object to default values
+```
+
+You may also want to subscribe for basic events of the `Game` class. By default the `Game` object contains 4 events:
+
+```csharp
+public event Action? OnStateChanged; // Is invoked when anything changed on a Grid
+public event Action<int>? OnScoreGained; // Is invoked when Score value either increased or decreased
+public event Action? OnVictory; // Is invoked when game's ended with victory
+public event Action? OnGameOver; // Is invoked when game's ended in a loss (no available moves)
+```
+
+Additionally, you can manually control Grid state by using methods in `Game` class or call public `Grid` methods:
+
+```csharp
+// To get a snapshot manually
+StateSnapshot snapshot1 = game.GetCurrentGridState(); // Returns a snapshot of current Grid
+// Or by calling straight from the Grid
+StateSnapshot snapshot2 = game.Grid.CreateSnapshot(game.GetNextTileId(withIncrement : false)); // Does the same thing but with full control
+
+// You can restore Grid by calling Restore or ColdRestore method
+game.Grid.Restore(snapshot1); // Restores the state from a snapshot WITH attention to present Parents of tiles (needed for history management and UI)
+game.Grid.ColdRestore(snapshot2); // Restores the state from a snapshot straight-forward by rebuilding the Grid (perfect for quick redraw)
+
+// You can easily get the Tile from a Grid by using indexers
+// X-axis (Columns): Goes from Left (0) to Right.
+// Y-axis (Rows): Goes from Top (0) to Bottom.
+var tile1 = game.Grid[0, 0]; // Gets the Tile in a top-left corner of the Grid
+
+// To iterate over the whole list of Tiles use the following construction
+// It is important to use it with Count property in order to avoid IndexOutOfRangeException
+for (int i = 0; i < game.Grid.Count; i++)
+{
+    var tile = game.Grid[i]; // This takes the tile from the list of existing tiles
+}
+
+// You can get a list of empty cells
+var emptyCellsList = game.Grid.GetEmptyCells(); // Returns a List<(int x, int y)> - all positions with no tiles
+
+// To find a tile among others by its Id
+if (game.Grid.TryFindTile(id : 1, out Tile? foundTile))
+{
+    int value = foundTile.Value;
+}
+
+// To clear the Grid manually
+game.Grid.Clear(); // However game.Clear() calls it too
+```
+
+>[!IMPORTANT]
+> To show the best example of usage and to confirm Core's UI-agnostic architecture, you can view two distinct applications powered by Game2048.Core. You can check out their repositories to see full integration examples:
+> * **[Game2048.Maui](./Game2048.Maui):** A full-featured, cross-platform application (Android, iOS, Windows) built with .NET MAUI. It demonstrates how to consume `TileTransition` lists to orchestrate smooth UI animations, implement the MVVM pattern, and manage game history in a modern app.
+> * **[Game2048.ConsoleApp](./Game2048.ConsoleApp):** A lightweight, terminal-based implementation. It serves as a perfect example of a simple, synchronous input loop for instant screen redraws without complex animation logic.
+
+## 6. Testing :test_tube:
