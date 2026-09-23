@@ -19,8 +19,8 @@ Built with Clean Architecture principles in mind, the project separates game rul
 >To go to the main sections:
 >* [Key features](#2-key-features-sparkles)
 >* [Architecture](#3-architecture-building_construction)
->* [Game modes]()
->* [Use examples]()
+>* [Game modes](#4-game-modes-game_die)
+>* [Use examples](#5-use-examples-wrench)
 >* [Testing]()
 >* [Tech stack]()
 >* [Related projects]()
@@ -295,7 +295,7 @@ Directory structure:
 └── Game2048.Core/
     ├── README.md                                # You are here
     ├── Game.cs                                  # Entry point class (Facade pattern)
-    ├── Game2048.Core.csproj                     # 
+    ├── Game2048.Core.csproj                     # Core project configuration file
     ├── GlobalUsings.cs                          # Global usings among all files
     ├── DTOs/                                    
     │   └── TileTransition.cs                    # DTO for UI providers
@@ -304,33 +304,56 @@ Directory structure:
     │   ├── MoveDirection.cs                     # Enumeration for deterministic swipe directions
     │   └── TileTransitionType.cs                # Enumeration for deterministic transition type for UI
     ├── Factories/
-    │   └── GameFactory.cs                       
+    │   └── GameFactory.cs                       # Factory for different game modes
     ├── Interfaces/
-    │   ├── IHistoryManager.cs
-    │   ├── IRandomProvider.cs
-    │   ├── IReadOnlyTileRegistry.cs
-    │   ├── ITileRegistry.cs
-    │   └── ITileSpawner.cs
+    │   ├── IHistoryManager.cs                   # Interface for History Manager for state control (DI)
+    │   ├── IRandomProvider.cs                   # Interface for Random Provider for different modes (DI)
+    │   ├── IReadOnlyTileRegistry.cs             # Interface wrapper for TileRegistry to guarantee readonly
+    │   ├── ITileRegistry.cs                     # Interface for TileRegistry for Grids Tiles control
+    │   └── ITileSpawner.cs                      # Interface for TileSpawner for different modes (DI)
     ├── Logic/
-    │   └── TransitionAnalyzer.cs
+    │   └── TransitionAnalyzer.cs                # Static Analyzer to identify transitions for UI
     ├── Mechanics/
-    │   └── GameMechanics.cs
+    │   └── GameMechanics.cs                     # Static class for pure logic used by Game Grid calculations
     ├── Models/
-    │   ├── GameConfig.cs
-    │   ├── Grid.cs
-    │   ├── StateSnapshot.cs
-    │   ├── Tile.cs
-    │   └── TileSnapshot.cs
+    │   ├── GameConfig.cs                        # Model for storing initial and current game settings (mode etc.)
+    │   ├── Grid.cs                              # Model as a main Tiles container for Game (Source of truth)
+    │   ├── StateSnapshot.cs                     # Easy-weight model of a Grid to serialize and store
+    │   ├── Tile.cs                              # Model for Tile object and its mandatory fields (Source of truth)
+    │   └── TileSnapshot.cs                      # Easy-weight model of a Tile to serialize and store
     ├── Serialization/
-    │   └── NullableIntTupleConverter.cs
+    │   └── NullableIntTupleConverter.cs         # Custom JSON converter for serializing nullable tuples
     └── Services/
-        ├── DefaultRandomProvider.cs
-        ├── DelayedTileSpawner.cs
-        ├── DisabledHistoryManager.cs
-        ├── HistoryManager.cs
-        ├── LimitedHistoryManager.cs
-        ├── MultipleTileSpawner.cs
-        ├── TileRegistry.cs
-        └── TileSpawner.cs
+        ├── DefaultRandomProvider.cs             # Default implementation of IRandomProvider (DI)
+        ├── DelayedTileSpawner.cs                # Implementation of ITileSpawner for 0.5 tile / turn spawn (DI)
+        ├── DisabledHistoryManager.cs            # Decoy Implementation of IHistoryManager for modes without Undo (DI)
+        ├── HistoryManager.cs                    # Implementation of infinite IHistoryManager (DI, Deprecated / Reference)
+        ├── LimitedHistoryManager.cs             # Default implementation of limited IHistoryManager (DI)
+        ├── MultipleTileSpawner.cs               # Implementation of ITileSpawner for 2+ tile / turn spawn (DI)
+        ├── TileRegistry.cs                      # Default implementation of ITileRegistry (DI)
+        └── TileSpawner.cs                       # Default base implementation of ITileSpawner (DI, polymorphism)
 
 ```
+
+## 4. Game Modes :game_die:
+
+The Game2048.Core features 5 standard game modes with different game rules. All of them are presented in a table below:
+
+| Mode | Grid Size | Target Value | Spawn Logic (ITileSpawner) | Undo Support (IHistoryManager) |
+| :--- | :---: | :---: | :--- | :--- |
+| **Classic** | 4x4 | 2048 | Standard (1 tile / turn) | ❌ Disabled |
+| **ClassicPlus** | 4x4 | 2048 | Standard (1 tile / turn) | ✅ Limited (5 steps) |
+| **Compact** | 3x3 | 1024 | Delayed (1 tile every 2 turns) | ✅ Limited (5 steps) |
+| **Extended** | 5x5 | 4096 | Multiple (2 tiles / turn) | ❌ Disabled |
+| **ChillZone** | 5x5 | 4096 | Multiple (2 tiles / turn) | ✅ Limited (5 steps) |
+
+> [!IMPORTANT]
+> `Classic` and `ClassicPlus` modes' Target Value is 2048, **however** the game allows you to extend the game to 4096.
+> The 2048 tile in `Compact` mode is mathematically impossible, therefore there are no extension options for it.
+
+> [!NOTE]
+> For more details on how each game mode is configured, refer to the [GameFactory](Factories/GameFactory.cs) file.
+
+## 5. Use examples :wrench:
+
+
