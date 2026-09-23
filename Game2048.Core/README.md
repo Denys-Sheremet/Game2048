@@ -428,7 +428,7 @@ game.Grid.Clear(); // However game.Clear() calls it too
 
 >[!IMPORTANT]
 > To show the best example of usage and to confirm Core's UI-agnostic architecture, you can view two distinct applications powered by Game2048.Core. You can check out their repositories to see full integration examples:
-> * **[Game2048.Maui](./Game2048.Maui):** A full-featured, cross-platform application (Android, iOS, Windows) built with .NET MAUI. It demonstrates how to consume `TileTransition` lists to orchestrate smooth UI animations, implement the MVVM pattern, and manage game history in a modern app.
-> * **[Game2048.ConsoleApp](./Game2048.ConsoleApp):** A lightweight, terminal-based implementation. It serves as a perfect example of a simple, synchronous input loop for instant screen redraws without complex animation logic.
+> * **[Game2048.Maui](../Game2048.Maui):** A full-featured, cross-platform application (Android, iOS, Windows) built with .NET MAUI. It demonstrates how to consume `TileTransition` lists to orchestrate smooth UI animations, implement the MVVM pattern, and manage game history in a modern app.
+> * **[Game2048.ConsoleApp](../Game2048.ConsoleApp):** A lightweight, terminal-based implementation. It serves as a perfect example of a simple, synchronous input loop for instant screen redraws without complex animation logic.
 
 ## 6. Testing :test_tube:
