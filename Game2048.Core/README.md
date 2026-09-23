@@ -22,9 +22,8 @@ Built with Clean Architecture principles in mind, the project separates game rul
 >* [Game modes](#4-game-modes-game_die)
 >* [Use examples](#5-use-examples-wrench)
 >* [Testing](#6-testing-test_tube)
->* [Tech stack]()
->* [Related projects]()
->* [License]()
+>* [Tech stack](#7-tech-stack-desktop_computer)
+>* [License](#8-license-memo)
 
 ## 2. Key features :sparkles:
 
@@ -39,7 +38,7 @@ Built with Clean Architecture principles in mind, the project separates game rul
 ## 3. Architecture :building_construction:
 
 >[!NOTE]
->This section is divided into few sub-sections, you can go to the one you like by using links below:
+>This section is divided into a few sub-sections, you can go to the one you like by using links below:
 >* [Project diagram](#project-diagram-bulb)
 >* [Turn lifecycle](#turn-lifecycle-arrows_counterclockwise)
 >* [Game Mechanics' core concepts](#game-mechanics-core-concepts-gear)
@@ -356,7 +355,7 @@ The Game2048.Core features 5 standard game modes with different game rules. All 
 
 ## 5. Use examples :wrench:
 
-The basic use case of Game2048.Core is by using `GameConfig`, `Game` and `GameFactory` classes. Here is a quick C# snippet that tells the complete story of a basic game loop:
+The basic use case of Game2048.Core is managed through `GameConfig`, `Game` and `GameFactory` classes. Here is a quick C# snippet that tells the complete story of a basic game loop:
 
 ```csharp
 using Game2048.Core;
@@ -365,7 +364,7 @@ using Game2048.Core.Enums;
 using Game2048.Core.Models;
 using Game2048.Core.Factories;
 
-GameConfig config = new GameConfig(); //Creates a standard config for Classic game mode
+GameConfig config = new GameConfig(); // Creates a standard config for Classic game mode
 
 config.SetConfig(GameModeType.ClassicPlus); // Sets config to selected game mode
 
@@ -432,3 +431,32 @@ game.Grid.Clear(); // However game.Clear() calls it too
 > * **[Game2048.ConsoleApp](../Game2048.ConsoleApp):** A lightweight, terminal-based implementation. It serves as a perfect example of a simple, synchronous input loop for instant screen redraws without complex animation logic.
 
 ## 6. Testing :test_tube:
+
+The `Game2048.Core` library is extremely reliable and covered by **200+ unit tests** in a dedicated test project. [xUnit](https://xunit.net/) and [NSubstitute](https://nsubstitute.github.io/) were used to guarantee that all game mechanics, grid math, and state history work flawlessly.
+
+To see the test cases, visit the [Game2048.Core.Test](../Game2048.Core.Test) project. 
+
+To run the entire test suite locally, execute from the root repository directory:
+```bash
+dotnet test
+```
+
+## 7. Tech stack :desktop_computer:
+
+This core library is built with a focus on clean, maintainable, and dependency-free code:
+
+* **Language / Platform:** C#, .NET 10
+* **Architecture:** Clean Architecture principles, UI-agnostic design
+* **Design Patterns:** Facade (`Game`), Factory (`GameFactory`), Dependency Injection
+* **Testing:** xUnit, NSubstitute
+* **Serialization:** `System.Text.Json` (featuring custom lightweight converters)
+
+## 8. License :memo:
+
+This project is distributed under a custom license. Please refer to the `LICENSE` file located in the root directory of this repository or click the [link](../LICENSE) for full details and terms of use.
+
+---
+<div align="center">
+  <p>If you found this project interesting or helpful, please consider giving it a :star:!</p>
+</div>
+
