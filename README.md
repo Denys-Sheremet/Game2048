@@ -10,7 +10,7 @@
 
 > *A modern, cross-platform implementation of the classic 2048 puzzle game, built with .NET MAUI and scalable architecture.*
 
-[![Get it on Google Play](https://img.shields.io/badge/Google_Play-Coming_Soon-black?logo=google-play&logoColor=white&style=for-the-badge)](#)
+[![Get it on Google Play](https://img.shields.io/badge/Google_Play-Available_Now-green?logo=google-play&logoColor=white&style=for-the-badge)](https://play.google.com/store/apps/details?id=com.rbsoft.game2048)
 
 </div>
 
@@ -19,7 +19,7 @@
 This project represents a fresh and reimagined version of the classic puzzle game 2048. The core objective remains the same: move tiles on a grid, merge them to get a higher value tile and try to reach tile 2048. However, this project features different game modes, undo options, colorful theme customization, profile statistics and local achievements system. Game2048 is powered by a robust, scalable engine decoupled from the UI, designed to be flexible and work seamlessly with different UI providers.
 
 >[!NOTE]
->To got to run & build section:
+>To go to run & build section:
 >* [Run on Android](#iphone-android)
 >* [Run on iOS](#green_apple-ios)
 >* [Run on Windows](#desktop_computer-windows)
@@ -173,10 +173,6 @@ To test this project on Android OS, you can go two ways:
    * Click Run without debug or `Ctrl + F5`
 
 ### :green_apple: iOS
-
->[!IMPORTANT]
->The iOS build is currently unverified. The codebase is fully cross-platform and ready for Apple devices, but this target has not been successfully compiled and tested locally yet due to environment constraints.
->If you have a macOS environment with Xcode configured, you can build the project using the standard .NET MAUI workflow.
 
 #### Prerequisites
 
