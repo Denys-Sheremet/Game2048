@@ -123,7 +123,7 @@ Game2048/
 
 ### :iphone: Android
 To test this project on Android OS, you can go two ways:
-* The easiest one is to [get it on Google Play]()
+* The easiest one is to [get it on Google Play](https://play.google.com/store/apps/details?id=com.rbsoft.game2048)
 * The second option is to compile the project in your own environment following those steps:
 
 #### Prerequisites
