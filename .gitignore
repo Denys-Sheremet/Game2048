@@ -31,3 +31,7 @@ Thumbs.db
 devsettings.json
 
 UpgradeLog*.htm
+
+*.Backup.tmp
+*.backup
+*.csproj.user
